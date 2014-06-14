@@ -1,0 +1,9 @@
+<div>
+    <p>
+        character: 
+        <a ng-bind="character.name"
+           ng-href="/characters/{{ character._id }}/quotes"></a>
+    </p>
+    <p ng-bind-template="quote: {{ quote.quote }}"></p>
+    <p ng-bind-template="reference: {{ quote.reference }}"></p>
+</div>

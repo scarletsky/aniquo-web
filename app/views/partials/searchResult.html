@@ -1,0 +1,15 @@
+<div>
+    <div ng-if="g.searchType === 'character'">
+        <div ng-repeat="object in objects">
+            <a ng-bind="object.name"
+               ng-href="/characters/{{ object._id }}/quotes"></a>
+        </div>
+    </div>
+
+    <div ng-if="g.searchType === 'source'">
+        <div ng-repeat="object in objects">
+            <a ng-bind="object.name"
+               ng-href="/sources/{{ object._id }}/characters"></a>
+        </div>
+    </div>
+</div>

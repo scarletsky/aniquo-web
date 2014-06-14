@@ -1,0 +1,18 @@
+<form role="form"
+      ng-submit="getResult()"
+      ng-controller="SearchCtrl">
+    <select class="form-control"
+            name="type"
+            id="type"
+            ng-model="g.searchType">
+        <option value="character">角色</option>
+        <option value="source">作品</option>
+    </select>
+
+    <input class="form-control" 
+           type="text"
+           name="keyword"
+           id="keyword"
+           ng-model="g.searchKeyword" />
+    <button class="btn btn-primary">提交</button>
+</form>
