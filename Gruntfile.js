@@ -47,6 +47,16 @@ module.exports = function (grunt) {
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: '0.0.0.0'
       },
+      proxies: [
+        {
+          context: '/api',
+          host: 'localhost',
+          port: 3000,
+          https: false,
+          changeOrigin: false,
+          xforward: false
+        }
+      ],
       livereload: {
         options: {
           middleware: function (connect) {
@@ -85,6 +95,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'configureProxies',
       'connect:livereload',
       'open',
       'watch'
