@@ -19,6 +19,10 @@ angular.module('bd')
         controller: 'SearchCtrl as search',
         templateUrl: 'views/search/search.html'
       })
+      .when('/sources/new', {
+        controller: 'SourceEditCtrl',
+        templateUrl: 'views/source/sourceForm.html'
+      })
       .when('/sources/:sourceId/characters', {
         controller: 'SourceCtrl',
         templateUrl: 'views/source/source.html'

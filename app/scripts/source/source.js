@@ -1,4 +1,6 @@
-angular.module('bdSource', [])
+angular.module('bdSource', [
+  'bdSourceEdit'
+])
   .controller('SourceCtrl', function (
     $scope,
     $location,
