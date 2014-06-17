@@ -1,8 +1,4 @@
-angular.module('bdSearch', [
-  'bdQuote',
-  'bdSource',
-  'bdCharacter'
-])
+angular.module('bdSearch', [])
   .controller('SearchCtrl', function (
     $scope,
     $location,

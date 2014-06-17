@@ -1,8 +1,11 @@
 angular.module('bd', [
   'ngRoute',
+  'bdQuote',
   'bdSearch',
   'bdConfig',
-  'bdCommon'
+  'bdCommon',
+  'bdSource',
+  'bdCharacter',
 ])
 
   .controller('BrynhildCtrl', function (

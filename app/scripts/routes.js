@@ -21,14 +21,14 @@ angular.module('bd')
       })
       .when('/sources/:sourceId/characters', {
         controller: 'SourceCtrl',
-        templateUrl: 'views/search/source.html'
+        templateUrl: 'views/source/source.html'
       })
       .when('/characters/:characterId/quotes', {
         controller: 'CharacterCtrl',
-        templateUrl: 'views/search/character.html'
+        templateUrl: 'views/character/character.html'
       })
       .when('/quotes/:quoteId', {
         controller: 'QuoteCtrl',
-        templateUrl: 'views/search/quote.html'
+        templateUrl: 'views/quote/quote.html'
       })
   });
