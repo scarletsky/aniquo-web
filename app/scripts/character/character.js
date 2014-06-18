@@ -1,4 +1,6 @@
-angular.module('bdCharacter', [])
+angular.module('bdCharacter', [
+  'bdCharacterEdit'
+])
   .controller('CharacterCtrl', function (
     $scope,
     $location,
