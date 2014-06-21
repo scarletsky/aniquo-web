@@ -10,6 +10,7 @@ angular.module('bdCharacterEdit', [])
       var data = {
         name: $scope.character.name,
         nickname: $scope.character.nickname,
+        info: $scope.character.info,
         sourceId: $scope.character.sourceId
       };
 
