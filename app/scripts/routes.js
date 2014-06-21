@@ -23,6 +23,10 @@ angular.module('bd')
         controller: 'SourceEditCtrl',
         templateUrl: 'views/source/sourceForm.html'
       })
+      .when('/sources/:sourceId/edit', {
+        controller: 'SourceEditCtrl',
+        templateUrl: 'views/source/sourceForm.html'
+      })
       .when('/sources/:sourceId/characters', {
         controller: 'SourceCtrl',
         templateUrl: 'views/source/source.html'

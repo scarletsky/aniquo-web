@@ -1,5 +1,7 @@
 <div>
     <p ng-bind="g.currentSource.name"></p>
+    <a ng-href="/sources/{{ g.currentSource._id }}/edit">编辑作品</a>
+
     <div ng-repeat="object in objects"
          style="margin: 10px 0;">
          <a ng-href="/characters/{{ object._id }}/quotes"
