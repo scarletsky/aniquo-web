@@ -31,7 +31,6 @@ angular.module('bdSearch', [])
     }
 
     $scope.getResult = function () {
-      console.log($scope.g.searchType);
       $location.path('/').search({kw: $scope.g.searchKeyword, t: $scope.g.searchType});
     };
   })
