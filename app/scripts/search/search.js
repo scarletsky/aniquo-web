@@ -93,13 +93,18 @@ angular.module('bdSearch', [])
       require: 'ngModel',
       link: function ($scope, $element, $attrs, $ctrl) {
         var delayRequest;
+        $scope.searchFlag = true;
+
+        $element.on('keydown', function (e) {
+          $scope.searchFlag = true;
+        });
 
         $scope.$watch(function () {
           return $ctrl.$modelValue;
         }, function (modelValue) {
           $timeout.cancel(delayRequest);
 
-          if (modelValue) {
+          if (modelValue && $scope.searchFlag) {
             delayRequest = $timeout(function () {
               Restangular.all('search').getList({
                   kw: modelValue,
@@ -173,24 +178,25 @@ angular.module('bdSearch', [])
       require: 'ngModel',
       link: function ($scope, $element, $attrs, $ctrl) {
         $scope.$on('resultSelect', function (event, resultObject) {
-          switch ($attrs.bdAutoComplete) {
+          $scope.$apply(function () {
+            switch ($attrs.bdAutoComplete) {
 
-          case 'id':
-            $scope.$apply(function () {
+            case 'id':
               var id = resultObject.id;
               $ctrl.$setViewValue(id);
               $element.val(id);
-            });
-            break;
+              break;
 
-          case 'name':
-            $scope.$apply(function () {
+            case 'name':
               var name = resultObject.name;
               $ctrl.$setViewValue(name);
               $element.val(name);
-            });
-            break;
-          }
+              break;
+            }
+
+            $scope.searchFlag = false;
+            $scope.isListShow = false;
+          });
         });
       }
     };
