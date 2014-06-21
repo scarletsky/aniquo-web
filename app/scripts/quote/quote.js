@@ -1,4 +1,6 @@
-angular.module('bdQuote', [])
+angular.module('bdQuote', [
+  'bdQuoteEdit'
+])
   .controller('QuoteCtrl', function (
     $scope,
     $routeParams,

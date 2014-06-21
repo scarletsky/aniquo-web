@@ -35,6 +35,10 @@ angular.module('bd')
         controller: 'CharacterCtrl',
         templateUrl: 'views/character/character.html'
       })
+      .when('/quotes/new', {
+        controller: 'QuoteEditCtrl',
+        templateUrl: 'views/quote/quoteForm.html'
+      })
       .when('/quotes/:quoteId', {
         controller: 'QuoteCtrl',
         templateUrl: 'views/quote/quote.html'
