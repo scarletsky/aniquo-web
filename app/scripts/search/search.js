@@ -92,7 +92,7 @@ angular.module('bdSearch', [])
       require: 'ngModel',
       link: function ($scope, $element, $attrs, $ctrl) {
         var delayRequest;
-        $scope.searchFlag = true;
+        $scope.searchFlag = false;
 
         $element.on('keydown', function (e) {
           $scope.searchFlag = true;
