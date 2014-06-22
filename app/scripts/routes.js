@@ -35,6 +35,10 @@ angular.module('bd')
         controller: 'CharacterEditCtrl',
         templateUrl: 'views/character/CharacterForm.html'
       })
+      .when('/characters/:characterId/edit', {
+        controller: 'CharacterEditCtrl',
+        templateUrl: 'views/character/CharacterForm.html'
+      })
       .when('/characters/:characterId/quotes', {
         controller: 'CharacterCtrl',
         templateUrl: 'views/character/character.html'

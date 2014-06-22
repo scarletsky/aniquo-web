@@ -2,9 +2,29 @@ angular.module('bdCharacterEdit', [])
   .controller('CharacterEditCtrl', function (
     $scope,
     $location,
+    $routeParams,
     Restangular
   ) {
     'use strict';
+
+    var actionType = $routeParams.characterId ? 'edit' : 'add';
+
+    if (actionType === 'edit') {
+      Restangular
+        .one('characters', $routeParams.characterId)
+        .get()
+        .then(function (res) {
+          $scope.character = res;
+          $scope.character.sourceId = res.source_id;
+
+          Restangular
+            .one('sources', res.source_id)
+            .get()
+            .then(function (res) {
+              $scope.character.sourceName = res.name;
+            });
+        });
+    }
 
     $scope.submit = function () {
       var data = {
@@ -14,15 +34,32 @@ angular.module('bdCharacterEdit', [])
         sourceId: $scope.character.sourceId
       };
 
-      Restangular.one('character/check').get(data).then(function (res) {
-        if (res.exist) {
-          alert('该角色已存在！');
-        } else {
-          Restangular.all('characters').post(data).then(function (data) {
-            alert('添加成功！');
-            $location.path('/');
+      if (actionType === 'edit') {
+        Restangular
+          .one('characters', $routeParams.characterId)
+          .put(data)
+          .then(function (res) {
+            alert('更新成功！');
+            $location.path('/characters/' + $routeParams.characterId + '/quotes');
           });
-        }
-      });
+      } else {
+        Restangular
+          .one('character/check')
+          .get(data)
+          .then(function (res) {
+            if (res.exist) {
+              alert('该角色已存在！');
+            } else {
+              Restangular
+                .all('characters')
+                .post(data)
+                .then(function (data) {
+                  alert('添加成功！');
+                  $location.path('/');
+              });
+            }
+        });
+
+      }
     };
   });
