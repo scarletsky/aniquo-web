@@ -12,17 +12,11 @@ angular.module('bdCharacterEdit', [])
     if (actionType === 'edit') {
       Restangular
         .one('characters', $routeParams.characterId)
-        .get()
+        .get({'with_source': true})
         .then(function (res) {
           $scope.character = res;
-          $scope.character.sourceId = res.source_id;
-
-          Restangular
-            .one('sources', res.source_id)
-            .get()
-            .then(function (res) {
-              $scope.character.sourceName = res.name;
-            });
+          $scope.character.sourceId = res.source._id;
+          $scope.character.sourceName = res.source.name;
         });
     }
 

@@ -12,17 +12,11 @@ angular.module('bdQuoteEdit', [])
     if (actionType === 'edit') {
       Restangular
         .one('quotes', $routeParams.quoteId)
-        .get()
+        .get({'with_character': true})
         .then(function (res) {
           $scope.quote = res;
-          $scope.quote.characterId = res.character_id;
-
-          Restangular
-            .one('characters', res.character_id)
-            .get()
-            .then(function (res) {
-              $scope.quote.characterName = res.name;
-            });
+          $scope.quote.characterId = res.character._id;
+          $scope.quote.characterName = res.character.name;
         });
     }
 
