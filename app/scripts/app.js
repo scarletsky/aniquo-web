@@ -1,5 +1,6 @@
 angular.module('bd', [
   'ngRoute',
+  'bdUser',
   'bdQuote',
   'bdSearch',
   'bdConfig',

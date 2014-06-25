@@ -55,4 +55,8 @@ angular.module('bd')
         controller: 'QuoteCtrl',
         templateUrl: 'views/quote/quote.html'
       })
+      .when('/login', {
+        controller: 'LoginCtrl',
+        templateUrl: 'views/user/userLogin.html'
+      })
   });
