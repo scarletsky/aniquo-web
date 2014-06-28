@@ -61,6 +61,7 @@
                        id="source"
                        name="source"
                        ng-model="character.sourceName"
+                       ng-keydown="keydownSelect($event)"
                        required
                        bd-search
                        bd-search-type="source"
@@ -71,6 +72,7 @@
                 <ul ng-show="isListShow">
                     <li ng-repeat="result in results"
                         ng-bind="result.name"
+                        ng-click="keydownSelect(result)"
                         object-id="{{ result._id }}"></li>
                 </ul>
 

@@ -148,12 +148,7 @@ angular.module('bdSearch', [])
           $scope.$emit('resultSelect', resultObject);
         };
 
-        ul.on('mouseenter', function (e) {
-          var lists = ul.find('li');
-          lists.removeClass('list-cur');
-        });
-
-        $element.on('keydown', function (e) {
+        $scope.keydownSelect = function (e) {
           var lists = ul.find('li');
           var cur = ul.children('.list-cur');
 
@@ -179,6 +174,11 @@ angular.module('bdSearch', [])
               break;
             }
           }
+        };
+
+        ul.on('mouseenter', function (e) {
+          var lists = ul.find('li');
+          lists.removeClass('list-cur');
         });
       }
     };
@@ -191,25 +191,23 @@ angular.module('bdSearch', [])
       require: 'ngModel',
       link: function ($scope, $element, $attrs, $ctrl) {
         $scope.$on('resultSelect', function (event, resultObject) {
-          $scope.$apply(function () {
-            switch ($attrs.bdAutoComplete) {
+          switch ($attrs.bdAutoComplete) {
 
-            case 'id':
-              var id = resultObject.id;
-              $ctrl.$setViewValue(id);
-              $element.val(id);
-              break;
+          case 'id':
+            var id = resultObject.id;
+            $ctrl.$setViewValue(id);
+            $element.val(id);
+            break;
 
-            case 'name':
-              var name = resultObject.name;
-              $ctrl.$setViewValue(name);
-              $element.val(name);
-              break;
-            }
+          case 'name':
+            var name = resultObject.name;
+            $ctrl.$setViewValue(name);
+            $element.val(name);
+            break;
+          }
 
-            $scope.searchFlag = false;
-            $scope.isListShow = false;
-          });
+          $scope.searchFlag = false;
+          $scope.isListShow = false;
         });
       }
     };
