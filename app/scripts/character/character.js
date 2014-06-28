@@ -31,9 +31,13 @@ angular.module('bdCharacter', [
     };
 
     if (!$scope.g.currentCharacter || $scope.g.currentCharacter._id !== characterId) {
-      Restangular.one('characters/' + characterId).get().then(function (data) {
-        $scope.g.currentCharacter = data;
-      });
+      Restangular
+        .one('characters/' + characterId)
+        .get({with_source: true})
+        .then(function (data) {
+          $scope.g.currentSource = data.source;
+          $scope.g.currentCharacter = data;
+        });
     }
 
     Restangular
