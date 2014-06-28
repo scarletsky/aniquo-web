@@ -139,7 +139,7 @@ angular.module('bdSearch', [])
         };
         var ul = $element.next();
 
-        $scope.selectResult = function (object) {
+        $scope.clickSelect = function (object) {
           var resultObject = {
             name: object.name,
             id: object._id
