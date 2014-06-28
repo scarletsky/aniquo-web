@@ -139,6 +139,20 @@ angular.module('bdSearch', [])
         };
         var ul = $element.next();
 
+        $scope.selectResult = function (object) {
+          var resultObject = {
+            name: object.name,
+            id: object._id
+          };
+
+          $scope.$emit('resultSelect', resultObject);
+        };
+
+        ul.on('mouseenter', function (e) {
+          var lists = ul.find('li');
+          lists.removeClass('list-cur');
+        });
+
         $element.on('keydown', function (e) {
           var lists = ul.find('li');
           var cur = ul.children('.list-cur');
