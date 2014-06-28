@@ -21,7 +21,7 @@ angular.module('bdSearch', [])
       $scope.g.searchType = type;
     }
 
-    if (angular.isDefined(keyword)) {
+    if (keyword) {
       Restangular.all('search').getList({
         kw: keyword,
         t: type
