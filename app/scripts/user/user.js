@@ -1,4 +1,3 @@
 angular.module('bdUser', [
-  'bdUserLogin',
-  'bdUserSignup'
+  'bdUserAuth'
 ]);

@@ -11,8 +11,12 @@ angular.module('bd', [
 
   .controller('BrynhildCtrl', function (
     $scope,
-    G
+    G,
+    Session
   ) {
     'use strict';
+
+    $scope.g = G;
+    $scope.session = Session;
 
   });

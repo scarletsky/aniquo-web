@@ -56,11 +56,11 @@ angular.module('bd')
         templateUrl: 'views/quote/quote.html'
       })
       .when('/login', {
-        controller: 'LoginCtrl',
+        controller: 'AuthCtrl',
         templateUrl: 'views/user/userLogin.html'
       })
       .when('/signup', {
-        controller: 'SignupCtrl',
+        controller: 'AuthCtrl',
         templateUrl: 'views/user/userSignup.html'
       })
   });
