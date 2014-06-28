@@ -69,7 +69,8 @@
                        bd-auto-complete="name"
                        placeholder="请输入所属作品名字或别名" />
 
-                <ul ng-show="isListShow">
+                <ul class="list-results"
+                    ng-show="isListShow">
                     <li ng-repeat="result in results"
                         ng-bind="result.name"
                         ng-click="clickSelect(result)"

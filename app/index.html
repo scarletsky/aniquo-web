@@ -11,6 +11,17 @@
         <base href="/">
         <title ng-bind="ex.meta.title"></title>
 
+        <style>
+            .list-cur {
+                background: #b9dff4;
+            }
+
+            .list-results li:hover {
+                cursor: pointer;
+                background: #b9dff4;
+            }
+        </style>
+
         <!-- build:css({<%= yeoman.app %>,.tmp}) styles/main.css -->
         <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css">
         <!-- endbuild -->
