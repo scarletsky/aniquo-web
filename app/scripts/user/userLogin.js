@@ -7,15 +7,6 @@ angular.module('bdUserLogin', [])
   ) {
     'use strict';
 
-    $scope.authTest = function () {
-      Restangular
-        .one('authtest')
-        .get()
-        .then(function (res) {
-          console.log(res);
-        });
-    }
-
     $scope.submit = function () {
       var data = {
         username: $scope.user.username,
