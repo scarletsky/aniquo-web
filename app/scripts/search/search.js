@@ -22,12 +22,15 @@ angular.module('bdSearch', [])
     }
 
     if (keyword) {
-      Restangular.all('search').getList({
-        kw: keyword,
-        t: type
-      }).then(function (data) {
-        $scope.objects = data;
-      });
+      Restangular
+        .all('search')
+        .getList({
+          kw: keyword,
+          t: type
+        })
+        .then(function (data) {
+          $scope.objects = data;
+        });
     }
 
     $scope.getResult = function () {
@@ -105,7 +108,9 @@ angular.module('bdSearch', [])
 
           if (modelValue && $scope.searchFlag) {
             delayRequest = $timeout(function () {
-              Restangular.all('search').getList({
+              Restangular
+                .all('search')
+                .getList({
                   kw: modelValue,
                   t: $attrs.bdSearchType
                 })

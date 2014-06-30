@@ -10,11 +10,17 @@ angular.module('bdQuote', [
 
     var quoteId = $routeParams.quoteId;
 
-    Restangular.one('quotes/' + quoteId).get().then(function (quote) {
-      $scope.quote = quote;
+    Restangular
+      .one('quotes/' + quoteId)
+      .get()
+      .then(function (quote) {
+        $scope.quote = quote;
 
-      Restangular.one('characters/' + quote.character_id).get().then(function (character) {
-        $scope.character = character;
-      });
+        Restangular
+          .one('characters/' + quote.character_id)
+          .get()
+          .then(function (character) {
+            $scope.character = character;
+          });
     });
   });

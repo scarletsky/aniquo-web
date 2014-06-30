@@ -14,9 +14,12 @@ angular.module('bdSource', [
     var sourceId = $routeParams.sourceId;
     var page = $location.search().page || 1;
 
-    Restangular.one('sources/' + sourceId).get().then(function (data) {
-      $scope.g.currentSource = data;
-    });
+    Restangular
+      .one('sources/' + sourceId)
+      .get()
+      .then(function (data) {
+        $scope.g.currentSource = data;
+      });
 
     if (!$scope.g.currentPage) {
       $scope.g.currentPage = 1;
@@ -35,9 +38,12 @@ angular.module('bdSource', [
     };
 
     if (!$scope.g.currentSource || $scope.g.currentSource._id !== sourceId) {
-      Restangular.one('sources/' + sourceId).get().then(function (data) {
-        $scope.g.currentSource = data;
-      });
+      Restangular
+        .one('sources/' + sourceId)
+        .get()
+        .then(function (data) {
+          $scope.g.currentSource = data;
+        });
     }
 
     Restangular
