@@ -50,16 +50,16 @@
                    for="source">角色所属作品</label>
             <div class="col-sm-10">
                 <input class="form-control" 
-                       id="source"
-                       name="source"
+                       id="sourceId"
+                       name="sourceId"
                        type="hidden"
                        required
                        ng-model="character.sourceId"
                        bd-auto-complete="id" />
 
                 <input class="form-control" 
-                       id="source"
-                       name="source"
+                       id="sourceName"
+                       name="sourceName"
                        ng-model="character.sourceName"
                        ng-keydown="keydownSelect($event)"
                        required

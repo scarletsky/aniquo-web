@@ -10,16 +10,16 @@
                    for="name">语录所属角色</label>
             <div class="col-sm-10">
                 <input class="form-control"
-                       id="source"
-                       name="source"
+                       id="characterId"
+                       name="characterId"
                        type="hidden"
                        required
                        ng-model="quote.characterId"
                        bd-auto-complete="id" />
 
                 <input class="form-control"
-                       id="name"
-                       name="name"
+                       id="characterName"
+                       name="characterName"
                        type="text"
                        ng-model="quote.characterName"
                        ng-keydown="keydownSelect($event)"
