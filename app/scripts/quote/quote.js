@@ -12,15 +12,9 @@ angular.module('bdQuote', [
 
     Restangular
       .one('quotes/' + quoteId)
-      .get()
+      .get({with_character: true})
       .then(function (quote) {
         $scope.quote = quote;
-
-        Restangular
-          .one('characters/' + quote.character_id)
-          .get()
-          .then(function (character) {
-            $scope.character = character;
-          });
+        $scope.character = quote.character;
     });
   });
