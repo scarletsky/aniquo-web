@@ -46,30 +46,30 @@ angular.module('bdSearch', [])
         prev: function (cur, lists) {
           var prev;
 
-          cur.removeClass('list-cur');
+          cur.removeClass('list-result-current');
           prev = cur.prev();
           if (!prev.length) {
             prev = lists.last();
           }
-          return prev.addClass('list-cur');
+          return prev.addClass('list-result-current');
         },
 
         next: function (cur, lists) {
           var next;
 
-          cur.removeClass('list-cur');
+          cur.removeClass('list-result-current');
           next = cur.next();
           if (!next.length) {
             next = lists.first();
           }
 
-          return next.addClass('list-cur');
+          return next.addClass('list-result-current');
         },
 
         choose: function (cur) {
           var object;
 
-          cur.removeClass('list-cur');
+          cur.removeClass('list-result-current');
           object = {
             name: cur.text(),
             id: cur.attr('object-id')
@@ -155,7 +155,7 @@ angular.module('bdSearch', [])
 
         $scope.keydownSelect = function (e) {
           var lists = ul.find('li');
-          var cur = ul.children('.list-cur');
+          var cur = ul.children('.list-result-current');
 
           if ($scope.isListShow) {
             switch (e.keyCode) {
@@ -183,7 +183,7 @@ angular.module('bdSearch', [])
 
         ul.on('mouseenter', function (e) {
           var lists = ul.find('li');
-          lists.removeClass('list-cur');
+          lists.removeClass('list-result-current');
         });
       }
     };

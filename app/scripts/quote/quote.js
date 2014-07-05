@@ -15,6 +15,6 @@ angular.module('bdQuote', [
       .get({with_character: true})
       .then(function (quote) {
         $scope.quote = quote;
-        $scope.character = quote.character;
+        $scope.g.currentCharacter = quote.character;
     });
   });

@@ -1,41 +1,33 @@
-<form class="form-horizontal"
-      role="form"
-      name="loginForm"
-      ng-submit="login()"
-      ng-controller="AuthCtrl">
-    <div class="form-group">
-        <label class="col-sm-2 control-label"
-               for="username">用户名</label>
-        <div class="col-sm-10">
-            <input class="form-control" 
-                   type="text"
-                   name="username"
-                   id="username"
-                   ng-model="user.username"
-                   required
-                   placeholder="请输入用户名"/>
-        </div>
+<div>
+    <div class="list-partial border-top">
+        登录
     </div>
 
-    <div class="form-group">
-        <label class="col-sm-2 control-label"
-               for="password">密码</label>
-        <div class="col-sm-10">
-            <input class="form-control" 
-                   type="password"
-                   name="password"
-                   id="password"
-                   ng-model="user.password"
-                   required
-                   placeholder="请输入密码"/>
-        </div>
-    </div>
+    <div class="list-main-wrapper">
+        <form role="form"
+              name="loginForm"
+              ng-submit="login()"
+              ng-controller="AuthCtrl">
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-primary"
-                    type="submit"
-                    ng-disabled="!loginForm.$valid">提交</button>
-        </div>
+        <input class="input-control" 
+               type="text"
+               name="username"
+               id="username"
+               ng-model="user.username"
+               required
+               placeholder="请输入用户名"/>
+
+        <input class="input-control margin-top-L" 
+               type="password"
+               name="password"
+               id="password"
+               ng-model="user.password"
+               required
+               placeholder="请输入密码"/>
+
+        <button class="btn margin-top-L"
+                type="submit"
+                ng-disabled="!loginForm.$valid">提交</button>
+    </form>
     </div>
-</form>
+</div>

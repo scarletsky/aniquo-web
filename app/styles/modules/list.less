@@ -1,0 +1,41 @@
+.list-partial {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+    border-bottom: @border-common;
+}
+
+.list-main-wrapper {
+    padding: 40px 0;
+    line-height: 28px;
+    border-bottom: @border-common;
+
+    .list-main-header {
+        height: 50px;
+        line-height: 50px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+
+.list-results-wrapper {
+    margin-bottom: 0;
+
+    .list-result {
+        width: 100%;
+        height: @input-height;
+        line-height: @input-height;
+        font-size: 14px;
+        padding: 0 15px;
+        margin-top: 10px;
+        outline: 0;
+        border: @border-common;
+        border-radius: @input-height;
+
+        &:hover, &.list-result-current {
+            color: white;
+            background: @color-green;
+        }
+    }
+}

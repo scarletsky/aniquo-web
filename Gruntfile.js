@@ -26,8 +26,8 @@ module.exports = function (grunt) {
     yeoman: yeomanConfig,
     watch: {
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['copy:styles', 'autoprefixer']
+        files: ['<%= yeoman.app %>/styles/**/*.less'],
+        tasks: ['less:dev']
       },
       livereload: {
         options: {
@@ -85,6 +85,13 @@ module.exports = function (grunt) {
     open: {
       server: {
         url: 'http://localhost:<%= connect.options.port %>'
+      }
+    },
+    less: {
+      dev: {
+        files: {
+          './app/styles/main.css': './app/styles/main.less'
+        }
       }
     },
   });

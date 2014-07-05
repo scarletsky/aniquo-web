@@ -1,10 +1,10 @@
 <div>
-    <a ng-href="/quotes/{{ quote._id }}/edit">编辑语录</a>
-    <p>
-        character: 
-        <a ng-bind="character.name"
-           ng-href="/characters/{{ character._id }}/quotes"></a>
-    </p>
-    <p ng-bind-template="quote: {{ quote.quote }}"></p>
-    <p ng-bind-template="reference: {{ quote.reference }}"></p>
+
+    <div class="list-main-wrapper">
+        <a ng-href="/quotes/{{ quote._id }}/edit"
+           ng-if="session.isAuthenticated()">编辑语录</a>
+
+        <p ng-bind-template="{{ quote.quote }}"></p>
+        <p ng-bind-template="{{ quote.reference }}"></p>
+    </div>
 </div>

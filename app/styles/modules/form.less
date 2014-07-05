@@ -1,0 +1,46 @@
+.input-control, .search-form-wrapper {
+    width: 100%;
+    height: @input-height;
+    padding: 0 15px;
+    outline: 0;
+    border: @border-common;
+    border-radius: @input-height;
+}
+
+textarea.input-control {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 15px 15px 0;
+    height: 100px;
+}
+
+.search-form-wrapper {
+    padding: 0;
+
+    select, input {
+        display: inline-block;
+        outline: 0;
+        border: 0 none;
+        margin-right: -4px;
+    }
+
+    select {
+        width: @select-width-percentage;
+        height: @input-height;
+        line-height: @input-height;
+        border-right: @border-common;
+        padding-left: 6%;
+        background-color: transparent;
+        background-image: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: window;
+    }
+
+    input {
+        width: 100% - @select-width-percentage;
+        height: @input-height;
+        padding: 0 15px;
+        background: transparent;
+    }
+}

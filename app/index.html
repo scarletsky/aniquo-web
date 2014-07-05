@@ -11,39 +11,19 @@
         <base href="/">
         <title ng-bind="ex.meta.title"></title>
 
-        <style>
-            .list-cur {
-                background: #b9dff4;
-            }
-
-            .list-results li:hover {
-                cursor: pointer;
-                background: #b9dff4;
-            }
-        </style>
-
         <!-- build:css({<%= yeoman.app %>,.tmp}) styles/main.css -->
-        <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/styles/main.css">
         <!-- endbuild -->
 
     </head>
 
     <body>
 
-        <a ng-href="/sources/new"
-           ng-if="session.isAuthenticated()">添加新作品</a>
-        <a ng-href="/characters/new"
-           ng-if="session.isAuthenticated()">添加新角色</a>
-        <a ng-href="/quotes/new"
-           ng-if="session.isAuthenticated()">添加新语录</a>
-        <a ng-href="/">回到首页</a>
-        <a ng-href="/login"
-           ng-if="!session.isAuthenticated()">登录</a>
-        <a ng-href="/signup"
-           ng-if="!session.isAuthenticated()">注册</a>
-        <a ng-click="session.logout()"
-           ng-if="session.isAuthenticated()">注销</a>
-        <div ng-view></div>
+        <div ng-include="'/views/partials/layout/nav.html'"></div>
+
+        <div class="main-wrapper">
+            <div ng-view></div>
+        </div>
 
         <!-- build:js /scripts/libs.js -->
         <script src="/components/jquery/dist/jquery.js"></script>

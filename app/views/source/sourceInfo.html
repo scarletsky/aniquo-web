@@ -1,0 +1,11 @@
+<div class="list-main-wrapper border-top">
+    <div class="list-main-header">
+        <img class="pull-right"
+             src="http://placehold.it/50x50" />
+        <a ng-bind="g.currentSource.name"
+           ng-href="/sources/{{ g.currentSource._id }}/characters"></a>
+           
+        <a ng-href="/sources/{{ g.currentSource._id }}/edit"
+           ng-if="session.isAuthenticated()">编辑作品</a>
+    </div>
+</div>

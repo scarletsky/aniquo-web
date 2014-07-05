@@ -1,19 +1,18 @@
 <div>
-    <a ng-href="/characters/{{ g.currentCharacter._id }}/edit">编辑角色</a>
-    <p>出处：
-        <a ng-href="/sources/{{ g.currentSource._id }}/characters"
-           ng-bind="g.currentSource.name"></a>
-    </p>
-    <p ng-bind="g.currentCharacter.name"></p>
-    <div ng-repeat="object in objects"
-         style="margin: 10px 0;">
-        <a ng-bind="object.quote"
-           ng-href="/quotes/{{ object._id }}"></a>
+    <div ng-repeat="object in objects">
+        <div class="list-main-wrapper">
+            <a ng-bind="object.quote"
+               ng-href="/quotes/{{ object._id }}"></a>
+        </div>
     </div>
 
-    <a ng-if="hasPrevPage"
-       ng-click="prevPage()">上一页</a>
+    <div class="list-partial">
+        <a class="pull-left"
+           ng-if="hasPrevPage"
+           ng-click="prevPage()">上一页</a>
 
-    <a ng-if="hasNextPage"
-       ng-click="nextPage()">下一页</a>
+        <a class="pull-right"
+           ng-if="hasNextPage"
+           ng-click="nextPage()">下一页</a>
+    </div>
 </div>
