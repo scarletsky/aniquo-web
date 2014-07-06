@@ -36,6 +36,7 @@ angular.module('bdCharacterEdit', [])
             alert('更新成功！');
             $location.path('/characters/' + $routeParams.characterId + '/quotes');
           });
+
       } else {
         Restangular
           .one('character/check')
@@ -47,13 +48,12 @@ angular.module('bdCharacterEdit', [])
               Restangular
                 .all('characters')
                 .post(data)
-                .then(function (data) {
+                .then(function (res) {
                   alert('添加成功！');
                   $location.path('/');
-              });
+                });
             }
-        });
-
+          });
       }
     };
   });

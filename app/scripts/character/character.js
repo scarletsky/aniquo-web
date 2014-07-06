@@ -34,9 +34,9 @@ angular.module('bdCharacter', [
       Restangular
         .one('characters/' + characterId)
         .get({with_source: true})
-        .then(function (data) {
-          $scope.g.currentSource = data.source;
-          $scope.g.currentCharacter = data;
+        .then(function (res) {
+          $scope.g.currentSource = res.source;
+          $scope.g.currentCharacter = res;
         });
     }
 
@@ -46,12 +46,12 @@ angular.module('bdCharacter', [
            '&paginationId=' + $scope.g.paginationId +
            '&currentPage=' + $scope.g.currentPage)
       .get()
-      .then(function (data) {
-        $scope.objects = data.objects;
-        $scope.g.paginationId = data.objects[0]._id;
+      .then(function (res) {
+        $scope.objects = res.objects;
+        $scope.g.paginationId = res.objects[0]._id;
         $scope.g.currentPage = page;
 
-        var pageNum = Math.ceil(data.total / data.perPage);
+        var pageNum = Math.ceil(res.total / res.perPage);
         $scope.hasPrevPage = page > 1;
         $scope.hasNextPage = page < pageNum;
     });

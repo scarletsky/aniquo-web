@@ -37,11 +37,11 @@ angular.module('bdSourceEdit', [])
         Restangular
           .one('source/check')
           .get(data)
-          .then(function (data) {
-            if (data.exist) {
+          .then(function (res) {
+            if (res.exist) {
               alert('该作品已存在！');
             } else {
-              Restangular.all('sources').post(data).then(function (data) {
+              Restangular.all('sources').post(data).then(function (res) {
                 alert('添加成功！');
                 $location.path('/');
               });

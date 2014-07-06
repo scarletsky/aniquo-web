@@ -17,8 +17,8 @@ angular.module('bdSource', [
     Restangular
       .one('sources/' + sourceId)
       .get()
-      .then(function (data) {
-        $scope.g.currentSource = data;
+      .then(function (res) {
+        $scope.g.currentSource = res;
       });
 
     if (!$scope.g.currentPage) {
@@ -41,8 +41,8 @@ angular.module('bdSource', [
       Restangular
         .one('sources/' + sourceId)
         .get()
-        .then(function (data) {
-          $scope.g.currentSource = data;
+        .then(function (res) {
+          $scope.g.currentSource = res;
         });
     }
 
@@ -52,12 +52,12 @@ angular.module('bdSource', [
            '&paginationId=' + $scope.g.paginationId +
            '&currentPage=' + $scope.g.currentPage)
       .get()
-      .then(function (data) {
-        $scope.objects = data.objects;
-        $scope.g.paginationId = data.objects[0]._id;
+      .then(function (res) {
+        $scope.objects = res.objects;
+        $scope.g.paginationId = res.objects[0]._id;
         $scope.g.currentPage = page;
 
-        var pageNum = Math.ceil(data.total / data.perPage);
+        var pageNum = Math.ceil(res.total / res.perPage);
         $scope.hasPrevPage = page > 1;
         $scope.hasNextPage = page < pageNum;
     });

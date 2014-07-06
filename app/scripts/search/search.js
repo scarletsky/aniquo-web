@@ -28,8 +28,8 @@ angular.module('bdSearch', [])
           kw: keyword,
           t: type
         })
-        .then(function (data) {
-          $scope.objects = data;
+        .then(function (res) {
+          $scope.objects = res;
         });
     }
 
@@ -114,9 +114,9 @@ angular.module('bdSearch', [])
                   kw: modelValue,
                   t: $attrs.bdSearchType
                 })
-                .then(function (data) {
-                  $scope.results = data;
-                  if (data.length > 0) {
+                .then(function (res) {
+                  $scope.results = res;
+                  if (res.length > 0) {
                     $scope.isListShow = true;
                   } else {
                     $scope.isListShow = false;

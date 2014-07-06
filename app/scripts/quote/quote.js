@@ -13,8 +13,8 @@ angular.module('bdQuote', [
     Restangular
       .one('quotes/' + quoteId)
       .get({with_character: true})
-      .then(function (quote) {
-        $scope.quote = quote;
-        $scope.g.currentCharacter = quote.character;
+      .then(function (res) {
+        $scope.quote = res;
+        $scope.g.currentCharacter = res.character;
     });
   });
