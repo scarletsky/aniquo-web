@@ -23,7 +23,7 @@ angular.module('bdCharacterEdit', [])
     $scope.submit = function () {
       var data = {
         name: $scope.character.name,
-        nickname: $scope.character.nickname,
+        alias: $scope.character.alias,
         info: $scope.character.info,
         sourceId: $scope.character.sourceId
       };
