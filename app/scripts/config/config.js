@@ -1,4 +1,24 @@
 angular.module('bdConfig', ['restangular'])
+  .run(function (
+    $window,
+    $rootScope,
+    AuthEvents,
+    Restangular
+  ) {
+    'use strict';
+
+    var token = $window.sessionStorage.token;
+
+    if (token) {
+      Restangular
+        .one('user')
+        .get()
+        .then(function (res) {
+          $rootScope.$broadcast(AuthEvents.loadUserSuccess, res);
+        });
+    }
+  })
+
   .config(function (
     RestangularProvider
   ) {
@@ -15,7 +35,10 @@ angular.module('bdConfig', ['restangular'])
         params,
         httpConfig
       ) {
-      if (window.sessionStorage.token !== 'undefined') {
+
+      var token = window.sessionStorage.token;
+
+      if (angular.isDefined(token)) {
         headers = _.extend(headers, {
           Authorization: 'Bearer ' + window.sessionStorage.token
         });

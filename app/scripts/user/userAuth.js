@@ -1,5 +1,6 @@
 angular.module('bdUserAuth', [])
   .constant('AuthEvents', {
+    loadUserSuccess: 'auth-load-user-success',
     loginSuccess: 'auth-login-success',
     loginFailed: 'auth-login-failed',
     logoutSuccess: 'auth-logout-success'
@@ -43,6 +44,10 @@ angular.module('bdUserAuth', [])
       $window.sessionStorage.token = res.token;
       service.currentUser = res.user; 
       $location.path('/');
+    });
+
+    $rootScope.$on(AuthEvents.loadUserSuccess, function (event, res) {
+      service.currentUser = res;
     });
 
     $rootScope.$on(AuthEvents.loginFailed, function (event, res) {
