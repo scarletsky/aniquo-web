@@ -104,6 +104,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'configureProxies',
       'connect:livereload',
+      'less',
       'open',
       'watch'
     ]);
