@@ -21,13 +21,19 @@ angular.module('bdSearch', [])
       $scope.g.searchType = type;
     }
 
+    var data = {
+      kw: keyword,
+      t: type
+    }
+
+    if (type === 'character') {
+      _.extend(data, {with_source: true})
+    }
+
     if (keyword) {
       Restangular
         .all('search')
-        .getList({
-          kw: keyword,
-          t: type
-        })
+        .getList(data)
         .then(function (res) {
           $scope.objects = res;
         });
