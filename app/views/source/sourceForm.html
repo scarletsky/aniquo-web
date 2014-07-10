@@ -17,13 +17,6 @@
                required
                placeholder="请输入作品名称" />
 
-        <input class="input-control margin-top-L"
-               id="alias"
-               name="alias"
-               type="text"
-               ng-model="source.alias"
-               placeholder="请输入作品别名" />
-
 
         <textarea class="input-control margin-top-L"
                   id="info"
@@ -31,8 +24,27 @@
                   ng-model="source.info"
                   placeholder="请输入作品信息"></textarea>
 
+        <div class="input-wrapper"
+             ng-repeat="object in source.alias track by $index">
+          
+            <input class="input-control margin-top-L"
+                   id="alias"
+                   name="alias"
+                   type="text"
+                   ng-model="source.alias[$index]"
+                   placeholder="请输入作品别名" />
+            <button class="btn btn-danger"
+                    ng-click="removeAlias($event, $index)">
+                <i class="icon-minus"></i>
+            </button>
+
+        </div>
+
         <button class="btn margin-top-L"
                 type="submit"
                 ng-disabled="!sourceEditForm.$valid">提交</button>
+
+        <button class="btn margin-top-L"
+                ng-click="addAlias($event)">添加别名</button>
     </form>
 </div>

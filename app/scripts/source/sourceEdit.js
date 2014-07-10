@@ -9,19 +9,36 @@ angular.module('bdSourceEdit', [])
 
     var actionType = $routeParams.sourceId ? 'edit' : 'add';
 
+    $scope.source = {};
+    $scope.source.alias = [];
+
     if (actionType === 'edit') {
       Restangular
         .one('sources', $routeParams.sourceId)
         .get()
         .then(function (res) {
           $scope.source = res;
+          $scope.alias = res.alias;
         });
     }
 
+    $scope.addAlias = function (e) {
+      e.preventDefault();
+      $scope.source.alias.push('');
+    };
+
+    $scope.removeAlias = function (e, index) {
+      e.preventDefault();
+      $scope.source.alias.splice(index, 1);
+    };
+
     $scope.submit = function () {
+      var alias = _.filter($scope.source.alias, function (value) {
+        return $.trim(value);
+      });
       var data = {
         name: $scope.source.name,
-        alias: $scope.source.alias,
+        alias: alias,
         info: $scope.source.info 
       };
 
@@ -46,7 +63,7 @@ angular.module('bdSourceEdit', [])
                 $location.path('/');
               });
             }
-        });
+          });
       }
     };
   });
