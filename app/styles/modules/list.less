@@ -6,19 +6,43 @@
     border-bottom: @border-common;
 }
 
-.list-main-wrapper {
+.list-wrapper {
     padding: 40px 0;
     line-height: 28px;
     font-size: 18px;
     border-bottom: @border-common;
 
-    .list-main-header {
-        height: 50px;
-        line-height: 50px;
-        font-weight: bold;
+    .list-main-wrapper {
+        overflow: hidden;
+
+        .list-main-header {
+            height: @image-size-small;
+
+            .list-main-header-title {
+                line-height: @lh-list-header-title;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            .list-main-header-subtitle {
+                line-height: @lh-list-header-subtitle;
+
+                span {
+                    color: gray;
+                    font-size: 16px;
+                    margin-right: @space-small;
+                }
+            }
+        }
+
+        .list-main-body {
+            overflow: hidden;
+            line-height: 28px;
+        }
     }
 }
 
+// for search result
 .list-results-wrapper {
     margin-bottom: 0;
 

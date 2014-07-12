@@ -1,18 +1,72 @@
 <div>
     <div ng-repeat="object in objects">
-        <div class="list-main-wrapper">
+        <div class="list-wrapper clearfix">
+            <!-- character -->
             <div ng-if="g.searchType === 'character'">
-                <div class="list-main-header">
-                    <img class="pull-right"
-                         src="http://placehold.it/50x50" />
-                    <a ng-bind="object.name"
-                       ng-href="/characters/{{ object._id }}/quotes"></a>
+
+                <div class="image-wrapper image-middle pull-left margin-right-M">
+                    <img src="http://placehold.it/100x100" />
+                </div>
+
+                <div class="list-main-wrapper">
+                   
+                    <div class="list-main-header">
+
+                        <div class="list-main-header-title">
+                            <a ng-bind="object.name"
+                               ng-href="/characters/{{ object._id }}/quotes"></a>
+
+                            <span> -- </span>
+
+                            <a ng-href="/sources/{{ object.source._id }}/characters"
+                               ng-bind-template="《 {{ object.source.name }} 》"></a>
+                        </div>
+
+                        <div class="list-main-header-subtitle"
+                             ng-if="object.alias.length !== 0">
+                            <span>别名:</span>
+                            <span ng-repeat="alias in object.alias track by $index"
+                                  ng-bind="alias"></span>
+                        </div>
+                    </div>
+
+                    <div class="list-main-body">
+                        <p ng-bind="object.info"></p>
+                    </div> 
                 </div>
             </div>
 
+            <!-- source -->
             <div ng-if="g.searchType === 'source'">
-                <a ng-bind="object.name"
-                   ng-href="/sources/{{ object._id }}/characters"></a>
+
+                <div class="image-wrapper image-middle pull-left margin-right-M">
+                    <img src="http://placehold.it/100x100" />
+                </div>
+
+                <div class="list-main-wrapper">
+                    
+                    <div class="list-main-header">
+
+                        <div class="list-main-header-title">
+
+                            <a ng-bind="object.name"
+                               ng-href="/sources/{{ object._id }}/characters"></a>
+
+                        </div>
+
+                        <div class="list-main-header-subtitle"
+                             ng-if="object.alias.length !== 0">
+
+                            <span>别名:</span>
+                            <span ng-repeat="alias in object.alias track by $index"
+                                  ng-bind="alias"></span>
+                        </div>
+                    </div>
+
+                    <div class="list-main-body">
+                        <p ng-bind="object.info"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

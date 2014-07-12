@@ -1,13 +1,31 @@
 <div>
     <div ng-repeat="object in objects">
-        <div class="list-main-wrapper">
+        <div class="list-wrapper">
 
-            <div class="list-main-header">
-                <img class="pull-right"
-                     src="http://placehold.it/50x50" />
+            <div class="image-wrapper image-small pull-left margin-right-M">
+                <img src="http://placehold.it/50x50" />
+            </div>
 
-                 <a ng-href="/characters/{{ object._id }}/quotes"
-                    ng-bind="object.name"></a>
+            <div class="list-main-wrapper">
+                    
+                <div class="list-main-header">
+
+
+                    <div class="list-main-header">
+
+                        <div class="list-main-header-title">
+                            <a ng-bind="object.name"
+                               ng-href="/characters/{{ object._id }}/quotes"></a>
+                        </div>
+
+                        <div class="list-main-header-subtitle"
+                             ng-if="object.alias.length !== 0">
+                            <span>别名:</span>
+                            <span ng-repeat="alias in object.alias track by $index"
+                                  ng-bind="alias"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
