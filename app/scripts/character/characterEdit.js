@@ -9,6 +9,9 @@ angular.module('bdCharacterEdit', [])
 
     var actionType = $routeParams.characterId ? 'edit' : 'add';
 
+    $scope.character = {};
+    $scope.character.alias = [];
+
     if (actionType === 'edit') {
       Restangular
         .one('characters', $routeParams.characterId)
@@ -20,10 +23,24 @@ angular.module('bdCharacterEdit', [])
         });
     }
 
+    $scope.addAlias = function (e) {
+      e.preventDefault();
+      $scope.character.alias.push('');
+    };
+
+    $scope.removeAlias = function (e, index) {
+      e.preventDefault();
+      $scope.character.alias.splice(index, 1);
+    };
+
     $scope.submit = function () {
+      var alias = _.filter($scope.character.alias, function (value) {
+        return $.trim(value);
+      });
+
       var data = {
         name: $scope.character.name,
-        alias: $scope.character.alias,
+        alias: alias,
         info: $scope.character.info,
         sourceId: $scope.character.sourceId
       };

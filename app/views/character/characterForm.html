@@ -17,20 +17,12 @@
                required
                placeholder="请输入角色名称" />
 
-        <input class="input-control margin-top-L"
-               id="alias"
-               name="alias"
-               type="text"
-               ng-model="character.alias"
-               placeholder="请输入角色别名" />
-
         <textarea class="input-control margin-top-L" 
                   id="info"
                   name="info"
                   type="text"
                   ng-model="character.info"
                   placeholder="请输入角色信息"></textarea>
-
 
         <input class="input-control" 
                id="sourceId"
@@ -61,9 +53,28 @@
                 object-id="{{ result._id }}"></li>
         </ul>
 
+        <div class="input-wrapper"
+             ng-repeat="object in character.alias track by $index">
+          
+            <input class="input-control margin-top-L"
+                   id="alias"
+                   name="alias"
+                   type="text"
+                   ng-model="character.alias[$index]"
+                   placeholder="请输入角色别名" />
+            <button class="btn btn-danger"
+                    ng-click="removeAlias($event, $index)">
+                <i class="icon-minus"></i>
+            </button>
+
+        </div>
+
         <button class="btn margin-top-L"
                 type="submit"
                 ng-disabled="!characterEditForm.$valid">提交</button>
+
+        <button class="btn margin-top-L"
+                ng-click="addAlias($event)">添加别名</button>
 
     </form>
 </div>
