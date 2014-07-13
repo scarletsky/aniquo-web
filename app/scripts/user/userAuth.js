@@ -24,7 +24,7 @@ angular.module('bdUserAuth', [])
 
       logout: function () {
         this.currentUser = null;
-        delete $window.sessionStorage.token;
+        delete $window.localStorage.token;
         $rootScope.$broadcast(AuthEvents.logoutSuccess);
       },
 
@@ -41,7 +41,7 @@ angular.module('bdUserAuth', [])
     };
 
     $rootScope.$on(AuthEvents.loginSuccess, function (event, res) {
-      $window.sessionStorage.token = res.token;
+      $window.localStorage.token = res.token;
       service.currentUser = res.user; 
       $location.path('/');
     });

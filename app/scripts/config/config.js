@@ -7,7 +7,7 @@ angular.module('bdConfig', ['restangular'])
   ) {
     'use strict';
 
-    var token = $window.sessionStorage.token;
+    var token = $window.localStorage.token;
 
     if (token) {
       Restangular
@@ -36,11 +36,11 @@ angular.module('bdConfig', ['restangular'])
         httpConfig
       ) {
 
-      var token = window.sessionStorage.token;
+      var token = window.localStorage.token;
 
       if (angular.isDefined(token)) {
         headers = _.extend(headers, {
-          Authorization: 'Bearer ' + window.sessionStorage.token
+          Authorization: 'Bearer ' + window.localStorage.token
         });
       }
 
