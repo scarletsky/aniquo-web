@@ -33,11 +33,11 @@ angular.module('bd')
       })
       .when('/characters/new', {
         controller: 'CharacterEditCtrl',
-        templateUrl: 'views/character/CharacterForm.html'
+        templateUrl: 'views/character/characterForm.html'
       })
       .when('/characters/:characterId/edit', {
         controller: 'CharacterEditCtrl',
-        templateUrl: 'views/character/CharacterForm.html'
+        templateUrl: 'views/character/characterForm.html'
       })
       .when('/characters/:characterId/quotes', {
         controller: 'CharacterCtrl',
