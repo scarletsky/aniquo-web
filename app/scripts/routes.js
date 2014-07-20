@@ -63,4 +63,8 @@ angular.module('bd')
         controller: 'AuthCtrl',
         templateUrl: 'views/user/userSignup.html'
       })
+      .when('/user/settings', {
+        controller: 'UserSettingsCtrl',
+        templateUrl: 'views/user/userSettingForm.html'
+      })
   });

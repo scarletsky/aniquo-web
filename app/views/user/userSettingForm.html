@@ -1,0 +1,78 @@
+<div>
+    <div class="list-wrapper">
+        <div class="image-wrapper image-large center">
+            <img class="image-rounded"
+                 src="http://placehold.it/150x150">
+        </div>
+
+        <h2 class="text-center margin-bottom-N"
+            ng-bind="session.currentUser.username"></h2>
+    </div>
+
+    <div class="list-wrapper">
+        <form role="form"
+              name="userProfileForm"
+              ng-submit="updateProfile()">
+
+            <input class="input-control" 
+                   type="text"
+                   name="nickname"
+                   id="nickname"
+                   ng-model="user.nickname"
+                   placeholder="请输入昵称"/>
+
+            <input class="input-control margin-top-L" 
+                   type="text"
+                   name="site"
+                   id="site"
+                   ng-model="user.site"
+                   placeholder="请输入个人网站"/>
+
+            <textarea class="input-control margin-top-L" 
+                      name="info"
+                      id="info"
+                      ng-model="user.info"
+                      placeholder="请输入自我介绍"></textarea>
+
+            <button class="btn margin-top-L"
+                    type="submit"
+                    ng-disabled="!userProfileForm.$valid">提交</button>
+
+        </form>
+
+        <form role="form"
+              name="userPasswordForm"
+              ng-submit="updatePassword()">
+
+            <input class="input-control margin-top-L" 
+                   type="password"
+                   name="oldPassword"
+                   id="oldPassword"
+                   ng-model="user.oldPassword"
+                   placeholder="请输入旧密码"
+                   required />
+
+            <input class="input-control margin-top-L" 
+                   type="password"
+                   name="newPassword"
+                   id="newPassword"
+                   ng-model="user.newPassword"
+                   placeholder="请输入新密码"
+                   required />
+
+            <input class="input-control margin-top-L" 
+                   type="password"
+                   name="confirmPassword"
+                   id="confirmPassword"
+                   ng-model="user.confirmPassword"
+                   placeholder="请输入确认新密码"
+                   required />
+
+
+            <button class="btn margin-top-L"
+                    type="submit"
+                    ng-disabled="!userPasswordForm.$valid">修改密码</button>
+        </form>
+
+    </div>
+</div>

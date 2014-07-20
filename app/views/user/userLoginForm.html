@@ -9,25 +9,25 @@
               ng-submit="login()"
               ng-controller="AuthCtrl">
 
-        <input class="input-control" 
-               type="text"
-               name="username"
-               id="username"
-               ng-model="user.username"
-               required
-               placeholder="请输入用户名"/>
+            <input class="input-control" 
+                   type="text"
+                   name="username"
+                   id="username"
+                   ng-model="user.username"
+                   required
+                   placeholder="请输入用户名"/>
 
-        <input class="input-control margin-top-L" 
-               type="password"
-               name="password"
-               id="password"
-               ng-model="user.password"
-               required
-               placeholder="请输入密码"/>
+            <input class="input-control margin-top-L" 
+                   type="password"
+                   name="password"
+                   id="password"
+                   ng-model="user.password"
+                   required
+                   placeholder="请输入密码"/>
 
-        <button class="btn margin-top-L"
-                type="submit"
-                ng-disabled="!loginForm.$valid">提交</button>
-    </form>
+            <button class="btn margin-top-L"
+                    type="submit"
+                    ng-disabled="!loginForm.$valid">提交</button>
+        </form>
     </div>
 </div>

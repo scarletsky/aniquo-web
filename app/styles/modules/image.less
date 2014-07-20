@@ -3,10 +3,27 @@
     &.image-small {
         width: @image-size-small;
         height: @image-size-small;
+
+        img.image-rounded {
+            border-radius: @image-size-small / 2;
+        }
     }
 
     &.image-middle {
         width: @image-size-middle;
         height: @image-size-middle;
+
+        img.image-rounded {
+            border-radius: @image-size-middle / 2;
+        }
+    }
+
+    &.image-large {
+        width: @image-size-large;
+        height: @image-size-large;
+
+        img.image-rounded {
+            border-radius: @image-size-large / 2;
+        }
     }
 }
