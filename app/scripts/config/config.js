@@ -1,4 +1,4 @@
-angular.module('bdConfig', ['restangular'])
+angular.module('bdConfig', ['restangular', 'angular-md5'])
   .run(function (
     $window,
     $rootScope,

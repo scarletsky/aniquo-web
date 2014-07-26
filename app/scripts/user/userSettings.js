@@ -1,6 +1,7 @@
 angular.module('bdUserSettings', [])
   .controller('UserSettingsCtrl', function (
     $scope,
+    $window,
     Restangular
   ) {
     'use strict';
@@ -17,13 +18,15 @@ angular.module('bdUserSettings', [])
         $scope.user.nickname = res.nickname;
         $scope.user.site = res.site;
         $scope.user.info = res.info;
+        $scope.user.avatar = res.avatar;
       });
 
     $scope.updateProfile = function () {
       var data = {
         nickname: $scope.user.nickname,
         site: $scope.user.site,
-        info: $scope.user.info
+        info: $scope.user.info,
+        avatar: $scope.user.avatar
       };
 
       var userElement = Restangular.one('user');

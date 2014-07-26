@@ -1,8 +1,23 @@
 <div>
     <div class="list-wrapper">
-        <div class="image-wrapper image-large center">
-            <img class="image-rounded"
-                 src="http://placehold.it/150x150">
+        <div class="image-wrapper image-large center"
+             bd-upload
+             upload-target="user.avatar"
+             upload-status="avatarUploadStatus">
+            <img class="image-rounded cursor"
+                 ng-src="{{ user.avatar }}">
+            <input class="hidden"
+                   type="file"
+                   name="avatar"
+                   id="avatar"
+                   ng-model="user.avatar"/>
+            <div class="upload-status-wrapper image-large image-rounded"
+                 ng-class="{hidden: avatarUploadStatus === 'ready'}"
+                 ng-switch="avatarUploadStatus">
+                <p ng-switch-when="uploading">上传中...</p>
+                <p ng-switch-when="success">上传成功!</p>
+                <p ng-switch-when="failed">上传失败!</p>
+            </div>
         </div>
 
         <h2 class="text-center margin-bottom-N"
@@ -36,7 +51,7 @@
 
             <button class="btn margin-top-L"
                     type="submit"
-                    ng-disabled="!userProfileForm.$valid">提交</button>
+                    ng-disabled="!userProfileForm.$valid || avatarUploadStatus === 'uploading'">提交</button>
 
         </form>
 
