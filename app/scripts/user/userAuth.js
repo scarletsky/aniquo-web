@@ -3,7 +3,8 @@ angular.module('bdUserAuth', [])
     loadUserSuccess: 'auth-load-user-success',
     loginSuccess: 'auth-login-success',
     loginFailed: 'auth-login-failed',
-    logoutSuccess: 'auth-logout-success'
+    logoutSuccess: 'auth-logout-success',
+    tokenExpired: 'auth-token-expired'
   })
 
   .factory('Session', function (
@@ -52,6 +53,10 @@ angular.module('bdUserAuth', [])
 
     $rootScope.$on(AuthEvents.loginFailed, function (event, res) {
       alert(res.data.error);
+    });
+
+    $rootScope.$on(AuthEvents.tokenExpired, function (event, res) {
+      delete $window.localStorage.token;
     });
 
     $rootScope.$on(AuthEvents.logoutSuccess, function () {

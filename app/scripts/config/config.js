@@ -15,6 +15,8 @@ angular.module('bdConfig', ['restangular', 'angular-md5'])
         .get()
         .then(function (res) {
           $rootScope.$broadcast(AuthEvents.loadUserSuccess, res);
+        }, function (res) {
+          $rootScope.$broadcast(AuthEvents.tokenExpired, res); 
         });
     }
   })
