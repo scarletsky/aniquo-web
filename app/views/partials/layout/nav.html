@@ -5,10 +5,6 @@
     <ul class="nav-action-wrapper"
         ng-if="session.isAuthenticated()">
         <li class="nav-action">
-            <a href="/user/settings"
-               ng-bind="session.currentUser.username"></a>
-        </li>
-        <li class="nav-action">
             <a href="/sources/new">添加新作品</a>
         </li>
         <li class="nav-action">
@@ -16,6 +12,9 @@
         </li>
         <li class="nav-action">
             <a ng-href="/quotes/new">添加新语录</a>
+        </li>
+        <li class="nav-action">
+            <a href="/user/settings">设置</a>
         </li>
     </ul>
 
