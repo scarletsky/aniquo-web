@@ -1,0 +1,22 @@
+<div>
+    <div class="list-partial border-top">
+        我的贡献
+    </div>
+
+    <div ng-repeat="object in objects">
+        <div class="list-wrapper">
+            <a ng-bind="object.quote"
+               ng-href="/quotes/{{ object._id }}"></a>
+        </div>
+    </div>
+
+    <div class="list-partial">
+        <a class="pull-left"
+           ng-if="hasPrevPage"
+           ng-click="prevPage()">上一页</a>
+
+        <a class="pull-right"
+           ng-if="hasNextPage"
+           ng-click="nextPage()">下一页</a>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 angular.module('bdUser', [
   'bdUserAuth',
-  'bdUserSettings'
+  'bdUserSettings',
+  'bdUserContribute'
 ]);

@@ -63,6 +63,10 @@ angular.module('bd')
         controller: 'AuthCtrl',
         templateUrl: 'views/user/userSignup.html'
       })
+      .when('/user/contribution', {
+        controller: 'UserContributeCtrl',
+        templateUrl: 'views/user/userContribute.html'
+      })
       .when('/user/settings', {
         controller: 'UserSettingsCtrl',
         templateUrl: 'views/user/userSettingForm.html'
