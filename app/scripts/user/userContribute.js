@@ -1,6 +1,7 @@
 angular.module('bdUserContribute', [])
   .controller('UserContributeCtrl', function (
     $scope,
+    $window,
     $location,
     $routeParams,
     G,
@@ -9,16 +10,18 @@ angular.module('bdUserContribute', [])
   ) {
     'use strict';
 
+    /*
+     * TO FIX:
+     * currentPage and pagination in sessionStorage will cause another bug.
+     *
+     */
     $scope.g = G;
+    var sessionStorage = $window.sessionStorage;
     var characterId = $routeParams.characterId;
     var page = $location.search().page || 1;
 
-    if (!$scope.g.currentPage) {
-      $scope.g.currentPage = 1;
-    }
-
-    if (page !== 1 && !$scope.g.paginationId) {
-      $location.path('/user/contribution').search('page', null);
+    if (!sessionStorage.currentPage) {
+      sessionStorage.currentPage = 1;
     }
 
     $scope.prevPage = function () {
@@ -32,13 +35,13 @@ angular.module('bdUserContribute', [])
     Restangular
       .one('users/' + Session.currentUser._id +'/contribution/quotes' + 
            '?page=' + page +
-           '&paginationId=' + $scope.g.paginationId +
-           '&currentPage=' + $scope.g.currentPage)
+           '&paginationId=' + sessionStorage.paginationId +
+           '&currentPage=' + sessionStorage.currentPage)
       .get()
       .then(function (res) {
         $scope.objects = res.objects;
-        $scope.g.paginationId = res.objects[0]._id;
-        $scope.g.currentPage = page;
+        sessionStorage.paginationId = res.objects[0]._id;
+        sessionStorage.currentPage = page;
 
         var pageNum = Math.ceil(res.total / res.perPage);
         $scope.hasPrevPage = page > 1;
