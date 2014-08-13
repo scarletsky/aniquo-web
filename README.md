@@ -7,13 +7,13 @@
 ### 使用方法
 
 ```bash
-$ npm install -g grunt-cli bower
+$ npm install -g gulp bower
 $ cd Brynhild
 $ npm install
 $ bower install
 
 # 运行开发环境
-$ grunt server
+$ gulp server
 ```
 
 ### 规范
