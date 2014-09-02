@@ -24,10 +24,10 @@ angular.module('bdSearch', [])
     var data = {
       kw: keyword,
       t: type
-    }
+    };
 
     if (type === 'character') {
-      _.extend(data, {with_source: true})
+      _.extend(data, {with_source: true});
     }
 
     if (keyword) {
@@ -49,24 +49,24 @@ angular.module('bdSearch', [])
 
     var service = {
       select: {
-        prev: function (cur, lists) {
+        prev: function (cur, items) {
           var prev;
 
           cur.removeClass('list-result-current');
           prev = cur.prev();
           if (!prev.length) {
-            prev = lists.last();
+            prev = items.last();
           }
           return prev.addClass('list-result-current');
         },
 
-        next: function (cur, lists) {
+        next: function (cur, items) {
           var next;
 
           cur.removeClass('list-result-current');
           next = cur.next();
           if (!next.length) {
-            next = lists.first();
+            next = items.first();
           }
 
           return next.addClass('list-result-current');
@@ -77,8 +77,8 @@ angular.module('bdSearch', [])
 
           cur.removeClass('list-result-current');
           object = {
-            name: cur.text(),
-            id: cur.attr('object-id')
+            name: cur.find('p').text(),
+            id: cur.find('div').attr('object-id')
           };
 
           return object;
@@ -129,6 +129,8 @@ angular.module('bdSearch', [])
                   }
                 });
             }, 500);
+          } else {
+            $scope.results = [];
           }
         });
       }
@@ -148,7 +150,7 @@ angular.module('bdSearch', [])
           enter: 13,
           tab: 9
         };
-        var ul = $element.next();
+        window.list = $element.next();
 
         $scope.clickSelect = function (object) {
           var resultObject = {
@@ -160,36 +162,36 @@ angular.module('bdSearch', [])
         };
 
         $scope.keydownSelect = function (e) {
-          var lists = ul.find('li');
-          var cur = ul.children('.list-result-current');
+          var items = list.find('material-item');
+          var cur = list.children('.list-result-current');
 
           if ($scope.isListShow) {
             switch (e.keyCode) {
-            case keyCode.up:
-              e.originalEvent.preventDefault();
-              searchUtils.select.prev(cur, lists);
-              break;
+              case keyCode.up:
+                e.originalEvent.preventDefault();
+                searchUtils.select.prev(cur, items);
+                break;
 
-            case keyCode.down:
-              e.originalEvent.preventDefault();
-              searchUtils.select.next(cur, lists);
-              break;
+              case keyCode.down:
+                e.originalEvent.preventDefault();
+                searchUtils.select.next(cur, items);
+                break;
 
-            case keyCode.tab:
-            case keyCode.enter:
-              e.originalEvent.preventDefault();
-              var resultObject = searchUtils.select.choose(cur, lists);
+              case keyCode.tab:
+              case keyCode.enter:
+                e.originalEvent.preventDefault();
+                var resultObject = searchUtils.select.choose(cur, items);
 
-              $scope.$emit('resultSelect', resultObject);
+                $scope.$emit('resultSelect', resultObject);
 
-              break;
+                break;
             }
           }
         };
 
-        ul.on('mouseenter', function (e) {
-          var lists = ul.find('li');
-          lists.removeClass('list-result-current');
+        list.on('mouseenter', function (e) {
+          var items = list.find('material-item');
+          items.removeClass('list-result-current');
         });
       }
     };

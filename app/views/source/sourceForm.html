@@ -1,50 +1,82 @@
-<div ng-controller="SourceEditCtrl">
-    <div class="list-partial border-top">
-        编辑作品
-    </div>
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0">
 
-    <form class="list-wrapper"
-          role="form"
-          name="sourceEditForm"
-          novalidate
-          ng-submit="submit()">
+    <material-card layout="vertical">
 
-        <input class="input-control"
-               id="name"
-               name="name"
-               type="text"
-               ng-model="source.name"
-               required
-               placeholder="请输入作品名称" />
+        <form role="form"
+              name="sourceEditForm"
+              novalidate
+              ng-submit="submit()">
+
+            <h3>编辑作品</h3>
+
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                <p flex="30">作品名称</p>
+
+                <material-input type="text" 
+                                name="name"
+                                id="name"
+                                ng-model="source.name"    
+                                required
+                                flex="70"
+                                inline-block
+                                placeholder="请输入作品名称"></material-input>
+
+            </material-input-group>
 
 
-        <textarea class="input-control margin-top-L"
-                  id="info"
-                  name="info"
-                  ng-model="source.info"
-                  placeholder="请输入作品信息"></textarea>
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
 
-        <div class="input-wrapper"
-             ng-repeat="object in source.alias track by $index">
-          
-            <input class="input-control margin-top-L"
-                   id="alias"
-                   name="alias"
-                   type="text"
-                   ng-model="source.alias[$index]"
-                   placeholder="请输入作品别名" />
-            <button class="btn btn-danger"
-                    ng-click="removeAlias($event, $index)">
-                <i class="icon-minus"></i>
-            </button>
+                <p flex="30">作品信息</p>
 
-        </div>
+                <material-input type="text"
+                                name="info"
+                                id="info"
+                                ng-model="source.info"
+                                required
+                                flex="70"
+                                inline-block
+                                placeholder="请输入作品信息"></material-input>
 
-        <button class="btn margin-top-L"
-                type="submit"
-                ng-disabled="!sourceEditForm.$valid">提交</button>
+            </material-input-group>
 
-        <button class="btn margin-top-L"
-                ng-click="addAlias($event)">添加别名</button>
-    </form>
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                <p flex="30">作品别名</p>
+
+                <div layout="vertical" flex="70">
+                    
+                    <div class="material-input-with-addon right-addon"
+                         ng-repeat="object in source.alias track by $index">
+
+                        <p class="right-addon"
+                           ng-click="removeAlias($event, $index)"
+                           ng-if="$index !== 0">x</p>
+
+                        <material-input type="text"
+                                        name="alias"
+                                        id="alias"
+                                        ng-model="source.alias[$index]"
+                                        required
+                                        layout-fill
+                                        placeholder="请输入作品别名"></material-input>
+                    </div>
+                </div>
+
+            </material-input-group>
+
+            <div layout="horizontal" layout-align="end">
+                <material-button ng-click="addAlias($event)">添加别名</material-button>
+                <material-button type="submit">提交</material-button>
+            </div>
+
+        </form>
+
+    </material-card>
+
 </div>

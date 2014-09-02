@@ -84,7 +84,8 @@ angular.module('bdUserAuth', [])
       Session.login(data);
     };
 
-    $scope.logout = function () {
+    $scope.logout = function (e) {
+      e.preventDefault();
       Session.logout();
     };
 

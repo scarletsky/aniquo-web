@@ -14,14 +14,14 @@ gulp.task('clean:dev', function () {
 
 gulp.task('less:dev', function () {
   gulp
-    .src('app/styles/main.less')
+    .src(['app/styles/main.less', 'app/styles/materialFix.less'])
     .pipe(less())
     .pipe(gulp.dest('app/styles/'));
 });
 
 gulp.task('watch', function () {
   gulp
-    .src('app/styles/**/*.less', {read: false})
+    .src(['app/styles/**/*.less', '!app/styles/materialFix.less'], {read: false})
     .pipe(watch(function () {
       return gulp
         .src('app/styles/main.less')
@@ -29,6 +29,13 @@ gulp.task('watch', function () {
         .pipe(gulp.dest('app/styles/'))
         .pipe(connect.reload());
   }));
+
+  gulp
+    .src('app/styles/materialFix.less')
+    .pipe(watch())
+    .pipe(less())
+    .pipe(gulp.dest('app/styles/'))
+    .pipe(connect.reload());
 
   gulp
     .src(['app/scripts/**/*.js', 'app/**/*.html'])

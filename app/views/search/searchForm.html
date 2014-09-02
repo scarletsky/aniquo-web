@@ -1,28 +1,52 @@
-<div>
-    <div class="list-partial border-top">
-        搜索
-    </div>
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0">
 
-    <div class="list-wrapper">
-        <form class="search-form-wrapper"
-              role="form"
+    <material-card layout="vertical">
+
+        <form role="form"
               ng-submit="getResult()"
               ng-controller="SearchCtrl">
 
-            <select class=""
-                    name="type"
-                    id="type"
-                    ng-model="g.searchType">
-                <option value="character">角色</option>
-                <option value="source">作品</option>
-            </select>
+            <h3>搜索</h3>
 
-            <input class="" 
-                   type="text"
-                   name="keyword"
-                   id="keyword"
-                   ng-model="g.searchKeyword"
-                   placeholder="请输入你想搜索的名字"/>
+            <div layout="horizontal">
+
+                <p flex="30">搜索类型</p>
+
+                <material-radio-group ng-model="g.searchType"
+                                      flex="70">
+
+                    <material-radio-button value="character"
+                                           aria-label="character"
+                                           inline-block>角色</material-radio-button>
+
+                    <material-radio-button value="source"
+                                           aria-label="source"
+                                           inline-block>作品</material-radio-button>
+
+                </material-radio-group>
+
+            </div>
+
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                <p flex="30">搜索内容</p>
+
+                <material-input type="text" 
+                                ng-model="g.searchKeyword"
+                                flex="70"
+                                inline-block
+                                placeholder="请输入你想搜索的内容"></material-input>
+            </material-input-group>
+
+            <span block style="height: 20px;"></span>
+
         </form>
-    </div>
+
+    </material-card>
+
 </div>

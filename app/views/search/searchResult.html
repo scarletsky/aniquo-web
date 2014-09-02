@@ -1,73 +1,57 @@
-<div>
-    <div ng-repeat="object in objects">
-        <div class="list-wrapper clearfix">
-            <!-- character -->
-            <div ng-if="g.searchType === 'character'">
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0">
 
-                <div class="image-wrapper image-middle pull-left margin-right-M">
-                    <img src="http://placehold.it/100x100" />
+    <material-card ng-if="objects">
+        <material-list>
+            <div ng-repeat="object in objects">
+                <div ng-if="g.searchType === 'character'"
+                     bd-linkify="/characters/{{ object._id }}/quotes">
+                    <material-item>
+                        <div class="material-tile-left">
+                            <img ng-src="http://placehold.it/60x60" class="face">
+                        </div>
+
+                        <div class="material-tile-content">
+                            <h2 ng-bind="object.name"></h2>
+                            <h3>
+                                <span>别名：</span>
+                                <span class="margin-right-10"
+                                      ng-repeat="alias in object.alias track by $index"
+                                      ng-bind="alias"></span>
+                            </h3>
+                        </div>
+                    </material-item>
                 </div>
 
-                <div class="list-main-wrapper">
-                   
-                    <div class="list-main-header">
-
-                        <div class="list-main-header-title">
-                            <a ng-bind="object.name"
-                               ng-href="/characters/{{ object._id }}/quotes"></a>
-
-                            <span> -- </span>
-
-                            <a ng-href="/sources/{{ object.source._id }}/characters"
-                               ng-bind-template="《 {{ object.source.name }} 》"></a>
+                <div ng-if="g.searchType === 'source'"
+                     bd-linkify="/sources/{{ object._id }}/characters">
+                    <material-item>
+                        <div class="material-tile-left">
+                            <img ng-src="http://placehold.it/60x60" class="face">
                         </div>
 
-                        <div class="list-main-header-subtitle"
-                             ng-if="object.alias.length !== 0">
-                            <span>别名:</span>
-                            <span ng-repeat="alias in object.alias track by $index"
-                                  ng-bind="alias"></span>
+                        <div class="material-tile-content">
+                            <h2 ng-bind="object.name"></h2>
+                            <h3>
+                                <span>别名：</span>
+                                <span class="margin-right-10"
+                                      ng-repeat="alias in object.alias track by $index"
+                                      ng-bind="alias"></span>
+                            </h3>
                         </div>
-                    </div>
-
-                    <div class="list-main-body">
-                        <p ng-bind="object.info"></p>
-                    </div> 
-                </div>
-            </div>
-
-            <!-- source -->
-            <div ng-if="g.searchType === 'source'">
-
-                <div class="image-wrapper image-middle pull-left margin-right-M">
-                    <img src="http://placehold.it/100x100" />
-                </div>
-
-                <div class="list-main-wrapper">
-                    
-                    <div class="list-main-header">
-
-                        <div class="list-main-header-title">
-
-                            <a ng-bind="object.name"
-                               ng-href="/sources/{{ object._id }}/characters"></a>
-
-                        </div>
-
-                        <div class="list-main-header-subtitle"
-                             ng-if="object.alias.length !== 0">
-
-                            <span>别名:</span>
-                            <span ng-repeat="alias in object.alias track by $index"
-                                  ng-bind="alias"></span>
-                        </div>
-                    </div>
-
-                    <div class="list-main-body">
-                        <p ng-bind="object.info"></p>
-                    </div>
+                    </material-item>
                 </div>
             </div>
-        </div>
-    </div>
+
+            <p ng-if="objects.length === 0">什么也找不到</p>
+        </material-list>
+
+    </material-card>
+
 </div>
+
+<div ng-include="'views/partials/pagination.html'"></div>

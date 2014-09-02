@@ -1,42 +1,34 @@
-<div>
-    <div ng-repeat="object in objects">
-        <div class="list-wrapper">
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0">
 
-            <div class="image-wrapper image-small pull-left margin-right-M">
-                <img src="http://placehold.it/50x50" />
-            </div>
-
-            <div class="list-main-wrapper">
-                    
-                <div class="list-main-header">
-
-
-                    <div class="list-main-header">
-
-                        <div class="list-main-header-title">
-                            <a ng-bind="object.name"
-                               ng-href="/characters/{{ object._id }}/quotes"></a>
+    <material-card ng-if="objects">
+        <material-list>
+            <div ng-repeat="object in objects">
+                <div bd-linkify="/characters/{{ object._id }}/quotes">
+                    <material-item>
+                        <div class="material-tile-left">
+                            <img ng-src="http://placehold.it/60x60" class="face">
                         </div>
 
-                        <div class="list-main-header-subtitle"
-                             ng-if="object.alias.length !== 0">
-                            <span>别名:</span>
-                            <span ng-repeat="alias in object.alias track by $index"
-                                  ng-bind="alias"></span>
+                        <div class="material-tile-content">
+                            <h2 ng-bind="object.name"></h2>
+                            <h3>
+                                <span>别名：</span>
+                                <span class="margin-right-10"
+                                      ng-repeat="alias in object.alias track by $index"
+                                      ng-bind="alias"></span>
+                            </h3>
                         </div>
-                    </div>
+                    </material-item>
                 </div>
             </div>
-        </div>
-    </div>
+        </material-list>
+    </material-card>
 
-    <div class="list-partial">
-        <a class="pull-left"
-           ng-if="hasPrevPage"
-           ng-click="prevPage()">上一页</a>
-
-        <a class="pull-right"
-           ng-if="hasNextPage"
-           ng-click="nextPage()">下一页</a>
-    </div>
 </div>
+
+<div ng-include="'views/partials/pagination.html'"></div>

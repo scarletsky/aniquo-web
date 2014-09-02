@@ -1,80 +1,131 @@
-<div>
-    <div class="list-partial border-top">
-        编辑角色
-    </div>
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0">
 
-    <form class="list-wrapper"
-          role="form"
-          name="characterEditForm"
-          novalidate
-          ng-submit="submit()">
+    <material-card layout="vertical">
 
-        <input class="input-control" 
-               id="name"
-               name="name"
-               type="text"
-               ng-model="character.name"
-               required
-               placeholder="请输入角色名称" />
+        <form role="form"
+              name="sourceEditForm"
+              novalidate
+              ng-submit="submit()">
 
-        <textarea class="input-control margin-top-L" 
-                  id="info"
-                  name="info"
-                  type="text"
-                  ng-model="character.info"
-                  placeholder="请输入角色信息"></textarea>
+            <h3>编辑角色</h3>
 
-        <input class="input-control" 
-               id="sourceId"
-               name="sourceId"
-               type="hidden"
-               required
-               ng-model="character.sourceId"
-               bd-auto-complete="id" />
+            <material-input-group class="material-input-group-theme-light"
+                                  layout="horizontal">
 
-        <input class="input-control margin-top-L" 
-               id="sourceName"
-               name="sourceName"
-               ng-model="character.sourceName"
-               ng-keydown="keydownSelect($event)"
-               required
-               bd-search
-               bd-search-type="source"
-               bd-select-searching
-               bd-auto-complete="name"
-               placeholder="请输入所属作品名字或别名" />
+                <p flex="30">角色名称</p>
 
-        <ul class="list-results-wrapper"
-            ng-show="isListShow">
-            <li class="list-result"
-                ng-repeat="result in results"
-                ng-bind="result.name"
-                ng-click="clickSelect(result)"
-                object-id="{{ result._id }}"></li>
-        </ul>
+                <material-input type="text" 
+                                name="name"
+                                id="name"
+                                ng-model="character.name"    
+                                required
+                                flex="70"
+                                inline-block
+                                placeholder="请输入角色名称"></material-input>
 
-        <div class="input-wrapper"
-             ng-repeat="object in character.alias track by $index">
-          
-            <input class="input-control margin-top-L"
-                   id="alias"
-                   name="alias"
-                   type="text"
-                   ng-model="character.alias[$index]"
-                   placeholder="请输入角色别名" />
-            <button class="btn btn-danger"
-                    ng-click="removeAlias($event, $index)">
-                <i class="icon-minus"></i>
-            </button>
+            </material-input-group>
 
-        </div>
 
-        <button class="btn margin-top-L"
-                type="submit"
-                ng-disabled="!characterEditForm.$valid">提交</button>
+            <material-input-group class="material-input-group-theme-light" 
+                                  layout="horizontal">
 
-        <button class="btn margin-top-L"
-                ng-click="addAlias($event)">添加别名</button>
+                <p flex="30">角色信息</p>
 
-    </form>
+                <material-input type="text"
+                                name="info"
+                                id="info"
+                                ng-model="character.info"
+                                required
+                                flex="70"
+                                inline-block
+                                placeholder="请输入角色信息"></material-input>
+
+            </material-input-group>
+
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                <p flex="30">角色所属作品</p>
+
+                <div class="material-input-with-addon left-addon" flex="70">
+
+                    <p class="left-addon">q</p>
+
+                    <material-input type="hidden"
+                                    name="sourceId"
+                                    id="sourceId"
+                                    ng-model="character.sourceId"
+                                    bd-auto-complete="id"></material-input>
+                    
+                    <material-input type="text"
+                                    name="sourceName"
+                                    id="sourceName"
+                                    ng-model="character.sourceName"
+                                    ng-keydown="keydownSelect($event)"
+                                    required
+                                    layout-fill
+                                    bd-search
+                                    bd-search-type="source"
+                                    bd-select-searching
+                                    bd-auto-complete="name"
+                                    placeholder="请输入角色所属作品名字或别名"></material-input>
+
+                    <material-list class="material-list-dropdown"
+                                   layout-fill
+                                   block
+                                   ng-show="isListShow">
+
+                        <material-item ng-repeat="result in results">
+                            <div class="material-tile-content"
+                                 ng-click="clickSelect(result)"
+                                 object-id="{{ result._id }}">
+                                <p ng-bind="result.name"></p>
+                            </div>
+                        </material-item>
+
+                    </material-list>
+
+                </div>
+
+            </material-input-group>
+
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                <p flex="30">角色别名</p>
+
+                <div layout="vertical" flex="70">
+                    
+                    <div class="material-input-with-addon right-addon"
+                         ng-repeat="object in character.alias track by $index">
+
+                        <p class="right-addon"
+                           ng-click="removeAlias($event, $index)"
+                           ng-if="$index !== 0">x</p>
+
+                        <material-input type="text"
+                                        name="alias"
+                                        id="alias"
+                                        ng-model="character.alias[$index]"
+                                        required
+                                        layout-fill
+                                        placeholder="请输入角色别名"></material-input>
+
+                    </div>
+                </div>
+
+            </material-input-group>
+
+            <div layout="horizontal" layout-align="end">
+                <material-button ng-click="addAlias($event)">添加别名</material-button>
+                <material-button type="submit">提交</material-button>
+            </div>
+
+        </form>
+
+    </material-card>
+
 </div>

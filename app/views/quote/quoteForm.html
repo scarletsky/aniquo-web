@@ -1,62 +1,104 @@
-<div>
-    <div class="list-partial border-top">
-        编辑语录
-    </div>
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0">
 
-    <form class="list-wrapper"
-          role="form"
-          name="quoteEditForm"
-          novalidate
-          ng-submit="submit()">
+    <material-card layout="vertical">
 
-        <input class="input-control"
-               id="characterId"
-               name="characterId"
-               type="hidden"
-               required
-               ng-model="quote.characterId"
-               bd-auto-complete="id" />
+        <form role="form"
+              name="quoteEditForm"
+              novalidate
+              ng-submit="submit()">
 
-        <input class="input-control"
-               id="characterName"
-               name="characterName"
-               type="text"
-               ng-model="quote.characterName"
-               ng-keydown="keydownSelect($event)"
-               required
-               bd-search
-               bd-search-type="character"
-               bd-select-searching
-               bd-auto-complete="name"
-               placeholder="请输入语录所属角色名称或别名" />
+            <h3>编辑语录</h3>
 
-        <ul class="list-results-wrapper"
-            ng-show="isListShow">
-            <li class="list-result"
-                ng-repeat="result in results"
-                ng-bind="result.name"
-                ng-click="clickSelect(result)"
-                object-id="{{ result._id }}"></li>
-        </ul>
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
 
-        <input class="input-control margin-top-L"
-               id="reference"
-               name="reference"
-               type="text"
-               ng-model="quote.reference"
-               placeholder="请输入语录出处，动画第几话，漫画第几话等等" />
+                <p flex="30">语录所属角色</p>
 
-        <textarea class="input-control margin-top-L"
-                  id="quote"
-                  name="quote"
-                  type="text"
-                  ng-model="quote.quote"
-                  required
-                  placeholder="请输入语录详细信息"></textarea>
+                <div class="material-input-with-addon left-addon" flex="70">
 
-        <button class="btn margin-top-L"
-                type="submit"
-                ng-disabled="!quoteEditForm.$valid">提交</button>
+                    <p class="left-addon">q</p>
 
-    </form>
+                    <material-input type="hidden"
+                                    name="characterId"
+                                    id="characterId"
+                                    ng-model="quote.characterId"
+                                    bd-auto-complete="id"></material-input>
+                    
+                    <material-input type="text"
+                                    name="characterName"
+                                    id="characterName"
+                                    ng-model="quote.characterName"
+                                    ng-keydown="keydownSelect($event)"
+                                    required
+                                    layout-fill
+                                    bd-search
+                                    bd-search-type="character"
+                                    bd-select-searching
+                                    bd-auto-complete="name"
+                                    placeholder="请输入语录所属角色名字或别名"></material-input>
+
+                    <material-list class="material-list-dropdown"
+                                   layout-fill
+                                   block
+                                   ng-show="isListShow">
+
+                        <material-item ng-repeat="result in results">
+                            <div class="material-tile-content"
+                                 ng-click="clickSelect(result)"
+                                 object-id="{{ result._id }}">
+                                <p ng-bind="result.name"></p>
+                            </div>
+                        </material-item>
+
+                    </material-list>
+
+                </div>
+
+            </material-input-group>
+
+            <material-input-group class="material-input-group-theme-light"
+                                  layout="horizontal">
+
+                <p flex="30">语录出处</p>
+
+                <material-input type="text" 
+                                name="reference"
+                                id="reference"
+                                ng-model="quote.reference"    
+                                required
+                                flex="70"
+                                inline-block
+                                placeholder="请输入语录出处"></material-input>
+
+            </material-input-group>
+
+
+            <material-input-group class="material-input-group-theme-light" 
+                                  layout="horizontal">
+
+                <p flex="30">语录详细信息</p>
+
+                <material-input type="text"
+                                name="quote"
+                                id="quote"
+                                ng-model="quote.quote"
+                                required
+                                flex="70"
+                                inline-block
+                                placeholder="请输入语录详细信息"></material-input>
+
+            </material-input-group>
+
+            <div layout="horizontal" layout-align="end">
+                <material-button type="submit">提交</material-button>
+            </div>
+
+        </form>
+
+    </material-card>
+
 </div>

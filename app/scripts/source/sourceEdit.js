@@ -10,7 +10,7 @@ angular.module('bdSourceEdit', [])
     var actionType = $routeParams.sourceId ? 'edit' : 'add';
 
     $scope.source = {};
-    $scope.source.alias = [];
+    $scope.source.alias = [''];
 
     if (actionType === 'edit') {
       Restangular

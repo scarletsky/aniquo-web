@@ -7,6 +7,7 @@ angular.module('bdUserSettings', [])
     'use strict';
 
     $scope.user = {};
+    $scope.selectedIndex = 0;
 
     /*
      * Don't define userElement globally:

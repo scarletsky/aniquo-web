@@ -1,11 +1,51 @@
-<div>
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0">
 
-    <div class="list-wrapper clearfix">
-        <a ng-href="/quotes/{{ quote._id }}/edit"
-           ng-if="session.isAuthenticated()">编辑语录</a>
+    <material-card layout="vertical">
 
-        <p ng-bind-template="{{ quote.quote }}"></p>
-        <p class="pull-right"
-           ng-bind-template="—— 出自 {{ quote.reference }}"></p>
-    </div>
+        <div layout="horizontal">
+            <p class="margin-bottom-0"
+               ng-bind-template="{{ quote.quote }}"></p>
+        </div>
+
+        <div layout="horizontal" layout-align="end">
+            <p class="margin-top-0"
+               ng-bind-template="—— 出自 {{ quote.reference }}"></p>
+        </div>
+
+    </material-card>
+
+    <material-card layout="vertical" layout-align="start">
+
+        <div layout="horizontal">
+            <label flex-lg="15"
+                   flex-md="15"
+                   flex-sm="25">contributor:</label>
+            <span flex
+                  ng-bind="quote.contributor.username"></span>
+        </div>
+
+        <div layout="horizontal">
+            <label flex="15">like count:</label>
+            <span flex
+                  ng-bind="quote.likeCount"></span>
+        </div>
+
+        <div layout="horizontal">
+            <label flex="15">view count:</label>
+            <span flex
+                  ng-bind="quote.viewCount"></span>
+        </div>
+
+        <div layout="horizontal">
+            <label flex="15">create at:</label>
+            <span flex
+                  ng-bind="quote.createdAt"></span>
+        </div>
+
+    </material-card>
 </div>

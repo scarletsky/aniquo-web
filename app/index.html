@@ -12,19 +12,23 @@
         <title ng-bind="ex.meta.title"></title>
 
         <!-- build:css({<%= yeoman.app %>,.tmp}) styles/main.css -->
+        <link rel="stylesheet" href="/components/angular-material/angular-material.css">
+        <link rel="stylesheet" href="/styles/materialFix.css">
         <link rel="stylesheet" href="/styles/main.css">
         <!-- endbuild -->
 
     </head>
 
-    <body>
+    <body layout="vertical" layout-fill>
 
-        <div ng-include="'/views/partials/layout/nav.html'"></div>
 
-        <div class="main-wrapper">
+        <material-content>
+
+            <div ng-include="'/views/partials/layout/header.html'"></div>
+
             <div ng-view></div>
-        </div>
 
+        </material-content>
         <!-- build:js /scripts/libs.js -->
         <script src="/components/jquery/dist/jquery.js"></script>
         <script src="/components/moment/moment.js"></script>
@@ -35,6 +39,7 @@
         <script src="/components/angular-touch/angular-touch.js"></script>
         <script src="/components/angular-route/angular-route.js"></script>
         <script src="/components/angular-animate/angular-animate.js"></script>
+        <script src="/components/angular-material/angular-material.js"></script>
         <script src="/components/angular-resource/angular-resource.js"></script>
         <script src="/components/angular-cookies/angular-cookies.js"></script>
         <script src="/components/angular-sanitize/angular-sanitize.js"></script>
@@ -51,7 +56,9 @@
         <script src="/scripts/config/config.js"></script>
         <script src="/scripts/common/common.js"></script>
         <script src="/scripts/common/upload.js"></script>
+        <script src="/scripts/common/link.js"></script>
         <script src="/scripts/common/treasure.js"></script>
+        <script src="/scripts/common/navigation.js"></script>
         <script src="/scripts/search/search.js"></script>
         <script src="/scripts/quote/quote.js"></script>
         <script src="/scripts/quote/quoteEdit.js"></script>

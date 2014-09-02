@@ -10,7 +10,7 @@ angular.module('bdCharacterEdit', [])
     var actionType = $routeParams.characterId ? 'edit' : 'add';
 
     $scope.character = {};
-    $scope.character.alias = [];
+    $scope.character.alias = [''];
 
     if (actionType === 'edit') {
       Restangular

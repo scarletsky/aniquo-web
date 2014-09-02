@@ -1,0 +1,19 @@
+<div ng-controller="NavCtrl">
+
+    <div layout="horizontal">
+        <a ng-click="toggleLeft()" style="position: absolute; top: 20px; left: 20px; z-index: 3">123</a>
+
+        <material-toolbar class="material-theme-light material-tall">
+            <span flex></span>
+
+            <div offset="10">
+                <h1>
+                    <a href="/">Aniquo</a>
+                </h1>
+            </div>
+        </material-toolbar>
+    </div>
+
+    <div ng-include="'/views/partials/layout/nav.html'"></div>
+
+</div>

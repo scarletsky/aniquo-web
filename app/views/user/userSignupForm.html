@@ -1,41 +1,71 @@
-<div>
-    <div class="list-partial border-top">
-        注册
-    </div>
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0">
+
+    <material-card layout="vertical">
+
+        <form role="form"
+              name="signupForm"
+              ng-submit="signup()"
+              ng-controller="AuthCtrl">
+
+            <h3>注册</h3>
+
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                <p flex="30">用户名</p>
+
+                <material-input type="text" 
+                                name="username"
+                                id="username"
+                                ng-model="user.username"    
+                                required
+                                flex="70"
+                                inline-block
+                                placeholder="请输入用户名"></material-input>
+
+            </material-input-group>
 
 
-    <form class="list-wrapper"
-          role="form"
-          name="signupForm"
-          ng-submit="signup()"
-          ng-controller="AuthCtrl">
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
 
-        <input class="input-control" 
-               type="text"
-               name="username"
-               id="username"
-               ng-model="user.username"
-               required
-               placeholder="请输入用户名"/>
+                <p flex="30">密码</p>
 
-        <input class="input-control margin-top-L" 
-               type="password"
-               name="password"
-               id="password"
-               ng-model="user.password"
-               required
-               placeholder="请输入密码"/>
+                <material-input type="password"
+                                name="password"
+                                id="password"
+                                ng-model="user.password"
+                                required
+                                flex="70"
+                                inline-block
+                                placeholder="请输入密码"></material-input>
 
-        <input class="input-control margin-top-L" 
-               type="password"
-               name="password2"
-               id="password2"
-               ng-model="user.password2"
-               required
-               placeholder="请确认密码"/>
+            </material-input-group>
 
-        <button class="btn margin-top-L"
-                type="submit"
-                ng-disabled="!signupForm.$valid || user.password !== user.password2">提交</button>
-    </form>
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                <p flex="30">确认密码</p>
+
+                <material-input type="password"
+                                name="password2"
+                                id="password2"
+                                ng-model="user.password2"
+                                required
+                                flex="70"
+                                inline-block
+                                placeholder="请确认密码"></material-input>
+
+            </material-input-group>
+
+            <div layout="horizontal" layout-align="end">
+                <material-button type="submit">注册</material-button>
+            </div>
+
+        </form>
+
+    </material-card>
+
 </div>

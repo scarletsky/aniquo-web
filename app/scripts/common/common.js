@@ -1,4 +1,6 @@
 angular.module('bdCommon', [
+  'bdLink',
   'bdUpload',
-  'bdTreasure'
+  'bdTreasure',
+  'bdNavigation'
 ]);

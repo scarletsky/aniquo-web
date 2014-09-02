@@ -1,38 +1,24 @@
-<nav class="nav-wrapper">
-    <a class="logo"
-       href="/">L</a>
+<section layout="vertical" layout-align="center" layout-fill>
+    
+    <material-sidenav class="material-sidenav-left material-whiteframe-z2" component-id="left">
+        <material-toolbar class="material-theme-indigo">
+            <h1 class="material-toolbar-tools">Sidenav Left</h1>
+        </material-toolbar>
 
-    <ul class="nav-action-wrapper"
-        ng-if="session.isAuthenticated()">
-        <li class="nav-action">
-            <a href="/user/contribution">我的贡献</a>
-        </li>
-        <li class="nav-action">
-            <a href="/sources/new">添加新作品</a>
-        </li>
-        <li class="nav-action">
-            <a href="/characters/new">添加新角色</a>
-        </li>
-        <li class="nav-action">
-            <a ng-href="/quotes/new">添加新语录</a>
-        </li>
-        <li class="nav-action">
-            <a href="/user/settings">设置</a>
-        </li>
-    </ul>
+        <section>
+            <material-button block href="/login" ng-if="!session.isAuthenticated()">登录</material-button>
+            <material-button block href="/signup" ng-if="!session.isAuthenticated()">注册</material-button>
+        </section>
 
-    <ul class="nav-action-wrapper">
-        <li class="nav-action">
-            <a ng-href="/login"
-               ng-if="!session.isAuthenticated()">登录</a>
-        </li>
-        <li class="nav-action">
-            <a ng-href="/signup"
-               ng-if="!session.isAuthenticated()">注册</a>
-        </li>
-        <li class="nav-action">
-            <a ng-click="session.logout()"
-               ng-if="session.isAuthenticated()">注销</a>
-        </li>
-    </ul>
-</nav>
+        <section ng-if="session.isAuthenticated()">
+            <material-button block href="/user/contribution">我的贡献</material-button>
+            <material-button block href="/sources/new">添加新作品</material-button>
+            <material-button block href="/characters/new">添加新角色</material-button>
+            <material-button block href="/quotes/new">添加新语录</material-button>
+            <material-button block href="/user/settings">设置</material-button>
+            <material-button block href="#" ng-click="session.logout($event)" ng-if="session.isAuthenticated()">注销</material-button>
+        </section>
+
+    </material-sidenav>
+
+</section>

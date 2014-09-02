@@ -1,5 +1,7 @@
 angular.module('bd', [
   'ngRoute',
+  'ngAnimate',
+  'ngMaterial',
   'bdUser',
   'bdQuote',
   'bdSearch',
