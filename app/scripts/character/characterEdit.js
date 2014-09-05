@@ -3,6 +3,7 @@ angular.module('bdCharacterEdit', [])
     $scope,
     $location,
     $routeParams,
+    Toast,
     Restangular
   ) {
     'use strict';
@@ -45,13 +46,21 @@ angular.module('bdCharacterEdit', [])
         sourceId: $scope.character.sourceId
       };
 
+      if (angular.isUndefined(data.name)) {
+        return Toast.alert('角色名字不能为空');
+      }
+
+      if (angular.isUndefined(data.sourceId)) {
+        return Toast.alert('角色所属作品不能为空');
+      }
+
       if (actionType === 'edit') {
         Restangular
           .one('characters', $routeParams.characterId)
           .put(data)
           .then(function (res) {
-            alert('更新成功！');
-            $location.path('/characters/' + $routeParams.characterId + '/quotes');
+            Toast.alert('角色更新成功');
+            return $location.path('/characters/' + $routeParams.characterId + '/quotes');
           });
 
       } else {
@@ -60,14 +69,16 @@ angular.module('bdCharacterEdit', [])
           .get(data)
           .then(function (res) {
             if (res.exist) {
-              alert('该角色已存在！');
+              return Toast.alert('该角色已存在');
+
             } else {
               Restangular
                 .all('characters')
                 .post(data)
                 .then(function (res) {
-                  alert('添加成功！');
-                  $location.path('/');
+                  return Toast.alert('角色添加成功');
+                }, function (res) {
+                  return Toast.alert('角色添加失败');
                 });
             }
           });

@@ -3,6 +3,7 @@ angular.module('bdSourceEdit', [])
     $scope,
     $location,
     $routeParams,
+    Toast,
     Restangular
   ) {
     'use strict';
@@ -36,32 +37,43 @@ angular.module('bdSourceEdit', [])
       var alias = _.filter($scope.source.alias, function (value) {
         return $.trim(value);
       });
+
       var data = {
         name: $scope.source.name,
         alias: alias,
         info: $scope.source.info 
       };
 
+      if (angular.isUndefined(data.name)) {
+        return Toast.alert('作品名称不能为空');
+      }
+
       if (actionType === 'edit') {
         Restangular
           .one('sources', $routeParams.sourceId)
           .put(data)
           .then(function (res) {
-            alert('更新成功！');
-            $location.path('/sources/' + $routeParams.sourceId + '/characters');
+            Toast.alert('作品更新成功');
+            return $location.path('/sources/' + $routeParams.sourceId + '/characters');
           });
+
       } else {
         Restangular
           .one('source/check')
           .get(data)
           .then(function (res) {
             if (res.exist) {
-              alert('该作品已存在！');
+              return Toast.alert('该作品已存在');
+
             } else {
-              Restangular.all('sources').post(data).then(function (res) {
-                alert('添加成功！');
-                $location.path('/');
-              });
+              Restangular
+                .all('sources')
+                .post(data)
+                .then(function (res) {
+                  return Toast.alert('作品添加成功');
+                }, function (res) {
+                  return Toast.alert('作品添加失败');
+                });
             }
           });
       }

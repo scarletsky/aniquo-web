@@ -2,6 +2,7 @@ angular.module('bdUserSettings', [])
   .controller('UserSettingsCtrl', function (
     $scope,
     $window,
+    Toast,
     Restangular
   ) {
     'use strict';
@@ -38,19 +39,31 @@ angular.module('bdUserSettings', [])
           $scope.user.nickname = res.nickname;
           $scope.user.site = res.site;
           $scope.user.info = res.info;
-          alert('个人资料修改成功!');
+          Toast.alert('个人资料更新成功');
+        }, function (res) {
+          Toast.alert('个人资料更新失败')
         });
     };
 
     $scope.updatePassword = function () {
+      if (angular.isUndefined($scope.user.oldPassword)) {
+        return Toast.alert('请输入旧密码');
+      }
+
+      if (angular.isUndefined($scope.user.newPassword)) {
+        return Toast.alert('请输入新密码');
+      }
+
+      if (angular.isUndefined($scope.user.confirmPassword)) {
+        return Toast.alert('请确认新密码');
+      }
+
       if ($scope.user.newPassword !== $scope.user.confirmPassword) {
-        alert('两次密码不一样!');
-        return;
+        return Toast.alert('两次密码不一样');
       }
 
       if ($scope.user.oldPassword === $scope.user.newPassword) {
-        alert('新密码不能和旧密码一样!');
-        return;
+        return Toast.alert('新密码不能和旧密码一样');
       }
 
       var data = {
@@ -63,13 +76,13 @@ angular.module('bdUserSettings', [])
       userElement
         .put()
         .then(function (res) {
+          Toast.alert('密码修改成功');
           $scope.user.oldPassword = '';
           $scope.user.newPassword = '';
           $scope.user.confirmPassword = '';
           $scope.userPasswordForm.$setPristine();
-          alert('密码修改成功!');
         }, function (res) {
-          alert('密码错误!');
+          Toast.alert('原密码错误');
         });
     };
   });

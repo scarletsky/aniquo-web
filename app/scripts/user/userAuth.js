@@ -11,6 +11,7 @@ angular.module('bdUserAuth', [])
     $window,
     $location,
     $rootScope,
+    Toast,
     AuthEvents,
     Restangular
   ) {
@@ -52,7 +53,7 @@ angular.module('bdUserAuth', [])
     });
 
     $rootScope.$on(AuthEvents.loginFailed, function (event, res) {
-      alert(res.data.error);
+      Toast.alert(res.data.error);
     });
 
     $rootScope.$on(AuthEvents.tokenExpired, function (event, res) {
@@ -69,19 +70,31 @@ angular.module('bdUserAuth', [])
   .controller('AuthCtrl', function (
     $scope,
     $rootScope,
+    Toast,
     Session,
     AuthEvents,
     Restangular
   ) {
     'use strict';
 
+    $scope.user = {};
+
     $scope.login = function () {
+
+      if (angular.isUndefined($scope.user.username)) {
+        return Toast.alert('请输入用户名');
+      }
+
+      if (angular.isUndefined($scope.user.password)) {
+        return Toast.alert('请输入密码');
+      }
+
       var data = {
         username: $scope.user.username,
         password: $scope.user.password
       };
 
-      Session.login(data);
+      return Session.login(data);
     };
 
     $scope.logout = function (e) {
@@ -90,6 +103,22 @@ angular.module('bdUserAuth', [])
     };
 
     $scope.signup = function () {
+      if (angular.isUndefined($scope.user.username)) {
+        return Toast.alert('请输入用户名');
+      }
+
+      if (angular.isUndefined($scope.user.password)) {
+        return Toast.alert('请输入密码');
+      }     
+
+      if (angular.isUndefined($scope.user.password2)) {
+        return Toast.alert('请确认密码');
+      }
+
+      if ($scope.user.password !== $scope.user.password2) {
+        return Toast.alert('两次密码不一致');
+      }
+
       var data = {
         username: $scope.user.username,
         password: $scope.user.password
