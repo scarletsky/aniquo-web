@@ -17,7 +17,7 @@
 
                         <div class="material-tile-content">
                             <h2 ng-bind="object.name"></h2>
-                            <h3>
+                            <h3 ng-if="object.alias.length !== 0">
                                 <span>别名：</span>
                                 <span class="margin-right-10"
                                       ng-repeat="alias in object.alias track by $index"
@@ -36,7 +36,7 @@
 
                         <div class="material-tile-content">
                             <h2 ng-bind="object.name"></h2>
-                            <h3>
+                            <h3 ng-if="object.alias.length !== 0">
                                 <span>别名：</span>
                                 <span class="margin-right-10"
                                       ng-repeat="alias in object.alias track by $index"
