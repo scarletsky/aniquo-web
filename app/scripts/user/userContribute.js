@@ -16,24 +16,38 @@ angular.module('bdUserContribute', [])
      *
      */
     $scope.g = G;
+    var contributionType = $routeParams.contributionType;
     var sessionStorage = $window.sessionStorage;
-    var characterId = $routeParams.characterId;
     var page = $location.search().page || 1;
+
+    switch (contributionType) {
+      case 'sources':
+        $scope.selectedIndex = 0;
+        break;
+      case 'characters':
+        $scope.selectedIndex = 1;
+        break;
+      case 'quotes':
+        $scope.selectedIndex = 2;
+        break;
+      default:
+        $scope.selectedIndex = 0;
+    }
 
     if (!sessionStorage.currentPage) {
       sessionStorage.currentPage = 1;
     }
 
     $scope.prevPage = function () {
-      $location.path('user/contribution').search('page', --page);
+      $location.path('user/contribution/' + contributionType).search('page', --page);
     };
 
     $scope.nextPage = function () {
-      $location.path('user/contribution').search('page', ++page);
+      $location.path('user/contribution/' + contributionType).search('page', ++page);
     };
 
     Restangular
-      .one('users/' + Session.currentUser._id +'/contribution/quotes' + 
+      .one('users/' + Session.currentUser._id +'/contribution/' + contributionType + 
            '?page=' + page +
            '&paginationId=' + sessionStorage.paginationId +
            '&currentPage=' + sessionStorage.currentPage)

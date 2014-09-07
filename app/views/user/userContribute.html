@@ -1,22 +1,47 @@
 <div>
-    <div class="list-partial border-top">
-        我的贡献
-    </div>
 
-    <div ng-repeat="object in objects">
-        <div class="list-wrapper">
-            <a ng-bind="object.quote"
-               ng-href="/quotes/{{ object._id }}"></a>
+    <material-tabs selected="selectedIndex" center>
+          <material-tab label="作品"
+                        bd-linkify="/user/contribution/sources"></material-tab>
+          <material-tab label="角色"
+                        bd-linkify="/user/contribution/characters"></material-tab>
+          <material-tab label="语录"
+                        bd-linkify="/user/contribution/quotes"></material-tab>
+    </material-tabs>
+
+    <div layout="vertical"
+         id="contentBody"
+         flex-lg="60"
+         flex-md="80"
+         offset-lg="20"
+         offset-md="10"
+         offset-sm="0">
+
+        <!-- sources -->
+        <div ng-if="selectedIndex === '0'">
+            <material-card ng-repeat="object in objects"
+                           bd-linkify="/sources/{{ object._id }}/characters">
+                <p ng-bind="object.name"></p>
+            </material-card>
+        </div>
+
+        <!-- characters -->
+        <div ng-if="selectedIndex === '1'">
+            <material-card ng-repeat="object in objects"
+                           bd-linkify="/characters/{{ object._id }}/quotes">
+                <p ng-bind="object.name"></p>
+            </material-card>
+        </div>
+
+        <!-- quotes -->
+        <div ng-if="selectedIndex === '2'">
+            <material-card ng-repeat="object in objects"
+                           bd-linkify="/quotes/{{ object._id }}">
+                <p ng-bind="object.quote"></p>
+            </material-card>
         </div>
     </div>
 
-    <div class="list-partial">
-        <a class="pull-left"
-           ng-if="hasPrevPage"
-           ng-click="prevPage()">上一页</a>
+    <div ng-include="'views/partials/pagination.html'"></div>
 
-        <a class="pull-right"
-           ng-if="hasNextPage"
-           ng-click="nextPage()">下一页</a>
-    </div>
 </div>
