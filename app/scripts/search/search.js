@@ -129,7 +129,8 @@ angular.module('bdSearch', [])
                   }
                 });
             }, 500);
-          } else {
+          } else if (!modelValue) {
+            $scope.$emit('resultSelect', {id: undefined, name: undefined});
             $scope.results = [];
           }
         });
