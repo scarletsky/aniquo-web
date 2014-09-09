@@ -1,4 +1,4 @@
-angular.module('bdConfig', ['restangular', 'angular-md5'])
+angular.module('bdConfig', ['restangular', 'angular-md5', 'angular-loading-bar'])
   .run(function (
     $window,
     $rootScope,
@@ -53,4 +53,8 @@ angular.module('bdConfig', ['restangular', 'angular-md5'])
         httpConfig: httpConfig
       };
     });
-  });
+  })
+
+  .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = true;
+  }]);
