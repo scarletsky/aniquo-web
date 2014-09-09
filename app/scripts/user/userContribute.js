@@ -14,6 +14,9 @@ angular.module('bdUserContribute', [])
      * TO FIX:
      * currentPage and pagination in sessionStorage will cause another bug.
      *
+     * Hint:
+     *   contributionPaginationId is different from paginationId
+     *   contributionCurrentPage is different from currentPage
      */
     $scope.g = G;
     var contributionType = $routeParams.contributionType;
@@ -34,8 +37,8 @@ angular.module('bdUserContribute', [])
         $scope.selectedIndex = 0;
     }
 
-    if (!sessionStorage.currentPage) {
-      sessionStorage.currentPage = 1;
+    if (!sessionStorage.contributionCurrentPage) {
+      sessionStorage.contributionCurrentPage = 1;
     }
 
     $scope.prevPage = function () {
@@ -49,13 +52,13 @@ angular.module('bdUserContribute', [])
     Restangular
       .one('users/' + Session.currentUser._id +'/contribution/' + contributionType + 
            '?page=' + page +
-           '&paginationId=' + sessionStorage.paginationId +
-           '&currentPage=' + sessionStorage.currentPage)
+           '&paginationId=' + sessionStorage.contributionPaginationId +
+           '&currentPage=' + sessionStorage.contributionCurrentPage)
       .get()
       .then(function (res) {
         $scope.objects = res.objects;
-        sessionStorage.paginationId = res.objects[0]._id;
-        sessionStorage.currentPage = page;
+        sessionStorage.contributionPaginationId = res.objects[0]._id;
+        sessionStorage.contributionCurrentPage = page;
 
         var pageNum = Math.ceil(res.total / res.perPage);
         $scope.hasPrevPage = page > 1;

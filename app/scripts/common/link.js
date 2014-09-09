@@ -9,7 +9,7 @@ angular.module('bdLink', [])
 
         $element.on('click', function (e) {
           $scope.$apply(function () {
-            $location.path(link).search('kw', null).search('t', null);
+            $location.path(link).search('kw', null).search('t', null).search('page', null);
           });
         });
 
