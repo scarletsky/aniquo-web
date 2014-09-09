@@ -19,6 +19,10 @@ a {
     display: inline-block !important;
 }
 
+[table] {
+    display: table !important;
+}
+
 // material-radio-group
 material-radio-group {
     border: 0;
@@ -38,6 +42,9 @@ material-list {
         border-left: @border-common;
         border-right: @border-common;
         border-bottom: @border-common;
+        position: absolute;
+        z-index: 10;
+        background-color: @color-white;
 
         .list-result-current, material-item:hover {
             color: @color-blue-light;

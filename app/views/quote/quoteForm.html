@@ -43,10 +43,10 @@
 
                     <material-list class="material-list-dropdown"
                                    layout-fill
-                                   block
+                                   table
                                    ng-show="isListShow">
 
-                        <material-item ng-repeat="result in results">
+                        <material-item ng-repeat="result in results | limitTo: 3">
                             <div class="material-tile-content"
                                  ng-click="clickSelect(result)"
                                  object-id="{{ result._id }}">
