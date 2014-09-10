@@ -1,60 +1,78 @@
 angular.module('bdConfig', ['restangular', 'angular-md5', 'angular-loading-bar'])
-  .run(function (
-    $window,
-    $rootScope,
-    AuthEvents,
+  .run([
+    '$window',
+    '$rootScope',
+    'AuthEvents',
+    'Restangular',
+    autoLogin
+  ])
+
+  .config([
+    'RestangularProvider',
+    RestangularConfig
+  ])
+
+  .config([
+    'cfpLoadingBarProvider',
+    cfpLoadingBarConfig
+  ]);
+
+function autoLogin (
+  $window,
+  $rootScope,
+  AuthEvents,
+  Restangular
+) {
+  'use strict';
+
+  var token = $window.localStorage.token;
+
+  if (token) {
     Restangular
-  ) {
-    'use strict';
+      .one('user')
+      .get()
+      .then(function (res) {
+        $rootScope.$broadcast(AuthEvents.loadUserSuccess, res);
+      }, function (res) {
+        $rootScope.$broadcast(AuthEvents.tokenExpired, res); 
+      });
+  }
+}
 
-    var token = $window.localStorage.token;
+function RestangularConfig (
+  RestangularProvider
+) {
+  'use strict';
+  RestangularProvider.setBaseUrl('/api');
 
-    if (token) {
-      Restangular
-        .one('user')
-        .get()
-        .then(function (res) {
-          $rootScope.$broadcast(AuthEvents.loadUserSuccess, res);
-        }, function (res) {
-          $rootScope.$broadcast(AuthEvents.tokenExpired, res); 
-        });
+  RestangularProvider
+    .addFullRequestInterceptor(function (
+      element,
+      operation,
+      route,
+      url,
+      headers,
+      params,
+      httpConfig
+    ) {
+
+    var token = window.localStorage.token;
+
+    if (angular.isDefined(token)) {
+      headers = _.extend(headers, {
+        Authorization: 'Bearer ' + window.localStorage.token
+      });
     }
-  })
 
-  .config(function (
-    RestangularProvider
-  ) {
-    'use strict';
-    RestangularProvider.setBaseUrl('/api');
+    return {
+      element: element,
+      headers: headers,
+      params: params,
+      httpConfig: httpConfig
+    };
+  });
+}
 
-    RestangularProvider
-      .addFullRequestInterceptor(function (
-        element,
-        operation,
-        route,
-        url,
-        headers,
-        params,
-        httpConfig
-      ) {
-
-      var token = window.localStorage.token;
-
-      if (angular.isDefined(token)) {
-        headers = _.extend(headers, {
-          Authorization: 'Bearer ' + window.localStorage.token
-        });
-      }
-
-      return {
-        element: element,
-        headers: headers,
-        params: params,
-        httpConfig: httpConfig
-      };
-    });
-  })
-
-  .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.includeSpinner = true;
-  }]);
+function cfpLoadingBarConfig (cfpLoadingBarProvider) {
+  cfpLoadingBarProvider.includeSpinner = true;
+}

@@ -1,67 +1,78 @@
 angular.module('bdUserContribute', [])
-  .controller('UserContributeCtrl', function (
-    $scope,
-    $window,
-    $location,
-    $routeParams,
-    G,
-    Session,
-    Restangular
-  ) {
-    'use strict';
+  .controller('UserContributeCtrl', [
+    '$scope',
+    '$window',
+    '$location',
+    '$routeParams',
+    'G',
+    'Session',
+    'Restangular',
+    UserContributeCtrl
+  ]);
 
-    /*
-     * TO FIX:
-     * currentPage and pagination in sessionStorage will cause another bug.
-     *
-     * Hint:
-     *   contributionPaginationId is different from paginationId
-     *   contributionCurrentPage is different from currentPage
-     */
-    $scope.g = G;
-    var contributionType = $routeParams.contributionType;
-    var sessionStorage = $window.sessionStorage;
-    var page = $location.search().page || 1;
+function UserContributeCtrl (
+  $scope,
+  $window,
+  $location,
+  $routeParams,
+  G,
+  Session,
+  Restangular
+) {
+  'use strict';
 
-    switch (contributionType) {
-      case 'sources':
-        $scope.selectedIndex = 0;
-        break;
-      case 'characters':
-        $scope.selectedIndex = 1;
-        break;
-      case 'quotes':
-        $scope.selectedIndex = 2;
-        break;
-      default:
-        $scope.selectedIndex = 0;
-    }
+  /*
+   * TO FIX:
+   * currentPage and pagination in sessionStorage will cause another bug.
+   *
+   * Hint:
+   *   contributionPaginationId is different from paginationId
+   *   contributionCurrentPage is different from currentPage
+   */
+  $scope.g = G;
+  var contributionType = $routeParams.contributionType;
+  var sessionStorage = $window.sessionStorage;
+  var page = $location.search().page || 1;
 
-    if (!sessionStorage.contributionCurrentPage) {
-      sessionStorage.contributionCurrentPage = 1;
-    }
+  switch (contributionType) {
+    case 'sources':
+      $scope.selectedIndex = 0;
+      break;
+    case 'characters':
+      $scope.selectedIndex = 1;
+      break;
+    case 'quotes':
+      $scope.selectedIndex = 2;
+      break;
+    default:
+      $scope.selectedIndex = 0;
+  }
 
-    $scope.prevPage = function () {
-      $location.path('user/contribution/' + contributionType).search('page', --page);
-    };
+  if (!sessionStorage.contributionCurrentPage) {
+    sessionStorage.contributionCurrentPage = 1;
+  }
 
-    $scope.nextPage = function () {
-      $location.path('user/contribution/' + contributionType).search('page', ++page);
-    };
+  $scope.prevPage = function () {
+    $location.path('user/contribution/' + contributionType).search('page', --page);
+  };
 
-    Restangular
-      .one('users/' + Session.currentUser._id +'/contribution/' + contributionType + 
-           '?page=' + page +
-           '&paginationId=' + sessionStorage.contributionPaginationId +
-           '&currentPage=' + sessionStorage.contributionCurrentPage)
-      .get()
-      .then(function (res) {
-        $scope.objects = res.objects;
-        sessionStorage.contributionPaginationId = res.objects[0]._id;
-        sessionStorage.contributionCurrentPage = page;
+  $scope.nextPage = function () {
+    $location.path('user/contribution/' + contributionType).search('page', ++page);
+  };
 
-        var pageNum = Math.ceil(res.total / res.perPage);
-        $scope.hasPrevPage = page > 1;
-        $scope.hasNextPage = page < pageNum;
-    });
+  Restangular
+    .one('users/' + Session.currentUser._id +'/contribution/' + contributionType + 
+         '?page=' + page +
+         '&paginationId=' + sessionStorage.contributionPaginationId +
+         '&currentPage=' + sessionStorage.contributionCurrentPage)
+    .get()
+    .then(function (res) {
+      $scope.objects = res.objects;
+      sessionStorage.contributionPaginationId = res.objects[0]._id;
+      sessionStorage.contributionCurrentPage = page;
+
+      var pageNum = Math.ceil(res.total / res.perPage);
+      $scope.hasPrevPage = page > 1;
+      $scope.hasNextPage = page < pageNum;
   });
+}

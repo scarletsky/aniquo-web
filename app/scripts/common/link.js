@@ -1,18 +1,23 @@
 angular.module('bdLink', [])
-  .directive('bdLinkify', function ($location) {
+  .directive('bdLinkify', [
+    '$location',
+    bdLinkifyDirective
+  ]);
 
-    return {
-      scope: false,
-      restrict: 'A',
-      link: function ($scope, $element, $attrs) {
-        var link = $attrs.bdLinkify;
+function bdLinkifyDirective ($location) {
 
-        $element.on('click', function (e) {
-          $scope.$apply(function () {
-            $location.path(link).search('kw', null).search('t', null).search('page', null);
-          });
+  return {
+    scope: false,
+    restrict: 'A',
+    link: function ($scope, $element, $attrs) {
+      var link = $attrs.bdLinkify;
+
+      $element.on('click', function (e) {
+        $scope.$apply(function () {
+          $location.path(link).search('kw', null).search('t', null).search('page', null);
         });
+      });
 
-      }
-    };
-  });
+    }
+  };
+}

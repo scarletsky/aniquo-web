@@ -1,24 +1,29 @@
 angular.module('bdLayout', [])
-  .directive('bdFixedFooter', function ($window, $timeout) {
+  .directive('bdFixedFooter', [
+    '$window',
+    bdFixedFooterDirective
+  ]);
 
-    return {
-      scope: false,
-      link: function ($scope, $element, $attrs) {
+function bdFixedFooterDirective ($window) {
 
-        var clientHeight = $window.innerHeight;
-        var headerHeight = $('#header').height();
-        var restHeight = clientHeight - headerHeight;
+  return {
+    scope: false,
+    link: function ($scope, $element, $attrs) {
 
-        $scope.$watch(function () {
-          return $('#contentBody').height();
-        }, function (newVal, oldVal) {
+      var clientHeight = $window.innerHeight;
+      var headerHeight = $('#header').height();
+      var restHeight = clientHeight - headerHeight;
 
-          if (restHeight > newVal) {
-            $element.addClass('pagination-fixed');
-          } else {
-            $element.removeClass('pagination-fixed');
-          }
-        });
-      }
+      $scope.$watch(function () {
+        return $('#contentBody').height();
+      }, function (newVal, oldVal) {
+
+        if (restHeight > newVal) {
+          $element.addClass('pagination-fixed');
+        } else {
+          $element.removeClass('pagination-fixed');
+        }
+      });
     }
-  });
+  };
+}

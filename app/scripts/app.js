@@ -10,15 +10,20 @@ angular.module('bd', [
   'bdSource',
   'bdCharacter',
 ])
+  .controller('BrynhildCtrl', [
+    '$scope',
+    'G',
+    'Session',
+    BrynhildCtrl
+  ]);
 
-  .controller('BrynhildCtrl', function (
-    $scope,
-    G,
-    Session
-  ) {
-    'use strict';
+function BrynhildCtrl (
+  $scope,
+  G,
+  Session
+) {
+  'use strict';
 
-    $scope.g = G;
-    $scope.session = Session;
-
-  });
+  $scope.g = G;
+  $scope.session = Session;
+}

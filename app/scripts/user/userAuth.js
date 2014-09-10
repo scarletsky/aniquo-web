@@ -7,130 +7,150 @@ angular.module('bdUserAuth', [])
     tokenExpired: 'auth-token-expired'
   })
 
-  .factory('Session', function (
-    $window,
-    $location,
-    $rootScope,
-    Toast,
-    AuthEvents,
-    Restangular
-  ) {
-    'use strict';
+  .factory('Session', [
+    '$window',
+    '$location',
+    '$rootScope',
+    'Toast',
+    'AuthEvents',
+    'Restangular',
+    SessionService
+  ])
 
-    var service = {
-      currentUser: null,
+  .controller('AuthCtrl', [
+    '$scope',
+    '$rootScope',
+    'Toast',
+    'Session',
+    'AuthEvents',
+    'Restangular',
+    AuthCtrl
+  ]);
 
-      isAuthenticated: function () {
-        return !!this.currentUser;
-      },
+function SessionService (
+  $window,
+  $location,
+  $rootScope,
+  Toast,
+  AuthEvents,
+  Restangular
+) {
+  'use strict';
 
-      logout: function () {
-        this.currentUser = null;
-        delete $window.localStorage.token;
-        $rootScope.$broadcast(AuthEvents.logoutSuccess);
-      },
+  var service = {
+    currentUser: null,
 
-      login: function (data) {
-        Restangular
-          .all('authenticate')
-          .post(data)
-          .then(function (res) {
-            $rootScope.$broadcast(AuthEvents.loginSuccess, res);
-          }, function (res) {
-            $rootScope.$broadcast(AuthEvents.loginFailed, res);
-          });
-      }
-    };
+    isAuthenticated: function () {
+      return !!this.currentUser;
+    },
 
-    $rootScope.$on(AuthEvents.loginSuccess, function (event, res) {
-      $window.localStorage.token = res.token;
-      service.currentUser = res.user; 
-      $location.path('/');
-    });
-
-    $rootScope.$on(AuthEvents.loadUserSuccess, function (event, res) {
-      service.currentUser = res;
-    });
-
-    $rootScope.$on(AuthEvents.loginFailed, function (event, res) {
-      Toast.alert(res.data.error);
-    });
-
-    $rootScope.$on(AuthEvents.tokenExpired, function (event, res) {
+    logout: function () {
+      this.currentUser = null;
       delete $window.localStorage.token;
-    });
+      $rootScope.$broadcast(AuthEvents.logoutSuccess);
+    },
 
-    $rootScope.$on(AuthEvents.logoutSuccess, function () {
-      $location.path('/');
-    });
-
-    return service;
-  })
-
-  .controller('AuthCtrl', function (
-    $scope,
-    $rootScope,
-    Toast,
-    Session,
-    AuthEvents,
-    Restangular
-  ) {
-    'use strict';
-
-    $scope.user = {};
-
-    $scope.login = function () {
-
-      if (angular.isUndefined($scope.user.username)) {
-        return Toast.alert('请输入用户名');
-      }
-
-      if (angular.isUndefined($scope.user.password)) {
-        return Toast.alert('请输入密码');
-      }
-
-      var data = {
-        username: $scope.user.username,
-        password: $scope.user.password
-      };
-
-      return Session.login(data);
-    };
-
-    $scope.logout = function (e) {
-      e.preventDefault();
-      Session.logout();
-    };
-
-    $scope.signup = function () {
-      if (angular.isUndefined($scope.user.username)) {
-        return Toast.alert('请输入用户名');
-      }
-
-      if (angular.isUndefined($scope.user.password)) {
-        return Toast.alert('请输入密码');
-      }     
-
-      if (angular.isUndefined($scope.user.password2)) {
-        return Toast.alert('请确认密码');
-      }
-
-      if ($scope.user.password !== $scope.user.password2) {
-        return Toast.alert('两次密码不一致');
-      }
-
-      var data = {
-        username: $scope.user.username,
-        password: $scope.user.password
-      };
-
+    login: function (data) {
       Restangular
-        .all('register')
+        .all('authenticate')
         .post(data)
         .then(function (res) {
           $rootScope.$broadcast(AuthEvents.loginSuccess, res);
         }, function (res) {
           $rootScope.$broadcast(AuthEvents.loginFailed, res);
         });
-    };
+    }
+  };
+
+  $rootScope.$on(AuthEvents.loginSuccess, function (event, res) {
+    $window.localStorage.token = res.token;
+    service.currentUser = res.user; 
+    $location.path('/');
   });
+
+  $rootScope.$on(AuthEvents.loadUserSuccess, function (event, res) {
+    service.currentUser = res;
+  });
+
+  $rootScope.$on(AuthEvents.loginFailed, function (event, res) {
+    Toast.alert(res.data.error);
+  });
+
+  $rootScope.$on(AuthEvents.tokenExpired, function (event, res) {
+    delete $window.localStorage.token;
+  });
+
+  $rootScope.$on(AuthEvents.logoutSuccess, function () {
+    $location.path('/');
+  });
+
+  return service;
+}
+
+function AuthCtrl (
+  $scope,
+  $rootScope,
+  Toast,
+  Session,
+  AuthEvents,
+  Restangular
+) {
+  'use strict';
+
+  $scope.user = {};
+
+  $scope.login = function () {
+
+    if (angular.isUndefined($scope.user.username)) {
+      return Toast.alert('请输入用户名');
+    }
+
+    if (angular.isUndefined($scope.user.password)) {
+      return Toast.alert('请输入密码');
+    }
+
+    var data = {
+      username: $scope.user.username,
+      password: $scope.user.password
+    };
+
+    return Session.login(data);
+  };
+
+  $scope.logout = function (e) {
+    e.preventDefault();
+    Session.logout();
+  };
+
+  $scope.signup = function () {
+    if (angular.isUndefined($scope.user.username)) {
+      return Toast.alert('请输入用户名');
+    }
+
+    if (angular.isUndefined($scope.user.password)) {
+      return Toast.alert('请输入密码');
+    }     
+
+    if (angular.isUndefined($scope.user.password2)) {
+      return Toast.alert('请确认密码');
+    }
+
+    if ($scope.user.password !== $scope.user.password2) {
+      return Toast.alert('两次密码不一致');
+    }
+
+    var data = {
+      username: $scope.user.username,
+      password: $scope.user.password
+    };
+
+    Restangular
+      .all('register')
+      .post(data)
+      .then(function (res) {
+        $rootScope.$broadcast(AuthEvents.loginSuccess, res);
+      }, function (res) {
+        $rootScope.$broadcast(AuthEvents.loginFailed, res);
+      });
+  };
+}

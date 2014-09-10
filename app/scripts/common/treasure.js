@@ -1,15 +1,19 @@
 angular.module('bdTreasure', [])
-  .factory('G', function () {
-    'use strict';
+  .factory('G', [
+    globalService
+  ]);
 
-    var service = {
-      searchKeyword: '',
-      searchType: '',
-      paginationId: '',
-      currentPage: null,
-      currentCharacter: null,
-      currentSource: null
-    };
+function globalService () {
+  'use strict';
 
-    return service;
-  });
+  var service = {
+    searchKeyword: '',
+    searchType: '',
+    paginationId: '',
+    currentPage: null,
+    currentCharacter: null,
+    currentSource: null
+  };
+
+  return service;
+}

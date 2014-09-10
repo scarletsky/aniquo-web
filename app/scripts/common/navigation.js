@@ -1,8 +1,15 @@
 angular.module('bdNavigation', [])
-  .controller('NavCtrl', function ($scope, $timeout, $materialSidenav) {
+  .controller('NavCtrl', [
+    '$scope',
+    '$timeout',
+    '$materialSidenav',
+    NavCtrl
+  ]);
 
-    $scope.toggleLeft = function() {
-      $materialSidenav('left').toggle();
-    };
+function NavCtrl ($scope, $timeout, $materialSidenav) {
 
-  });
+  $scope.toggleLeft = function() {
+    $materialSidenav('left').toggle();
+  };
+
+}
