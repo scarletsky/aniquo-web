@@ -86,10 +86,9 @@ function UserSettingsCtrl (
       .put()
       .then(function (res) {
         Toast.alert('密码修改成功');
-        $scope.user.oldPassword = '';
-        $scope.user.newPassword = '';
-        $scope.user.confirmPassword = '';
-        $scope.userPasswordForm.$setPristine();
+        delete $scope.user.oldPassword;
+        delete $scope.user.newPassword;
+        delete $scope.user.confirmPassword;
       }, function (res) {
         Toast.alert('原密码错误');
       });
