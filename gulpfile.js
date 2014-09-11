@@ -1,15 +1,22 @@
 var gulp = require('gulp');
 var less = require('gulp-less');
 var watch = require('gulp-watch');
-var clean = require('gulp-clean');
+var del = require('del');
 var connect = require('gulp-connect');
 var plumber = require('gulp-plumber');
+var usemin = require('gulp-usemin');
+var htmlmin = require('gulp-htmlmin');
+var minifyCss = require('gulp-minify-css');
+var uglify = require('gulp-uglify');
+var rev = require('gulp-rev');
 var modRewrite = require('connect-modrewrite');
 
 gulp.task('clean:dev', function () {
-  gulp
-    .src('app/styles/main.css')
-    .pipe(clean());
+  del.sync('app/styles/main.css');
+});
+
+gulp.task('clean:build', function () {
+  del.sync('dist/', {force: true});
 });
 
 gulp.task('less:dev', function () {
@@ -66,5 +73,21 @@ gulp.task('connect', function () {
   });
 });
 
+gulp.task('minify', function () {
+  gulp
+    .src('app/views/**/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dist/views'));
+
+  gulp
+    .src('app/index.html')
+    .pipe(usemin({
+      js: [uglify(), rev()],
+      css: [minifyCss(), 'concat', rev()]
+    }))
+    .pipe(gulp.dest('dist/'));
+});
+
 gulp.task('server', ['clean:dev', 'less:dev', 'connect', 'watch']);
+gulp.task('build', ['clean:build', 'minify'])
 
