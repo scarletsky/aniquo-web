@@ -11,19 +11,20 @@ var uglify = require('gulp-uglify');
 var rev = require('gulp-rev');
 var modRewrite = require('connect-modrewrite');
 
-gulp.task('clean:dev', function () {
-  del.sync('app/styles/main.css');
+gulp.task('clean:css', function () {
+  del.sync('app/styles/*.css');
 });
 
 gulp.task('clean:build', function () {
   del.sync('dist/', {force: true});
 });
 
-gulp.task('less:dev', function () {
-  gulp
+gulp.task('less', ['clean:css'], function () {
+  var stream = gulp
     .src(['app/styles/main.less', 'app/styles/materialFix.less'])
     .pipe(less())
     .pipe(gulp.dest('app/styles/'));
+  return stream;
 });
 
 gulp.task('watch', function () {
@@ -73,7 +74,7 @@ gulp.task('connect', function () {
   });
 });
 
-gulp.task('minify', function () {
+gulp.task('minify', ['less'], function () {
   gulp
     .src('app/views/**/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
@@ -88,6 +89,5 @@ gulp.task('minify', function () {
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('server', ['clean:dev', 'less:dev', 'connect', 'watch']);
-gulp.task('build', ['clean:build', 'minify'])
-
+gulp.task('server', ['less', 'connect', 'watch']);
+gulp.task('build', ['clean:build', 'minify']);
