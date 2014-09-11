@@ -2,18 +2,22 @@
 
 ### 简介
 
-这是前端项目，使用 AngularJS 作为前端框架，利用 api 进行通讯。
+这是前端项目，使用 AngularJS 作为前端框架。
 
 ### 使用方法
 
 ```bash
+# install dependency
 $ npm install -g gulp bower
 $ cd Brynhild
 $ npm install
 $ bower install
 
-# 运行开发环境
+# run server
 $ gulp server
+
+# build the project
+$ gulp build
 ```
 
 ### 规范
