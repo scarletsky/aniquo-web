@@ -10,21 +10,25 @@
         <material-list>
             <div ng-repeat="object in objects">
                 <div bd-linkify="/characters/{{ object._id }}/quotes">
-                    <material-item>
-                        <div class="material-tile-left">
-                            <img ng-src="http://placehold.it/60x60" class="face">
-                        </div>
 
-                        <div class="material-tile-content">
-                            <h2 ng-bind="object.name"></h2>
-                            <h3 ng-if="object.alias.length !== 0">
-                                <span>别名：</span>
-                                <span class="margin-right-10"
-                                      ng-repeat="alias in object.alias track by $index"
-                                      ng-bind="alias"></span>
-                            </h3>
-                        </div>
+                    <material-item>
+                        <material-item-content>
+                            <div class="material-tile-left">
+                                <img ng-src="http://placehold.it/60x60" class="face">
+                            </div>
+
+                            <div class="material-tile-content">
+                                <h2 ng-bind="object.name"></h2>
+                                <h3 ng-if="object.alias.length !== 0">
+                                    <span>别名：</span>
+                                    <span class="margin-right-10"
+                                          ng-repeat="alias in object.alias track by $index"
+                                          ng-bind="alias"></span>
+                                </h3>
+                            </div>
+                        </material-item-content>
                     </material-item>
+
                 </div>
             </div>
         </material-list>
