@@ -18,7 +18,8 @@
         </div>
 
         <div layout="horizontal" layout-align="end">
-            <material-button>赞</material-button>
+            <div bd-like="quote"
+                 bd-like-type="quotes"></div>
         </div>
 
     </material-card>
@@ -31,12 +32,6 @@
                    flex-sm="25">contributor:</label>
             <span flex
                   ng-bind="quote.contributor.username"></span>
-        </div>
-
-        <div layout="horizontal">
-            <label flex="15">like count:</label>
-            <span flex
-                  ng-bind="quote.likeCount"></span>
         </div>
 
         <div layout="horizontal">
