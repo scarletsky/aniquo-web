@@ -18,7 +18,8 @@
         </div>
 
         <div layout="horizontal" layout-align="end">
-            <div bd-like="quote"
+            <div ng-if="session.isAuthenticated()"
+                 bd-like="quote"
                  bd-like-type="quotes"></div>
         </div>
 
