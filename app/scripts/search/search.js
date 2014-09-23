@@ -37,6 +37,7 @@ function SearchCtrl (
   $scope.g = G;
   var keyword = $location.search().kw || $scope.g.searchKeyword;
   var type = $location.search().t || $scope.g.searchType;
+  var page = $location.search().page || 1;
 
   if ($scope.g.searchKeyword !== keyword) {
     $scope.g.searchKeyword = keyword;
@@ -50,21 +51,34 @@ function SearchCtrl (
 
   var data = {
     kw: keyword,
-    t: type
+    t: type,
+    page: page
   };
 
   if (type === 'character') {
-    _.extend(data, {with_source: true});
+    angular.extend(data, {with_source: true});
   }
 
   if (keyword) {
     Restangular
-      .all('search')
-      .getList(data)
+      .one('search')
+      .get(data)
       .then(function (res) {
-        $scope.objects = res;
+        $scope.objects = res.objects;
+
+        var pageNum = Math.ceil(res.total / res.perPage);
+        $scope.hasPrevPage = page > 1;
+        $scope.hasNextPage = page < pageNum;
       });
   }
+
+  $scope.prevPage = function () {
+    $location.path('/').search('page', --page);
+  };
+
+  $scope.nextPage = function () {
+    $location.path('/').search('page', ++page);
+  };
 
   $scope.getResult = function () {
     $location.path('/').search({kw: $scope.g.searchKeyword, t: $scope.g.searchType});
