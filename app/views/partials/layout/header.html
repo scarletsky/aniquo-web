@@ -4,10 +4,14 @@
          id="header">
         <a ng-click="toggleLeft()" style="position: absolute; top: 20px; left: 20px; z-index: 3">123</a>
 
-        <material-toolbar class="material-theme-light material-tall">
+        <material-toolbar class="material-theme-light material-tall"
+                          bd-fixed-header>
             <span flex></span>
 
-            <div offset="10">
+            <div offset="15"
+                 offset-sm="10"
+                 offset-md="10"
+                 offset-lg="10">
                 <h1>
                     <a href="/">Aniquo</a>
                 </h1>

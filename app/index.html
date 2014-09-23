@@ -27,9 +27,11 @@
 
             <div ng-include="'/views/partials/layout/header.html'"></div>
 
-            <div ng-view></div>
+            <div ng-view
+                 id="contentBody"></div>
 
         </material-content>
+
         <!-- build:js /scripts/libs.js -->
         <script src="/components/jquery/dist/jquery.js"></script>
         <script src="/components/moment/moment.js"></script>
