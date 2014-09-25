@@ -156,14 +156,14 @@ function bdSearchDirective (
         if (modelValue && $scope.searchFlag) {
           delayRequest = $timeout(function () {
             Restangular
-              .all('search')
-              .getList({
+              .one('search')
+              .get({
                 kw: modelValue,
                 t: $attrs.bdSearchType
               })
               .then(function (res) {
-                $scope.results = res;
-                if (res.length > 0) {
+                $scope.results = res.objects;
+                if (res.objects.length > 0) {
                   $scope.isListShow = true;
                 } else {
                   $scope.isListShow = false;
