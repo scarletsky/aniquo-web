@@ -23,13 +23,6 @@ function SourceCtrl (
   var sourceId = $routeParams.sourceId;
   var page = $location.search().page || 1;
 
-  Restangular
-    .one('sources/' + sourceId)
-    .get()
-    .then(function (res) {
-      $scope.g.currentSource = res;
-    });
-
   if (!$scope.g.currentPage) {
     $scope.g.currentPage = 1;
   }
@@ -57,14 +50,10 @@ function SourceCtrl (
 
   Restangular
     .one('sources/' + sourceId +'/characters' + 
-         '?page=' + page +
-         '&paginationId=' + $scope.g.paginationId +
-         '&currentPage=' + $scope.g.currentPage)
+         '?page=' + page)
     .get()
     .then(function (res) {
       $scope.objects = res.objects;
-      $scope.g.paginationId = res.objects[0]._id;
-      $scope.g.currentPage = page;
 
       var pageNum = Math.ceil(res.total / res.perPage);
       $scope.hasPrevPage = page > 1;
