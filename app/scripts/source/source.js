@@ -23,14 +23,6 @@ function SourceCtrl (
   var sourceId = $routeParams.sourceId;
   var page = $location.search().page || 1;
 
-  if (!$scope.g.currentPage) {
-    $scope.g.currentPage = 1;
-  }
-
-  if (page !== 1 && !$scope.g.paginationId) {
-    $location.path('/sources/' + sourceId + '/characters').search('page', null);
-  }
-
   $scope.prevPage = function () {
     $location.path('/sources/' + sourceId + '/characters').search('page', --page);
   };
