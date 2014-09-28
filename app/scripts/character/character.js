@@ -1,6 +1,7 @@
 angular.module('bdCharacter', [
   'bdCharacterEdit'
 ])
+
   .controller('CharacterCtrl', [
     '$scope',
     '$location',
@@ -8,6 +9,15 @@ angular.module('bdCharacter', [
     'G',
     'Restangular',
     CharacterCtrl
+  ])
+
+  .controller('CharacterListCtrl', [
+    '$scope',
+    '$location',
+    '$routeParams',
+    'G',
+    'Restangular',
+    CharacterListCtrl
   ]);
 
 function CharacterCtrl (
@@ -21,15 +31,6 @@ function CharacterCtrl (
 
   $scope.g = G;
   var characterId = $routeParams.characterId;
-  var page = $location.search().page || 1;
-
-  $scope.prevPage = function () {
-    $location.path('/characters/' + characterId + '/quotes').search('page', --page);
-  };
-
-  $scope.nextPage = function () {
-    $location.path('/characters/' + characterId + '/quotes').search('page', ++page);
-  };
 
   if (!$scope.g.currentCharacter || $scope.g.currentCharacter._id !== characterId) {
     Restangular
@@ -40,9 +41,31 @@ function CharacterCtrl (
         $scope.g.currentCharacter = res;
       });
   }
+}
+
+function CharacterListCtrl (
+  $scope,
+  $location,
+  $routeParams,
+  G,
+  Restangular
+) {
+  'use strict';
+
+  $scope.g = G;
+  var sourceId = $routeParams.sourceId;
+  var page = $location.search().page || 1;
+
+  $scope.prevPage = function () {
+    $location.path('/sources/' + sourceId + '/characters').search('page', --page);
+  };
+
+  $scope.nextPage = function () {
+    $location.path('/sources/' + sourceId + '/characters').search('page', ++page);
+  };
 
   Restangular
-    .one('characters/' + characterId +'/quotes' + 
+    .one('sources/' + sourceId +'/characters' + 
          '?page=' + page)
     .get()
     .then(function (res) {

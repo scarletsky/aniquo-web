@@ -35,7 +35,7 @@ function routeProvider (
       templateUrl: 'views/source/sourceForm.html'
     })
     .when('/sources/:sourceId/characters', {
-      controller: 'SourceCtrl',
+      controller: 'CharacterListCtrl',
       templateUrl: 'views/source/source.html'
     })
     .when('/characters/new', {
@@ -47,7 +47,7 @@ function routeProvider (
       templateUrl: 'views/character/characterForm.html'
     })
     .when('/characters/:characterId/quotes', {
-      controller: 'CharacterCtrl',
+      controller: 'QuoteListCtrl',
       templateUrl: 'views/character/character.html'
     })
     .when('/quotes/new', {

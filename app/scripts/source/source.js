@@ -1,6 +1,7 @@
 angular.module('bdSource', [
   'bdSourceEdit'
 ])
+
   .controller('SourceCtrl', [
     '$scope',
     '$location',
@@ -21,15 +22,6 @@ function SourceCtrl (
 
   $scope.g = G;
   var sourceId = $routeParams.sourceId;
-  var page = $location.search().page || 1;
-
-  $scope.prevPage = function () {
-    $location.path('/sources/' + sourceId + '/characters').search('page', --page);
-  };
-
-  $scope.nextPage = function () {
-    $location.path('/sources/' + sourceId + '/characters').search('page', ++page);
-  };
 
   if (!$scope.g.currentSource || $scope.g.currentSource._id !== sourceId) {
     Restangular
@@ -39,16 +31,4 @@ function SourceCtrl (
         $scope.g.currentSource = res;
       });
   }
-
-  Restangular
-    .one('sources/' + sourceId +'/characters' + 
-         '?page=' + page)
-    .get()
-    .then(function (res) {
-      $scope.objects = res.objects;
-
-      var pageNum = Math.ceil(res.total / res.perPage);
-      $scope.hasPrevPage = page > 1;
-      $scope.hasNextPage = page < pageNum;
-  });
 }
