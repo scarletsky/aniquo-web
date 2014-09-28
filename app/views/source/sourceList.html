@@ -1,0 +1,35 @@
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0">
+
+    <material-card ng-repeat="object in objects"
+                   bd-linkify="/sources/{{ object._id }}/characters">
+
+        <material-list>
+            <material-item>
+                <material-item-content>
+                    <div class="material-tile-left">
+                        <img ng-src="http://placehold.it/60x60" class="face">
+                    </div>
+
+                    <div class="material-tile-content">
+                        <h2 ng-bind="object.name"></h2>
+                        <h3 ng-if="object.alias.length !== 0">
+                            <span>别名：</span>
+                            <span class="margin-right-10"
+                                  ng-repeat="alias in object.alias track by $index"
+                                  ng-bind="alias"></span>
+                        </h3>
+                    </div>
+                </material-item-content>
+            </material-item>
+        </material-list>
+
+    </material-card>
+
+</div>
+
+<div ng-include="'views/partials/pagination.html'"></div>

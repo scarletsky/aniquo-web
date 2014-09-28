@@ -9,38 +9,22 @@
                         bd-linkify="/user/contribution/quotes"></material-tab>
     </material-tabs>
 
-    <div layout="vertical"
-         flex-lg="60"
-         flex-md="80"
-         offset-lg="20"
-         offset-md="10"
-         offset-sm="0">
+    <div layout="vertical">
 
         <!-- sources -->
         <div ng-if="selectedIndex === '0'">
-            <material-card ng-repeat="object in objects"
-                           bd-linkify="/sources/{{ object._id }}/characters">
-                <p ng-bind="object.name"></p>
-            </material-card>
+            <div ng-include="'views/source/sourceList.html'"></div>
         </div>
 
         <!-- characters -->
         <div ng-if="selectedIndex === '1'">
-            <material-card ng-repeat="object in objects"
-                           bd-linkify="/characters/{{ object._id }}/quotes">
-                <p ng-bind="object.name"></p>
-            </material-card>
+            <div ng-include="'views/character/characterList.html'"></div>
         </div>
 
         <!-- quotes -->
         <div ng-if="selectedIndex === '2'">
-            <material-card ng-repeat="object in objects"
-                           bd-linkify="/quotes/{{ object._id }}">
-                <p ng-bind="object.quote"></p>
-            </material-card>
+            <div ng-include="'views/quote/quoteList.html'"></div>
         </div>
     </div>
-
-    <div ng-include="'views/partials/pagination.html'"></div>
 
 </div>
