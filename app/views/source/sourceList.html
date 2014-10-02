@@ -30,6 +30,9 @@
 
     </material-card>
 
+    <material-card ng-if="objects.length === 0">
+        <p>什么也找不到</p>
+    </material-card>
 </div>
 
 <div ng-include="'views/partials/pagination.html'"></div>
