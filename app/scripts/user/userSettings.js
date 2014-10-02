@@ -47,32 +47,32 @@ function UserSettingsCtrl (
         $scope.user.nickname = res.nickname;
         $scope.user.site = res.site;
         $scope.user.info = res.info;
-        Toast.alert('个人资料更新成功');
+        Toast.show('个人资料更新成功');
       }, function (res) {
-        Toast.alert('个人资料更新失败');
+        Toast.show('个人资料更新失败');
       });
   };
 
   $scope.updatePassword = function () {
 
     if (angular.isUndefined($scope.user.oldPassword)) {
-      return Toast.alert('请输入旧密码');
+      return Toast.show('请输入旧密码');
     }
 
     if (angular.isUndefined($scope.user.newPassword)) {
-      return Toast.alert('请输入新密码');
+      return Toast.show('请输入新密码');
     }
 
     if (angular.isUndefined($scope.user.confirmPassword)) {
-      return Toast.alert('请确认新密码');
+      return Toast.show('请确认新密码');
     }
 
     if ($scope.user.newPassword !== $scope.user.confirmPassword) {
-      return Toast.alert('两次密码不一样');
+      return Toast.show('两次密码不一样');
     }
 
     if ($scope.user.oldPassword === $scope.user.newPassword) {
-      return Toast.alert('新密码不能和旧密码一样');
+      return Toast.show('新密码不能和旧密码一样');
     }
 
     var data = {
@@ -85,12 +85,12 @@ function UserSettingsCtrl (
     userElement
       .put()
       .then(function (res) {
-        Toast.alert('密码修改成功');
+        Toast.show('密码修改成功');
         delete $scope.user.oldPassword;
         delete $scope.user.newPassword;
         delete $scope.user.confirmPassword;
       }, function (res) {
-        Toast.alert('原密码错误');
+        Toast.show('原密码错误');
       });
   };
 }

@@ -56,11 +56,11 @@ function CharacterEditCtrl (
     };
 
     if (angular.isUndefined(data.name)) {
-      return Toast.alert('角色名字不能为空');
+      return Toast.show('角色名字不能为空');
     }
 
     if (angular.isUndefined(data.sourceId)) {
-      return Toast.alert('角色所属作品不能为空');
+      return Toast.show('角色所属作品不能为空');
     }
 
     if (actionType === 'edit') {
@@ -68,7 +68,7 @@ function CharacterEditCtrl (
         .one('characters', $routeParams.characterId)
         .put(data)
         .then(function (res) {
-          Toast.alert('角色更新成功');
+          Toast.show('角色更新成功');
           return $location.path('/characters/' + $routeParams.characterId + '/quotes');
         });
 
@@ -78,16 +78,16 @@ function CharacterEditCtrl (
         .get(data)
         .then(function (res) {
           if (res.exist) {
-            return Toast.alert('该角色已存在');
+            return Toast.show('该角色已存在');
 
           } else {
             Restangular
               .all('characters')
               .post(data)
               .then(function (res) {
-                return Toast.alert('角色添加成功');
+                return Toast.show('角色添加成功');
               }, function (res) {
-                return Toast.alert('角色添加失败');
+                return Toast.show('角色添加失败');
               });
           }
         });

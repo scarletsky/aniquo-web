@@ -54,7 +54,7 @@ function SourceEditCtrl (
     };
 
     if (angular.isUndefined(data.name)) {
-      return Toast.alert('作品名称不能为空');
+      return Toast.show('作品名称不能为空');
     }
 
     if (actionType === 'edit') {
@@ -62,7 +62,7 @@ function SourceEditCtrl (
         .one('sources', $routeParams.sourceId)
         .put(data)
         .then(function (res) {
-          Toast.alert('作品更新成功');
+          Toast.show('作品更新成功');
           return $location.path('/sources/' + $routeParams.sourceId + '/characters');
         });
 
@@ -72,16 +72,16 @@ function SourceEditCtrl (
         .get(data)
         .then(function (res) {
           if (res.exist) {
-            return Toast.alert('该作品已存在');
+            return Toast.show('该作品已存在');
 
           } else {
             Restangular
               .all('sources')
               .post(data)
               .then(function (res) {
-                return Toast.alert('作品添加成功');
+                return Toast.show('作品添加成功');
               }, function (res) {
-                return Toast.alert('作品添加失败');
+                return Toast.show('作品添加失败');
               });
           }
         });

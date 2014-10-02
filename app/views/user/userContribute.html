@@ -12,17 +12,17 @@
     <div layout="vertical">
 
         <!-- sources -->
-        <div ng-if="selectedIndex === '0'">
+        <div ng-if="selectedIndex === 0">
             <div ng-include="'views/source/sourceList.html'"></div>
         </div>
 
         <!-- characters -->
-        <div ng-if="selectedIndex === '1'">
+        <div ng-if="selectedIndex === 1">
             <div ng-include="'views/character/characterList.html'"></div>
         </div>
 
         <!-- quotes -->
-        <div ng-if="selectedIndex === '2'">
+        <div ng-if="selectedIndex === 2">
             <div ng-include="'views/quote/quoteList.html'"></div>
         </div>
     </div>

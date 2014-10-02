@@ -14,8 +14,8 @@ function ToastService ($materialToast) {
   };
 
   var service = {
-    alert: function (text) {
-      return $materialToast({
+    show: function (text) {
+      return $materialToast.show({
         template: toastConfig.template(text),
         duration: toastConfig.duration
       });

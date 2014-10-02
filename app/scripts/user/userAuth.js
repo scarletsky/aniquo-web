@@ -73,7 +73,7 @@ function SessionService (
   });
 
   $rootScope.$on(AuthEvents.loginFailed, function (event, res) {
-    Toast.alert(res.data.error);
+    Toast.show(res.data.error);
   });
 
   $rootScope.$on(AuthEvents.tokenExpired, function (event, res) {
@@ -102,11 +102,11 @@ function AuthCtrl (
   $scope.login = function () {
 
     if (angular.isUndefined($scope.user.username)) {
-      return Toast.alert('请输入用户名');
+      return Toast.show('请输入用户名');
     }
 
     if (angular.isUndefined($scope.user.password)) {
-      return Toast.alert('请输入密码');
+      return Toast.show('请输入密码');
     }
 
     var data = {
@@ -124,19 +124,19 @@ function AuthCtrl (
 
   $scope.signup = function () {
     if (angular.isUndefined($scope.user.username)) {
-      return Toast.alert('请输入用户名');
+      return Toast.show('请输入用户名');
     }
 
     if (angular.isUndefined($scope.user.password)) {
-      return Toast.alert('请输入密码');
+      return Toast.show('请输入密码');
     }     
 
     if (angular.isUndefined($scope.user.password2)) {
-      return Toast.alert('请确认密码');
+      return Toast.show('请确认密码');
     }
 
     if ($scope.user.password !== $scope.user.password2) {
-      return Toast.alert('两次密码不一致');
+      return Toast.show('两次密码不一致');
     }
 
     var data = {

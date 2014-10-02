@@ -40,11 +40,11 @@ function QuoteEditCtrl (
     };
 
     if (angular.isUndefined(data.quote)) {
-      return Toast.alert('语录不能为空');
+      return Toast.show('语录不能为空');
     }
 
     if (angular.isUndefined(data.characterId)) {
-      return Toast.alert('语录所属角色不能为空');
+      return Toast.show('语录所属角色不能为空');
     }
 
     if (actionType === 'edit') {
@@ -52,7 +52,7 @@ function QuoteEditCtrl (
         .one('quotes', $routeParams.quoteId)
         .put(data)
         .then(function (res) {
-          Toast.alert('语录更新成功');
+          Toast.show('语录更新成功');
           return $location.path('/quotes/' + $routeParams.quoteId);
         });
 
@@ -61,10 +61,10 @@ function QuoteEditCtrl (
         .all('quotes')
         .post(data)
         .then(function (res) {
-          Toast.alert('语录添加成功');
+          Toast.show('语录添加成功');
           return $location.path('/quotes/' + res._id);
         }, function (res) {
-          return Toast.alert('语录添加失败');
+          return Toast.show('语录添加失败');
         });
     }
   };
