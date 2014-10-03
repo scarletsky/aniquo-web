@@ -7,6 +7,30 @@
      offset-sm="0">
 
     <material-card layout="vertical">
+        <material-list>
+            <material-item>
+                <material-item-content>
+                    
+                   <div class="material-tile-left">
+                        <img ng-src="http://placehold.it/60x60" class="face">
+                    </div>
+
+                    <div class="material-tile-content">
+                        <h2 ng-bind="quote.character.name"></h2>
+                        <h3 ng-if="quote.character.alias.length !== 0">
+                            <span>别名：</span>
+                            <span class="margin-right-10"
+                                  ng-repeat="alias in quote.character.alias track by $index"
+                                  ng-bind="alias"></span>
+                        </h3>
+                    </div>
+
+                </material-item-content>
+ 
+            </material-item>
+        </material-list>
+
+        <material-divider></material-divider>
 
         <div layout="horizontal">
             <p class="margin-bottom-0"
@@ -17,6 +41,8 @@
             <p class="margin-top-0"
                ng-bind-template="—— 出自 {{ quote.reference }}"></p>
         </div>
+
+        <img src="http://placehold.it/640x480" alt="">
 
         <div layout="horizontal" layout-align="end">
             <div ng-if="session.isAuthenticated()"
@@ -40,6 +66,12 @@
             <label flex="15">view count:</label>
             <span flex
                   ng-bind="quote.viewCount"></span>
+        </div>
+
+        <div layout="horizontal">
+            <label flex="15">like count:</label>
+            <span flex
+                  ng-bind="quote.likeCount"></span>
         </div>
 
         <div layout="horizontal">
