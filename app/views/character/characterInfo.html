@@ -1,31 +1,33 @@
-<div class="list-wrapper border-top clearfix">
+<div layout="vertical"
+     flex-lg="60"
+     flex-md="80"
+     offset-lg="20"
+     offset-md="10"
+     offset-sm="0"
+     ng-controller="CharacterCtrl">
 
-    <div class="image-wrapper image-middle pull-left margin-right-M">
-        <img src="http://placehold.it/100x100" />
-    </div>
+    <material-card>
+        <material-list>
+            <material-item>
+                <material-item-content>
+                    
+                   <div class="material-tile-left">
+                        <img ng-src="http://placehold.it/60x60" class="face">
+                    </div>
 
-    <div class="list-main-wrapper">
-        
-        <div class="list-main-header">
+                    <div class="material-tile-content">
+                        <h2 ng-bind="g.currentCharacter.name"></h2>
+                        <h3 ng-if="g.currentCharacter.alias.length !== 0">
+                            <span>别名：</span>
+                            <span class="margin-right-10"
+                                  ng-repeat="alias in g.currentCharacter.alias track by $index"
+                                  ng-bind="alias"></span>
+                        </h3>
+                    </div>
 
-            <div class="list-main-header-title">
-                <a ng-bind="g.currentCharacter.name"
-                   ng-href="/characters/{{ g.currentCharacter._id }}/quotes"></a>
-
-                <a ng-href="/characters/{{ g.currentCharacter._id }}/edit"
-                   ng-if="session.isAuthenticated()">编辑角色</a>
-            </div>
-
-            <div class="list-main-header-subtitle"
-                 ng-if="g.currentCharacter.alias.length !== 0">
-                <span>别名:</span>
-                <span ng-repeat="alias in g.currentCharacter.alias track by $index"
-                      ng-bind="alias"></span>
-            </div>
-        </div>
-
-        <div class="list-main-body">
-            <p ng-bind="g.currentCharacter.info"></p>
-        </div>
-    </div>
+                </material-item-content>
+ 
+            </material-item>
+        </material-list>
+    </material-card>
 </div>

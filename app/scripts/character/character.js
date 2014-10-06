@@ -33,6 +33,7 @@ function CharacterCtrl (
   var characterId = $routeParams.characterId;
 
   if (!$scope.g.currentCharacter || $scope.g.currentCharacter._id !== characterId) {
+    $scope.g.currentCharacter = null;
     Restangular
       .one('characters/' + characterId)
       .get({with_source: true})
