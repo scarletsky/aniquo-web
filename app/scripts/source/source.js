@@ -24,6 +24,7 @@ function SourceCtrl (
   var sourceId = $routeParams.sourceId;
 
   if (!$scope.g.currentSource || $scope.g.currentSource._id !== sourceId) {
+    $scope.g.currentSource = null;
     Restangular
       .one('sources/' + sourceId)
       .get()
