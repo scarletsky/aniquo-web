@@ -38,6 +38,7 @@ function CharacterCtrl (
       .one('characters/' + characterId)
       .get({with_source: true})
       .then(function (res) {
+        res = res.plain();
         $scope.g.currentSource = res.source;
         $scope.g.currentCharacter = res;
       });
@@ -70,6 +71,7 @@ function CharacterListCtrl (
          '?page=' + page)
     .get()
     .then(function (res) {
+      res = res.plain();
       $scope.objects = res.objects;
 
       var pageNum = Math.ceil(res.total / res.perPage);

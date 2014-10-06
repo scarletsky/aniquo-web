@@ -27,6 +27,7 @@ function CharacterEditCtrl (
       .one('characters', $routeParams.characterId)
       .get({'with_source': true})
       .then(function (res) {
+        res = res.plain();
         $scope.character = res;
         $scope.character.sourceId = res.source._id;
         $scope.character.sourceName = res.source.name;
@@ -77,6 +78,7 @@ function CharacterEditCtrl (
         .one('character/check')
         .get(data)
         .then(function (res) {
+          res = res.plain();
           if (res.exist) {
             return Toast.show('该角色已存在');
 

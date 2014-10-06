@@ -33,6 +33,7 @@ function QuoteCtrl (
       with_contributor: true
     })
     .then(function (res) {
+      res = res.plain();
       $scope.quote = res;
       $scope.g.currentCharacter = res.character;
   });
@@ -62,6 +63,7 @@ function QuoteListCtrl (
          '?page=' + page)
     .get()
     .then(function (res) {
+      res = res.plain();
       $scope.objects = res.objects;
 
       var pageNum = Math.ceil(res.total / res.perPage);

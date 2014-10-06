@@ -29,6 +29,7 @@ function SourceCtrl (
       .one('sources/' + sourceId)
       .get()
       .then(function (res) {
+        res = res.plain();
         $scope.g.currentSource = res;
       });
   }

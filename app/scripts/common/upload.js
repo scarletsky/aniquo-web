@@ -60,6 +60,7 @@ function bdUploadDirective (
               })
               .post(data, undefined, headers)
               .then(function (res) {
+                res = res.plain();
                 var imgSrc = UploadConf.domain + res.key;
                 $scope.uploadTarget = imgSrc;
                 $scope.uploadStatus = 'success';

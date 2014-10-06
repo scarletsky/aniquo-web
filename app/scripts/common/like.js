@@ -32,6 +32,7 @@ function bdLikeDirective (Restangular) {
                 .one('user/like/' + likeType + '/' + $scope.object._id)
                 .put()
                 .then(function (res) {
+                  res = res.plain();
                   $scope.object.liked = res.liked;
                   $scope.object.likeCount = res.likeCount;
                 });
@@ -42,6 +43,7 @@ function bdLikeDirective (Restangular) {
                 .one('user/like/' + likeType + '/' + $scope.object._id)
                 .remove()
                 .then(function (res) {
+                  res = res.plain();
                   $scope.object.liked = res.liked;
                   $scope.object.likeCount = res.likeCount;
                 });

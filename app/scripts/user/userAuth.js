@@ -55,8 +55,10 @@ function SessionService (
         .all('authenticate')
         .post(data)
         .then(function (res) {
+          res = res.plain();
           $rootScope.$broadcast(AuthEvents.loginSuccess, res);
         }, function (res) {
+          res = res.plain();
           $rootScope.$broadcast(AuthEvents.loginFailed, res);
         });
     }
@@ -148,8 +150,10 @@ function AuthCtrl (
       .all('register')
       .post(data)
       .then(function (res) {
+        res = res.plain();
         $rootScope.$broadcast(AuthEvents.loginSuccess, res);
       }, function (res) {
+        res = res.plain();
         $rootScope.$broadcast(AuthEvents.loginFailed, res);
       });
   };

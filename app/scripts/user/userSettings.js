@@ -25,6 +25,7 @@ function UserSettingsCtrl (
     .one('user')
     .get()
     .then(function (res) {
+      res = res.plain();
       $scope.user.nickname = res.nickname;
       $scope.user.site = res.site;
       $scope.user.info = res.info;
@@ -44,6 +45,7 @@ function UserSettingsCtrl (
     userElement
       .put()
       .then(function (res) {
+        res = res.plain();
         $scope.user.nickname = res.nickname;
         $scope.user.site = res.site;
         $scope.user.info = res.info;

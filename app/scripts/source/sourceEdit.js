@@ -27,6 +27,7 @@ function SourceEditCtrl (
       .one('sources', $routeParams.sourceId)
       .get()
       .then(function (res) {
+        res = res.plain();
         $scope.source = res;
         $scope.alias = res.alias;
       });
@@ -71,6 +72,7 @@ function SourceEditCtrl (
         .one('source/check')
         .get(data)
         .then(function (res) {
+          res = res.plain();
           if (res.exist) {
             return Toast.show('该作品已存在');
 

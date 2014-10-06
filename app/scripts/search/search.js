@@ -64,6 +64,7 @@ function SearchCtrl (
       .one('search')
       .get(data)
       .then(function (res) {
+        res = res.plain();
         $scope.objects = res.objects;
 
         var pageNum = Math.ceil(res.total / res.perPage);
@@ -162,6 +163,7 @@ function bdSearchDirective (
                 t: $attrs.bdSearchType
               })
               .then(function (res) {
+                res = res.plain();
                 $scope.results = res.objects;
                 if (res.objects.length > 0) {
                   $scope.isListShow = true;

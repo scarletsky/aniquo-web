@@ -26,6 +26,7 @@ function QuoteEditCtrl (
       .one('quotes', $routeParams.quoteId)
       .get({'with_character': true})
       .then(function (res) {
+        res = res.plain();
         $scope.quote = res;
         $scope.quote.characterId = res.character._id;
         $scope.quote.characterName = res.character.name;
@@ -61,6 +62,7 @@ function QuoteEditCtrl (
         .all('quotes')
         .post(data)
         .then(function (res) {
+          res = res.plain();
           Toast.show('语录添加成功');
           return $location.path('/quotes/' + res._id);
         }, function (res) {

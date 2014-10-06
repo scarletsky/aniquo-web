@@ -32,8 +32,10 @@ function autoLogin (
       .one('user')
       .get()
       .then(function (res) {
+        res = res.plain();
         $rootScope.$broadcast(AuthEvents.loadUserSuccess, res);
       }, function (res) {
+        res = res.plain();
         $rootScope.$broadcast(AuthEvents.tokenExpired, res); 
       });
   }
