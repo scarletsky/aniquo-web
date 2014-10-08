@@ -82,7 +82,16 @@
 
                 <p flex="30">语录详细信息</p>
 
-                <material-input type="text"
+                <textarea type="text"
+                          name="quote"
+                          id="quote"
+                          ng-model="quote.quote"
+                          required
+                          flex="70"
+                          inline-block
+                          placeholder="请输入语录详细信息"></textarea>
+
+<!--                 <material-input type="text"
                                 name="quote"
                                 id="quote"
                                 ng-model="quote.quote"
@@ -91,7 +100,7 @@
                                 inline-block
                                 placeholder="请输入语录详细信息"></material-input>
 
-            </material-input-group>
+ -->            </material-input-group>
 
             <div layout="horizontal" layout-align="end">
                 <material-button type="submit">提交</material-button>

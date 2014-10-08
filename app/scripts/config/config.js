@@ -1,4 +1,4 @@
-angular.module('bdConfig', ['restangular', 'angular-md5', 'angular-loading-bar'])
+angular.module('bdConfig', ['restangular', 'angular-md5', 'angular-loading-bar', 'hc.marked'])
   .run([
     '$window',
     '$rootScope',
@@ -15,6 +15,11 @@ angular.module('bdConfig', ['restangular', 'angular-md5', 'angular-loading-bar']
   .config([
     'cfpLoadingBarProvider',
     cfpLoadingBarConfig
+  ])
+
+  .config([
+    'markedProvider',
+    markedConfig
   ]);
 
 function autoLogin (
@@ -77,4 +82,11 @@ function RestangularConfig (
 
 function cfpLoadingBarConfig (cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = true;
+}
+
+function markedConfig (markedProvider) {
+  markedProvider.setOptions({
+    gfm: true,
+    sanitize: true
+  });
 }

@@ -7,7 +7,7 @@
 
     <material-card ng-repeat="object in objects"
                    bd-linkify="/quotes/{{ object._id }}">
-        <p ng-bind="object.quote"></p>
+        <div marked="object.quote"></div>
     </material-card>
 
     <material-card ng-if="objects.length === 0">
