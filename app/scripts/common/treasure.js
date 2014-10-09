@@ -9,8 +9,6 @@ function globalService () {
   var service = {
     searchKeyword: '',
     searchType: '',
-    paginationId: '',
-    currentPage: null,
     currentCharacter: null,
     currentSource: null
   };
