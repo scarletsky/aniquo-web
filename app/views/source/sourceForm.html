@@ -29,7 +29,6 @@
 
             </material-input-group>
 
-
             <material-input-group class="material-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">作品信息</p>
@@ -70,12 +69,38 @@
 
             </material-input-group>
 
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                <p flex="30">封面</p>
+
+                <div class="margin-top-15"
+                     bd-upload
+                     upload-type="sourceCover"
+                     upload-target="source.cover"
+                     upload-status="uploadStatus">
+
+                    <img class="cover cover-large cursor"
+                         ng-src="{{ source.cover }}">
+
+                    <input class="hidden"
+                           type="file"
+                           name="cover"
+                           id="cover"
+                           ng-model="source.cover"/>
+                </div>
+
+            </material-input-group>
+
             <div layout="horizontal" layout-align="end">
                 <material-button ng-click="addAlias($event)">添加别名</material-button>
                 <material-button type="submit">提交</material-button>
             </div>
 
         </form>
+
+<div ng-repeat="post in posts">
+    <a ng-href="/posts/{{ post._id }}/edit">编辑</a>
+</div>
 
     </material-card>
 

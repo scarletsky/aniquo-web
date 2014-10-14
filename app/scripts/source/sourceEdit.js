@@ -51,7 +51,8 @@ function SourceEditCtrl (
     var data = {
       name: $scope.source.name,
       alias: alias,
-      info: $scope.source.info 
+      info: $scope.source.info,
+      cover: $scope.source.cover
     };
 
     if (angular.isUndefined(data.name)) {

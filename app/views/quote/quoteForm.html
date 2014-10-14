@@ -102,6 +102,29 @@
 
  -->            </material-input-group>
 
+                     <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                        <p flex="30">语录场景</p>
+
+                        <div class="margin-top-15"
+                             bd-upload
+                             upload-type="quoteScene"
+                             upload-target="quote.scene"
+                             upload-status="uploadStatus">
+
+                            <img class="scene scene-medium cursor"
+                                 ng-src="{{ quote.scene }}">
+
+                            <input class="hidden"
+                                   type="file"
+                                   name="scene"
+                                   id="scene"
+                                   ng-model="quote.scene"/>
+                        </div>
+
+                    </material-input-group>
+
+
             <div layout="horizontal" layout-align="end">
                 <material-button type="submit">提交</material-button>
             </div>

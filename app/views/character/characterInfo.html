@@ -12,7 +12,13 @@
                 <material-item-content>
                     
                    <div class="material-tile-left">
-                        <img ng-src="http://placehold.it/60x60" class="face">
+                        <img class="avatar avatar-medium"
+                             ng-if="g.currentCharacter.avatar && g.currentCharacter.avatar.length > 20"
+                             ng-src="{{ g.currentCharacter.avatar }}">
+
+                        <img class="avatar avatar-medium"
+                             ng-if="!g.currentCharacter.avatar || g.currentCharacter.avatar.length < 20"
+                             ng-src="http://placehold.it/100x100">
                     </div>
 
                     <div class="material-tile-content">

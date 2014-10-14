@@ -12,7 +12,15 @@
                 <material-item-content>
                     
                    <div class="material-tile-left">
-                        <img ng-src="http://placehold.it/60x60" class="face">
+
+                        <img class="cover cover-medium"
+                             ng-if="g.currentSource.cover && g.currentSource.cover.length > 20"
+                             ng-src="{{ g.currentSource.cover }}">
+
+                        <img class="cover cover-medium"
+                             ng-if="!g.currentSource.cover || g.currentSource.cover.length < 20"
+                             ng-src="http://placehold.it/100x100">
+
                     </div>
 
                     <div class="material-tile-content">

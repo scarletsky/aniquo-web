@@ -69,6 +69,28 @@
 
                     </material-input-group>
 
+                    <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                        <p flex="30">用户头像</p>
+
+                        <div class="margin-top-15"
+                             bd-upload
+                             upload-type="userAvatar"
+                             upload-target="user.avatar"
+                             upload-status="uploadStatus">
+
+                            <img class="avatar avatar-large cursor"
+                                 ng-src="{{ user.avatar }}">
+
+                            <input class="hidden"
+                                   type="file"
+                                   name="avatar"
+                                   id="avatar"
+                                   ng-model="user.avatar"/>
+                        </div>
+
+                    </material-input-group>
+
                     <div layout="horizontal" layout-align="end">
                         <material-button type="submit">提交</material-button>
                     </div>
@@ -144,27 +166,3 @@
     </div>
 
 </div>
-
-<!-- 
-    <div class="list-wrapper">
-        <div class="image-wrapper image-large center"
-             bd-upload
-             upload-target="user.avatar"
-             upload-status="avatarUploadStatus">
-            <img class="image-rounded cursor"
-                 ng-src="{{ user.avatar }}">
-            <input class="hidden"
-                   type="file"
-                   name="avatar"
-                   id="avatar"
-                   ng-model="user.avatar"/>
-            <div class="upload-status-wrapper image-large image-rounded"
-                 ng-class="{hidden: avatarUploadStatus === 'ready'}"
-                 ng-switch="avatarUploadStatus">
-                <p ng-switch-when="uploading">上传中...</p>
-                <p ng-switch-when="success">上传成功!</p>
-                <p ng-switch-when="failed">上传失败!</p>
-            </div>
-        </div>
-    </div>
--->

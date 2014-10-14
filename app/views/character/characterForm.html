@@ -119,6 +119,28 @@
 
             </material-input-group>
 
+            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+
+                <p flex="30">角色头像</p>
+
+                <div class="margin-top-15"
+                     bd-upload
+                     upload-type="characterAvatar"
+                     upload-target="character.avatar"
+                     upload-status="uploadStatus">
+
+                    <img class="avatar avatar-large cursor"
+                         ng-src="{{ character.avatar }}">
+
+                    <input class="hidden"
+                           type="file"
+                           name="avatar"
+                           id="avatar"
+                           ng-model="character.avatar"/>
+                </div>
+
+            </material-input-group>
+
             <div layout="horizontal" layout-align="end">
                 <material-button ng-click="addAlias($event)">添加别名</material-button>
                 <material-button type="submit">提交</material-button>

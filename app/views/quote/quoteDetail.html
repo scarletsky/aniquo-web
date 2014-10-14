@@ -12,7 +12,15 @@
                 <material-item-content>
                     
                    <div class="material-tile-left">
-                        <img ng-src="http://placehold.it/60x60" class="face">
+
+                        <img class="avatar avatar-medium"
+                             ng-if="quote.character.avatar && quote.character.avatar.length > 20"
+                             ng-src="{{ quote.character.avatar }}">
+
+                        <img class="avatar avatar-medium"
+                             ng-if="!quote.character.avatar || quote.character.avatar.length < 20"
+                             ng-src="http://placehold.it/100x100">
+
                     </div>
 
                     <div class="material-tile-content">
@@ -41,7 +49,13 @@
                ng-bind-template="—— 出自 {{ quote.reference }}"></p>
         </div>
 
-        <img src="http://placehold.it/640x480" alt="">
+        <div layout="horizontal" layout-align="center"
+             ng-if="quote.scene && quote.scene.length > 20">
+
+            <img class="scene"
+                 ng-src="{{ quote.scene }}">
+
+        </div>
 
         <div layout="horizontal" layout-align="end">
             <div ng-if="session.isAuthenticated()"

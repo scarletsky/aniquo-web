@@ -37,7 +37,8 @@ function QuoteEditCtrl (
     var data = {
       characterId: $scope.quote.characterId,
       quote: $scope.quote.quote,
-      reference: $scope.quote.reference
+      reference: $scope.quote.reference,
+      scene: $scope.quote.scene
     };
 
     if (angular.isUndefined(data.quote)) {

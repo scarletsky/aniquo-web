@@ -53,7 +53,8 @@ function CharacterEditCtrl (
       name: $scope.character.name,
       alias: alias,
       info: $scope.character.info,
-      sourceId: $scope.character.sourceId
+      sourceId: $scope.character.sourceId,
+      avatar: $scope.character.avatar
     };
 
     if (angular.isUndefined(data.name)) {
