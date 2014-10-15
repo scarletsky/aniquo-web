@@ -1,4 +1,4 @@
-# Brynhild Project
+# Silmeria Project
 
 ### 简介
 
@@ -9,7 +9,7 @@
 ```bash
 # install dependency
 $ npm install -g gulp bower
-$ cd Brynhild
+$ cd Silmeria
 $ npm install
 $ bower install
 
@@ -21,6 +21,6 @@ $ gulp build
 ```
 
 ### 规范
-可以在 [issues](https://github.com/scarletsky/Brynhild/issues/3) 中查看。
+可以在 [issues](https://github.com/scarletsky/Silmeria/issues/3) 中查看。
 
 ### 欢迎 Pull Requests & Issues.
