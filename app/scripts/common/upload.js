@@ -95,7 +95,7 @@ function bdUploadDirective (
 
                   $timeout(function () {
                     $scope.uploadStatus = 'ready';
-                  }, 3000);
+                  }, 1000);
                 }, function (res) {
                   $scope.uploadStatus = 'failed';
                   console.log(res);
@@ -103,7 +103,7 @@ function bdUploadDirective (
 
                   $timeout(function () {
                     $scope.uploadStatus = 'ready';
-                  }, 3000);
+                  }, 1000);
                 });
           });
         });
