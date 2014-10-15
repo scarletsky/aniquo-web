@@ -2,10 +2,10 @@ angular.module('bdUpload', [])
   .constant('UploadConf', {
     domain: 'http://aniquo.qiniudn.com/',
     uploadUrl: 'http://upload.qiniu.com/',
-    userAvatarPrefix: 'images/userAvatar/',
-    sourceCoverPrefix: 'images/sourceCover/',
-    characterAvatarPrefix: 'images/characterAvatar/',
-    quoteScenePrefix: 'images/quoteScene/',
+    userAvatarPrefix: 'test/images/userAvatar/',
+    sourceCoverPrefix: 'test/images/sourceCover/',
+    characterAvatarPrefix: 'test/images/characterAvatar/',
+    quoteScenePrefix: 'test/images/quoteScene/',
     fileSizeLimit: 2097152 // 2MB
   })
 
