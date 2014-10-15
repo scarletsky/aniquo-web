@@ -5,7 +5,8 @@ angular.module('bdUpload', [])
     userAvatarPrefix: 'images/userAvatar/',
     sourceCoverPrefix: 'images/sourceCover/',
     characterAvatarPrefix: 'images/characterAvatar/',
-    quoteScenePrefix: 'images/quoteScene/'
+    quoteScenePrefix: 'images/quoteScene/',
+    fileSizeLimit: 2097152 // 2MB
   })
 
   .directive('bdUpload', [
@@ -37,7 +38,7 @@ function bdUploadDirective (
       var uploadType = $attrs.uploadType + 'Prefix';
       $scope.uploadStatus = 'ready';
 
-      function isFilePass (file) {
+      function isFileTypePass (file) {
         var acceptFileType = ['jpg', 'jpeg', 'png'];
         var mimeType = file.type.split('/');
 
@@ -56,8 +57,12 @@ function bdUploadDirective (
         $scope.$apply(function () {
           var file = e.target.files[0];
 
-          if (!isFilePass(file)) {
+          if (!isFileTypePass(file)) {
             return Toast.show('不支持该文件格式');
+          }
+
+          if (file.size > UploadConf.fileSizeLimit) {
+            return Toast.show('文件最大支持2MB');
           }
 
           Restangular
