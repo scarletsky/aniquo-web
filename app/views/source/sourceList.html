@@ -11,16 +11,16 @@
         <material-list>
             <material-item>
                 <material-item-content>
-                    <div class="material-tile-left">
 
-                        <img class="cover cover-medium"
-                             ng-if="object.cover && object.cover.length > 20"
-                             ng-src="{{ object.cover }}">
+                    <div class="material-tile-left cover cover-medium">
+                        <div width="150"
+                             height="150"
+                             bd-bg-image="{{ object.cover }}"
+                             ng-if="object.cover && object.cover.length > 20"></div>
 
-                        <img class="cover cover-medium"
-                             ng-if="!object.cover || object.cover.length < 20"
-                             ng-src="http://placehold.it/100x100">
-
+                        <img class="border-common"
+                             src="http://placehold.it/150x150"
+                             ng-if="!object.cover || object.cover.length < 20">
                     </div>
 
                     <div class="material-tile-content">

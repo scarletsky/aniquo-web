@@ -11,15 +11,16 @@
             <material-item>
                 <material-item-content>
                     
-                   <div class="material-tile-left">
+                   <div class="material-tile-left avatar avatar-medium">
 
-                        <img class="avatar avatar-medium"
-                             ng-if="quote.character.avatar && quote.character.avatar.length > 20"
-                             ng-src="{{ quote.character.avatar }}">
+                        <div width="100"
+                             height="100"
+                             bd-bg-image="{{ quote.character.avatar }}"
+                             ng-if="quote.character.avatar && quote.character.avatar.length > 20"></div>
 
-                        <img class="avatar avatar-medium"
-                             ng-if="!quote.character.avatar || quote.character.avatar.length < 20"
-                             ng-src="http://placehold.it/100x100">
+                        <img class="border-common"
+                             src="http://placehold.it/100x100"
+                             ng-if="!quote.character.avatar || quote.character.avatar.length < 20" />
 
                     </div>
 
@@ -52,8 +53,7 @@
         <div layout="horizontal" layout-align="center"
              ng-if="quote.scene && quote.scene.length > 20">
 
-            <img class="scene"
-                 ng-src="{{ quote.scene }}">
+            <div bd-bg-image="{{ quote.scene }}"></div>
 
         </div>
 

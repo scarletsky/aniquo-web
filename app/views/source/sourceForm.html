@@ -73,14 +73,13 @@
 
                 <p flex="30">封面</p>
 
-                <div class="margin-top-15"
+                <div class="margin-top-15 cover cover-large cursor border-common"
                      bd-upload
                      upload-type="sourceCover"
                      upload-target="source.cover"
                      upload-status="uploadStatus">
 
-                    <img class="cover cover-large cursor"
-                         ng-src="{{ source.cover }}">
+                    <div bd-bg-image="{{ source.cover }}"></div>
 
                     <input class="hidden"
                            type="file"

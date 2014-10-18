@@ -123,14 +123,13 @@
 
                 <p flex="30">角色头像</p>
 
-                <div class="margin-top-15"
+                <div class="margin-top-15 avatar avatar-large cursor border-common"
                      bd-upload
                      upload-type="characterAvatar"
                      upload-target="character.avatar"
                      upload-status="uploadStatus">
 
-                    <img class="avatar avatar-large cursor"
-                         ng-src="{{ character.avatar }}">
+                    <div bd-bg-image="{{ character.avatar }}"></div>
 
                     <input class="hidden"
                            type="file"

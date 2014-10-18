@@ -11,14 +11,17 @@
             <material-item>
                 <material-item-content>
                     
-                   <div class="material-tile-left">
-                        <img class="avatar avatar-medium"
-                             ng-if="g.currentCharacter.avatar && g.currentCharacter.avatar.length > 20"
-                             ng-src="{{ g.currentCharacter.avatar }}">
+                    <div class="material-tile-left avatar avatar-medium">
 
-                        <img class="avatar avatar-medium"
-                             ng-if="!g.currentCharacter.avatar || g.currentCharacter.avatar.length < 20"
-                             ng-src="http://placehold.it/100x100">
+                        <div width="100"
+                             height="100"
+                             bd-bg-image="{{ g.currentCharacter.avatar }}"
+                             ng-if="g.currentCharacter.avatar && g.currentCharacter.avatar.length > 20"></div>
+
+                        <img class="border-common"
+                             src="http://placehold.it/100x100"
+                             ng-if="!g.currentCharacter.avatar || g.currentCharacter.avatar.length < 20" />
+
                     </div>
 
                     <div class="material-tile-content">

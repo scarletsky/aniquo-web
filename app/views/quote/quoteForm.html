@@ -106,14 +106,13 @@
 
                         <p flex="30">语录场景</p>
 
-                        <div class="margin-top-15"
+                        <div class="margin-top-15 scene scene-large cursor border-common"
                              bd-upload
                              upload-type="quoteScene"
                              upload-target="quote.scene"
                              upload-status="uploadStatus">
 
-                            <img class="scene scene-medium cursor"
-                                 ng-src="{{ quote.scene }}">
+                            <div bd-bg-image="{{ quote.scene }}"></div>
 
                             <input class="hidden"
                                    type="file"
