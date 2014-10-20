@@ -25,18 +25,19 @@ function QuoteCtrl (
   'use strict';
 
   var quoteId = $routeParams.quoteId;
+  var characterId = $scope.g.currentCharacter ? $scope.g.currentCharacter._id : null;
 
   Restangular
     .one('quotes/' + quoteId)
     .get({
       with_character: true,
-      with_contributor: true
+      with_contributor: true,
+      characterId: characterId
     })
     .then(function (res) {
       res = res.plain();
       $scope.quote = res;
-      $scope.g.currentCharacter = res.character;
-  });
+    });
 }
 
 function QuoteListCtrl (
