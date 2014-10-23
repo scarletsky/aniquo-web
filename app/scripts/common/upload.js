@@ -33,7 +33,6 @@ function bdUploadDirective (
       uploadStatus: '='
     },
     link: function ($scope, $element, $attrs) {
-      var imageField = $element.find('img').eq(0);
       var inputField = $element.find('input[type="file"]');
       var uploadType = $attrs.uploadType + 'Prefix';
       $scope.uploadStatus = 'ready';
@@ -90,7 +89,6 @@ function bdUploadDirective (
                   var imgSrc = UploadConf.domain + res.key;
                   $scope.uploadTarget = imgSrc;
                   $scope.uploadStatus = 'success';
-                  imageField.attr('src', imgSrc);
                   Toast.show('上传成功');
 
                   $timeout(function () {
