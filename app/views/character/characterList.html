@@ -5,13 +5,13 @@
      offset-md="10"
      offset-sm="0">
 
-    <material-card ng-repeat="object in objects"
+    <md-card ng-repeat="object in objects"
                    bd-linkify="/characters/{{ object._id }}/quotes">
-        <material-list>
-            <material-item>
-                <material-item-content>
+        <md-list>
+            <md-item>
+                <md-item-content>
 
-                    <div class="material-tile-left avatar avatar-medium">
+                    <div class="md-tile-left avatar avatar-medium">
 
                         <div width="100"
                              height="100"
@@ -23,7 +23,7 @@
                              ng-if="!object.avatar || object.avatar.length < 20" />
                     </div>
 
-                    <div class="material-tile-content">
+                    <div class="md-tile-content">
                         <h2 ng-bind="object.name"></h2>
                         <h3 ng-if="object.alias.length !== 0">
                             <span>别名：</span>
@@ -33,15 +33,15 @@
                         </h3>
                     </div>
 
-                </material-item-content>
-            </material-item>
+                </md-item-content>
+            </md-item>
 
-        </material-list>
-    </material-card>
+        </md-list>
+    </md-card>
 
-    <material-card ng-if="objects.length === 0">
+    <md-card ng-if="objects.length === 0">
         <p>什么也找不到</p>
-    </material-card>
+    </md-card>
 </div>
 
 <div ng-include="'views/partials/pagination.html'"></div>

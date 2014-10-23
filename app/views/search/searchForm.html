@@ -5,7 +5,7 @@
      offset-md="10"
      offset-sm="0">
 
-    <material-card layout="vertical">
+    <md-card layout="vertical">
 
         <form role="form"
               ng-submit="getResult()"
@@ -17,36 +17,36 @@
 
                 <p flex="30">搜索类型</p>
 
-                <material-radio-group ng-model="g.searchType"
-                                      flex="70">
+                <md-radio-group ng-model="g.searchType"
+                                flex="70">
 
-                    <material-radio-button value="character"
-                                           aria-label="character"
-                                           inline-block>角色</material-radio-button>
+                    <md-radio-button value="character"
+                                     aria-label="character"
+                                     inline-block>角色</md-radio-button>
 
-                    <material-radio-button value="source"
-                                           aria-label="source"
-                                           inline-block>作品</material-radio-button>
+                    <md-radio-button value="source"
+                                     aria-label="source"
+                                     inline-block>作品</md-radio-button>
 
-                </material-radio-group>
+                </md-radio-group>
 
             </div>
 
-            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+            <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">搜索内容</p>
 
-                <material-input type="text" 
-                                ng-model="g.searchKeyword"
-                                flex="70"
-                                inline-block
-                                placeholder="请输入你想搜索的内容"></material-input>
-            </material-input-group>
+                <md-input type="text" 
+                          ng-model="g.searchKeyword"
+                          flex="70"
+                          inline-block
+                          placeholder="请输入你想搜索的内容"></md-input>
+            </md-input-group>
 
             <span block style="height: 20px;"></span>
 
         </form>
 
-    </material-card>
+    </md-card>
 
 </div>

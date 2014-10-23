@@ -12,11 +12,11 @@ function bdLikeDirective (Restangular) {
     },
     restrict: 'A',
     template: [
-      '<material-button>',
+      '<md-button>',
           '<span ng-if="object.liked">取消赞</span>',
           '<span ng-if="!object.liked">赞</span>',
           '<span ng-bind-template="({{ object.likeCount }})"></span>',
-      '</material-button>',
+      '</md-button>',
     ].join(''),
     link: function ($scope, $element, $attrs) {
       var likeType = $attrs.bdLikeType;

@@ -12,7 +12,7 @@
         <title ng-bind="ex.meta.title"></title>
 
         <!-- build:css styles/main.css -->
-        <link rel="stylesheet" href="/components/angular-material/angular-material.min.css">
+        <link rel="stylesheet" href="/components/angular-material/angular-material.css">
         <link rel="stylesheet" href="/components/angular-loading-bar/build/loading-bar.min.css">
         <link rel="stylesheet" href="/styles/materialFix.css">
         <link rel="stylesheet" href="/styles/main.css">
@@ -23,14 +23,14 @@
     <body layout="vertical" layout-fill>
 
 
-        <material-content>
+        <md-content>
 
             <div ng-include="'/views/partials/layout/header.html'"></div>
 
             <div ng-view
                  id="contentBody"></div>
 
-        </material-content>
+        </md-content>
 
         <!-- build:js /scripts/libs.js -->
         <script src="/components/jquery/dist/jquery.js"></script>
@@ -52,7 +52,7 @@
         <script src="/components/restangular/dist/restangular.min.js"></script>
         <script src="/components/angular-md5/angular-md5.min.js"></script>
         <script src="/components/hammerjs/hammer.min.js"></script>
-        <script src="/components/angular-material/angular-material.min.js"></script>
+        <script src="/components/angular-material/angular-material.js"></script>
         <script src="/components/angular-loading-bar/build/loading-bar.min.js"></script>
         <script src="/components/marked/lib/marked.js"></script>
         <script src="/components/angular-marked/angular-marked.min.js"></script>

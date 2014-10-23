@@ -5,7 +5,7 @@
      offset-md="10"
      offset-sm="0">
 
-    <material-card layout="vertical">
+    <md-card layout="vertical">
 
         <form role="form"
               name="sourceEditForm"
@@ -14,62 +14,62 @@
 
             <h3>编辑作品</h3>
 
-            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+            <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">作品名称</p>
 
-                <material-input type="text" 
-                                name="name"
-                                id="name"
-                                ng-model="source.name"    
-                                required
-                                flex="70"
-                                inline-block
-                                placeholder="请输入作品名称"></material-input>
+                <md-input type="text" 
+                          name="name"
+                          id="name"
+                          ng-model="source.name"    
+                          required
+                          flex="70"
+                          inline-block
+                          placeholder="请输入作品名称"></md-input>
 
-            </material-input-group>
+            </md-input-group>
 
-            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+            <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">作品信息</p>
 
-                <material-input type="text"
-                                name="info"
-                                id="info"
-                                ng-model="source.info"
-                                required
-                                flex="70"
-                                inline-block
-                                placeholder="请输入作品信息"></material-input>
+                <md-input type="text"
+                          name="info"
+                          id="info"
+                          ng-model="source.info"
+                          required
+                          flex="70"
+                          inline-block
+                          placeholder="请输入作品信息"></md-input>
 
-            </material-input-group>
+            </md-input-group>
 
-            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+            <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">作品别名</p>
 
                 <div layout="vertical" flex="70">
                     
-                    <div class="material-input-with-addon right-addon"
+                    <div class="md-input-with-addon right-addon"
                          ng-repeat="object in source.alias track by $index">
 
                         <p class="right-addon"
                            ng-click="removeAlias($event, $index)"
                            ng-if="$index !== 0">x</p>
 
-                        <material-input type="text"
-                                        name="alias"
-                                        id="alias"
-                                        ng-model="source.alias[$index]"
-                                        required
-                                        layout-fill
-                                        placeholder="请输入作品别名"></material-input>
+                        <md-input type="text"
+                                  name="alias"
+                                  id="alias"
+                                  ng-model="source.alias[$index]"
+                                  required
+                                  layout-fill
+                                  placeholder="请输入作品别名"></md-input>
                     </div>
                 </div>
 
-            </material-input-group>
+            </md-input-group>
 
-            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+            <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">封面</p>
 
@@ -88,19 +88,15 @@
                            ng-model="source.cover"/>
                 </div>
 
-            </material-input-group>
+            </md-input-group>
 
             <div layout="horizontal" layout-align="end">
-                <material-button ng-click="addAlias($event)">添加别名</material-button>
-                <material-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</material-button>
+                <md-button ng-click="addAlias($event)">添加别名</md-button>
+                <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
             </div>
 
         </form>
 
-<div ng-repeat="post in posts">
-    <a ng-href="/posts/{{ post._id }}/edit">编辑</a>
-</div>
-
-    </material-card>
+    </md-card>
 
 </div>

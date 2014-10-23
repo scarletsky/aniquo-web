@@ -23,22 +23,28 @@ a {
     display: table !important;
 }
 
-// material-radio-group
-material-radio-group {
+// md-content
+md-content {
+    height: 100%;
+    min-height: 100%;
+}
+
+// md-radio-group
+md-radio-group {
     border: 0;
 
-    material-radio-button:first-of-type {
+    md-radio-button:first-of-type {
         margin-left: 0;
     }
 }
 
-// material-list
-material-list {
-    .material-tile-left {
+// md-list
+md-list {
+    .md-tile-left {
         margin-right: 0;
     }
 
-    &.material-list-dropdown {
+    &.md-list-dropdown {
         border-left: @border-common;
         border-right: @border-common;
         border-bottom: @border-common;
@@ -46,7 +52,7 @@ material-list {
         z-index: 10;
         background-color: @color-white;
 
-        .list-result-current, material-item:hover {
+        .list-result-current, md-item:hover {
             color: @color-blue-light;
         }
 
@@ -55,7 +61,7 @@ material-list {
         }
     }
 
-    .material-tile-content {
+    .md-tile-content {
         h2 {
             margin: 0 0 3px;
             font-size: 1.1em;
@@ -63,9 +69,9 @@ material-list {
     }
 }
 
-// material-input
-material-input-group {
-    .material-input-with-addon {
+// md-input
+md-input-group {
+    .md-input-with-addon {
         position: relative;
 
         .left-addon {
@@ -103,38 +109,23 @@ material-input-group {
     }
 }
 
-// material-button
-material-button[block] {
-    .material-button-inner {
+// md-button
+md-button[block] {
+    .md-button-inner {
         display: block;
     }
 }
 
-// material-sidenav
-.material-sidenav-left, material-sidenav {
-    position: absolute;
-    -webkit-transform: translate3d(-100%, 0, 0) !important;
-    transform: translate3d(-100%, 0, 0) !important;
 
-    &.open {
-        -webkit-transform: translate3d(0, 0, 0) !important;
-        transform: translate3d(0, 0, 0) !important;
-    }
-}
-
-.material-sidenav-backdrop {
-    display: block !important;
-}
-
-// material-tab
-material-tab {
+// md-tab
+md-tab {
     border: 0;
     outline: 0;
 }
 
 @media (max-width: 600px) {
-    // material-toolbar
-    material-toolbar.material-tall {
+    // md-toolbar
+    md-toolbar.md-tall {
         height: 80px;
         position: fixed;
         top: 0;

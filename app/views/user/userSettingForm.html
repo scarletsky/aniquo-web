@@ -1,9 +1,9 @@
 <div>
     
-    <material-tabs selected="selectedIndex" center>
-          <material-tab label="个人设置"></material-tab>
-          <material-tab label="安全设置"></material-tab>
-    </material-tabs>
+    <md-tabs selected="selectedIndex" center>
+          <md-tab label="个人设置"></md-tab>
+          <md-tab label="安全设置"></md-tab>
+    </md-tabs>
 
     <div layout="vertical"
          flex-lg="60"
@@ -14,7 +14,7 @@
 
         <div ng-switch on="selectedIndex">
 
-            <material-card layout="vertical" ng-switch-when="0">
+            <md-card layout="vertical" ng-switch-when="0">
 
                 <form role="form"
                       name="userProfileForm"
@@ -23,64 +23,63 @@
 
                     <h3>个人设置</h3>
 
-                    <material-input-group class="material-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                         <p flex="30">昵称</p>
 
-                        <material-input type="text" 
-                                        name="nickname"
-                                        id="nickname"
-                                        ng-model="user.nickname"    
-                                        required
-                                        flex="70"
-                                        inline-block
-                                        placeholder="请输入昵称"></material-input>
+                        <md-input type="text" 
+                                   name="nickname"
+                                   id="nickname"
+                                   ng-model="user.nickname"    
+                                   required
+                                   flex="70"
+                                   inline-block
+                                   placeholder="请输入昵称"></md-input>
 
-                    </material-input-group>
+                    </md-input-group>
 
 
-                    <material-input-group class="material-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                         <p flex="30">个人网站</p>
 
-                        <material-input type="text"
-                                        name="site"
-                                        id="site"
-                                        ng-model="user.site"
-                                        required
-                                        flex="70"
-                                        inline-block
-                                        placeholder="请输入你的个人网站"></material-input>
+                        <md-input type="text"
+                                  name="site"
+                                  id="site"
+                                  ng-model="user.site"
+                                  required
+                                  flex="70"
+                                  inline-block
+                                  placeholder="请输入你的个人网站"></md-input>
 
-                    </material-input-group>
+                    </md-input-group>
 
-                    <material-input-group class="material-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                         <p flex="30">自我介绍</p>
 
-                        <material-input type="text"
-                                        name="info"
-                                        id="info"
-                                        ng-model="user.info"
-                                        required
-                                        flex="70"
-                                        inline-block
-                                        placeholder="请输入自我介绍"></material-input>
+                        <md-input type="text"
+                                  name="info"
+                                  id="info"
+                                  ng-model="user.info"
+                                  required
+                                  flex="70"
+                                  inline-block
+                                  placeholder="请输入自我介绍"></md-input>
 
-                    </material-input-group>
+                    </md-input-group>
 
-                    <material-input-group class="material-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                         <p flex="30">用户头像</p>
 
-                        <div class="margin-top-15"
+                        <div class="margin-top-15 avatar avatar-large cursor border-common"
                              bd-upload
                              upload-type="userAvatar"
                              upload-target="user.avatar"
                              upload-status="uploadStatus">
 
-                            <img class="avatar avatar-large cursor"
-                                 ng-src="{{ user.avatar }}">
+                            <div bd-bg-image="{{ user.avatar }}"></div>
 
                             <input class="hidden"
                                    type="file"
@@ -89,17 +88,17 @@
                                    ng-model="user.avatar"/>
                         </div>
 
-                    </material-input-group>
+                    </md-input-group>
 
                     <div layout="horizontal" layout-align="end">
-                        <material-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</material-button>
+                        <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
                     </div>
 
                 </form>
 
-            </material-card>
+            </md-card>
 
-            <material-card ng-switch-when="1">
+            <md-card ng-switch-when="1">
 
                 <form role="form"
                       name="userPasswordForm"
@@ -108,58 +107,58 @@
 
                     <h3>安全设置</h3>
 
-                    <material-input-group class="material-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                         <p flex="30">旧密码</p>
 
-                        <material-input type="password"
-                                        name="oldPassword"
-                                        id="oldPassword"
-                                        ng-model="user.oldPassword"
-                                        required
-                                        flex="70"
-                                        inline-block
-                                        placeholder="请输入旧密码"></material-input>
+                        <md-input type="password"
+                                  name="oldPassword"
+                                  id="oldPassword"
+                                  ng-model="user.oldPassword"
+                                  required
+                                  flex="70"
+                                  inline-block
+                                  placeholder="请输入旧密码"></md-input>
 
-                    </material-input-group>
+                    </md-input-group>
 
-                    <material-input-group class="material-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                         <p flex="30">新密码</p>
 
-                        <material-input type="password"
-                                        name="newPassword"
-                                        id="newPassword"
-                                        ng-model="user.newPassword"
-                                        required
-                                        flex="70"
-                                        inline-block
-                                        placeholder="请输入新密码"></material-input>
+                        <md-input type="password"
+                                   name="newPassword"
+                                   id="newPassword"
+                                   ng-model="user.newPassword"
+                                   required
+                                   flex="70"
+                                   inline-block
+                                   placeholder="请输入新密码"></md-input>
 
-                    </material-input-group>
+                    </md-input-group>
 
-                    <material-input-group class="material-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                         <p flex="30">确认新密码</p>
 
-                        <material-input type="password"
-                                        name="confirmPassword"
-                                        id="confirmPassword"
-                                        ng-model="user.confirmPassword"
-                                        required
-                                        flex="70"
-                                        inline-block
-                                        placeholder="请确认新密码"></material-input>
+                        <md-input type="password"
+                                  name="confirmPassword"
+                                  id="confirmPassword"
+                                  ng-model="user.confirmPassword"
+                                  required
+                                  flex="70"
+                                  inline-block
+                                  placeholder="请确认新密码"></md-input>
 
-                    </material-input-group>
+                    </md-input-group>
 
                     <div layout="horizontal" layout-align="end">
-                        <material-button type="submit">提交</material-button>
+                        <md-button type="submit">提交</md-button>
                     </div>
 
                 </form>
 
-            </material-card>
+            </md-card>
 
         </div>
 

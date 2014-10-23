@@ -5,7 +5,7 @@
      offset-md="10"
      offset-sm="0">
 
-    <material-card layout="vertical">
+    <md-card layout="vertical">
 
         <form role="form"
               name="sourceEditForm"
@@ -14,112 +14,112 @@
 
             <h3>编辑角色</h3>
 
-            <material-input-group class="material-input-group-theme-light"
+            <md-input-group class="md-input-group-theme-light"
                                   layout="horizontal">
 
                 <p flex="30">角色名称</p>
 
-                <material-input type="text" 
-                                name="name"
-                                id="name"
-                                ng-model="character.name"    
-                                required
-                                flex="70"
-                                inline-block
-                                placeholder="请输入角色名称"></material-input>
+                <md-input type="text" 
+                          name="name"
+                          id="name"
+                          ng-model="character.name"    
+                          required
+                          flex="70"
+                          inline-block
+                          placeholder="请输入角色名称"></md-input>
 
-            </material-input-group>
+            </md-input-group>
 
 
-            <material-input-group class="material-input-group-theme-light" 
+            <md-input-group class="md-input-group-theme-light" 
                                   layout="horizontal">
 
                 <p flex="30">角色信息</p>
 
-                <material-input type="text"
-                                name="info"
-                                id="info"
-                                ng-model="character.info"
-                                required
-                                flex="70"
-                                inline-block
-                                placeholder="请输入角色信息"></material-input>
+                <md-input type="text"
+                          name="info"
+                          id="info"
+                          ng-model="character.info"
+                          required
+                          flex="70"
+                          inline-block
+                          placeholder="请输入角色信息"></md-input>
 
-            </material-input-group>
+            </md-input-group>
 
-            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+            <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">角色所属作品</p>
 
-                <div class="material-input-with-addon left-addon" flex="70">
+                <div class="md-input-with-addon left-addon" flex="70">
 
                     <p class="left-addon">q</p>
 
-                    <material-input type="hidden"
-                                    name="sourceId"
-                                    id="sourceId"
-                                    ng-model="character.sourceId"
-                                    bd-auto-complete="id"></material-input>
+                    <md-input type="hidden"
+                              name="sourceId"
+                              id="sourceId"
+                              ng-model="character.sourceId"
+                              bd-auto-complete="id"></md-input>
                     
-                    <material-input type="text"
-                                    name="sourceName"
-                                    id="sourceName"
-                                    ng-model="character.sourceName"
-                                    ng-keydown="keydownSelect($event)"
-                                    required
-                                    layout-fill
-                                    bd-search
-                                    bd-search-type="source"
-                                    bd-select-searching
-                                    bd-auto-complete="name"
-                                    placeholder="请输入角色所属作品名字或别名"></material-input>
+                    <md-input type="text"
+                              name="sourceName"
+                              id="sourceName"
+                              ng-model="character.sourceName"
+                              ng-keydown="keydownSelect($event)"
+                              required
+                              layout-fill
+                              bd-search
+                              bd-search-type="source"
+                              bd-select-searching
+                              bd-auto-complete="name"
+                              placeholder="请输入角色所属作品名字或别名"></md-input>
 
-                    <material-list class="material-list-dropdown"
-                                   layout-fill
-                                   table
-                                   ng-show="isListShow">
+                    <md-list class="md-list-dropdown"
+                             layout-fill
+                             table
+                             ng-show="isListShow">
 
-                        <material-item ng-repeat="result in results | limitTo: 3">
-                            <div class="material-tile-content"
+                        <md-item ng-repeat="result in results | limitTo: 3">
+                            <div class="md-tile-content"
                                  ng-click="clickSelect(result)"
                                  object-id="{{ result._id }}">
                                 <p ng-bind="result.name"></p>
                             </div>
-                        </material-item>
+                        </md-item>
 
-                    </material-list>
+                    </md-list>
 
                 </div>
 
-            </material-input-group>
+            </md-input-group>
 
-            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+            <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">角色别名</p>
 
                 <div layout="vertical" flex="70">
                     
-                    <div class="material-input-with-addon right-addon"
+                    <div class="md-input-with-addon right-addon"
                          ng-repeat="object in character.alias track by $index">
 
                         <p class="right-addon"
                            ng-click="removeAlias($event, $index)"
                            ng-if="$index !== 0">x</p>
 
-                        <material-input type="text"
-                                        name="alias"
-                                        id="alias"
-                                        ng-model="character.alias[$index]"
-                                        required
-                                        layout-fill
-                                        placeholder="请输入角色别名"></material-input>
+                        <md-input type="text"
+                                  name="alias"
+                                  id="alias"
+                                  ng-model="character.alias[$index]"
+                                  required
+                                  layout-fill
+                                  placeholder="请输入角色别名"></md-input>
 
                     </div>
                 </div>
 
-            </material-input-group>
+            </md-input-group>
 
-            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+            <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">角色头像</p>
 
@@ -138,15 +138,15 @@
                            ng-model="character.avatar"/>
                 </div>
 
-            </material-input-group>
+            </md-input-group>
 
             <div layout="horizontal" layout-align="end">
-                <material-button ng-click="addAlias($event)">添加别名</material-button>
-                <material-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</material-button>
+                <md-button ng-click="addAlias($event)">添加别名</md-button>
+                <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
             </div>
 
         </form>
 
-    </material-card>
+    </md-card>
 
 </div>

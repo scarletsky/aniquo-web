@@ -6,12 +6,12 @@
      offset-sm="0"
      ng-controller="SourceCtrl">
 
-    <material-card>
-        <material-list>
-            <material-item>
-                <material-item-content>
+    <md-card>
+        <md-list>
+            <md-item>
+                <md-item-content>
                     
-                    <div class="material-tile-left cover cover-medium">
+                    <div class="md-tile-left cover cover-medium">
                         <div width="150"
                              height="150"
                              bd-bg-image="{{ g.currentSource.cover }}"
@@ -22,7 +22,7 @@
                              ng-if="!g.currentSource.cover || g.currentSource.cover.length < 20" />
                     </div>
 
-                    <div class="material-tile-content">
+                    <div class="md-tile-content">
                         <h2 ng-bind="g.currentSource.name"></h2>
                         <h3 ng-if="g.currentSource.alias.length !== 0">
                             <span>别名：</span>
@@ -32,9 +32,9 @@
                         </h3>
                     </div>
 
-                </material-item-content>
+                </md-item-content>
  
-            </material-item>
-        </material-list>
-    </material-card>
+            </md-item>
+        </md-list>
+    </md-card>
 </div>

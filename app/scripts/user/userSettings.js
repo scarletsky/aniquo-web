@@ -26,10 +26,7 @@ function UserSettingsCtrl (
     .get()
     .then(function (res) {
       res = res.plain();
-      $scope.user.nickname = res.nickname;
-      $scope.user.site = res.site;
-      $scope.user.info = res.info;
-      $scope.user.avatar = res.avatar;
+      $scope.user = res;
     });
 
   $scope.updateProfile = function () {

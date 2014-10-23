@@ -6,12 +6,12 @@
      offset-md="10"
      offset-sm="0">
 
-    <material-card layout="vertical">
-        <material-list>
-            <material-item>
-                <material-item-content>
+    <md-card layout="vertical">
+        <md-list>
+            <md-item>
+                <md-item-content>
                     
-                   <div class="material-tile-left avatar avatar-medium">
+                   <div class="md-tile-left avatar avatar-medium">
 
                         <div width="100"
                              height="100"
@@ -24,7 +24,7 @@
 
                     </div>
 
-                    <div class="material-tile-content">
+                    <div class="md-tile-content">
                         <h2 ng-bind="quote.character.name"></h2>
                         <h3 ng-if="quote.character.alias.length !== 0">
                             <span>别名：</span>
@@ -34,12 +34,12 @@
                         </h3>
                     </div>
 
-                </material-item-content>
+                </md-item-content>
  
-            </material-item>
-        </material-list>
+            </md-item>
+        </md-list>
 
-        <material-divider></material-divider>
+        <md-divider></md-divider>
 
         <div layout="horizontal">
             <div marked="quote.quote"></div>
@@ -63,9 +63,9 @@
                  bd-like-type="quotes"></div>
         </div>
 
-    </material-card>
+    </md-card>
 
-    <material-card layout="vertical" layout-align="start">
+    <md-card layout="vertical" layout-align="start">
 
         <div layout="horizontal">
             <label flex-lg="15"
@@ -93,5 +93,5 @@
                   ng-bind="quote.createdAt"></span>
         </div>
 
-    </material-card>
+    </md-card>
 </div>

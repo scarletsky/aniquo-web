@@ -5,14 +5,14 @@
      offset-md="10"
      offset-sm="0">
 
-    <material-card ng-repeat="object in objects"
-                   bd-linkify="/sources/{{ object._id }}/characters">
+    <md-card ng-repeat="object in objects"
+             bd-linkify="/sources/{{ object._id }}/characters">
 
-        <material-list>
-            <material-item>
-                <material-item-content>
+        <md-list>
+            <md-item>
+                <md-item-content>
 
-                    <div class="material-tile-left cover cover-medium">
+                    <div class="md-tile-left cover cover-medium">
                         <div width="150"
                              height="150"
                              bd-bg-image="{{ object.cover }}"
@@ -23,7 +23,7 @@
                              ng-if="!object.cover || object.cover.length < 20">
                     </div>
 
-                    <div class="material-tile-content">
+                    <div class="md-tile-content">
                         <h2 ng-bind="object.name"></h2>
                         <h3 ng-if="object.alias.length !== 0">
                             <span>别名：</span>
@@ -32,15 +32,15 @@
                                   ng-bind="alias"></span>
                         </h3>
                     </div>
-                </material-item-content>
-            </material-item>
-        </material-list>
+                </md-item-content>
+            </md-item>
+        </md-list>
 
-    </material-card>
+    </md-card>
 
-    <material-card ng-if="objects.length === 0">
+    <md-card ng-if="objects.length === 0">
         <p>什么也找不到</p>
-    </material-card>
+    </md-card>
 </div>
 
 <div ng-include="'views/partials/pagination.html'"></div>

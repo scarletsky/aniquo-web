@@ -5,7 +5,7 @@
      offset-md="10"
      offset-sm="0">
 
-    <material-card layout="vertical">
+    <md-card layout="vertical">
 
         <form role="form"
               name="quoteEditForm"
@@ -14,70 +14,70 @@
 
             <h3>编辑语录</h3>
 
-            <material-input-group class="material-input-group-theme-light" layout="horizontal">
+            <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                 <p flex="30">语录所属角色</p>
 
-                <div class="material-input-with-addon left-addon" flex="70">
+                <div class="md-input-with-addon left-addon" flex="70">
 
                     <p class="left-addon">q</p>
 
-                    <material-input type="hidden"
-                                    name="characterId"
-                                    id="characterId"
-                                    ng-model="quote.characterId"
-                                    bd-auto-complete="id"></material-input>
+                    <md-input type="hidden"
+                              name="characterId"
+                              id="characterId"
+                              ng-model="quote.characterId"
+                              bd-auto-complete="id"></md-input>
                     
-                    <material-input type="text"
-                                    name="characterName"
-                                    id="characterName"
-                                    ng-model="quote.characterName"
-                                    ng-keydown="keydownSelect($event)"
-                                    required
-                                    layout-fill
-                                    bd-search
-                                    bd-search-type="character"
-                                    bd-select-searching
-                                    bd-auto-complete="name"
-                                    placeholder="请输入语录所属角色名字或别名"></material-input>
+                    <md-input type="text"
+                              name="characterName"
+                              id="characterName"
+                              ng-model="quote.characterName"
+                              ng-keydown="keydownSelect($event)"
+                              required
+                              layout-fill
+                              bd-search
+                              bd-search-type="character"
+                              bd-select-searching
+                              bd-auto-complete="name"
+                              placeholder="请输入语录所属角色名字或别名"></md-input>
 
-                    <material-list class="material-list-dropdown"
-                                   layout-fill
-                                   table
-                                   ng-show="isListShow">
+                    <md-list class="md-list-dropdown"
+                             layout-fill
+                             table
+                             ng-show="isListShow">
 
-                        <material-item ng-repeat="result in results | limitTo: 3">
-                            <div class="material-tile-content"
+                        <md-item ng-repeat="result in results | limitTo: 3">
+                            <div class="md-tile-content"
                                  ng-click="clickSelect(result)"
                                  object-id="{{ result._id }}">
                                 <p ng-bind="result.name"></p>
                             </div>
-                        </material-item>
+                        </md-item>
 
-                    </material-list>
+                    </md-list>
 
                 </div>
 
-            </material-input-group>
+            </md-input-group>
 
-            <material-input-group class="material-input-group-theme-light"
+            <md-input-group class="md-input-group-theme-light"
                                   layout="horizontal">
 
                 <p flex="30">语录出处</p>
 
-                <material-input type="text" 
-                                name="reference"
-                                id="reference"
-                                ng-model="quote.reference"    
-                                required
-                                flex="70"
-                                inline-block
-                                placeholder="请输入语录出处"></material-input>
+                <md-input type="text" 
+                          name="reference"
+                          id="reference"
+                          ng-model="quote.reference"    
+                          required
+                          flex="70"
+                          inline-block
+                          placeholder="请输入语录出处"></md-input>
 
-            </material-input-group>
+            </md-input-group>
 
 
-            <material-input-group class="material-input-group-theme-light" 
+            <md-input-group class="md-input-group-theme-light" 
                                   layout="horizontal">
 
                 <p flex="30">语录详细信息</p>
@@ -91,22 +91,22 @@
                           inline-block
                           placeholder="请输入语录详细信息"></textarea>
 
-<!--                 <material-input type="text"
+<!--                 <md-input type="text"
                                 name="quote"
                                 id="quote"
                                 ng-model="quote.quote"
                                 required
                                 flex="70"
                                 inline-block
-                                placeholder="请输入语录详细信息"></material-input>
+                                placeholder="请输入语录详细信息"></md-input>
 
- -->            </material-input-group>
+ -->            </md-input-group>
 
-                     <material-input-group class="material-input-group-theme-light" layout="horizontal">
+                     <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
                         <p flex="30">语录场景</p>
 
-                        <div class="margin-top-15 scene scene-large cursor border-common"
+                        <div class="margin-top-15 scene scene-medium cursor border-common"
                              bd-upload
                              upload-type="quoteScene"
                              upload-target="quote.scene"
@@ -121,15 +121,15 @@
                                    ng-model="quote.scene"/>
                         </div>
 
-                    </material-input-group>
+                    </md-input-group>
 
 
             <div layout="horizontal" layout-align="end">
-                <material-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</material-button>
+                <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
             </div>
 
         </form>
 
-    </material-card>
+    </md-card>
 
 </div>

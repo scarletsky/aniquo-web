@@ -6,12 +6,12 @@
      offset-sm="0"
      ng-controller="CharacterCtrl">
 
-    <material-card>
-        <material-list>
-            <material-item>
-                <material-item-content>
+    <md-card>
+        <md-list>
+            <md-item>
+                <md-item-content>
                     
-                    <div class="material-tile-left avatar avatar-medium">
+                    <div class="md-tile-left avatar avatar-medium">
 
                         <div width="100"
                              height="100"
@@ -24,7 +24,7 @@
 
                     </div>
 
-                    <div class="material-tile-content">
+                    <div class="md-tile-content">
                         <h2 ng-bind="g.currentCharacter.name"></h2>
                         <h3 ng-if="g.currentCharacter.alias.length !== 0">
                             <span>别名：</span>
@@ -34,9 +34,9 @@
                         </h3>
                     </div>
 
-                </material-item-content>
+                </md-item-content>
  
-            </material-item>
-        </material-list>
-    </material-card>
+            </md-item>
+        </md-list>
+    </md-card>
 </div>

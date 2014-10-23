@@ -1,24 +1,25 @@
 <section layout="vertical" layout-align="center" layout-fill>
     
-    <material-sidenav class="material-sidenav-left material-whiteframe-z2" component-id="left">
-        <material-toolbar class="material-theme-indigo">
-            <h1 class="material-toolbar-tools">Sidenav Left</h1>
-        </material-toolbar>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+                component-id="left">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Sidenav Left</h1>
+        </md-toolbar>
 
         <section>
-            <material-button block href="/login" ng-if="!session.isAuthenticated()">登录</material-button>
-            <material-button block href="/signup" ng-if="!session.isAuthenticated()">注册</material-button>
+            <md-button block href="/login" ng-if="!session.isAuthenticated()">登录</md-button>
+            <md-button block href="/signup" ng-if="!session.isAuthenticated()">注册</md-button>
         </section>
 
         <section ng-if="session.isAuthenticated()">
-            <material-button block href="/user/contribution/sources">我的贡献</material-button>
-            <material-button block href="/sources/new">添加新作品</material-button>
-            <material-button block href="/characters/new">添加新角色</material-button>
-            <material-button block href="/quotes/new">添加新语录</material-button>
-            <material-button block href="/user/settings">设置</material-button>
-            <material-button block href="#" ng-click="session.logout($event)" ng-if="session.isAuthenticated()">注销</material-button>
+            <md-button block href="/user/contribution/sources">我的贡献</md-button>
+            <md-button block href="/sources/new">添加新作品</md-button>
+            <md-button block href="/characters/new">添加新角色</md-button>
+            <md-button block href="/quotes/new">添加新语录</md-button>
+            <md-button block href="/user/settings">设置</md-button>
+            <md-button block href="#" ng-click="session.logout($event)" ng-if="session.isAuthenticated()">注销</md-button>
         </section>
 
-    </material-sidenav>
+    </md-sidenav>
 
 </section>

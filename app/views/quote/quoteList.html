@@ -5,14 +5,14 @@
      offset-md="10"
      offset-sm="0">
 
-    <material-card ng-repeat="object in objects"
-                   bd-linkify="/quotes/{{ object._id }}">
+    <md-card ng-repeat="object in objects"
+             bd-linkify="/quotes/{{ object._id }}">
         <div marked="object.quote"></div>
-    </material-card>
+    </md-card>
 
-    <material-card ng-if="objects.length === 0">
+    <md-card ng-if="objects.length === 0">
         <p>什么也找不到</p>
-    </material-card>
+    </md-card>
 </div>
 
 <div ng-include="'views/partials/pagination.html'"></div>
