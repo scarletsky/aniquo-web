@@ -258,7 +258,7 @@ function bdAutoCompleteDirective () {
           if ($attrs.bdAutoCompleteType === 'array') {
             $ctrl.$modelValue[index] = id;
           } else {
-            $ctrl.$modelValue = id;
+            $ctrl.$setViewValue(id);
           }
           break;
 
