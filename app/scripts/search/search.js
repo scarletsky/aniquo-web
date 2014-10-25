@@ -173,7 +173,7 @@ function bdSearchDirective (
               });
           }, 500);
         } else if (!modelValue) {
-          $scope.$emit('resultSelect', {id: undefined, name: undefined});
+          $scope.$emit('resultSelect', {id: undefined, name: undefined, index: $attrs.bdSearchIndex});
           $scope.results = [];
         }
       });
@@ -196,16 +196,17 @@ function bdSelectSearchingDirective (
       };
       window.list = $element.next();
 
-      $scope.clickSelect = function (object) {
+      $scope.clickSelect = function (object, index) {
         var resultObject = {
           name: object.name,
-          id: object._id
+          id: object._id,
+          index: index
         };
 
         $scope.$emit('resultSelect', resultObject);
       };
 
-      $scope.keydownSelect = function (e) {
+      $scope.keydownSelect = function (e, index) {
         var items = list.find('material-item');
         var cur = list.children('.list-result-current');
 
@@ -225,6 +226,7 @@ function bdSelectSearchingDirective (
             case keyCode.enter:
               e.originalEvent.preventDefault();
               var resultObject = searchUtils.select.choose(cur, items);
+              result.index = index;
 
               $scope.$emit('resultSelect', resultObject);
 
@@ -252,8 +254,12 @@ function bdAutoCompleteDirective () {
 
         case 'id':
           var id = resultObject.id;
-          $ctrl.$setViewValue(id);
-          $element.val(id);
+          var index = resultObject.index;
+          if ($attrs.bdAutoCompleteType === 'array') {
+            $ctrl.$modelValue[index] = id;
+          } else {
+            $ctrl.$modelValue = id;
+          }
           break;
 
         case 'name':

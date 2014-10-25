@@ -16,45 +16,55 @@
 
             <md-input-group class="md-input-group-theme-light" layout="horizontal">
 
-                <p flex="30">语录所属角色</p>
+                <p flex="30">语录关联角色</p>
 
                 <div class="md-input-with-addon left-addon" flex="70">
 
-                    <p class="left-addon">q</p>
-
                     <md-input type="hidden"
-                              name="characterId"
-                              id="characterId"
-                              ng-model="quote.characterId"
+                              name="characterIds"
+                              id="characterIds"
+                              ng-model="quote.characterIds"
+                              bd-auto-complete-type="array"
                               bd-auto-complete="id"></md-input>
-                    
-                    <md-input type="text"
-                              name="characterName"
-                              id="characterName"
-                              ng-model="quote.characterName"
-                              ng-keydown="keydownSelect($event)"
-                              required
-                              layout-fill
-                              bd-search
-                              bd-search-type="character"
-                              bd-select-searching
-                              bd-auto-complete="name"
-                              placeholder="请输入语录所属角色名字或别名"></md-input>
 
-                    <md-list class="md-list-dropdown"
-                             layout-fill
-                             table
-                             ng-show="isListShow">
+                    <div class="md-input-with-addon left-addon right-addon"
+                         ng-repeat="name in quote.characterNames track by $index">
 
-                        <md-item ng-repeat="result in results | limitTo: 3">
-                            <div class="md-tile-content"
-                                 ng-click="clickSelect(result)"
-                                 object-id="{{ result._id }}">
-                                <p ng-bind="result.name"></p>
-                            </div>
-                        </md-item>
+                        <p class="left-addon">q</p>
 
-                    </md-list>
+                        <p class="right-addon"
+                           ng-click="removeCharacter($event, $index)"
+                           ng-if="$index !== 0">x</p>
+                        
+                        <md-input type="text"
+                                  name="characterName"
+                                  id="characterName"
+                                  ng-model="quote.characterNames[$index]"
+                                  ng-keydown="keydownSelect($event, $index)"
+                                  required
+                                  layout-fill
+                                  bd-search
+                                  bd-search-type="character"
+                                  bd-search-index="{{ $index }}"
+                                  bd-select-searching
+                                  bd-auto-complete="name"
+                                  placeholder="请输入语录所属角色名字或别名"></md-input>
+
+                        <md-list class="md-list-dropdown"
+                                 layout-fill
+                                 table
+                                 ng-show="isListShow">
+
+                            <md-item ng-repeat="result in results | limitTo: 3">
+                                <div class="md-tile-content"
+                                     ng-click="clickSelect(result, $parent.$index)"
+                                     object-id="{{ result._id }}">
+                                    <p ng-bind="result.name"></p>
+                                </div>
+                            </md-item>
+
+                        </md-list>
+                    </div>
 
                 </div>
 
@@ -89,6 +99,7 @@
                           required
                           flex="70"
                           inline-block
+                          rows="5"
                           placeholder="请输入语录详细信息"></textarea>
 
 <!--                 <md-input type="text"
@@ -125,6 +136,7 @@
 
 
             <div layout="horizontal" layout-align="end">
+                <md-button ng-click="addCharacter($event)">添加关联角色</md-button>
                 <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
             </div>
 
