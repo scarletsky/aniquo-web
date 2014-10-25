@@ -66,9 +66,10 @@ function CharacterEditCtrl (
     }
 
     if (actionType === 'edit') {
-      Restangular
-        .one('characters', $routeParams.characterId)
-        .put(data)
+      var characterElement = Restangular.one('characters', $routeParams.characterId)
+      angular.extend(characterElement, data)
+      characterElement
+        .put()
         .then(function (res) {
           Toast.show('角色更新成功');
           return $location.path('/characters/' + $routeParams.characterId + '/quotes');

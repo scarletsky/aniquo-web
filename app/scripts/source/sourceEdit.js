@@ -60,9 +60,10 @@ function SourceEditCtrl (
     }
 
     if (actionType === 'edit') {
-      Restangular
-        .one('sources', $routeParams.sourceId)
-        .put(data)
+      var sourceElement = Restangular.one('sources', $routeParams.sourceId)
+      angular.extend(sourceElement, data)
+      sourceElement
+        .put()
         .then(function (res) {
           Toast.show('作品更新成功');
           return $location.path('/sources/' + $routeParams.sourceId + '/characters');

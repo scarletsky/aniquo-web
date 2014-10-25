@@ -66,8 +66,10 @@ function QuoteEditCtrl (
     }
 
     if (actionType === 'edit') {
-      Restangular.one('quotes', $routeParams.quoteId)
-        .put(data)
+      var quoteElement = Restangular.one('quotes', $routeParams.quoteId)
+      angular.extend(quoteElement, data)
+      quoteElement
+        .put()
         .then(function (res) {
           res = res.plain();
           Toast.show('语录更新成功');
