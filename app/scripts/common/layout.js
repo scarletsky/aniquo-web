@@ -14,7 +14,7 @@ function bdFixedHeaderDirective () {
     scope: false,
     link: function ($scope, $element, $attrs) {
 
-      var containerElement = $('material-content');
+      var containerElement = $('md-content');
 
       containerElement.on('scroll', function (e) {
         var scrollTop = e.target.scrollTop;
