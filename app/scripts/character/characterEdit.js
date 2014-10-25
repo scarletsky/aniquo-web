@@ -29,6 +29,7 @@ function CharacterEditCtrl (
       .then(function (res) {
         res = res.plain();
         $scope.character = res;
+        $scope.character.alias = res.alias.length ? res.alias : [''];
         $scope.character.sourceId = res.source._id;
         $scope.character.sourceName = res.source.name;
       });

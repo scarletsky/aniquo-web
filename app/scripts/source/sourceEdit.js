@@ -29,7 +29,7 @@ function SourceEditCtrl (
       .then(function (res) {
         res = res.plain();
         $scope.source = res;
-        $scope.alias = res.alias;
+        $scope.source.alias = res.alias.length ? res.alias : [''];
       });
   }
 
