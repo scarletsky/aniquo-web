@@ -47,6 +47,7 @@
 
         <div layout="horizontal" layout-align="end">
             <p class="margin-top-0"
+               ng-if="quote.reference && quote.reference.length !== 0"
                ng-bind-template="—— 出自 {{ quote.reference }}"></p>
         </div>
 
