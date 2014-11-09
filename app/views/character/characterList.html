@@ -44,4 +44,6 @@
     </md-card>
 </div>
 
-<div ng-include="'views/partials/pagination.html'"></div>
+<div ng-if="hasPrevPage || hasNextPage">
+    <div ng-include="'views/partials/pagination.html'"></div>
+</div>
