@@ -1,0 +1,119 @@
+md-card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: @color-white;
+
+    &.form-wrapper {
+
+        h3 {
+            margin: 1em 16px;
+            color: @color-gray;
+        }
+
+        .form-body {
+            padding: 16px;
+        }
+    }
+
+    &.source-wrapper {
+
+        .preview-img-wrapper {
+            padding: 10px;
+        }
+
+        h4, p {
+            margin: 0;
+        }
+
+        a {
+            color: rgb(63,81,181);
+        }
+
+    }
+
+    &.character-wrapper {
+
+        .character-avatar-wrapper {
+            width: 140px;
+        }
+
+        .character-info {
+            width: 100%;
+            margin-left: 16px;
+            padding: 16px;
+
+            h3, h4, p {
+                margin: 0 0 3px 0;
+                font-weight: 400;
+            }
+
+            h3 {
+                font-size: 1.1em;
+            }
+
+            h4 {
+                font-size: 0.9em;
+            }
+
+            p {
+                font-size: 0.75em;
+            }
+        }
+
+        .face {
+            border-radius: 50px;
+            border: 1px solid #ddd;
+            width: 100px;
+            margin: 16px;
+        }
+    }
+
+    &.quote-wrapper, &.quote-detail-wrapper {
+        .quote {
+            padding: 16px;
+        }
+
+        .face {
+            border-radius: 16px;
+            border: 1px solid #ddd;
+            width: 32px;
+            margin-right: 10px;
+        }
+
+    }
+
+    &.quote-detail-wrapper {
+        width: 100%;
+
+        .related-characters, .reference {
+            padding: 16px;
+
+            h3 {
+                margin: 0 0 1em;
+                color: @color-gray;
+            }
+        }
+
+        .related-characters {
+            background-color: #f0eeeb;
+        }
+
+        .reference {
+            h3 {
+                margin: 0;
+            }
+        }
+
+        .contributor {
+            height: 52px;
+            padding: 10px 16px;
+            line-height: 32px;
+
+            img {
+                vertical-align: bottom;
+            }
+
+        }
+
+    }
+}

@@ -5,7 +5,7 @@
           <md-tab label="安全设置"></md-tab>
     </md-tabs>
 
-    <div layout="vertical"
+    <div layout="column"
          flex-lg="60"
          flex-md="80"
          offset-lg="20"
@@ -14,7 +14,7 @@
 
         <div ng-switch on="selectedIndex">
 
-            <md-card layout="vertical" ng-switch-when="0">
+            <md-card layout="column" ng-switch-when="0">
 
                 <form role="form"
                       name="userProfileForm"
@@ -23,7 +23,7 @@
 
                     <h3>个人设置</h3>
 
-                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="row">
 
                         <p flex="30">昵称</p>
 
@@ -39,7 +39,7 @@
                     </md-input-group>
 
 
-                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="row">
 
                         <p flex="30">个人网站</p>
 
@@ -54,7 +54,7 @@
 
                     </md-input-group>
 
-                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="row">
 
                         <p flex="30">自我介绍</p>
 
@@ -69,7 +69,7 @@
 
                     </md-input-group>
 
-                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="row">
 
                         <p flex="30">用户头像</p>
 
@@ -90,7 +90,7 @@
 
                     </md-input-group>
 
-                    <div layout="horizontal" layout-align="end">
+                    <div layout="row" layout-align="end">
                         <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
                     </div>
 
@@ -107,7 +107,7 @@
 
                     <h3>安全设置</h3>
 
-                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="row">
 
                         <p flex="30">旧密码</p>
 
@@ -122,7 +122,7 @@
 
                     </md-input-group>
 
-                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="row">
 
                         <p flex="30">新密码</p>
 
@@ -137,7 +137,7 @@
 
                     </md-input-group>
 
-                    <md-input-group class="md-input-group-theme-light" layout="horizontal">
+                    <md-input-group class="md-input-group-theme-light" layout="row">
 
                         <p flex="30">确认新密码</p>
 
@@ -152,7 +152,7 @@
 
                     </md-input-group>
 
-                    <div layout="horizontal" layout-align="end">
+                    <div layout="row" layout-align="end">
                         <md-button type="submit">提交</md-button>
                     </div>
 

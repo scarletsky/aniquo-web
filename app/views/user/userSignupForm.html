@@ -1,72 +1,41 @@
-<div layout="vertical"
-     flex-lg="60"
-     flex-md="80"
-     offset-lg="20"
-     offset-md="10"
-     offset-sm="0">
+<div layout="row" layout-align="center">
+    
+    <md-card class="form-wrapper" flex="60">
+          
+        <h3>Sign Up</h3>
 
-    <md-card layout="vertical">
+        <md-divider></md-divider>
 
-        <form role="form"
-              name="signupForm"
-              novalidate
-              ng-submit="signup()"
-              ng-controller="AuthCtrl">
+        <div class="form-body">
 
-            <h3>注册</h3>
+            <md-input-container>
+                <label>Username</label>
+                <input type="text">
+            </md-input-container>
 
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
+            <md-input-container>
+                <label>Password</label>
+                <input type="password">
+            </md-input-container>
 
-                <p flex="30">用户名</p>
+            <md-input-container>
+                <label>Password Confirm</label>
+                <input type="password">
+            </md-input-container>
 
-                <md-input type="text" 
-                          name="username"
-                          id="username"
-                          ng-model="user.username"    
-                          required
-                          flex="70"
-                          inline-block
-                          placeholder="请输入用户名"></md-input>
+            <md-input-container>
+                <label>Promo Code</label>
+                <input type="text">
+            </md-input-container>
 
-            </md-input-group>
+        </div>
 
+        <md-divider></md-divider>
 
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
-
-                <p flex="30">密码</p>
-
-                <md-input type="password"
-                          name="password"
-                          id="password"
-                          ng-model="user.password"
-                          required
-                          flex="70"
-                          inline-block
-                          placeholder="请输入密码"></md-input>
-
-            </md-input-group>
-
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
-
-                <p flex="30">确认密码</p>
-
-                <md-input type="password"
-                          name="password2"
-                          id="password2"
-                          ng-model="user.password2"
-                          required
-                          flex="70"
-                          inline-block
-                          placeholder="请确认密码"></md-input>
-
-            </md-input-group>
-
-            <div layout="horizontal" layout-align="end">
-                <md-button type="submit">注册</md-button>
-            </div>
-
-        </form>
+        <div class="form-body" layout="row" layout-align="end" layout-margin>
+           <md-button class="md-raised" flex="15">Reset</md-button> 
+           <md-button class="md-raised md-primary" flex="15">Sign Up</md-button> 
+        </div>
 
     </md-card>
-
 </div>

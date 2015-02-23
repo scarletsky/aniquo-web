@@ -1,49 +1,70 @@
-<div layout="vertical"
-     flex-lg="60"
-     flex-md="80"
-     offset-lg="20"
-     offset-md="10"
-     offset-sm="0">
+<div layout="row" layout-align="center">
 
-    <md-card ng-repeat="object in objects"
-                   bd-linkify="/characters/{{ object._id }}/quotes">
-        <md-list>
-            <md-item>
-                <md-item-content>
+    <div layout="column" flex="60">
 
-                    <div class="md-tile-left avatar avatar-medium">
+        <md-card class="character-wrapper" layout="row" layout-align="center center">
+            <div class="character-avatar-wrapper">
+                <img ng-src="http://placehold.it/100x100" class="face">
+            </div>
 
-                        <div width="100"
-                             height="100"
-                             bd-bg-image="{{ object.avatar }}"
-                             ng-if="object.avatar && object.avatar.length > 20"></div>
+            <div class="character-info">
+                <h3>Brunch this weekend?</h3>
+                <h4>Min Li Chan</h4>
+                <p>I'll be in your neighborhood doing errands</p>
+            </div>
+        </md-card>
 
-                        <img class="border-common"
-                             src="http://placehold.it/100x100"
-                             ng-if="!object.avatar || object.avatar.length < 20" />
-                    </div>
+        <md-card class="character-wrapper" layout="row" layout-align="center center">
+            <div class="character-avatar-wrapper">
+                <img ng-src="http://placehold.it/100x100" class="face">
+            </div>
 
-                    <div class="md-tile-content">
-                        <h2 ng-bind="object.name"></h2>
-                        <h3 ng-if="object.alias.length !== 0">
-                            <span>别名：</span>
-                            <span class="margin-right-10"
-                                  ng-repeat="alias in object.alias track by $index"
-                                  ng-bind="alias"></span>
-                        </h3>
-                    </div>
+            <div class="character-info">
+                <h3>Brunch this weekend?</h3>
+                <h4>Min Li Chan</h4>
+                <p>I'll be in your neighborhood doing errands</p>
+            </div>
+        </md-card>
 
-                </md-item-content>
-            </md-item>
+        <md-card class="character-wrapper" layout="row" layout-align="center center">
+            <div class="character-avatar-wrapper">
+                <img ng-src="http://placehold.it/100x100" class="face">
+            </div>
 
-        </md-list>
-    </md-card>
+            <div class="character-info">
+                <h3>Brunch this weekend?</h3>
+                <h4>Min Li Chan</h4>
+                <p>I'll be in your neighborhood doing errands</p>
+            </div>
+        </md-card>
 
-    <md-card ng-if="objects.length === 0">
-        <p>什么也找不到</p>
-    </md-card>
-</div>
+        <md-card class="character-wrapper" layout="row" layout-align="center center">
+            <div class="character-avatar-wrapper">
+                <img ng-src="http://placehold.it/100x100" class="face">
+            </div>
 
-<div ng-if="hasPrevPage || hasNextPage">
-    <div ng-include="'views/partials/pagination.html'"></div>
+            <div class="character-info">
+                <h3>Brunch this weekend?</h3>
+                <h4>Min Li Chan</h4>
+                <p>I'll be in your neighborhood doing errands</p>
+            </div>
+        </md-card>
+
+        <md-card class="character-wrapper" layout="row" layout-align="center center">
+            <div class="character-avatar-wrapper">
+                <img ng-src="http://placehold.it/100x100" class="face">
+            </div>
+
+            <div class="character-info">
+                <h3>Brunch this weekend?</h3>
+                <h4>Min Li Chan</h4>
+                <p>I'll be in your neighborhood doing errands</p>
+            </div>
+        </md-card>
+
+
+
+
+    </div>
+
 </div>

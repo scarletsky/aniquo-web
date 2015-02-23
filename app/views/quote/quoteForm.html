@@ -1,147 +1,41 @@
-<div layout="vertical"
-     flex-lg="60"
-     flex-md="80"
-     offset-lg="20"
-     offset-md="10"
-     offset-sm="0">
+<div layout="row" layout-align="center" ng-controller="DemoCtrl as ctrl">
+    
+    <md-card class="form-wrapper" flex="60">
+          
+        <h3>Quote Form</h3>
 
-    <md-card layout="vertical">
+        <md-divider></md-divider>
 
-        <form role="form"
-              name="quoteEditForm"
-              novalidate
-              ng-submit="submit()">
+        <div class="form-body">
 
-            <h3>编辑语录</h3>
+            <md-autocomplete
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItem"
+                md-search-text="ctrl.searchText"
+                md-items="item in ctrl.querySearch(ctrl.searchText)"
+                md-item-text="item.display"
+                placeholder="Character Source">
+                <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+            </md-autocomplete>
 
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
+            <md-input-container>
+                <label>Quote Reference</label>
+                <input type="text">
+            </md-input-container>
 
-                <p flex="30">语录关联角色</p>
+            <md-input-container>
+                <label>Quote Detail</label>
+                <textarea></textarea>
+            </md-input-container>
 
-                <div class="md-input-with-addon left-addon" flex="70">
+        </div>
 
-                    <md-input type="hidden"
-                              name="characterIds"
-                              id="characterIds"
-                              ng-model="quote.characterIds"
-                              bd-auto-complete-type="array"
-                              bd-auto-complete="id"></md-input>
+        <md-divider></md-divider>
 
-                    <div class="md-input-with-addon left-addon right-addon"
-                         ng-repeat="name in quote.characterNames track by $index">
-
-                        <p class="left-addon">q</p>
-
-                        <p class="right-addon"
-                           ng-click="removeCharacter($event, $index)"
-                           ng-if="$index !== 0">x</p>
-                        
-                        <md-input type="text"
-                                  name="characterName"
-                                  id="characterName"
-                                  ng-model="quote.characterNames[$index]"
-                                  ng-keydown="keydownSelect($event, $index)"
-                                  required
-                                  layout-fill
-                                  bd-search
-                                  bd-search-type="character"
-                                  bd-search-index="{{ $index }}"
-                                  bd-select-searching
-                                  bd-auto-complete="name"
-                                  placeholder="请输入语录所属角色名字或别名"></md-input>
-
-                        <md-list class="md-list-dropdown"
-                                 layout-fill
-                                 table
-                                 ng-show="isListShow">
-
-                            <md-item ng-repeat="result in results | limitTo: 3">
-                                <div class="md-tile-content"
-                                     ng-click="clickSelect(result, $parent.$index)"
-                                     object-id="{{ result._id }}">
-                                    <p ng-bind="result.name"></p>
-                                </div>
-                            </md-item>
-
-                        </md-list>
-                    </div>
-
-                </div>
-
-            </md-input-group>
-
-            <md-input-group class="md-input-group-theme-light"
-                                  layout="horizontal">
-
-                <p flex="30">语录出处</p>
-
-                <md-input type="text" 
-                          name="reference"
-                          id="reference"
-                          ng-model="quote.reference"    
-                          required
-                          flex="70"
-                          inline-block
-                          placeholder="请输入语录出处"></md-input>
-
-            </md-input-group>
-
-
-            <md-input-group class="md-input-group-theme-light" 
-                                  layout="horizontal">
-
-                <p flex="30">语录详细信息</p>
-
-                <textarea type="text"
-                          name="quote"
-                          id="quote"
-                          ng-model="quote.quote"
-                          required
-                          flex="70"
-                          inline-block
-                          rows="5"
-                          placeholder="请输入语录详细信息"></textarea>
-
-<!--                 <md-input type="text"
-                                name="quote"
-                                id="quote"
-                                ng-model="quote.quote"
-                                required
-                                flex="70"
-                                inline-block
-                                placeholder="请输入语录详细信息"></md-input>
-
- -->            </md-input-group>
-
-                     <md-input-group class="md-input-group-theme-light" layout="horizontal">
-
-                        <p flex="30">语录场景</p>
-
-                        <div class="margin-top-15 scene scene-medium cursor border-common"
-                             bd-upload
-                             upload-type="quoteScene"
-                             upload-target="quote.scene"
-                             upload-status="uploadStatus">
-
-                            <div bd-bg-image="{{ quote.scene }}"></div>
-
-                            <input class="hidden"
-                                   type="file"
-                                   name="scene"
-                                   id="scene"
-                                   ng-model="quote.scene"/>
-                        </div>
-
-                    </md-input-group>
-
-
-            <div layout="horizontal" layout-align="end">
-                <md-button ng-click="addCharacter($event)">添加关联角色</md-button>
-                <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
-            </div>
-
-        </form>
+        <div class="form-body" layout="row" layout-align="end" layout-margin>
+           <md-button class="md-raised" flex="15">Reset</md-button> 
+           <md-button class="md-raised md-primary" flex="15">Submit</md-button> 
+        </div>
 
     </md-card>
-
 </div>

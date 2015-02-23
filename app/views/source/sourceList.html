@@ -1,48 +1,106 @@
-<div layout="vertical"
-     flex-lg="60"
-     flex-md="80"
-     offset-lg="20"
-     offset-md="10"
-     offset-sm="0">
+<div layout="row" layout-align="center">
+    
+    <div layout="row" layout-align="space-between" flex="60" flex-sm="100" layout-wrap>
+        
+        <!-- 1 -->
+        <md-card class="source-wrapper" flex="45" flex-sm="100">
+            <div class="preview-img-wrapper">
+                <img src="http://placehold.it/500x500" alt="Washed Out">
+            </div>
 
-    <md-card ng-repeat="object in objects"
-             bd-linkify="/sources/{{ object._id }}/characters">
+            <md-divider></md-divider>
 
-        <md-list>
-            <md-item>
-                <md-item-content>
+            <md-card-content>
+                <h4>Code Geass</h4>
+                <p>
+                    Contribute by <a href="#">Scarlex</a>
+                </p>
+            </md-card-content>
 
-                    <div class="md-tile-left cover cover-medium">
-                        <div width="150"
-                             height="150"
-                             bd-bg-image="{{ object.cover }}"
-                             ng-if="object.cover && object.cover.length > 20"></div>
+        </md-card>
 
-                        <img class="border-common"
-                             src="http://placehold.it/150x150"
-                             ng-if="!object.cover || object.cover.length < 20">
-                    </div>
+        <!-- 2 -->
+        <md-card class="source-wrapper" flex="45">
+            <div class="preview-img-wrapper">
+                <img src="http://placehold.it/500x500" alt="Washed Out">
+            </div>
 
-                    <div class="md-tile-content">
-                        <h2 ng-bind="object.name"></h2>
-                        <h3 ng-if="object.alias.length !== 0">
-                            <span>别名：</span>
-                            <span class="margin-right-10"
-                                  ng-repeat="alias in object.alias track by $index"
-                                  ng-bind="alias"></span>
-                        </h3>
-                    </div>
-                </md-item-content>
-            </md-item>
-        </md-list>
+            <md-divider></md-divider>
 
-    </md-card>
+            <md-card-content>
+                <h4>Code Geass</h4>
+                <p>
+                    Contribute by <a href="#">Scarlex</a>
+                </p>
+            </md-card-content>
 
-    <md-card ng-if="objects.length === 0">
-        <p>什么也找不到</p>
-    </md-card>
+        </md-card>
+
+        <md-card class="source-wrapper" flex="45">
+            <div class="preview-img-wrapper">
+                <img src="http://placehold.it/500x500" alt="Washed Out">
+            </div>
+
+            <md-divider></md-divider>
+
+            <md-card-content>
+                <h4>Code Geass</h4>
+                <p>
+                    Contribute by <a href="#">Scarlex</a>
+                </p>
+            </md-card-content>
+
+        </md-card>
+
+        <md-card class="source-wrapper" flex="45">
+            <div class="preview-img-wrapper">
+                <img src="http://placehold.it/500x500" alt="Washed Out">
+            </div>
+
+            <md-divider></md-divider>
+
+            <md-card-content>
+                <h4>Code Geass</h4>
+                <p>
+                    Contribute by <a href="#">Scarlex</a>
+                </p>
+            </md-card-content>
+
+        </md-card>
+
+        <md-card class="source-wrapper" flex="45">
+            <div class="preview-img-wrapper">
+                <img src="http://placehold.it/500x500" alt="Washed Out">
+            </div>
+
+            <md-divider></md-divider>
+
+            <md-card-content>
+                <h4>Code Geass</h4>
+                <p>
+                    Contribute by <a href="#">Scarlex</a>
+                </p>
+            </md-card-content>
+
+        </md-card>
+
+        <md-card class="source-wrapper" flex="45">
+            <div class="preview-img-wrapper">
+                <img src="http://placehold.it/500x500" alt="Washed Out">
+            </div>
+
+            <md-divider></md-divider>
+
+            <md-card-content>
+                <h4>Code Geass</h4>
+                <p>
+                    Contribute by <a href="#">Scarlex</a>
+                </p>
+            </md-card-content>
+
+        </md-card>
+
+    </div>
+
 </div>
 
-<div ng-if="hasPrevPage || hasNextPage">
-    <div ng-include="'views/partials/pagination.html'"></div>
-</div>

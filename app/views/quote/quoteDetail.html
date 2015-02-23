@@ -1,98 +1,40 @@
-<div layout="vertical"
-     id="contentBody"
-     flex-lg="60"
-     flex-md="80"
-     offset-lg="20"
-     offset-md="10"
-     offset-sm="0">
+<div layout="row" layout-align="center">
 
-    <md-card layout="vertical">
-        <md-list>
-            <md-item>
-                <md-item-content>
-                    
-                   <div class="md-tile-left avatar avatar-medium">
+    <div layout="row" flex="60">
 
-                        <div width="100"
-                             height="100"
-                             bd-bg-image="{{ quote.character.avatar }}"
-                             ng-if="quote.character.avatar && quote.character.avatar.length > 20"></div>
+        <md-card class="quote-detail-wrapper">
+            <div class="quote">
+                <p> 鲁鲁修：呐，朱雀。你不觉得愿望和 Geass 很像吗？</p>
+                <p>朱雀：诶？</p>
+                <p>鲁鲁修：靠自己无法实现的事会寻求他人。</p>
+                <p>朱雀：愿望吗？</p>
+                <p>鲁鲁修：对。我就对所有人使用名为愿望的 Geass，为了世界的明天。</p>
+            </div>
 
-                        <img class="border-common"
-                             src="http://placehold.it/100x100"
-                             ng-if="!quote.character.avatar || quote.character.avatar.length < 20" />
+            <md-divider></md-divider>
 
-                    </div>
+            <div class="reference" layout="row" layout-align="end">
+                <h3>Reference R2第25话</h3>
+            </div>
 
-                    <div class="md-tile-content">
-                        <h2 ng-bind="quote.character.name"></h2>
-                        <h3 ng-if="quote.character.alias.length !== 0">
-                            <span>别名：</span>
-                            <span class="margin-right-10"
-                                  ng-repeat="alias in quote.character.alias track by $index"
-                                  ng-bind="alias"></span>
-                        </h3>
-                    </div>
+            <md-divider></md-divider>
 
-                </md-item-content>
- 
-            </md-item>
-        </md-list>
+            <div class="related-characters">
 
-        <md-divider></md-divider>
+                <h3>Related Characters</h3>
 
-        <div layout="horizontal">
-            <div marked="quote.quote"></div>
-        </div>
+                <img ng-src="http://placehold.it/100x100" class="face">
+                <img ng-src="http://placehold.it/100x100" class="face">
+            </div>
 
-        <div layout="horizontal" layout-align="end">
-            <p class="margin-top-0"
-               ng-if="quote.reference && quote.reference.length !== 0"
-               ng-bind-template="—— 出自 {{ quote.reference }}"></p>
-        </div>
+            <md-divider></md-divider>
 
-        <div layout="horizontal" layout-align="center"
-             ng-if="quote.scene && quote.scene.length > 20">
+            <div class="contributor">
+                <img ng-src="http://placehold.it/100x100" class="face">
+                Submitted at 2015-02-20
+            </div>
 
-            <div bd-bg-image="{{ quote.scene }}"></div>
+        </md-card>
+    </div>
 
-        </div>
-
-        <div layout="horizontal" layout-align="end">
-            <div ng-if="session.isAuthenticated()"
-                 bd-like="quote"
-                 bd-like-type="quotes"></div>
-        </div>
-
-    </md-card>
-
-    <md-card layout="vertical" layout-align="start">
-
-        <div layout="horizontal">
-            <label flex-lg="15"
-                   flex-md="15"
-                   flex-sm="25">contributor:</label>
-            <span flex
-                  ng-bind="quote.contributor.username"></span>
-        </div>
-
-        <div layout="horizontal">
-            <label flex="15">view count:</label>
-            <span flex
-                  ng-bind="quote.viewCount"></span>
-        </div>
-
-        <div layout="horizontal">
-            <label flex="15">like count:</label>
-            <span flex
-                  ng-bind="quote.likeCount"></span>
-        </div>
-
-        <div layout="horizontal">
-            <label flex="15">create at:</label>
-            <span flex
-                  ng-bind="quote.createdAt"></span>
-        </div>
-
-    </md-card>
 </div>

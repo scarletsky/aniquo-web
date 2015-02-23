@@ -1,102 +1,40 @@
-<div layout="vertical"
-     flex-lg="60"
-     flex-md="80"
-     offset-lg="20"
-     offset-md="10"
-     offset-sm="0">
+<div layout="row" layout-align="center">
+    
+    <md-card class="form-wrapper" flex="60">
+          
+        <h3>Source Form</h3>
 
-    <md-card layout="vertical">
+        <md-divider></md-divider>
 
-        <form role="form"
-              name="sourceEditForm"
-              novalidate
-              ng-submit="submit()">
+        <div class="form-body">
 
-            <h3>编辑作品</h3>
+            <md-input-container>
+                <label>Source Name</label>
+                <input type="text">
+            </md-input-container>
 
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
+            <md-input-container>
+                <label>Source Alias</label>
+                <input type="text">
+            </md-input-container>
 
-                <p flex="30">作品名称</p>
+            <md-input-container>
+                <label>Source Description</label>
+                <textarea></textarea>
+            </md-input-container>
 
-                <md-input type="text" 
-                          name="name"
-                          id="name"
-                          ng-model="source.name"    
-                          required
-                          flex="70"
-                          inline-block
-                          placeholder="请输入作品名称"></md-input>
+            <!-- Source Cover Field -->
 
-            </md-input-group>
+        </div>
 
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
+        <md-divider></md-divider>
 
-                <p flex="30">作品信息</p>
-
-                <md-input type="text"
-                          name="info"
-                          id="info"
-                          ng-model="source.info"
-                          required
-                          flex="70"
-                          inline-block
-                          placeholder="请输入作品信息"></md-input>
-
-            </md-input-group>
-
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
-
-                <p flex="30">作品别名</p>
-
-                <div layout="vertical" flex="70">
-                    
-                    <div class="md-input-with-addon right-addon"
-                         ng-repeat="object in source.alias track by $index">
-
-                        <p class="right-addon"
-                           ng-click="removeAlias($event, $index)"
-                           ng-if="$index !== 0">x</p>
-
-                        <md-input type="text"
-                                  name="alias"
-                                  id="alias"
-                                  ng-model="source.alias[$index]"
-                                  required
-                                  layout-fill
-                                  placeholder="请输入作品别名"></md-input>
-                    </div>
-                </div>
-
-            </md-input-group>
-
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
-
-                <p flex="30">封面</p>
-
-                <div class="margin-top-15 cover cover-large cursor border-common"
-                     bd-upload
-                     upload-type="sourceCover"
-                     upload-target="source.cover"
-                     upload-status="uploadStatus">
-
-                    <div bd-bg-image="{{ source.cover }}"></div>
-
-                    <input class="hidden"
-                           type="file"
-                           name="cover"
-                           id="cover"
-                           ng-model="source.cover"/>
-                </div>
-
-            </md-input-group>
-
-            <div layout="horizontal" layout-align="end">
-                <md-button ng-click="addAlias($event)">添加别名</md-button>
-                <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
-            </div>
-
-        </form>
+        <div class="form-body" layout="row" layout-align="end" layout-margin>
+           <md-button class="md-raised" flex="15">Reset</md-button> 
+           <md-button class="md-raised md-primary" flex="15">Submit</md-button> 
+        </div>
 
     </md-card>
 
 </div>
+

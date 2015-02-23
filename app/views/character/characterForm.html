@@ -1,152 +1,47 @@
-<div layout="vertical"
-     flex-lg="60"
-     flex-md="80"
-     offset-lg="20"
-     offset-md="10"
-     offset-sm="0">
+<div layout="row" layout-align="center" ng-controller="DemoCtrl as ctrl">
+    
+    <md-card class="form-wrapper" flex="60">
+          
+        <h3>Character Form</h3>
 
-    <md-card layout="vertical">
+        <md-divider></md-divider>
 
-        <form role="form"
-              name="sourceEditForm"
-              novalidate
-              ng-submit="submit()">
+        <div class="form-body">
 
-            <h3>编辑角色</h3>
+            <md-autocomplete
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItem"
+                md-search-text="ctrl.searchText"
+                md-items="item in ctrl.querySearch(ctrl.searchText)"
+                md-item-text="item.display"
+                placeholder="Character Source">
+                <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+            </md-autocomplete>
 
-            <md-input-group class="md-input-group-theme-light"
-                                  layout="horizontal">
+            <md-input-container>
+                <label>Character Name</label>
+                <input type="text">
+            </md-input-container>
 
-                <p flex="30">角色名称</p>
+            <md-input-container>
+                <label>Character Alias</label>
+                <input type="text">
+            </md-input-container>
 
-                <md-input type="text" 
-                          name="name"
-                          id="name"
-                          ng-model="character.name"    
-                          required
-                          flex="70"
-                          inline-block
-                          placeholder="请输入角色名称"></md-input>
+            <md-input-container>
+                <label>Character Description</label>
+                <textarea></textarea>
+            </md-input-container>
 
-            </md-input-group>
+            <!-- Character Avatar Field -->
+        </div>
 
+        <md-divider></md-divider>
 
-            <md-input-group class="md-input-group-theme-light" 
-                                  layout="horizontal">
-
-                <p flex="30">角色信息</p>
-
-                <md-input type="text"
-                          name="info"
-                          id="info"
-                          ng-model="character.info"
-                          required
-                          flex="70"
-                          inline-block
-                          placeholder="请输入角色信息"></md-input>
-
-            </md-input-group>
-
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
-
-                <p flex="30">角色所属作品</p>
-
-                <div class="md-input-with-addon left-addon" flex="70">
-
-                    <p class="left-addon">q</p>
-
-                    <md-input type="hidden"
-                              name="sourceId"
-                              id="sourceId"
-                              ng-model="character.sourceId"
-                              bd-auto-complete="id"></md-input>
-                    
-                    <md-input type="text"
-                              name="sourceName"
-                              id="sourceName"
-                              ng-model="character.sourceName"
-                              ng-keydown="keydownSelect($event)"
-                              required
-                              layout-fill
-                              bd-search
-                              bd-search-type="source"
-                              bd-select-searching
-                              bd-auto-complete="name"
-                              placeholder="请输入角色所属作品名字或别名"></md-input>
-
-                    <md-list class="md-list-dropdown"
-                             layout-fill
-                             table
-                             ng-show="isListShow">
-
-                        <md-item ng-repeat="result in results | limitTo: 3">
-                            <div class="md-tile-content"
-                                 ng-click="clickSelect(result)"
-                                 object-id="{{ result._id }}">
-                                <p ng-bind="result.name"></p>
-                            </div>
-                        </md-item>
-
-                    </md-list>
-
-                </div>
-
-            </md-input-group>
-
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
-
-                <p flex="30">角色别名</p>
-
-                <div layout="vertical" flex="70">
-                    
-                    <div class="md-input-with-addon right-addon"
-                         ng-repeat="object in character.alias track by $index">
-
-                        <p class="right-addon"
-                           ng-click="removeAlias($event, $index)"
-                           ng-if="$index !== 0">x</p>
-
-                        <md-input type="text"
-                                  name="alias"
-                                  id="alias"
-                                  ng-model="character.alias[$index]"
-                                  required
-                                  layout-fill
-                                  placeholder="请输入角色别名"></md-input>
-
-                    </div>
-                </div>
-
-            </md-input-group>
-
-            <md-input-group class="md-input-group-theme-light" layout="horizontal">
-
-                <p flex="30">角色头像</p>
-
-                <div class="margin-top-15 avatar avatar-large cursor border-common"
-                     bd-upload
-                     upload-type="characterAvatar"
-                     upload-target="character.avatar"
-                     upload-status="uploadStatus">
-
-                    <div bd-bg-image="{{ character.avatar }}"></div>
-
-                    <input class="hidden"
-                           type="file"
-                           name="avatar"
-                           id="avatar"
-                           ng-model="character.avatar"/>
-                </div>
-
-            </md-input-group>
-
-            <div layout="horizontal" layout-align="end">
-                <md-button ng-click="addAlias($event)">添加别名</md-button>
-                <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
-            </div>
-
-        </form>
+        <div class="form-body" layout="row" layout-align="end" layout-margin>
+           <md-button class="md-raised" flex="15">Reset</md-button> 
+           <md-button class="md-raised md-primary" flex="15">Submit</md-button> 
+        </div>
 
     </md-card>
-
 </div>
