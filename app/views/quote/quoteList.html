@@ -1,121 +1,28 @@
-<div layout="row" layout-align="center">
+<div
+    layout="row"
+    layout-align="center"
+    ng-controller="QuoteListCtrl">
+    
+    <div
+        layout="row" 
+        layout-align="space-between"
+        flex="60"
+        flex-sm="100"
+        layout-wrap
+        infinite-scroll="addQuotes()"
+        infinite-scroll-distance='200'>
+        
+        <div layout="column" layout-fill>
 
-    <div layout="row" flex="60">
-
-        <div layout="column">
-
-            <md-card class="quote-wrapper">
+            <md-card class="quote-wrapper" ng-repeat="object in objects">
                 <div class="quote">
-                    <marked>鲁鲁修：呐，朱雀。你不觉得愿望和 Geass 很像吗？\n\n朱雀：诶？\n\n鲁鲁修：靠自己无法实现的事会寻求他人。\n\n朱雀：愿望吗？\n\n鲁鲁修：对。我就对所有人使用名为愿望的 Geass，为了世界的明天。</marked>
+                    <div marked="object.quote"></div>
                 </div>
 
                 <md-divider></md-divider>
 
                 <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                </md-card-content>
-
-            </md-card>
-
-
-            <md-card class="quote-wrapper">
-                <div class="quote">
-                    <marked>C.C.：后悔了吗？因为把友人的父亲卷了进来。你对桐原说过吧，“真软弱”，说自己会走上修罗之路。\n\n鲁鲁修：闭嘴。\n\nC.C.：但软弱的人是你，你想说你只是把这当作游戏吗？到现在为止你已经杀了很多人了，用你的双手，或是用你说过的话。\n\n鲁鲁修：闭嘴。\n\nC.C.：那些人也有家人，也有恋人和友人。难道你想说你还不了解这些吗？你的觉悟只是这种程度。\n\n鲁鲁修：闭嘴！我当然有觉悟。自从那时，杀死克洛维斯的那时候开始。C.C.：那么，现在为什么迷茫了？还是说因为感情而动摇了？抱在一起接吻。不管说得有多么了不起，到头来只不过是个只会夸下海口，脑筋迟钝的童贞小鬼而已。你已经没有动摇和停止前进的权利了，这是为了生存下去所需要的吧。别让我失望了。</marked>
-                </div>
-
-                <md-divider></md-divider>
-
-                <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                </md-card-content>
-
-            </md-card>
-
-            <md-card class="quote-wrapper">
-                <div class="quote">
-                    <marked>鲁鲁修：呐，朱雀。你不觉得愿望和 Geass 很像吗？\n\n朱雀：诶？\n\n鲁鲁修：靠自己无法实现的事会寻求他人。\n\n朱雀：愿望吗？\n\n鲁鲁修：对。我就对所有人使用名为愿望的 Geass，为了世界的明天。</marked>
-                </div>
-
-                <md-divider></md-divider>
-
-                <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                </md-card-content>
-
-            </md-card>
-
-
-            <md-card class="quote-wrapper">
-                <div class="quote">
-                    <marked>C.C.：后悔了吗？因为把友人的父亲卷了进来。你对桐原说过吧，“真软弱”，说自己会走上修罗之路。\n\n鲁鲁修：闭嘴。\n\nC.C.：但软弱的人是你，你想说你只是把这当作游戏吗？到现在为止你已经杀了很多人了，用你的双手，或是用你说过的话。\n\n鲁鲁修：闭嘴。\n\nC.C.：那些人也有家人，也有恋人和友人。难道你想说你还不了解这些吗？你的觉悟只是这种程度。\n\n鲁鲁修：闭嘴！我当然有觉悟。自从那时，杀死克洛维斯的那时候开始。C.C.：那么，现在为什么迷茫了？还是说因为感情而动摇了？抱在一起接吻。不管说得有多么了不起，到头来只不过是个只会夸下海口，脑筋迟钝的童贞小鬼而已。你已经没有动摇和停止前进的权利了，这是为了生存下去所需要的吧。别让我失望了。</marked>
-                </div>
-
-                <md-divider></md-divider>
-
-                <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                </md-card-content>
-
-            </md-card>
-
-            <md-card class="quote-wrapper">
-                <div class="quote">
-                    <marked>鲁鲁修：呐，朱雀。你不觉得愿望和 Geass 很像吗？\n\n朱雀：诶？\n\n鲁鲁修：靠自己无法实现的事会寻求他人。\n\n朱雀：愿望吗？\n\n鲁鲁修：对。我就对所有人使用名为愿望的 Geass，为了世界的明天。</marked>
-                </div>
-
-                <md-divider></md-divider>
-
-                <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                </md-card-content>
-
-            </md-card>
-
-
-            <md-card class="quote-wrapper">
-                <div class="quote">
-                    <marked>C.C.：后悔了吗？因为把友人的父亲卷了进来。你对桐原说过吧，“真软弱”，说自己会走上修罗之路。\n\n鲁鲁修：闭嘴。\n\nC.C.：但软弱的人是你，你想说你只是把这当作游戏吗？到现在为止你已经杀了很多人了，用你的双手，或是用你说过的话。\n\n鲁鲁修：闭嘴。\n\nC.C.：那些人也有家人，也有恋人和友人。难道你想说你还不了解这些吗？你的觉悟只是这种程度。\n\n鲁鲁修：闭嘴！我当然有觉悟。自从那时，杀死克洛维斯的那时候开始。C.C.：那么，现在为什么迷茫了？还是说因为感情而动摇了？抱在一起接吻。不管说得有多么了不起，到头来只不过是个只会夸下海口，脑筋迟钝的童贞小鬼而已。你已经没有动摇和停止前进的权利了，这是为了生存下去所需要的吧。别让我失望了。</marked>
-                </div>
-
-                <md-divider></md-divider>
-
-                <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                </md-card-content>
-
-            </md-card>
-
-            <md-card class="quote-wrapper">
-                <div class="quote">
-                    <marked>鲁鲁修：呐，朱雀。你不觉得愿望和 Geass 很像吗？\n\n朱雀：诶？\n\n鲁鲁修：靠自己无法实现的事会寻求他人。\n\n朱雀：愿望吗？\n\n鲁鲁修：对。我就对所有人使用名为愿望的 Geass，为了世界的明天。</marked>
-                </div>
-
-                <md-divider></md-divider>
-
-                <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                </md-card-content>
-
-            </md-card>
-
-
-            <md-card class="quote-wrapper">
-                <div class="quote">
-                    <marked>C.C.：后悔了吗？因为把友人的父亲卷了进来。你对桐原说过吧，“真软弱”，说自己会走上修罗之路。\n\n鲁鲁修：闭嘴。\n\nC.C.：但软弱的人是你，你想说你只是把这当作游戏吗？到现在为止你已经杀了很多人了，用你的双手，或是用你说过的话。\n\n鲁鲁修：闭嘴。\n\nC.C.：那些人也有家人，也有恋人和友人。难道你想说你还不了解这些吗？你的觉悟只是这种程度。\n\n鲁鲁修：闭嘴！我当然有觉悟。自从那时，杀死克洛维斯的那时候开始。C.C.：那么，现在为什么迷茫了？还是说因为感情而动摇了？抱在一起接吻。不管说得有多么了不起，到头来只不过是个只会夸下海口，脑筋迟钝的童贞小鬼而已。你已经没有动摇和停止前进的权利了，这是为了生存下去所需要的吧。别让我失望了。</marked>
-                </div>
-
-                <md-divider></md-divider>
-
-                <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="face">
-                    <img ng-src="http://placehold.it/100x100" class="face">
+                    <img ng-src="http://placehold.it/100x100" class="face" ng-repeat="character in object.characterIds">
                 </md-card-content>
 
             </md-card>

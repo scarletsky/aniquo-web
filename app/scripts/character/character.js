@@ -54,28 +54,21 @@ function CharacterListCtrl (
 ) {
   'use strict';
 
-  $scope.g = G;
-  var sourceId = $routeParams.sourceId;
-  var page = $location.search().page || 1;
+  var page = 1;
 
-  $scope.prevPage = function () {
-    $location.path('/sources/' + sourceId + '/characters').search('page', --page);
-  };
+  $scope.addCharacters = function () {
 
-  $scope.nextPage = function () {
-    $location.path('/sources/' + sourceId + '/characters').search('page', ++page);
-  };
+    if (!$scope.pageCount || page <= $scope.pageCount) {
 
-  Restangular
-    .one('sources/' + sourceId +'/characters' + 
-         '?page=' + page)
-    .get()
-    .then(function (res) {
-      res = res.plain();
-      $scope.objects = res.objects;
+      Restangular
+        .one('characters')
+        .get({page: page++})
+        .then(function (res) {
+          res = res.plain();
+          $scope.pageCount = res.pageCount;
+          $scope.objects = $scope.objects ? $scope.objects.concat(res.objects) : res.objects;
+        });
+    }
 
-      var pageNum = Math.ceil(res.total / res.perPage);
-      $scope.hasPrevPage = page > 1;
-      $scope.hasNextPage = page < pageNum;
-  });
+  }
 }

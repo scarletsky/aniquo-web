@@ -48,28 +48,21 @@ function QuoteListCtrl (
 ) {
   'use strict';
 
-  var characterId = $routeParams.characterId;
-  var page = $location.search().page || 1;
+  var page = 1;
 
-  $scope.prevPage = function () {
-    $location.path('/characters/' + characterId + '/quotes').search('page', --page);
-  };
+  $scope.addQuotes = function () {
 
-  $scope.nextPage = function () {
-    $location.path('/characters/' + characterId + '/quotes').search('page', ++page);
-  };
+    if (!$scope.pageCount || page <= $scope.pageCount) {
 
-  Restangular
-    .one('characters/' + characterId +'/quotes' + 
-         '?page=' + page)
-    .get()
-    .then(function (res) {
-      res = res.plain();
-      $scope.objects = res.objects;
+      Restangular
+        .one('quotes')
+        .get({page: page++})
+        .then(function (res) {
+          res = res.plain();
+          $scope.pageCount = res.pageCount;
+          $scope.objects = $scope.objects ? $scope.objects.concat(res.objects) : res.objects;
+        });
+    }
 
-      var pageNum = Math.ceil(res.total / res.perPage);
-      $scope.hasPrevPage = page > 1;
-      $scope.hasNextPage = page < pageNum;
-  });
-
+  }
 }

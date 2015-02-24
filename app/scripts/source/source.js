@@ -9,6 +9,15 @@ angular.module('bdSource', [
     'G',
     'Restangular',
     SourceCtrl
+  ])
+
+  .controller('SourceListCtrl', [
+    '$scope',
+    '$location',
+    '$routeParams',
+    'G',
+    'Restangular',
+    SourceListCtrl
   ]);
 
 function SourceCtrl (
@@ -33,4 +42,33 @@ function SourceCtrl (
         $scope.g.currentSource = res;
       });
   }
+}
+
+function SourceListCtrl (
+  $scope,
+  $location,
+  $routeParams,
+  G,
+  Restangular
+) {
+  'use strict';
+
+
+  var page = 1;
+
+  $scope.addSources = function () {
+
+    if (!$scope.pageCount || page <= $scope.pageCount) {
+
+      Restangular
+        .one('sources')
+        .get({page: page++})
+        .then(function (res) {
+          res = res.plain();
+          $scope.pageCount = res.pageCount;
+          $scope.objects = $scope.objects ? $scope.objects.concat(res.objects) : res.objects;
+        });
+    }
+
+  };
 }

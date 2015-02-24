@@ -1,9 +1,22 @@
-<div layout="row" layout-align="center">
+<div
+    layout="row"
+    layout-align="center"
+    ng-controller="SourceListCtrl">
     
-    <div layout="row" layout-align="space-between" flex="60" flex-sm="100" layout-wrap>
+    <div
+        layout="row" 
+        layout-align="space-between"
+        flex="60"
+        flex-sm="100"
+        layout-wrap
+        infinite-scroll="addSources()"
+        infinite-scroll-distance='200'>
         
-        <!-- 1 -->
-        <md-card class="source-wrapper" flex="45" flex-sm="100">
+        <md-card 
+            class="source-wrapper"
+            flex="45"
+            flex-sm="100"
+            ng-repeat="object in objects">
             <div class="preview-img-wrapper">
                 <img src="http://placehold.it/500x500" alt="Washed Out">
             </div>
@@ -11,88 +24,7 @@
             <md-divider></md-divider>
 
             <md-card-content>
-                <h4>Code Geass</h4>
-                <p>
-                    Contribute by <a href="#">Scarlex</a>
-                </p>
-            </md-card-content>
-
-        </md-card>
-
-        <!-- 2 -->
-        <md-card class="source-wrapper" flex="45">
-            <div class="preview-img-wrapper">
-                <img src="http://placehold.it/500x500" alt="Washed Out">
-            </div>
-
-            <md-divider></md-divider>
-
-            <md-card-content>
-                <h4>Code Geass</h4>
-                <p>
-                    Contribute by <a href="#">Scarlex</a>
-                </p>
-            </md-card-content>
-
-        </md-card>
-
-        <md-card class="source-wrapper" flex="45">
-            <div class="preview-img-wrapper">
-                <img src="http://placehold.it/500x500" alt="Washed Out">
-            </div>
-
-            <md-divider></md-divider>
-
-            <md-card-content>
-                <h4>Code Geass</h4>
-                <p>
-                    Contribute by <a href="#">Scarlex</a>
-                </p>
-            </md-card-content>
-
-        </md-card>
-
-        <md-card class="source-wrapper" flex="45">
-            <div class="preview-img-wrapper">
-                <img src="http://placehold.it/500x500" alt="Washed Out">
-            </div>
-
-            <md-divider></md-divider>
-
-            <md-card-content>
-                <h4>Code Geass</h4>
-                <p>
-                    Contribute by <a href="#">Scarlex</a>
-                </p>
-            </md-card-content>
-
-        </md-card>
-
-        <md-card class="source-wrapper" flex="45">
-            <div class="preview-img-wrapper">
-                <img src="http://placehold.it/500x500" alt="Washed Out">
-            </div>
-
-            <md-divider></md-divider>
-
-            <md-card-content>
-                <h4>Code Geass</h4>
-                <p>
-                    Contribute by <a href="#">Scarlex</a>
-                </p>
-            </md-card-content>
-
-        </md-card>
-
-        <md-card class="source-wrapper" flex="45">
-            <div class="preview-img-wrapper">
-                <img src="http://placehold.it/500x500" alt="Washed Out">
-            </div>
-
-            <md-divider></md-divider>
-
-            <md-card-content>
-                <h4>Code Geass</h4>
+                <h4 ng-bind="object.name"></h4>
                 <p>
                     Contribute by <a href="#">Scarlex</a>
                 </p>

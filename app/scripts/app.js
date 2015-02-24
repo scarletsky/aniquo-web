@@ -2,6 +2,7 @@ angular.module('bd', [
   'ngRoute',
   'ngAnimate',
   'ngMaterial',
+  'infinite-scroll',
   'bdUser',
   'bdQuote',
   'bdSearch',
@@ -30,7 +31,7 @@ function BrynhildCtrl (
   $scope.g = G;
   $scope.session = Session;
 
-  $scope.selectedIndex = 0;
+  $scope.selectedIndex = 2;
 }
 
 function DemoCtrl ($timeout, $q) {
