@@ -18,7 +18,11 @@ angular.module('bd', [
     BrynhildCtrl
   ])
 
-  .controller('DemoCtrl', DemoCtrl);
+  .controller('DemoCtrl', [
+    '$timeout',
+    '$q',
+    DemoCtrl
+  ]);
 
 
 function BrynhildCtrl (
