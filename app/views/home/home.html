@@ -1,4 +1,11 @@
-<div>
-    <div ng-include="'views/search/searchForm.html'"></div>
-    <div ng-include="'views/search/searchResult.html'"></div>
-</div>
+<ng-switch on="selectedIndex">
+    <div ng-switch-when="0">
+        <div ng-include="'/views/source/sourceList.html'"></div>
+    </div>
+    <div ng-switch-when="1">
+        <div ng-include="'/views/character/characterList.html'"></div>
+    </div>
+    <div ng-switch-when="2">
+        <div ng-include="'/views/quote/quoteList.html'"></div>
+    </div>
+</ng-switch>
