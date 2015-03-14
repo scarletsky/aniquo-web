@@ -35,7 +35,7 @@ function BrynhildCtrl (
   $scope.g = G;
   $scope.session = Session;
 
-  $scope.selectedIndex = 2;
+  $scope.selectedIndex = 0;
 }
 
 function DemoCtrl ($timeout, $q) {

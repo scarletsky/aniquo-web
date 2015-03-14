@@ -16,6 +16,7 @@ angular.module('bdSource', [
     '$location',
     '$routeParams',
     'G',
+    'Query',
     'Restangular',
     SourceListCtrl
   ]);
@@ -49,26 +50,22 @@ function SourceListCtrl (
   $location,
   $routeParams,
   G,
+  Query,
   Restangular
 ) {
   'use strict';
 
 
-  var page = 1;
+  var q = new Query();
+  $scope.q = q;
 
-  $scope.addSources = function () {
+  $scope.getObjects = function () {
 
-    if (!$scope.pageCount || page <= $scope.pageCount) {
-
-      Restangular
-        .one('sources')
-        .get({page: page++})
-        .then(function (res) {
-          res = res.plain();
-          $scope.pageCount = res.pageCount;
-          $scope.objects = $scope.objects ? $scope.objects.concat(res.objects) : res.objects;
-        });
-    }
+    return q.query({
+      scope: $scope,
+      route: 'sources'
+    });
 
   };
+
 }
