@@ -88,7 +88,7 @@ function RestangularConfig (
 }
 
 function cfpLoadingBarConfig (cfpLoadingBarProvider) {
-  cfpLoadingBarProvider.includeSpinner = true;
+  cfpLoadingBarProvider.includeSpinner = false;
 }
 
 function markedConfig (markedProvider) {
