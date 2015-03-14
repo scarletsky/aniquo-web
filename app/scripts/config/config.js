@@ -1,4 +1,11 @@
-angular.module('bdConfig', ['restangular', 'angular-md5', 'angular-loading-bar', 'hc.marked'])
+angular.module('bdConfig', [
+  'restangular',
+  'angular-md5',
+  'angular-loading-bar',
+  'hc.marked',
+  'ajoslin.promise-tracker'
+])
+
   .run([
     '$window',
     '$rootScope',

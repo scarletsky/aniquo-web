@@ -9,8 +9,10 @@
         flex="60"
         flex-sm="100"
         layout-wrap
-        infinite-scroll="addQuotes()"
-        infinite-scroll-distance='200'>
+        infinite-scroll="getObjects()"
+        infinite-scroll-disabled="q.isQuerying"
+        infinite-scroll-distance='1'
+        infinite-scroll-container="'#content-body-wrapper'">
         
         <div layout="column" layout-fill>
 
@@ -27,7 +29,11 @@
 
             </md-card>
 
+            <div bd-tracker></div>
+
         </div>
+
     </div>
+
 
 </div>

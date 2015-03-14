@@ -3,8 +3,10 @@ angular.module('bdCommon', [
   'bdLike',
   'bdImage',
   'bdToast',
+  'bdQuery',
   'bdUpload',
   'bdLayout',
+  'bdTracker',
   'bdTreasure',
   'bdNavigation'
 ]);

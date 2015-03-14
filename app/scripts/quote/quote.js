@@ -13,6 +13,7 @@ angular.module('bdQuote', [
     '$scope',
     '$location',
     '$routeParams',
+    'Query',
     'Restangular',
     QuoteListCtrl
   ]);
@@ -44,25 +45,21 @@ function QuoteListCtrl (
   $scope,
   $location,
   $routeParams,
+  Query,
   Restangular
 ) {
   'use strict';
 
-  var page = 1;
+  var q = new Query();
+  $scope.q = q;
 
-  $scope.addQuotes = function () {
+  $scope.getObjects = function () {
 
-    if (!$scope.pageCount || page <= $scope.pageCount) {
-
-      Restangular
-        .one('quotes')
-        .get({page: page++})
-        .then(function (res) {
-          res = res.plain();
-          $scope.pageCount = res.pageCount;
-          $scope.objects = $scope.objects ? $scope.objects.concat(res.objects) : res.objects;
-        });
-    }
+    return q.query({
+      scope: $scope,
+      route: 'quotes'
+    });
 
   }
+  
 }
