@@ -10,7 +10,7 @@
         flex-sm="100"
         layout-wrap
         infinite-scroll="getObjects()"
-        infinite-scroll-disabled="q.isQuerying"
+        infinite-scroll-disabled="q.isQuerying || q.noMoreData"
         infinite-scroll-distance='1'
         infinite-scroll-container="'#content-body-wrapper'">
         

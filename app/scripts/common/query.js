@@ -12,6 +12,7 @@ function QueryService ($timeout, Restangular, promiseTracker) {
     this.page = 1;
     this.isQuerying = false;
     this.tracker = null;
+    this.noMoreData = false;
   }
 
   Query.prototype.checkOptions = function (opts) {
@@ -42,6 +43,10 @@ function QueryService ($timeout, Restangular, promiseTracker) {
         opts.scope.objects = opts.scope.objects.concat(res.objects);
       } else {
         opts.scope.objects = res.objects;
+      }
+
+      if (res.objects.length === 0) {
+        self.noMoreData = true;
       }
 
       $timeout(function () {
