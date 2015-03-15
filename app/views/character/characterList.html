@@ -18,7 +18,8 @@
             class="character-wrapper"
             layout="row"
             layout-align="center center"
-            ng-repeat="object in objects">
+            ng-repeat="object in objects"
+            ng-click="goToQuotesPage(object._id)">
 
             <div class="character-avatar-wrapper">
                 <img ng-src="http://placehold.it/100x100" class="face">

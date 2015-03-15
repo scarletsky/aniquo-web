@@ -59,12 +59,26 @@ function CharacterListCtrl (
   var q = new Query();
   $scope.q = q;
 
+  var sourceId = $routeParams.sourceId;
+
   $scope.getObjects = function () {
 
-    return q.query({
-      scope: $scope,
-      route: 'characters'
-    });
+    if (angular.isDefined(sourceId)) {
+      q.query({
+        scope: $scope,
+        route: 'sources/' + sourceId + '/characters'
+      });
+   
+    } else {
 
+      q.query({
+        scope: $scope,
+        route: 'characters'
+      });
+    }
+  }
+
+  $scope.goToQuotesPage = function (id) {
+    $location.path('/characters/' + id + '/quotes');
   }
 }

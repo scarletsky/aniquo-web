@@ -19,7 +19,6 @@ function routeProvider (
 
   $routeProvider
     .when('/', {
-      controller: 'SearchCtrl as search',
       templateUrl: 'views/home/home.html'
     })
     .when('/search', {

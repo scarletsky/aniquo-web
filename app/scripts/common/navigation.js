@@ -1,14 +1,12 @@
 angular.module('bdNavigation', [])
   .controller('NavCtrl', [
     '$scope',
-    '$mdSidenav',
+    '$rootScope',
+    '$window',
+    'G',
     NavCtrl
   ]);
 
-function NavCtrl ($scope, $mdSidenav) {
-
-  $scope.toggleLeft = function() {
-    $mdSidenav('left').toggle();
-  };
+function NavCtrl ($scope, $rootScope, $window, G) {
 
 }

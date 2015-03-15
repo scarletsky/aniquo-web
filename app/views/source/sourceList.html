@@ -25,14 +25,17 @@
                     flex="45"
                     flex-sm="100"
                     ng-repeat="object in objects">
-                    <div class="preview-img-wrapper">
-                        <img src="http://placehold.it/500x500" alt="Washed Out">
+
+                    <div class="preview-img-wrapper"
+                         ng-click="goToCharactersPage(object._id)">
+                        <img src="http://placehold.it/500x500" alt="{{ object.name }}">
                     </div>
 
                     <md-divider></md-divider>
 
                     <md-card-content>
-                        <h4 ng-bind="object.name"></h4>
+                        <h4 ng-bind="object.name"
+                            ng-click="goToCharactersPage(object._id)"></h4>
                         <p>
                             Contribute by <a href="#">Scarlex</a>
                         </p>

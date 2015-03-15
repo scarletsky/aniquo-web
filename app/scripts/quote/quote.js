@@ -52,14 +52,23 @@ function QuoteListCtrl (
 
   var q = new Query();
   $scope.q = q;
+  var characterId = $routeParams.characterId;
 
   $scope.getObjects = function () {
 
-    return q.query({
-      scope: $scope,
-      route: 'quotes'
-    });
+    if (angular.isDefined(characterId)) {
+      q.query({
+        scope: $scope,
+        route: 'characters/' + characterId + '/quotes'
+      });
+   
+    } else {
 
+      q.query({
+        scope: $scope,
+        route: 'quotes'
+      });
+    }
   }
   
 }

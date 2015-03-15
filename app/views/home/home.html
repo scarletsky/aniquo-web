@@ -1,11 +1,26 @@
-<ng-switch on="selectedIndex">
-    <div ng-switch-when="0">
-        <div ng-include="'/views/source/sourceList.html'"></div>
+<div ng-controller="HomeCtrl">
+
+    <div id="navbar">
+
+        <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
+            <md-tabs md-selected="selectedIndex" flex="60">
+                <md-tab label="作品"></md-tab>
+                <md-tab label="角色"></md-tab>
+                <md-tab label="语录"></md-tab>
+            </md-tabs>
+        </md-whiteframe>
+
     </div>
-    <div ng-switch-when="1">
-        <div ng-include="'/views/character/characterList.html'"></div>
-    </div>
-    <div ng-switch-when="2">
-        <div ng-include="'/views/quote/quoteList.html'"></div>
-    </div>
-</ng-switch>
+
+    <ng-switch on="selectedIndex">
+        <div ng-switch-when="0">
+            <div ng-include="'/views/source/sourceList.html'"></div>
+        </div>
+        <div ng-switch-when="1">
+            <div ng-include="'/views/character/characterList.html'"></div>
+        </div>
+        <div ng-switch-when="2">
+            <div ng-include="'/views/quote/quoteList.html'"></div>
+        </div>
+    </ng-switch>
+</div>

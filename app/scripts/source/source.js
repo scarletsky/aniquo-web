@@ -68,4 +68,8 @@ function SourceListCtrl (
 
   };
 
+  $scope.goToCharactersPage = function (id) {
+    $location.path('/sources/' + id + '/characters');
+  }
+
 }
