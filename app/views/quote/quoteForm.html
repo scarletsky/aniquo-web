@@ -1,41 +1,40 @@
-<div layout="row" layout-align="center" ng-controller="DemoCtrl as ctrl">
+<div>
+    <div id="navbar">
+        <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
+            编辑语录
+        </md-whiteframe>
+    </div>
+
     
-    <md-card class="form-wrapper" flex="60">
-          
-        <h3>Quote Form</h3>
+    <div layout="row" layout-align="center">
+        
+        <md-card class="form-wrapper" flex="60">
+              
+            <h3>Quote Form</h3>
 
-        <md-divider></md-divider>
+            <md-divider></md-divider>
 
-        <div class="form-body">
+            <div class="form-body">
 
-            <md-autocomplete
-                md-no-cache="ctrl.noCache"
-                md-selected-item="ctrl.selectedItem"
-                md-search-text="ctrl.searchText"
-                md-items="item in ctrl.querySearch(ctrl.searchText)"
-                md-item-text="item.display"
-                placeholder="Character Source">
-                <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
-            </md-autocomplete>
+                <md-input-container>
+                    <label>Quote Reference</label>
+                    <input type="text">
+                </md-input-container>
 
-            <md-input-container>
-                <label>Quote Reference</label>
-                <input type="text">
-            </md-input-container>
+                <md-input-container>
+                    <label>Quote Detail</label>
+                    <textarea></textarea>
+                </md-input-container>
 
-            <md-input-container>
-                <label>Quote Detail</label>
-                <textarea></textarea>
-            </md-input-container>
+            </div>
 
-        </div>
+            <md-divider></md-divider>
 
-        <md-divider></md-divider>
+            <div class="form-body" layout="row" layout-align="end" layout-margin>
+               <md-button class="md-raised" flex="15">Reset</md-button> 
+               <md-button class="md-raised md-primary" flex="15">Submit</md-button> 
+            </div>
 
-        <div class="form-body" layout="row" layout-align="end" layout-margin>
-           <md-button class="md-raised" flex="15">Reset</md-button> 
-           <md-button class="md-raised md-primary" flex="15">Submit</md-button> 
-        </div>
-
-    </md-card>
+        </md-card>
+    </div>
 </div>

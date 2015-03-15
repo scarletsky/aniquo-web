@@ -1,40 +1,48 @@
-<div layout="row" layout-align="center">
-    
-    <md-card class="form-wrapper" flex="60">
-          
-        <h3>Source Form</h3>
+<div ng-controller="SourceEditCtrl">
+    <div id="navbar">
+        <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
+            编辑作品
+        </md-whiteframe>
+    </div>
 
-        <md-divider></md-divider>
+    <div layout="row" layout-align="center">
+        
+        <md-card class="form-wrapper" flex="60">
+              
+            <h3>请填写作品相关信息</h3>
 
-        <div class="form-body">
+            <md-divider></md-divider>
 
-            <md-input-container>
-                <label>Source Name</label>
-                <input type="text">
-            </md-input-container>
+            <div class="form-body">
 
-            <md-input-container>
-                <label>Source Alias</label>
-                <input type="text">
-            </md-input-container>
+                <md-input-container>
+                    <label>作品名称</label>
+                    <input type="text" ng-model="source.name">
+                </md-input-container>
 
-            <md-input-container>
-                <label>Source Description</label>
-                <textarea></textarea>
-            </md-input-container>
+                <md-input-container>
+                    <label>作品别名</label>
+                    <input type="text" ng-model="source.alias">
+                </md-input-container>
 
-            <!-- Source Cover Field -->
+                <md-input-container>
+                    <label>作品简介</label>
+                    <textarea ng-model="source.info"></textarea>
+                </md-input-container>
 
-        </div>
+                <!-- Source Cover Field -->
 
-        <md-divider></md-divider>
+            </div>
 
-        <div class="form-body" layout="row" layout-align="end" layout-margin>
-           <md-button class="md-raised" flex="15">Reset</md-button> 
-           <md-button class="md-raised md-primary" flex="15">Submit</md-button> 
-        </div>
+            <md-divider></md-divider>
 
-    </md-card>
+            <div class="form-body" layout="row" layout-align="end" layout-margin>
+               <md-button class="md-raised" flex="15" ng-click="reset()">Reset</md-button> 
+               <md-button class="md-raised md-primary" flex="15" ng-click="submit()">Submit</md-button> 
+            </div>
+
+        </md-card>
+
+    </div>
 
 </div>
-

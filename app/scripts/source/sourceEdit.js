@@ -20,7 +20,6 @@ function SourceEditCtrl (
   var actionType = $routeParams.sourceId ? 'edit' : 'add';
 
   $scope.source = {};
-  $scope.source.alias = [''];
 
   if (actionType === 'edit') {
     Restangular
@@ -29,19 +28,12 @@ function SourceEditCtrl (
       .then(function (res) {
         res = res.plain();
         $scope.source = res;
-        $scope.source.alias = res.alias.length ? res.alias : [''];
       });
   }
 
-  $scope.addAlias = function (e) {
-    e.preventDefault();
-    $scope.source.alias.push('');
-  };
-
-  $scope.removeAlias = function (e, index) {
-    e.preventDefault();
-    $scope.source.alias.splice(index, 1);
-  };
+  $scope.reset = function () {
+    $scope.source = {};
+  }
 
   $scope.submit = function () {
     var alias = _.filter($scope.source.alias, function (value) {
@@ -50,14 +42,15 @@ function SourceEditCtrl (
 
     var data = {
       name: $scope.source.name,
-      alias: alias,
-      info: $scope.source.info,
-      cover: $scope.source.cover
+      alias: $scope.source.alias,
+      info: $scope.source.info
     };
 
     if (angular.isUndefined(data.name)) {
       return Toast.show('作品名称不能为空');
     }
+
+    return console.log(data);
 
     if (actionType === 'edit') {
       var sourceElement = Restangular.one('sources', $routeParams.sourceId)
