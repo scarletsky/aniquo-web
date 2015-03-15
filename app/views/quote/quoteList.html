@@ -16,8 +16,10 @@
         
         <div layout="column" layout-fill>
 
-            <md-card class="quote-wrapper" ng-repeat="object in objects">
-                <div class="quote">
+            <md-card class="quote-wrapper"
+                     ng-repeat="object in objects">
+
+                <div class="quote" ng-click="goToQuoteDetailPage(object._id)">
                     <div marked="object.quote"></div>
                 </div>
 

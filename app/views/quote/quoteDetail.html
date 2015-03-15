@@ -1,40 +1,49 @@
-<div layout="row" layout-align="center">
-
-    <div layout="row" flex="60">
-
-        <md-card class="quote-detail-wrapper">
-            <div class="quote">
-                <p> 鲁鲁修：呐，朱雀。你不觉得愿望和 Geass 很像吗？</p>
-                <p>朱雀：诶？</p>
-                <p>鲁鲁修：靠自己无法实现的事会寻求他人。</p>
-                <p>朱雀：愿望吗？</p>
-                <p>鲁鲁修：对。我就对所有人使用名为愿望的 Geass，为了世界的明天。</p>
-            </div>
-
-            <md-divider></md-divider>
-
-            <div class="reference" layout="row" layout-align="end">
-                <h3>Reference R2第25话</h3>
-            </div>
-
-            <md-divider></md-divider>
-
-            <div class="related-characters">
-
-                <h3>Related Characters</h3>
-
-                <img ng-src="http://placehold.it/100x100" class="face">
-                <img ng-src="http://placehold.it/100x100" class="face">
-            </div>
-
-            <md-divider></md-divider>
-
-            <div class="contributor">
-                <img ng-src="http://placehold.it/100x100" class="face">
-                Submitted at 2015-02-20
-            </div>
-
-        </md-card>
+<div>
+    
+    <div id="navbar">
+        <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
+            语录详细
+        </md-whiteframe>
     </div>
 
+    <div layout="row" layout-align="center">
+
+        <div layout="row" flex="60">
+
+            <md-card class="quote-detail-wrapper">
+                <div class="quote" marked="quote.quote">
+
+                </div>
+
+                <md-divider></md-divider>
+
+                <div class="reference" layout="row" layout-align="end">
+                    <h3 ng-bind-template="出自 —— {{ quote.reference }}"></h3>
+                </div>
+
+                <md-divider></md-divider>
+
+                <div class="related-characters">
+
+                    <h3>Related Characters</h3>
+
+                    <img ng-src="http://placehold.it/100x100"
+                         class="face"
+                         title="{{ character.name }}"
+                         ng-repeat="character in quote.characters">
+                </div>
+
+                <md-divider></md-divider>
+
+                <div class="contributor">
+                    <img ng-src="http://placehold.it/100x100"
+                         class="face"
+                         title="{{ quote.contributor.username }}">
+                    Submitted at {{ quote.createdAt | timeFormat: 'YYYY-MM-DD' }}
+                </div>
+
+            </md-card>
+        </div>
+
+    </div>
 </div>

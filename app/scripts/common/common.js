@@ -1,6 +1,7 @@
 angular.module('bdCommon', [
   'bdLink',
   'bdLike',
+  'bdTime',
   'bdImage',
   'bdToast',
   'bdQuery',

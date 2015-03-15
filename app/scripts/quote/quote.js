@@ -31,12 +31,13 @@ function QuoteCtrl (
   Restangular
     .one('quotes/' + quoteId)
     .get({
-      with_character: true,
+      with_character_all: true,
       with_contributor: true,
       characterId: characterId
     })
     .then(function (res) {
       res = res.plain();
+      console.log(res);
       $scope.quote = res;
     });
 }
@@ -69,6 +70,10 @@ function QuoteListCtrl (
         route: 'quotes'
       });
     }
+  };
+
+  $scope.goToQuoteDetailPage = function (id) {
+    $location.path('/quotes/' + id);
   }
   
 }
