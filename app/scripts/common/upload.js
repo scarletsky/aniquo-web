@@ -9,103 +9,113 @@ angular.module('bdUpload', [])
     fileSizeLimit: 2097152 // 2MB
   })
 
-  .directive('bdUpload', [
-    '$timeout',
+  .factory('Uploader', [
+    '$q',
     'md5',
-    'Toast',
     'UploadConf',
     'Restangular',
-    bdUploadDirective
+    UploaderService
   ]);
 
-function bdUploadDirective (
-  $timeout,
+function UploaderService (
+  $q,
   md5,
-  Toast,
   UploadConf,
   Restangular
 ) {
   'use strict';
 
-  return {
-    scope: {
-      uploadTarget: '=',
-      uploadStatus: '='
-    },
-    link: function ($scope, $element, $attrs) {
-      var inputField = $element.find('input[type="file"]');
-      var uploadType = $attrs.uploadType + 'Prefix';
-      $scope.uploadStatus = 'ready';
+  var uploadTypeList = ['userAvatar', 'sourceCover', 'characterAvatar'];
 
-      function isFileTypePass (file) {
-        var acceptFileType = ['jpg', 'jpeg', 'png'];
-        var mimeType = file.type.split('/');
+  // status = ['ready', 'pending', 'success', 'failed'];
+  var uploader = function (uploadType) {
+    if (!uploadType) {
+      throw new Error('uploadType must be specify!');
+    }
 
-        if (mimeType[0] !== 'image') {
-          return false;
-        }
+    if (!(uploadType in uploadTypeList)) {
+      throw new Error('uploadType should be userAvatar or sourceCover or characterAvatar!');
+    }
 
-        return acceptFileType.indexOf(mimeType[1]) !== -1;
-      }
+    this.status = 'ready';
+    this.isFilePass = false;
+    this.uploadType = uploadType;
+  };
 
-      $element.on('click', function (e) {
-        inputField[0].click();
-      });
+  // check file size
+  uploader.checkFileSize = function (file) {
+    return file.size < UploadConf.fileSizeLimit;
+  };
 
-      inputField.on('change', function (e) {
-        $scope.$apply(function () {
-          var file = e.target.files[0];
+  // check file type
+  uploader.checkFileType = function (file) {
+    var acceptFileType = ['jpg', 'jpeg', 'png'];
+    var mimeType = file.type.split('/');
 
-          if (!isFileTypePass(file)) {
-            return Toast.show('不支持该文件格式');
-          }
+    if (mimeType[0] !== 'image') {
+      return false;
+    }
 
-          if (file.size > UploadConf.fileSizeLimit) {
-            return Toast.show('文件最大支持2MB');
-          }
+    return acceptFileType.indexOf(mimeType[1]) !== -1;
+  };
+
+  uploader.prototype.checkFile = function (file) {
+    if (!uploader.checkFileType(file)) {
+      return Toast.show('目前仅支持jpg, jpeg, png格式的图片');
+    }
+
+    if (!uploader.checkFileSize(file)) {
+      return Toast.show('文件最大支持2MB');
+    }
+
+    this.isFilePass = true;
+  };
+
+  // upload
+  uploader.prototype.upload = function (file) {
+    var self = this;
+    self.checkFile(file);
+
+    if (!self.isFilePass) {
+      return;
+    }
+
+    var promise = $q(function (resolve, rejected) {
+
+      Restangular
+        .one('upload', 'token')
+        .get()
+        .then(function (token) {
+          var data = new FormData();
+          data.append('token', token);
+          data.append('key', UploadConf[self.uploadType + 'Prefix'] + md5.createHash(Date.now() + file.name));
+          data.append('file', file);
+
+          var headers = {
+            'Content-Type': undefined
+          };
 
           Restangular
-            .one('upload', 'token')
-            .get()
-            .then(function (token) {
-              var data = new FormData();
-              data.append('token', token);
-              data.append('key', UploadConf[uploadType] + md5.createHash(Date.now() + file.name));
-              data.append('file', file);
+            .allUrl('/', 'http://upload.qiniu.com/')
+            .withHttpConfig({
+              transformRequest: angular.identity
+            })
+            .post(data, undefined, headers)
+            .then(function (res) {
+              res = res.plain();
+              var imgSrc = UploadConf.domain + res.key;
+              resolve(imgSrc);
+            }, function (res) {
+              rejected(res);
+            });
 
-              var headers = {
-                'Content-Type': undefined
-              };
-
-              $scope.uploadStatus = 'uploading';
-              Restangular
-                .allUrl('/', 'http://upload.qiniu.com/')
-                .withHttpConfig({
-                  transformRequest: angular.identity
-                })
-                .post(data, undefined, headers)
-                .then(function (res) {
-                  res = res.plain();
-                  var imgSrc = UploadConf.domain + res.key;
-                  $scope.uploadTarget = imgSrc;
-                  $scope.uploadStatus = 'success';
-                  Toast.show('上传成功');
-
-                  $timeout(function () {
-                    $scope.uploadStatus = 'ready';
-                  }, 1000);
-                }, function (res) {
-                  $scope.uploadStatus = 'failed';
-                  console.log(res);
-                  Toast.show('上传失败，请重试或联系管理员');
-
-                  $timeout(function () {
-                    $scope.uploadStatus = 'ready';
-                  }, 1000);
-                });
-          });
         });
-      });
-    }
+
+
+    });
+
+    return promise;
   };
+
+  return uploader;
 }
