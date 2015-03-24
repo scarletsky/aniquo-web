@@ -5,6 +5,7 @@ angular.module('bdCommon', [
   'bdImage',
   'bdToast',
   'bdQuery',
+  'bdEditor',
   'bdUpload',
   'bdLayout',
   'bdTracker',
