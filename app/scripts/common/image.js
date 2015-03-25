@@ -1,9 +1,86 @@
 angular.module('bdImage', [])
+  .factory('ImageViewer', [
+    ImageViewerService
+  ])
+
   .directive('bdImageSelected', [
+    'ImageViewer',
     bdImageSelectedDirective
   ]);
 
-function bdImageSelectedDirective () {
+function ImageViewerService () {
+
+  var ImageViewer = function (options) {
+    this.canvas = options.canvas;
+    this.width = this.canvas.width;
+    this.height = this.canvas.height;
+    this.ctx = this.canvas.getContext('2d');
+
+    this.src = options.src;
+    this.srcType = (typeof this.src === 'string') ? 'url' : 'file';
+  };
+
+  ImageViewer.prototype.clean = function () {
+    var self = this;
+    self.ctx.clearRect(0, 0, self.width, self.height);
+  };
+
+  ImageViewer.prototype.show = function () {
+    var self = this;
+
+    if (self.srcType === 'url') {
+      self.showFromUrl(self.src);
+    } else {
+      self.showFromFile(self.src);
+    }
+  };
+
+  ImageViewer.prototype.showFromUrl = function (url) {
+    var self = this;
+
+    var image = new Image();
+
+    image.onload = function () {
+      var hRatio = self.width  / image.width;
+      var vRatio = self.height / image.height;
+      var ratio  = Math.min ( hRatio, vRatio );
+
+      var centerShiftX = ( self.width - image.width*ratio ) / 2;
+      var centerShiftY = ( self.height - image.height*ratio ) / 2;  
+
+      self.ctx.clearRect(0, 0, self.width, self.height);
+      self.ctx.drawImage(image, 
+        0, 0, image.width, image.height,
+        centerShiftX, centerShiftY, image.width*ratio, image.height*ratio);
+
+    };
+
+    image.src = url;
+
+  };
+
+  ImageViewer.prototype.showFromFile = function () {
+    var self = this;
+
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      var dataURL = e.target.result;
+
+      self.showFromUrl(dataURL);
+    };
+
+    if (self.src) {
+      reader.readAsDataURL(self.src);
+    }
+
+  };
+
+  return ImageViewer;
+
+}
+
+function bdImageSelectedDirective (ImageViewer) {
   return {
     scope: {
       selectedFile: '='
@@ -27,37 +104,16 @@ function bdImageSelectedDirective () {
 
       inputField.on('change', function (e) {
 
-        var reader = new FileReader();
-        var file = e.target.files[0];
-
-        reader.onload = function (e) {
-          var img = new Image();
-          var dataURL = e.target.result;
-
-          img.onload = function () {
-            var hRatio = width  / img.width    ;
-            var vRatio =  height / img.height  ;
-            var ratio  = Math.min ( hRatio, vRatio );
-
-            var centerShiftX = ( width - img.width*ratio ) / 2;
-            var centerShiftY = ( height - img.height*ratio ) / 2;  
-
-            ctx.clearRect(0, 0, width, height);
-            ctx.drawImage(img, 0, 0, img.width, img.height, centerShiftX, centerShiftY, img.width*ratio, img.height*ratio);
-
-          };
-
-          img.src = dataURL;
-
-          $scope.$apply(function () {
-            $scope.selectedFile = file;
-          });
-
+        var options = {
+          canvas: element,
+          src: e.target.files[0]
         };
 
-        if (file) {
-          reader.readAsDataURL(file);
-        }
+        var imageViewer = new ImageViewer(options);
+        imageViewer.show();
+        $scope.$apply(function () {
+          $scope.selectedFile = options.src;
+        });
 
       });
 
