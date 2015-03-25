@@ -31,9 +31,6 @@ function SourceEditCtrl (
     canvas: $('#sourceCover')[0]
   });
 
-  $scope.submit = function () {
-    // editor.save($scope.source);
-  };
 
   $scope.reset = function () {
     $scope.source = {};
@@ -46,75 +43,40 @@ function SourceEditCtrl (
     ctx.clearRect(0, 0, canvas.width(), canvas.height());
   }
 
-  // function sendToServer (data) {
+  $scope.submit = function () {
+    var alias = _.filter($scope.source.alias, function (value) {
+      return $.trim(value);
+    });
 
-  //   if (actionType === 'edit') {
-  //     var sourceElement = Restangular.one('sources', $routeParams.sourceId);
-  //     angular.extend(sourceElement, data);
-  //     sourceElement
-  //       .put()
-  //       .then(function (res) {
-  //         Toast.show('作品更新成功');
-  //         return $location.path('/sources/' + $routeParams.sourceId + '/characters');
-  //       });
+    var data = {
+      name: $scope.source.name,
+      alias: $scope.source.alias,
+      info: $scope.source.info,
+      coverFile: $scope.source.coverFile,
+      cover: $scope.source.cover
+    };
 
-  //   } else {
-  //     Restangular
-  //       .one('source/check')
-  //       .get(data)
-  //       .then(function (res) {
-  //         res = res.plain();
-  //         if (res.exist) {
-  //           return Toast.show('该作品已存在');
+    if (angular.isUndefined(data.name)) {
+      return Toast.show('作品名称不能为空');
+    }
 
-  //         } else {
-  //           Restangular
-  //             .all('sources')
-  //             .post(data)
-  //             .then(function (res) {
-  //               return Toast.show('作品添加成功');
-  //             }, function (res) {
-  //               return Toast.show('作品添加失败');
-  //             });
-  //         }
-  //       });
-  //   }
-  // }
+    if (data.coverFile) {
+      var uploader = new Uploader('sourceCover');
+      uploader
+        .upload(data.coverFile)
+        .then(function (fileURL) {
+          Toast.show('封面上传成功');
 
-  // $scope.submit = function () {
-  //   var alias = _.filter($scope.source.alias, function (value) {
-  //     return $.trim(value);
-  //   });
+          data.cover = fileURL;
+          delete data.coverFile;
+          editor.save(data);
 
-  //   var data = {
-  //     name: $scope.source.name,
-  //     alias: $scope.source.alias,
-  //     info: $scope.source.info,
-  //     coverFile: $scope.source.coverFile,
-  //     cover: $scope.source.cover
-  //   };
+        }, function (err) {
+          return Toast.show('封面上传失败');
+        });
+    } else {
+      editor.save(data);
+    }
 
-  //   if (angular.isUndefined(data.name)) {
-  //     return Toast.show('作品名称不能为空');
-  //   }
-
-  //   var uploader = new Uploader('sourceCover');
-
-  //   uploader
-  //     .upload(data.coverFile)
-  //     .then(function (fileURL) {
-  //       Toast.show('封面上传成功');
-
-  //       data.cover = fileURL;
-  //       delete data.coverFile;
-  //       sendToServer(data);
-
-  //     }, function (err) {
-  //       console.log(err);
-  //       return Toast.show('封面上传失败');
-  //     });
-
-  //   return;
-
-  // };
+  };
 }
