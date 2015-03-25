@@ -17,6 +17,7 @@ function SourceEditCtrl (
   Toast,
   Editor,
   Uploader,
+  ImageViewer,
   Restangular
 ) {
   'use strict';
@@ -27,10 +28,11 @@ function SourceEditCtrl (
     mode: $routeParams.sourceId ? 'edit' : 'new',
     targetId: $routeParams.sourceId,
     targetType: 'source',
+    canvas: $('#sourceCover')[0]
   });
 
   $scope.submit = function () {
-    editor.save($scope.source);
+    // editor.save($scope.source);
   };
 
   $scope.reset = function () {

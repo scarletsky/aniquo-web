@@ -3,11 +3,12 @@ angular.module('bdEditor', [])
     '$q',
     'Toast',
     'Uploader',
+    'ImageViewer',
     'Restangular',
     EditorService
   ]);
 
-function EditorService ($q, Toast, Uploader, Restangular) {
+function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
   
   var Editor = function (options) {
     if (!options) { throw Error('Editor need an options!'); }
@@ -21,12 +22,37 @@ function EditorService ($q, Toast, Uploader, Restangular) {
     this.scope[this.targetType] = {};
 
     if (this.mode === 'edit') {
-        this.targetId = options.targetId;
-        this.getURL = this.targetType + 's/' + this.targetId;
-        this.saveURL = this.getURL;
-        this.getTarget();
+      this.targetId = options.targetId;
+      this.getURL = this.targetType + 's/' + this.targetId;
+      this.saveURL = this.getURL;
+      this.canvas = options.canvas || null;
+      this.getTarget();
     } else {
-        this.saveURL = this.targetType + 's';
+      this.saveURL = this.targetType + 's';
+    }
+  };
+
+  Editor.prototype.showImage = function (target) {
+    var self = this;
+
+    if (!self.canvas) return;
+
+    // 语录不带图片
+    var imageTypeMap = {
+      'source': 'cover',
+      'character': 'avatar'
+    };
+
+    var _map = imageTypeMap[self.targetType];
+    var src = target[_map];
+
+    if (_map && src) {
+      var iv = new ImageViewer({
+        canvas: self.canvas,
+        src: src
+      });
+
+      iv.show();
     }
   };
 
@@ -39,6 +65,7 @@ function EditorService ($q, Toast, Uploader, Restangular) {
       .then(function (res) {
         res = res.plain();
         self.scope[self.targetType] = res;
+        self.showImage(res);
       });
   };
 
@@ -58,7 +85,7 @@ function EditorService ($q, Toast, Uploader, Restangular) {
     });
 
     return promise;
-  }
+  };
 
   Editor.prototype.save = function (data, successCallback, failedCallback) {
 
@@ -67,7 +94,7 @@ function EditorService ($q, Toast, Uploader, Restangular) {
     }
 
     var self = this;
-    var element = Restangular.one(self.saveURL)
+    var element = Restangular.one(self.saveURL);
 
     if (self.mode === 'new') {
 
@@ -78,13 +105,13 @@ function EditorService ($q, Toast, Uploader, Restangular) {
             // 已存在
             if (res.exists) {
 
-              var typeMap = {
+              var targetTypeMap = {
                 'source': '作品',
                 'character': '角色',
                 'quote': '语录'
               };
 
-              Toast.show('该' + typeMap[self.targetType] + '已存在');
+              Toast.show('该' + targetTypeMap[self.targetType] + '已存在');
 
             // 不存在
             } else {
