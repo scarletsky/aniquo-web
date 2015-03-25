@@ -21,6 +21,7 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
 
     this.scope[this.targetType] = {};
 
+    // init by mode
     if (this.mode === 'edit') {
       this.targetId = options.targetId;
       this.getURL = this.targetType + 's/' + this.targetId;
@@ -96,6 +97,30 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
     var self = this;
     var element = Restangular.one(self.saveURL);
 
+    var targetTypeMap = {
+      'source': '作品',
+      'character': '角色',
+      'quote': '语录'
+    };
+
+    if (!successCallback) {
+      successCallback = function () {
+        var _map = targetTypeMap[self.targetType];
+        var _mode = self.mode === 'new' ? '添加' : '更新';
+        var text = _map + '已' + _mode;
+        Toast.show(text);
+      };
+    }
+
+    if (!failedCallback) {
+      failedCallback = function () {
+        var _map = targetTypeMap[self.targetType];
+        var _mode = self.mode === 'new' ? '添加' : '更新';
+        var text = _map + _mode + '失败';
+        Toast.show(text);
+      }
+    }
+
     if (self.mode === 'new') {
 
         self
@@ -104,12 +129,6 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
 
             // 已存在
             if (res.exists) {
-
-              var targetTypeMap = {
-                'source': '作品',
-                'character': '角色',
-                'quote': '语录'
-              };
 
               Toast.show('该' + targetTypeMap[self.targetType] + '已存在');
 
