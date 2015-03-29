@@ -4,6 +4,8 @@ angular.module('bdQuoteEdit', [])
     '$location',
     '$routeParams',
     'Toast',
+    'Editor',
+    'ImageViewer',
     'Restangular',
     QuoteEditCtrl
   ]);
@@ -13,80 +15,86 @@ function QuoteEditCtrl (
   $location,
   $routeParams,
   Toast,
+  Editor,
+  ImageViewer,
   Restangular
 ) {
   'use strict';
 
-  var actionType = $routeParams.quoteId ? 'edit' : 'add';
 
-  $scope.quote = {};
-  $scope.quote.characterIds = [];
-  $scope.quote.characterNames = [''];
+  var editor = new Editor({
+    scope: $scope,
+    mode: $routeParams.quoteId ? 'edit' : 'new',
+    targetId: $routeParams.quoteId,
+    targetType: 'quote',
+    getTargetSuccess: function (res) {
+      res = res.plain();
+      $scope.quote = res;
+    }
+  });
 
-  if (actionType === 'edit') {
-    Restangular
-      .one('quotes', $routeParams.quoteId)
-      .get({'with_character_all': true})
-      .then(function (res) {
-        res = res.plain();
-        $scope.quote = res;
-        $scope.quote.characterIds = res.character ? res.character.map(function (object) { return object._id; }) : [];
-        $scope.quote.characterNames = res.character ? res.character.map(function (object) { return object.name; }) : [];
-      });
-  }
 
-  $scope.addCharacter = function (e) {
-    e.preventDefault();
-    $scope.quote.characterNames.push('');
-  };
-
-  $scope.removeCharacter = function (e, index) {
-    e.preventDefault();
-    $scope.quote.characterNames.splice(index, 1);
-    $scope.quote.characterIds.splice(index, 1);
+  $scope.reset = function () {
+    $scope.quote = {};
   };
 
   $scope.submit = function () {
-    var characterIds = $scope.quote.characterIds.filter(function (id, index) {
-      return angular.isDefined(id) && $scope.quote.characterIds.indexOf(id) === index;
-    });
+
+    if (angular.isUndefined($scope.quote.characterIds)) {
+      return Toast.show('语录相关角色不能为空');
+    }
+
+    if (angular.isUndefined($scope.quote.quote)) {
+      return Toast.show('语录内容不能为空');
+    }
+
+    // var characterIds = $scope.quote.characterIds.filter(function (id, index) {
+    //   return angular.isDefined(id) && $scope.quote.characterIds.indexOf(id) === index;
+    // });
+
     var data = {
-      characterIds: characterIds,
+      characterIds: $scope.quote.characterIds,
       quote: $scope.quote.quote,
       reference: $scope.quote.reference,
-      scene: $scope.quote.scene
     };
 
-    if (angular.isUndefined(data.quote)) {
-      return Toast.show('语录不能为空');
-    }
+    editor.save(data);
 
-    if (angular.isUndefined(data.characterIds) || data.characterIds.length === 0) {
-      return Toast.show('语录所属角色不能为空');
-    }
-
-    if (actionType === 'edit') {
-      var quoteElement = Restangular.one('quotes', $routeParams.quoteId)
-      angular.extend(quoteElement, data)
-      quoteElement
-        .put()
-        .then(function (res) {
-          res = res.plain();
-          Toast.show('语录更新成功');
-          return $location.path('/quotes/' + $routeParams.quoteId);
-        });
-
-    } else {
-      Restangular
-        .all('quotes')
-        .post(data)
-        .then(function (res) {
-          res = res.plain();
-          Toast.show('语录添加成功');
-          return $location.path('/quotes/' + res._id);
-        }, function (res) {
-          return Toast.show('语录添加失败');
-        });
-    }
   };
+
+  // $scope.submit = function () {
+  //   var characterIds = $scope.quote.characterIds.filter(function (id, index) {
+  //     return angular.isDefined(id) && $scope.quote.characterIds.indexOf(id) === index;
+  //   });
+  //   var data = {
+  //     characterIds: characterIds,
+  //     quote: $scope.quote.quote,
+  //     reference: $scope.quote.reference,
+  //     scene: $scope.quote.scene
+  //   };
+
+  //   if (actionType === 'edit') {
+  //     var quoteElement = Restangular.one('quotes', $routeParams.quoteId)
+  //     angular.extend(quoteElement, data)
+  //     quoteElement
+  //       .put()
+  //       .then(function (res) {
+  //         res = res.plain();
+  //         Toast.show('语录更新成功');
+  //         return $location.path('/quotes/' + $routeParams.quoteId);
+  //       });
+
+  //   } else {
+  //     Restangular
+  //       .all('quotes')
+  //       .post(data)
+  //       .then(function (res) {
+  //         res = res.plain();
+  //         Toast.show('语录添加成功');
+  //         return $location.path('/quotes/' + res._id);
+  //       }, function (res) {
+  //         return Toast.show('语录添加失败');
+  //       });
+  //   }
+  // };
 }

@@ -10,20 +10,25 @@
         
         <md-card class="form-wrapper" flex="60">
               
-            <h3>Quote Form</h3>
+            <h3>请填写语录相关信息</h3>
 
             <md-divider></md-divider>
 
             <div class="form-body">
 
                 <md-input-container>
-                    <label>Quote Reference</label>
-                    <input type="text">
+                    <label>语录相关角色</label>
+                    <input type="text" ng-model="quote.characterIds">
                 </md-input-container>
 
                 <md-input-container>
-                    <label>Quote Detail</label>
-                    <textarea></textarea>
+                    <label>语录出处</label>
+                    <input type="text" ng-model="quote.reference">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>语录具体内容</label>
+                    <textarea ng-model="quote.quote"></textarea>
                 </md-input-container>
 
             </div>
@@ -31,8 +36,8 @@
             <md-divider></md-divider>
 
             <div class="form-body" layout="row" layout-align="end" layout-margin>
-               <md-button class="md-raised" flex="15">Reset</md-button> 
-               <md-button class="md-raised md-primary" flex="15">Submit</md-button> 
+               <md-button class="md-raised" flex="15" flex-sm="30" flex-md="20" ng-click="reset()">Reset</md-button> 
+               <md-button class="md-raised md-primary" flex="15" flex-sm="30" flex-md="20" ng-click="submit()">Submit</md-button> 
             </div>
 
         </md-card>

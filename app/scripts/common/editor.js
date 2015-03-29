@@ -18,6 +18,8 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
     this.scope = options.scope;
     this.mode = options.mode; // 'new' || 'edit'
     this.targetType = options.targetType;
+    this.getTargetSuccess = options.getTargetSuccess;
+    this.getTargetFailed = options.getTargetFailed;
 
     this.scope[this.targetType] = {};
 
@@ -60,14 +62,20 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
   Editor.prototype.getTarget = function () {
     var self = this;
 
+    var getTargetSuccess = self.getTargetSuccess || function (res) {
+      res = res.plain();
+      self.scope[self.targetType] = res;
+      self.showImage(res);
+    };
+
+    var getTargetFailed = self.getTargetFailed || function (err) {
+      Toast.show(err);
+    }
+
     Restangular
       .one(self.getURL)
       .get()
-      .then(function (res) {
-        res = res.plain();
-        self.scope[self.targetType] = res;
-        self.showImage(res);
-      });
+      .then(getTargetSuccess, getTargetFailed);
   };
 
   Editor.prototype.checkIsExits = function (data) {
@@ -118,10 +126,14 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
         var _mode = self.mode === 'new' ? '添加' : '更新';
         var text = _map + _mode + '失败';
         Toast.show(text);
-      }
+      };
     }
 
+    // For new resource
     if (self.mode === 'new') {
+
+      // 新建作品和角色需要检查是否已存在
+      if (self.targetType !== 'quote') {
 
         self
           .checkIsExits(data)
@@ -140,7 +152,17 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
                 .then(successCallback, failedCallback);
             }
           });
+      // 新建语录时不需要检查语录是否已存在
+      } else {
 
+        Restangular
+          .all(self.saveURL)
+          .post(data)
+          .then(successCallback, failedCallback);
+
+      }
+
+    // For update resource
     } else {
         angular.extend(element, data);
         element.put().then(successCallback, failedCallback);
