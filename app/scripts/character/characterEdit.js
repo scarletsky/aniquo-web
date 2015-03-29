@@ -4,6 +4,9 @@ angular.module('bdCharacterEdit', [])
     '$location',
     '$routeParams',
     'Toast',
+    'Editor',
+    'Uploader',
+    'ImageViewer',
     'Restangular',
     CharacterEditCtrl
   ]);
@@ -13,37 +16,33 @@ function CharacterEditCtrl (
   $location,
   $routeParams,
   Toast,
+  Editor,
+  Uploader,
+  ImageViewer,
   Restangular
 ) {
   'use strict';
 
-  var actionType = $routeParams.characterId ? 'edit' : 'add';
 
-  $scope.character = {};
-  $scope.character.alias = [''];
+  var editor = new Editor({
+    scope: $scope,
+    mode: $routeParams.characterId ? 'edit' : 'new',
+    targetId: $routeParams.characterId,
+    targetType: 'character',
+    canvas: $('#characterAvatar')[0]
+  });
 
-  if (actionType === 'edit') {
-    Restangular
-      .one('characters', $routeParams.characterId)
-      .get({'with_source': true})
-      .then(function (res) {
-        res = res.plain();
-        $scope.character = res;
-        $scope.character.alias = res.alias.length ? res.alias : [''];
-        $scope.character.sourceId = res.source._id;
-        $scope.character.sourceName = res.source.name;
-      });
+
+  $scope.reset = function () {
+    $scope.character = {};
+    cleanCanvas();
+  };
+
+  function cleanCanvas () {
+    var canvas = $('#characterAvatar');
+    var ctx = canvas[0].getContext('2d');
+    ctx.clearRect(0, 0, canvas.width(), canvas.height());
   }
-
-  $scope.addAlias = function (e) {
-    e.preventDefault();
-    $scope.character.alias.push('');
-  };
-
-  $scope.removeAlias = function (e, index) {
-    e.preventDefault();
-    $scope.character.alias.splice(index, 1);
-  };
 
   $scope.submit = function () {
     var alias = _.filter($scope.character.alias, function (value) {
@@ -54,7 +53,7 @@ function CharacterEditCtrl (
       name: $scope.character.name,
       alias: alias,
       info: $scope.character.info,
-      sourceId: $scope.character.sourceId,
+      avatarFile: $scope.character.avatarFile,
       avatar: $scope.character.avatar
     };
 
@@ -62,40 +61,22 @@ function CharacterEditCtrl (
       return Toast.show('角色名字不能为空');
     }
 
-    if (angular.isUndefined(data.sourceId)) {
-      return Toast.show('角色所属作品不能为空');
-    }
+    if (data.avatarFile) {
+      var uploader = new Uploader('characterAvatar');
+      uploader
+        .upload(data.avatarFile)
+        .then(function (fileURL) {
+          Toast.show('头像上传成功');
 
-    if (actionType === 'edit') {
-      var characterElement = Restangular.one('characters', $routeParams.characterId)
-      angular.extend(characterElement, data)
-      characterElement
-        .put()
-        .then(function (res) {
-          Toast.show('角色更新成功');
-          return $location.path('/characters/' + $routeParams.characterId + '/quotes');
+          data.avatar = fileURL;
+          delete data.avatarFile;
+          editor.save(data);
+
+        }, function (err) {
+          return Toast.show('头像上传失败');
         });
-
     } else {
-      Restangular
-        .one('character/check')
-        .get(data)
-        .then(function (res) {
-          res = res.plain();
-          if (res.exist) {
-            return Toast.show('该角色已存在');
-
-          } else {
-            Restangular
-              .all('characters')
-              .post(data)
-              .then(function (res) {
-                return Toast.show('角色添加成功');
-              }, function (res) {
-                return Toast.show('角色添加失败');
-              });
-          }
-        });
+      editor.save(data);
     }
   };
 }

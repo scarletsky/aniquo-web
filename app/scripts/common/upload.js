@@ -33,7 +33,7 @@ function UploaderService (
       throw new Error('uploadType must be specify!');
     }
 
-    if (!(uploadType in uploadTypeList)) {
+    if (uploadTypeList.indexOf(uploadType) === -1) {
       throw new Error('uploadType should be userAvatar or sourceCover or characterAvatar!');
     }
 
