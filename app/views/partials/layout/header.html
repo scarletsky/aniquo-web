@@ -4,8 +4,16 @@
             <a href="/">Aniquo</a>
 
             <span flex></span>
-            <md-button href="/login">Login</md-button>
-            <md-button href="/signup">Sign Up</md-button>
+
+            <div ng-if="!session.isAuthenticated()">
+                <md-button href="/login">Login</md-button>
+                <md-button href="/signup">Sign Up</md-button>
+            </div>
+
+            <div ng-if="session.isAuthenticated()"
+                 ng-controller="AuthCtrl">
+                <md-button ng-click="logout($event)">Logout</md-button>
+            </div>
         </div>
     </md-toolbar>
 </div>

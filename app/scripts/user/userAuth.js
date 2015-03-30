@@ -58,7 +58,6 @@ function SessionService (
           res = res.plain();
           $rootScope.$broadcast(AuthEvents.loginSuccess, res);
         }, function (res) {
-          res = res.plain();
           $rootScope.$broadcast(AuthEvents.loginFailed, res);
         });
     }
@@ -100,6 +99,10 @@ function AuthCtrl (
   'use strict';
 
   $scope.user = {};
+
+  $scope.reset = function () {
+    $scope.user = {};
+  }
 
   $scope.login = function () {
 
@@ -143,8 +146,11 @@ function AuthCtrl (
 
     var data = {
       username: $scope.user.username,
-      password: $scope.user.password
+      password: $scope.user.password,
+      promoCode: $scope.user.promoCode
     };
+
+    return Toast.show('目前不能注册');
 
     Restangular
       .all('register')
@@ -153,7 +159,6 @@ function AuthCtrl (
         res = res.plain();
         $rootScope.$broadcast(AuthEvents.loginSuccess, res);
       }, function (res) {
-        res = res.plain();
         $rootScope.$broadcast(AuthEvents.loginFailed, res);
       });
   };
