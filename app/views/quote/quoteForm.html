@@ -16,10 +16,16 @@
 
             <div class="form-body">
 
-                <md-input-container>
-                    <label>语录相关角色</label>
-                    <input type="text" ng-model="quote.characterIds">
-                </md-input-container>
+                <md-contact-chips
+                    ng-model="quote.characters"
+                    md-contacts="queryCharacters($query)"
+                    md-contact-name="name"
+                    md-contact-image="avatar"
+                    md-require-match
+                    filter-selected="false"
+                    placeholder="添加语录相关角色"
+                    secondary-placeholder="添加语录相关角色">
+                </md-contact-chips>
 
                 <md-input-container>
                     <label>语录出处</label>

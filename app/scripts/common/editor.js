@@ -20,6 +20,7 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
     this.targetType = options.targetType;
     this.getTargetSuccess = options.getTargetSuccess;
     this.getTargetFailed = options.getTargetFailed;
+    this.queryParams = options.queryParams || '';
 
     this.scope[this.targetType] = {};
 
@@ -29,6 +30,11 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
       this.getURL = this.targetType + 's/' + this.targetId;
       this.saveURL = this.getURL;
       this.canvas = options.canvas || null;
+
+      if (this.queryParams.length !== 0) {
+        this.getURL += '?' + this.queryParams;
+      }
+
       this.getTarget();
     } else {
       this.saveURL = this.targetType + 's';
