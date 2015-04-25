@@ -20,10 +20,10 @@
                     <input type="text" ng-model="source.name">
                 </md-input-container>
 
-                <md-input-container>
-                    <label>作品别名</label>
-                    <input type="text" ng-model="source.alias">
-                </md-input-container>
+                <md-chips
+                    ng-model="source.alias"
+                    placeholder="作品别名"
+                    secondary-placeholder="请输入别名"></md-chips>
 
                 <md-input-container>
                     <label>作品简介</label>

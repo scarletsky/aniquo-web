@@ -44,9 +44,6 @@ function SourceEditCtrl (
   }
 
   $scope.submit = function () {
-    var alias = _.filter($scope.source.alias, function (value) {
-      return $.trim(value);
-    });
 
     var data = {
       name: $scope.source.name,
