@@ -20,10 +20,10 @@
                     <input type="text" ng-model="character.name">
                 </md-input-container>
 
-                <md-input-container>
-                    <label>角色别名</label>
-                    <input type="text" ng-model="character.alias">
-                </md-input-container>
+                <md-chips
+                    ng-model="character.alias"
+                    placeholder="角色别名"
+                    secondary-placeholder="新增别名"></md-chips>
 
                 <md-input-container>
                     <label>角色简介</label>
