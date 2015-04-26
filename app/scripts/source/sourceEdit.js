@@ -22,6 +22,8 @@ function SourceEditCtrl (
 ) {
   'use strict';
 
+  $scope.source = {};
+  $scope.source.alias = [];
 
   var editor = new Editor({
     scope: $scope,
@@ -30,7 +32,6 @@ function SourceEditCtrl (
     targetType: 'source',
     canvas: $('#sourceCover')[0]
   });
-
 
   $scope.reset = function () {
     $scope.source = {};

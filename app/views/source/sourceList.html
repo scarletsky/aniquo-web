@@ -26,19 +26,48 @@
                     flex-sm="100"
                     ng-repeat="object in objects">
 
-                    <div class="preview-img-wrapper"
-                         ng-click="goToCharactersPage(object._id)">
+                    <div ng-click="goToCharactersPage(object._id)">
                         <img src="http://placehold.it/500x500" alt="{{ object.name }}">
                     </div>
 
+                    <md-card-content>
+                        <h4 class="md-title"
+                            ng-bind="object.name"
+                            ng-click="goToCharactersPage(object._id)"></h4>
+                    </md-card-content>
+
                     <md-divider></md-divider>
 
-                    <md-card-content>
-                        <h4 ng-bind="object.name"
-                            ng-click="goToCharactersPage(object._id)"></h4>
-                        <p>
-                            Contribute by <a href="#">Scarlex</a>
-                        </p>
+<!--                     <md-list>
+
+                        <md-list-item class="md-2-line">
+                            <img ng-src="http://placehold.it/40x40" class="md-avatar" alt="" />
+                            <div class="md-list-item-text">
+                                <h3>Aniquo</h3>
+                                <h4 ng-bind-template="Submitted at {{ object.createdAt }}"></h4>
+                            </div>
+                          </md-list-item>
+
+                    </md-list>
+
+                    <md-divider></md-divider>
+
+ -->                    <md-card-content>
+                        <span class="icon-group">
+                            <md-icon md-font-icon="mdi-remove-red-eye"></md-icon>
+                            <span class="icon-group-text"
+                                  ng-bind="object.viewsCount"></span>
+                        </span>
+                        <span class="icon-group">
+                            <md-icon md-font-icon="mdi-person"></md-icon>
+                            <span class="icon-group-text"
+                                  ng-bind="object.charactersCount"></span>
+                        </span>
+                        <span class="icon-group">
+                            <md-icon md-font-icon="mdi-textsms"></md-icon>
+                            <span class="icon-group-text"
+                                  ng-bind="object.quotesCount"></span>
+                        </span>
                     </md-card-content>
 
                 </md-card>
