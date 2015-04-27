@@ -22,9 +22,6 @@ function SourceEditCtrl (
 ) {
   'use strict';
 
-  $scope.source = {};
-  $scope.source.alias = [];
-
   var editor = new Editor({
     scope: $scope,
     mode: $routeParams.sourceId ? 'edit' : 'new',

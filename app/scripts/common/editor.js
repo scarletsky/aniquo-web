@@ -24,6 +24,12 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
 
     this.scope[this.targetType] = {};
 
+    if (this.targetType === 'source' || this.targetType === 'character') {
+
+      this.scope[this.targetType].alias = [];
+
+    }
+
     // init by mode
     if (this.mode === 'edit') {
       this.targetId = options.targetId;
@@ -76,7 +82,7 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
 
     var getTargetFailed = self.getTargetFailed || function (err) {
       Toast.show(err);
-    }
+    };
 
     Restangular
       .one(self.getURL)
