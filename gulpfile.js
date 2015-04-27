@@ -89,5 +89,11 @@ gulp.task('minify', ['less'], function () {
     .pipe(gulp.dest('dist/'));
 });
 
+gulp.task('copyfonts', function () {
+  gulp
+    .src('app/styles/fonts/*')
+    .pipe(gulp.dest('dist/fonts/'));
+});
+
 gulp.task('server', ['less', 'connect', 'watch']);
-gulp.task('build', ['clean:build', 'minify']);
+gulp.task('build', ['clean:build', 'minify', 'copyfonts']);
