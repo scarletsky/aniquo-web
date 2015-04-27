@@ -30,6 +30,10 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
 
     }
 
+    if (this.targetType === 'quote') {
+      this.scope[this.targetType].characters = [];
+    }
+
     // init by mode
     if (this.mode === 'edit') {
       this.targetId = options.targetId;
