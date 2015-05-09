@@ -23,15 +23,26 @@ function CharacterEditCtrl (
 ) {
   'use strict';
 
+  $scope.sourceKeyword = '';
 
   var editor = new Editor({
     scope: $scope,
     mode: $routeParams.characterId ? 'edit' : 'new',
     targetId: $routeParams.characterId,
     targetType: 'character',
+    queryParams: 'with_source=true',
     canvas: $('#characterAvatar')[0]
   });
 
+  $scope.querySource = function (sourceKeyword) {
+    return Restangular
+      .all('search')
+      .getList({t: 'source', kw: sourceKeyword})
+      .then(function (res) {
+        res = res.plain();
+        return res;
+      });
+  };
 
   $scope.reset = function () {
     $scope.character = {};
@@ -49,7 +60,12 @@ function CharacterEditCtrl (
       return $.trim(value);
     });
 
+    if (!$scope.character.source) {
+      return Toast.show('角色所属作品不能为空');
+    }
+
     var data = {
+      sourceId: $scope.character.source._id,
       name: $scope.character.name,
       alias: alias,
       info: $scope.character.info,
