@@ -30,7 +30,4 @@ function BrynhildCtrl (
 
   $scope.g = G;
   $scope.session = Session;
-  $scope.back = function () {
-    $window.history.back();
-  };
 }
