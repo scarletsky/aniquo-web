@@ -9,6 +9,7 @@ var htmlmin = require('gulp-htmlmin');
 var minifyCss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var rev = require('gulp-rev');
+var shell = require('gulp-shell');
 var modRewrite = require('connect-modrewrite');
 
 gulp.task('clean:css', function () {
@@ -97,3 +98,4 @@ gulp.task('copyfonts', function () {
 
 gulp.task('server', ['less', 'connect', 'watch']);
 gulp.task('build', ['clean:build', 'minify', 'copyfonts']);
+gulp.task('deploy', ['build'], shell.task('bash ./update.sh aniquo.com'));
