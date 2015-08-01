@@ -2,11 +2,11 @@
     layout="row"
     layout-align="center"
     ng-controller="CharacterListCtrl">
-    
+
     <div
-        layout="column" 
-        layout-align="space-between"
-        flex="60"
+        layout="column"
+        layout-align="center"
+        flex="80"
         flex-sm="100"
         layout-wrap
         infinite-scroll="getObjects()"
@@ -14,22 +14,39 @@
         infinite-scroll-distance='1'
         infinite-scroll-container="'#content-body-wrapper'">
 
-        <md-card
-            class="character-wrapper"
-            layout="row"
-            layout-align="center center"
-            ng-repeat="object in objects"
-            ng-click="goToQuotesPage(object._id)">
+        <div layout="row"
+             layout-align="start"
+             layout-wrap
+             >
 
-            <div class="character-avatar-wrapper">
-                <img ng-src="http://placehold.it/100x100" class="face">
-            </div>
+            <md-card
+                class="character-wrapper"
+                flex="30"
+                flex-md="45"
+                flex-sm="95"
+                ng-repeat="object in objects"
+                ng-click="goToQuotesPage(object._id)">
 
-            <div class="character-info">
-                <h3 ng-bind="object.name"></h3>
-                <p ng-bind="object.info"></p>
-            </div>
-        </md-card>
+                <md-card-content>
+
+                    <div layout="cow" layout-align="start center">
+                        <img ng-src="http://placehold.it/100x100" class="face">
+                        <h3 class="md-subhead" ng-bind="object.name"></h3>
+                    </div>
+
+                </md-card-content>
+
+                <md-divider></md-divider>
+
+                <md-card-content>
+
+                    <p class="md-body-1 character-info"
+                       ng-bind-template="{{  object.info | limitTo: 60 }}{{ object.info.length > 60 ? '...' : '' }}"></p>
+
+                </md-card-content>
+            </md-card>
+
+        </div>
 
         <div bd-tracker></div>
 
