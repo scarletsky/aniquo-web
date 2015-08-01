@@ -2,10 +2,10 @@
     layout="row"
     layout-align="center"
     ng-controller="SourceListCtrl">
-    
+
     <div
-        layout="row" 
-        flex="60"
+        layout="row"
+        flex="80"
         flex-sm="100"
         infinite-scroll="getObjects()"
         infinite-scroll-disabled="q.isQuerying || q.noMoreData"
@@ -13,17 +13,18 @@
         infinite-scroll-container="'#content-body-wrapper'">
 
         <div layout="column" layout-fill>
-            
+
             <div layout="row"
                  layout-align="space-between"
-                 flex="60"
+                 flex="80"
                  flex-sm="100"
                  layout-wrap>
 
-                <md-card 
+                <md-card
                     class="source-wrapper"
-                    flex="45"
-                    flex-sm="100"
+                    flex="20"
+                    flex-md="40"
+                    flex-sm="95"
                     ng-repeat="object in objects">
 
                     <div ng-click="goToCharactersPage(object._id)">
@@ -38,21 +39,21 @@
 
                     <md-divider></md-divider>
 
-<!--                     <md-list>
+                    <!--                     <md-list>
 
-                        <md-list-item class="md-2-line">
-                            <img ng-src="http://placehold.it/40x40" class="md-avatar" alt="" />
-                            <div class="md-list-item-text">
-                                <h3>Aniquo</h3>
-                                <h4 ng-bind-template="Submitted at {{ object.createdAt }}"></h4>
-                            </div>
-                          </md-list-item>
+                    <md-list-item class="md-2-line">
+                    <img ng-src="http://placehold.it/40x40" class="md-avatar" alt="" />
+                    <div class="md-list-item-text">
+                    <h3>Aniquo</h3>
+                    <h4 ng-bind-template="Submitted at {{ object.createdAt }}"></h4>
+                    </div>
+                    </md-list-item>
 
                     </md-list>
 
                     <md-divider></md-divider>
 
- -->                    <md-card-content>
+                    -->                    <md-card-content>
                         <span class="icon-group">
                             <md-icon md-font-icon="mdi-remove-red-eye"></md-icon>
                             <span class="icon-group-text"
@@ -71,13 +72,12 @@
                     </md-card-content>
 
                 </md-card>
- 
+
             </div>
 
             <div bd-tracker></div>
         </div>
-        
+
     </div>
 
 </div>
-
