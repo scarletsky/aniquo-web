@@ -5,11 +5,13 @@
              flex-md="95"
              flex-sm="95">
 
-        <h3>请填写登录信息</h3>
+        <md-card-content>
+            <h1 class="md-title">请填写登录信息</h1>
+        </md-card-content>
 
         <md-divider></md-divider>
 
-        <div class="form-body">
+        <md-card-content>
 
             <md-input-container>
                 <label>用户名</label>
@@ -21,14 +23,16 @@
                 <input type="password" ng-model="user.password">
             </md-input-container>
 
-        </div>
+        </md-card-content>
 
         <md-divider></md-divider>
 
-        <div class="form-body" layout="row" layout-align="end" layout-margin>
+        <md-card-content
+           layout="row"
+           layout-align="end">
             <md-button class="md-raised" flex="15" flex-sm="30" flex-md="20" ng-click="reset()">Reset</md-button>
             <md-button class="md-raised md-primary" flex="15" flex-sm="30" flex-md="20" ng-click="login()">Login</md-button>
-        </div>
+        </md-card-content>
 
     </md-card>
 </div>
