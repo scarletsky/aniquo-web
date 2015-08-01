@@ -2,26 +2,26 @@
     layout="row"
     layout-align="center"
     ng-controller="QuoteListCtrl">
-    
+
     <div
-        layout="row" 
+        layout="row"
         layout-align="space-between"
-        flex="60"
+        flex="80"
         flex-sm="100"
         layout-wrap
         infinite-scroll="getObjects()"
         infinite-scroll-disabled="q.isQuerying || q.noMoreData"
         infinite-scroll-distance='1'
         infinite-scroll-container="'#content-body-wrapper'">
-        
+
         <div layout="column" layout-fill>
 
             <md-card class="quote-wrapper"
                      ng-repeat="object in objects">
 
-                <div class="quote" ng-click="goToQuoteDetailPage(object._id)">
+                <md-card-content ng-click="goToQuoteDetailPage(object._id)">
                     <div marked="object.quote"></div>
-                </div>
+                </md-card-content>
 
                 <md-divider></md-divider>
 
@@ -36,6 +36,5 @@
         </div>
 
     </div>
-
 
 </div>
