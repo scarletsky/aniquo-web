@@ -12,27 +12,22 @@
         <title ng-bind="ex.meta.title"></title>
 
         <!-- build:css styles/main.css -->
+        <link rel="stylesheet" href="/components/normalize.css/normalize.css">
         <link rel="stylesheet" href="/components/angular-material/angular-material.css">
         <link rel="stylesheet" href="/components/angular-loading-bar/build/loading-bar.min.css">
         <link rel="stylesheet" href="/components/material-design-iconic-font/css/material-design-iconic-font.min.css">
         <link rel="stylesheet" href="/styles/materialFix.css">
         <link rel="stylesheet" href="/styles/main.css">
         <!-- endbuild -->
-
     </head>
 
-    <body layout="column">
-        <div ng-include="'/views/partials/layout/header.html'"></div>
+    <body>
 
-        <md-content class="md-padding" id="content-body-wrapper">
+        <header ng-include="'/views/partials/layout/header.html'"></header>
 
-            <div id="main">
-                <div ng-view></div>
-            </div>
-            <div id="footer">footer</div>
+        <md-content id="content-body-wrapper" layout="column">
+            <main ng-view></main>
         </md-content>
-
-
 
         <!-- build:js /scripts/libs.js -->
         <script src="/components/jquery/dist/jquery.js"></script>
@@ -48,7 +43,7 @@
         <script src="/components/angular-sanitize/angular-sanitize.js"></script>
 
         <!-- third part -->
-        <script src="/components/lodash/dist/lodash.compat.min.js"></script> 
+        <script src="/components/lodash/dist/lodash.compat.min.js"></script>
         <script src="/components/restangular/dist/restangular.min.js"></script>
         <script src="/components/angular-md5/angular-md5.min.js"></script>
         <script src="/components/hammerjs/hammer.min.js"></script>
