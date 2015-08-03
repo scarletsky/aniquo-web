@@ -35,4 +35,13 @@
 
     </md-card>
 
+    <md-button id="fab"
+               class="md-fab" aria-label="Edit Character"
+               ng-href="/characters/{{ character._id }}/edit"
+               ng-if="session.isAuthenticated() && session.currentUser._id === character.contributor._id"
+               >
+        <md-tooltip md-direction="left">编辑角色</md-tooltip>
+        <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>
+    </md-button>
+
 </div>

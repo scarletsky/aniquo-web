@@ -51,6 +51,7 @@ function CharacterListCtrl (
     $scope.q = q;
 
     var sourceId = $routeParams.sourceId;
+    $scope.sourceId = sourceId;
 
     $scope.getObjects = function () {
 

@@ -65,7 +65,7 @@ function SessionService (
 
   $rootScope.$on(AuthEvents.loginSuccess, function (event, res) {
     $window.localStorage.token = res.token;
-    service.currentUser = res.user; 
+    service.currentUser = res.user;
     $location.path('/');
   });
 
@@ -134,7 +134,7 @@ function AuthCtrl (
 
     if (angular.isUndefined($scope.user.password)) {
       return Toast.show('请输入密码');
-    }     
+    }
 
     if (angular.isUndefined($scope.user.password2)) {
       return Toast.show('请确认密码');

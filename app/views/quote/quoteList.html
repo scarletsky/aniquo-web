@@ -36,4 +36,13 @@
 
     </div>
 
+    <md-button id="fab"
+               class="md-fab" aria-label="Add Quote"
+               ng-href="/quotes/new?characterId={{ characterId }}"
+               ng-if="session.isAuthenticated()"
+               >
+        <md-tooltip md-direction="left">添加语录</md-tooltip>
+        <md-icon class="zmdi zmdi-plus zmdi-hc-lg"></md-icon>
+    </md-button>
+
 </div>

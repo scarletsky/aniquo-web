@@ -37,7 +37,6 @@ function QuoteCtrl (
     })
     .then(function (res) {
       res = res.plain();
-      console.log(res);
       $scope.quote = res;
     });
 }
@@ -54,6 +53,7 @@ function QuoteListCtrl (
   var q = new Query();
   $scope.q = q;
   var characterId = $routeParams.characterId;
+  $scope.characterId = characterId;
 
   $scope.getObjects = function () {
 
