@@ -80,7 +80,7 @@ function QuoteEditCtrl (
     var data = {
       characterIds: characterIds,
       quote: $scope.quote.quote,
-      reference: $scope.quote.reference,
+      reference: $scope.quote.reference
     };
 
     editor.save(data);
@@ -88,7 +88,7 @@ function QuoteEditCtrl (
   };
 
   $scope.queryCharacters = function (query) {
-    return Restangular.all('/search')
+    return Restangular.all('search')
       .getList({t: 'character', kw: query})
       .then(function (res) {
         var _characters = res.plain();
