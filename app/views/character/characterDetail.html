@@ -21,8 +21,9 @@
         <md-card-content>
 
             <h1 class="md-title">角色别名</h1>
-            <p class="md-body-1"
-               ng-bind="character.alias"></p>
+            <span class="my-chip"
+                  ng-repeat="alias in character.alias"
+                  ng-bind="alias"></span>
 
             <h1 class="md-title">角色简介</h1>
             <p class="md-body-1"

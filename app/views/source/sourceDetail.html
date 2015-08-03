@@ -22,8 +22,9 @@
                ng-bind="source.name"></p>
 
             <h1 class="md-title">作品别名</h1>
-            <p class="md-body-1"
-               ng-bind="source.alias"></p>
+            <span class="my-chip"
+                  ng-repeat="alias in source.alias"
+                  ng-bind="alias"></span>
 
             <h1 class="md-title">作品简介</h1>
             <p class="md-body-1"
