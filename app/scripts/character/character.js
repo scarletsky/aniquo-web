@@ -1,84 +1,75 @@
 angular.module('bdCharacter', [
-  'bdCharacterEdit'
+    'bdCharacterEdit'
 ])
 
-  .controller('CharacterCtrl', [
-    '$scope',
-    '$location',
-    '$routeParams',
-    'G',
-    'Restangular',
-    CharacterCtrl
-  ])
+    .controller('CharacterCtrl', [
+        '$scope',
+        '$location',
+        '$routeParams',
+        'Restangular',
+        CharacterCtrl
+    ])
 
-  .controller('CharacterListCtrl', [
-    '$scope',
-    '$location',
-    '$routeParams',
-    'G',
-    'Query',
-    'Restangular',
-    CharacterListCtrl
-  ]);
+    .controller('CharacterListCtrl', [
+        '$scope',
+        '$location',
+        '$routeParams',
+        'Query',
+        'Restangular',
+        CharacterListCtrl
+    ]);
 
 function CharacterCtrl (
-  $scope,
-  $location,
-  $routeParams,
-  G,
-  Restangular
-) {
-  'use strict';
-
-  $scope.g = G;
-  var characterId = $routeParams.characterId;
-
-  if (!$scope.g.currentCharacter || $scope.g.currentCharacter._id !== characterId) {
-    $scope.g.currentCharacter = null;
+    $scope,
+    $location,
+    $routeParams,
     Restangular
-      .one('characters/' + characterId)
-      .get({with_source: true})
-      .then(function (res) {
-        res = res.plain();
-        $scope.g.currentSource = res.source;
-        $scope.g.currentCharacter = res;
-      });
-  }
+) {
+    'use strict';
+
+    var characterId = $routeParams.characterId;
+
+    Restangular
+        .one('characters/' + characterId)
+        .get({with_source: true})
+        .then(function (res) {
+            res = res.plain();
+            $scope.character = res;
+        });
 }
 
 function CharacterListCtrl (
-  $scope,
-  $location,
-  $routeParams,
-  G,
-  Query,
-  Restangular
+    $scope,
+    $location,
+    $routeParams,
+    Query,
+    Restangular
 ) {
-  'use strict';
+    'use strict';
 
-  var q = new Query();
-  $scope.q = q;
+    var q = new Query();
+    $scope.q = q;
 
-  var sourceId = $routeParams.sourceId;
+    var sourceId = $routeParams.sourceId;
 
-  $scope.getObjects = function () {
+    $scope.getObjects = function () {
 
-    if (angular.isDefined(sourceId)) {
-      q.query({
-        scope: $scope,
-        route: 'sources/' + sourceId + '/characters'
-      });
-   
-    } else {
+        if (angular.isDefined(sourceId)) {
+            q.query({
+                scope: $scope,
+                route: 'sources/' + sourceId + '/characters'
+            });
 
-      q.query({
-        scope: $scope,
-        route: 'characters'
-      });
-    }
-  }
+        } else {
 
-  $scope.goToQuotesPage = function (id) {
-    $location.path('/characters/' + id + '/quotes');
-  }
+            q.query({
+                scope: $scope,
+                route: 'characters'
+            });
+        }
+    };
+
+    $scope.goToQuotesPage = function (id) {
+        $location.path('/characters/' + id + '/quotes');
+    };
 }
