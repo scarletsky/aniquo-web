@@ -1,0 +1,39 @@
+<div layout="row"
+     layout-align="center"
+     ng-controller="SourceCtrl"
+     >
+    <md-card layout="row"
+             layout-md="column"
+             layout-sm="column"
+             flex="80"
+             flex-md="95"
+             flex-sm="95">
+
+        <img alt="{{ source.name }}"
+             src="http://placehold.it/500x500"
+             flex="50"
+             flex-md="100"
+             flex-sm="100"
+             />
+
+        <md-card-content>
+            <h1 class="md-title">作品名称</h1>
+            <p class="md-body-1"
+               ng-bind="source.name"></p>
+
+            <h1 class="md-title">作品别名</h1>
+            <p class="md-body-1"
+               ng-bind="source.alias"></p>
+
+            <h1 class="md-title">作品简介</h1>
+            <p class="md-body-1"
+               ng-bind="source.info"></p>
+
+            <h1 class="md-title">贡献者</h1>
+            <p class="md-body-1">Scarlex 2015-11-11</p>
+
+        </md-card-content>
+
+    </md-card>
+
+</div>

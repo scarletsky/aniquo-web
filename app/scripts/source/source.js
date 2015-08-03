@@ -1,75 +1,70 @@
 angular.module('bdSource', [
-  'bdSourceEdit'
+    'bdSourceEdit'
 ])
 
-  .controller('SourceCtrl', [
-    '$scope',
-    '$location',
-    '$routeParams',
-    'G',
-    'Restangular',
-    SourceCtrl
-  ])
+    .controller('SourceCtrl', [
+        '$scope',
+        '$location',
+        '$routeParams',
+        'Restangular',
+        SourceCtrl
+    ])
 
-  .controller('SourceListCtrl', [
-    '$scope',
-    '$location',
-    '$routeParams',
-    'G',
-    'Query',
-    'Restangular',
-    SourceListCtrl
-  ]);
+    .controller('SourceListCtrl', [
+        '$scope',
+        '$location',
+        '$routeParams',
+        'Query',
+        'Restangular',
+        SourceListCtrl
+    ]);
 
 function SourceCtrl (
-  $scope,
-  $location,
-  $routeParams,
-  G,
-  Restangular
-) {
-  'use strict';
-
-  $scope.g = G;
-  var sourceId = $routeParams.sourceId;
-
-  if (!$scope.g.currentSource || $scope.g.currentSource._id !== sourceId) {
-    $scope.g.currentSource = null;
+    $scope,
+    $location,
+    $routeParams,
     Restangular
-      .one('sources/' + sourceId)
-      .get()
-      .then(function (res) {
-        res = res.plain();
-        $scope.g.currentSource = res;
-      });
-  }
+) {
+    'use strict';
+
+    var sourceId = $routeParams.sourceId;
+
+    if (!$scope.g.currentSource || $scope.g.currentSource._id !== sourceId) {
+        $scope.g.currentSource = null;
+        Restangular
+            .one('sources/' + sourceId)
+            .get()
+            .then(function (res) {
+                res = res.plain();
+                $scope.source = res;
+            });
+    }
 }
 
 function SourceListCtrl (
-  $scope,
-  $location,
-  $routeParams,
-  G,
-  Query,
-  Restangular
+    $scope,
+    $location,
+    $routeParams,
+    Query,
+    Restangular
 ) {
-  'use strict';
+    'use strict';
 
 
-  var q = new Query();
-  $scope.q = q;
+    var q = new Query();
+    $scope.q = q;
 
-  $scope.getObjects = function () {
+    $scope.getObjects = function () {
 
-    return q.query({
-      scope: $scope,
-      route: 'sources'
-    });
+        return q.query({
+            scope: $scope,
+            route: 'sources'
+        });
 
-  };
+    };
 
-  $scope.goToCharactersPage = function (id) {
-    $location.path('/sources/' + id + '/characters');
-  }
+    $scope.goToCharactersPage = function (id) {
+        $location.path('/sources/' + id + '/characters');
+    };
 
 }
