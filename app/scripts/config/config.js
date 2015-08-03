@@ -48,7 +48,7 @@ function autoLogin (
         $rootScope.$broadcast(AuthEvents.loadUserSuccess, res);
       }, function (res) {
         res = res.plain();
-        $rootScope.$broadcast(AuthEvents.tokenExpired, res); 
+        $rootScope.$broadcast(AuthEvents.tokenExpired, res);
       });
   }
 }

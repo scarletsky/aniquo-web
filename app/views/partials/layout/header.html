@@ -1,5 +1,6 @@
 <md-toolbar>
-    <div class="md-toolbar-tools">
+  <div class="md-toolbar-tools"
+       ng-controller="AuthCtrl">
         <span flex="10"
               flex-md="0"
               flex-sm="0"></span>
@@ -10,12 +11,11 @@
         <div ng-if="!session.isAuthenticated()"
              layout="row"
              >
-            <md-button href="/login">Login</md-button>
-            <md-button href="/signup">Sign Up</md-button>
+            <md-button ng-href="/login?next={{ location.url() }}">Login</md-button>
+            <md-button ng-href="/signup?next={{ location.url() }}">Sign Up</md-button>
         </div>
 
-        <div ng-if="session.isAuthenticated()"
-             ng-controller="AuthCtrl">
+        <div ng-if="session.isAuthenticated()">
             <md-button ng-click="logout($event)">Logout</md-button>
         </div>
         <span flex="10"

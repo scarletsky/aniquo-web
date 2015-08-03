@@ -3,3 +3,4 @@ app/components/
 app/styles/*.css
 dist/
 update.sh
+*.tern-port
