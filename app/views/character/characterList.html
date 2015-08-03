@@ -40,7 +40,7 @@
                 <md-card-content>
 
                     <p class="md-body-1 mg-0"
-                       ng-bind-template="{{  object.info | limitTo: 60 }}{{ object.info.length > 60 ? '...' : '' }}"></p>
+                       ng-bind-template="{{ object.info.length === 0 ? '无' : '' }}{{  object.info | limitTo: 60 }}{{ object.info.length > 60 ? '...' : '' }}"></p>
 
                 </md-card-content>
             </md-card>
