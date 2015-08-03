@@ -16,8 +16,7 @@
 
         <div layout="column" layout-fill>
 
-            <md-card class="quote-wrapper"
-                     ng-repeat="object in objects">
+            <md-card ng-repeat="object in objects">
 
                 <md-card-content ng-click="goToQuoteDetailPage(object._id)">
                     <div marked="object.quote"></div>
@@ -26,7 +25,7 @@
                 <md-divider></md-divider>
 
                 <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="face" ng-repeat="character in object.characters" title="{{ character.name }}">
+                    <img ng-src="http://placehold.it/100x100" class="avatar avatar-md mg-r" ng-repeat="character in object.characters" title="{{ character.name }}">
                 </md-card-content>
 
             </md-card>

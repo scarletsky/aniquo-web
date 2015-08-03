@@ -19,18 +19,17 @@
              layout-wrap
              >
 
-            <md-card
-                class="character-wrapper"
-                flex="30"
-                flex-md="45"
-                flex-sm="95"
-                ng-repeat="object in objects"
-                ng-click="goToQuotesPage(object._id)">
+            <md-card flex="30"
+                     flex-md="45"
+                     flex-sm="95"
+                     ng-repeat="object in objects"
+                     ng-click="goToQuotesPage(object._id)">
 
                 <md-card-content>
 
                     <div layout="cow" layout-align="start center">
-                        <img ng-src="http://placehold.it/100x100" class="face">
+                        <img ng-src="http://placehold.it/100x100"
+                             class="avatar avatar-md mg-r">
                         <h3 class="md-subhead" ng-bind="object.name"></h3>
                     </div>
 
@@ -40,7 +39,7 @@
 
                 <md-card-content>
 
-                    <p class="md-body-1 character-info"
+                    <p class="md-body-1 mg-0"
                        ng-bind-template="{{  object.info | limitTo: 60 }}{{ object.info.length > 60 ? '...' : '' }}"></p>
 
                 </md-card-content>
