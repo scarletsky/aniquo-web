@@ -45,17 +45,18 @@ function ImageViewerService () {
     var image = new Image();
 
     image.onload = function () {
-      var hRatio = self.width  / image.width;
-      var vRatio = self.height / image.height;
-      var ratio  = Math.min ( hRatio, vRatio );
-
-      var centerShiftX = ( self.width - image.width*ratio ) / 2;
-      var centerShiftY = ( self.height - image.height*ratio ) / 2;
 
       self.ctx.clearRect(0, 0, self.width, self.height);
-      self.ctx.drawImage(image,
-        0, 0, image.width, image.height,
-        centerShiftX, centerShiftY, image.width*ratio, image.height*ratio);
+      self.drawImageProp(self.ctx, image, 0, 0, self.width, self.height);
+      // var hRatio = self.width  / image.width;
+      // var vRatio = self.height / image.height;
+      // var ratio  = Math.min ( hRatio, vRatio );
+      //
+      // var centerShiftX = ( self.width - image.width*ratio ) / 2;
+      // var centerShiftY = ( self.height - image.height*ratio ) / 2;
+      // self.ctx.drawImage(image,
+      //   0, 0, image.width, image.height,
+      //   centerShiftX, centerShiftY, image.width*ratio, image.height*ratio);
 
     };
 
@@ -78,6 +79,62 @@ function ImageViewerService () {
       reader.readAsDataURL(self.src);
     }
 
+  };
+
+  ImageViewer.prototype.drawImageProp = function (ctx, img, x, y, w, h, offsetX, offsetY) {
+    // from http://stackoverflow.com/questions/21961839/simulation-background-size-cover-in-canvas
+    /**
+     * By Ken Fyrstenberg
+     *
+     * drawImageProp(context, image [, x, y, width, height [,offsetX, offsetY]])
+     *
+     * If image and context are only arguments rectangle will equal canvas
+    */
+
+    if (arguments.length === 2) {
+      x = y = 0;
+      w = ctx.canvas.width;
+      h = ctx.canvas.height;
+    }
+
+    // default offset is center
+    offsetX = offsetX ? offsetX : 0.5;
+    offsetY = offsetY ? offsetY : 0.5;
+
+    // keep bounds [0.0, 1.0]
+    if (offsetX < 0) offsetX = 0;
+    if (offsetY < 0) offsetY = 0;
+    if (offsetX > 1) offsetX = 1;
+    if (offsetY > 1) offsetY = 1;
+
+    var iw = img.width,
+      ih = img.height,
+      r = Math.min(w / iw, h / ih),
+      nw = iw * r,   /// new prop. width
+      nh = ih * r,   /// new prop. height
+      cx, cy, cw, ch, ar = 1;
+
+    // decide which gap to fill
+    if (nw < w) ar = w / nw;
+    if (nh < h) ar = h / nh;
+    nw *= ar;
+    nh *= ar;
+
+    // calc source rectangle
+    cw = iw / (nw / w);
+    ch = ih / (nh / h);
+
+    cx = (iw - cw) * offsetX;
+    cy = (ih - ch) * offsetY;
+
+    // make sure source rectangle is valid
+    if (cx < 0) cx = 0;
+    if (cy < 0) cy = 0;
+    if (cw > iw) cw = iw;
+    if (ch > ih) ch = ih;
+
+    // fill image in dest. rectangle
+    ctx.drawImage(img, cx, cy, cw, ch,  x, y, w, h);
   };
 
   return ImageViewer;
