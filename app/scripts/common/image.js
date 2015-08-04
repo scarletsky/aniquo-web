@@ -3,6 +3,10 @@ angular.module('bdImage', [])
     ImageViewerService
   ])
 
+  .directive('bdImageAutoResize', [
+    bdImageAutoResizeDirective
+  ])
+
   .directive('bdImageSelected', [
     'ImageViewer',
     bdImageSelectedDirective
@@ -46,10 +50,10 @@ function ImageViewerService () {
       var ratio  = Math.min ( hRatio, vRatio );
 
       var centerShiftX = ( self.width - image.width*ratio ) / 2;
-      var centerShiftY = ( self.height - image.height*ratio ) / 2;  
+      var centerShiftY = ( self.height - image.height*ratio ) / 2;
 
       self.ctx.clearRect(0, 0, self.width, self.height);
-      self.ctx.drawImage(image, 
+      self.ctx.drawImage(image,
         0, 0, image.width, image.height,
         centerShiftX, centerShiftY, image.width*ratio, image.height*ratio);
 
@@ -80,6 +84,19 @@ function ImageViewerService () {
 
 }
 
+function bdImageAutoResizeDirective () {
+  return {
+    restrict: 'AE',
+    link: function ($scope, $element) {
+
+      var width = $element.width();
+      $element.width(width);
+      $element.height(width);
+
+    }
+  }
+}
+
 function bdImageSelectedDirective (ImageViewer) {
   return {
     scope: {
@@ -93,7 +110,7 @@ function bdImageSelectedDirective (ImageViewer) {
       var height = $element.height();
 
       element.width = width;
-      element.height = height;
+      element.height = width;
 
       var ctx = element.getContext('2d');
       var inputField = $element.next();
@@ -116,7 +133,6 @@ function bdImageSelectedDirective (ImageViewer) {
         });
 
       });
-
     }
   };
 }

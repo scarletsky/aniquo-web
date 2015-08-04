@@ -8,50 +8,57 @@
     <div layout="row" layout-align="center">
 
         <md-card class="form-wrapper"
-                 flex="60"
+                 layout="row"
+                 layout-md="column"
+                 layout-sm="column"
+                 flex="80"
                  flex-md="80"
                  flex-sm="95"
                  >
 
-            <md-card-content>
-                <h1 class="md-title">请填写作品相关信息</h1>
-            </md-card-content>
+            <canvas id="sourceCover"
+                    flex="50"
+                    flex-md="100"
+                    flex-sm="100"
+                    bd-image-selected
+                    bd-image-auto-resize
+                    selected-file="source.coverFile"></canvas>
+            <input type="file" accept="image/*" class="hidden">
 
-            <md-divider></md-divider>
+            <div layout="column"
+                 flex>
 
-            <md-card-content>
+                <md-card-content>
 
-                <md-input-container>
-                    <label>作品名称</label>
-                    <input type="text" ng-model="source.name">
-                </md-input-container>
+                    <md-input-container>
+                        <label>作品名称</label>
+                        <input type="text" ng-model="source.name">
+                    </md-input-container>
 
-                <md-chips
-                    ng-model="source.alias"
-                    placeholder="作品别名"
-                    secondary-placeholder="请输入别名"></md-chips>
+                    <md-chips
+                        ng-model="source.alias"
+                        placeholder="作品别名"
+                        secondary-placeholder="请输入别名"></md-chips>
 
-                <md-input-container>
-                    <label>作品简介</label>
-                    <textarea ng-model="source.info"></textarea>
-                </md-input-container>
+                    <md-input-container>
+                        <label>作品简介</label>
+                        <textarea ng-model="source.info"></textarea>
+                    </md-input-container>
 
-                <!-- Source Cover Field -->
-                <h1 class="md-subhead">作品封面</h1>
-                <canvas id="sourceCover" bd-image-selected selected-file="source.coverFile" layout-fill></canvas>
-                <input type="file" accept="image/*" class="hidden">
+                </md-card-content>
 
-            </md-card-content>
+                <span flex></span>
 
-            <md-divider></md-divider>
+                <md-divider></md-divider>
 
-            <md-card-content
-                layout="row"
-                layout-align="end">
-                <md-button class="md-raised" flex="15" flex-sm="30" flex-md="20" ng-click="reset()">Reset</md-button>
-                <md-button class="md-raised md-primary" flex="15" flex-sm="30" flex-md="20" ng-click="submit()">Submit</md-button>
+                <md-card-content
+                    layout="row"
+                    layout-align="end">
+                    <md-button class="md-raised" flex="15" flex-sm="30" flex-md="20" ng-click="reset()">Reset</md-button>
+                    <md-button class="md-raised md-primary" flex="15" flex-sm="30" flex-md="20" ng-click="submit()">Submit</md-button>
+                </md-card-content>
 
-            </md-card-content>
+            </div>
 
         </md-card>
 
