@@ -13,8 +13,14 @@
                  flex-sm="95"
                  >
 
-            <md-card-content>
-                <h1 class="md-title">请填写角色相关信息</h3>
+            <md-card-content layout="row"
+                             layout-align="center">
+                <canvas id="characterAvatar"
+                        class="avatar avatar-lg"
+                        bd-image-selected
+                        selected-file="character.avatarFile"
+                        layout-fill></canvas>
+                <input type="file" accept="image/*" class="hidden">
             </md-card-content>
 
             <md-divider></md-divider>
@@ -46,10 +52,6 @@
                     <textarea ng-model="character.info"></textarea>
                 </md-input-container>
 
-                <!-- Character Avatar Field -->
-                <h1 class="md-subhead">角色头像</h1>
-                <canvas id="characterAvatar" class="size200" bd-image-selected selected-file="character.avatarFile" layout-fill></canvas>
-                <input type="file" accept="image/*" class="hidden">
 
             </md-card-content>
 
