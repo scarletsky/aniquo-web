@@ -9,8 +9,7 @@
         <span flex></span>
 
         <div ng-if="!session.isAuthenticated()"
-             layout="row"
-             >
+             layout="row">
             <md-button ng-href="/login?next={{ location.url() }}">Login</md-button>
             <md-button ng-href="/signup?next={{ location.url() }}">Sign Up</md-button>
         </div>

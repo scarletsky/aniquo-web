@@ -102,10 +102,6 @@ function AuthCtrl (
 ) {
     'use strict';
 
-    if (Session.isAuthenticated()) {
-        return $location.path('/');
-    }
-
     $scope.user = {};
 
     $scope.reset = function () {
@@ -169,4 +165,13 @@ function AuthCtrl (
                 $rootScope.$broadcast(AuthEvents.loginFailed, res);
             });
     };
+
+    function isAuthPage() {
+        var currentPage = $location.path();
+        return currentPage === '/login' || currentPage === '/signup';
+    }
+
+    if (isAuthPage() && Session.isAuthenticated()) {
+        return $location.path('/');
+    }
 }
