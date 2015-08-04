@@ -13,39 +13,39 @@
                  flex-md="95"
                  flex-sm="95">
 
-            <md-card-content>
-                <div class="md-subhead" marked="quote.quote"></div>
-            </md-card-content>
-
-            <md-divider></md-divider>
-
-            <md-card-content layout="row" layout-align="end">
-                <h1 class="md-subhead" ng-bind-template="出自 —— {{ quote.reference }}"></h3>
-            </md-card-content>
-
-            <md-divider></md-divider>
-
-            <md-card-content>
-
-                <h1 class="md-title">Related Characters</h1>
-
-                <img ng-src="http://placehold.it/100x100"
-                     class="avatar avatar-md mg-r"
-                     title="{{ character.name }}"
-                     ng-repeat="character in quote.characters">
-
-            </md-card-content>
-
-            <md-divider></md-divider>
-
             <md-card-content layout="row"
-                             layout-align="start center">
+                             layout-align="center">
 
-                <img ng-src="http://placehold.it/100x100"
-                     class="avatar avatar-md mg-r"
-                     title="{{ quote.contributor.username }}">
-                Submitted at {{ quote.createdAt | timeFormat: 'YYYY-MM-DD' }}
+                <div layout="column">
 
+                    <h1 class="md-title text-center">相关人物</h1>
+
+                    <div layout="row"
+                         layout-align="space-between"
+                         layout-wrap>
+
+                        <span ng-repeat="character in quote.characters">
+
+                            <img ng-src="http://placehold.it/100x100"
+                                 class="avatar avatar-md mg-h" />
+
+                            <md-tooltip md-direction="down"
+                                        md-delay="0">{{ character.name }}</md-tooltip>
+
+                        </span>
+                    </div>
+                 </div>
+
+            </md-card-content>
+
+            <md-divider></md-divider>
+
+            <md-card-content layout="column">
+                <div class="md-subhead" marked="quote.quote"></div>
+
+                <div layout="row" layout-align="end">
+                    <h1 class="md-subhead" ng-bind-template="出自 —— {{ quote.reference }}"></h3>
+                </div>
             </md-card-content>
 
         </md-card>
