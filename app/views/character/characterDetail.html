@@ -8,8 +8,10 @@
 
         <md-card-content layout="row"
                          layout-align="center center">
-            <img src="http://placehold.it/50x50"
-                 class="avatar avatar-lg mg-r"
+            <img class="avatar avatar-lg mg-r"
+                 bd-width="100"
+                 bd-height="100"
+                 bd-image-background-cover="{{ character.avatar }}"
                  />
             <p class="md-title"
                ng-bind="character.name"></p>

@@ -26,8 +26,10 @@
 
                         <span ng-repeat="character in quote.characters">
 
-                            <img ng-src="http://placehold.it/100x100"
-                                 class="avatar avatar-md mg-h" />
+                            <img class="avatar avatar-lg mg-h"
+                                 bd-width="100"
+                                 bd-height="100"
+                                 bd-image-background-cover="{{ character.avatar }}" />
 
                             <md-tooltip md-direction="down"
                                         md-delay="0">{{ character.name }}</md-tooltip>

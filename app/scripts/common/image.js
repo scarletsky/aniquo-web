@@ -1,10 +1,15 @@
-angular.module('bdImage', [])
+angular.module('bdImage', ['bdUpload'])
   .factory('ImageViewer', [
     ImageViewerService
   ])
 
   .directive('bdImageAutoResize', [
     bdImageAutoResizeDirective
+  ])
+
+  .directive('bdImageBackgroundCover', [
+    'UploadConf',
+    bdImageBackgroundCoverDirective
   ])
 
   .directive('bdImageSelected', [
@@ -145,11 +150,40 @@ function bdImageAutoResizeDirective () {
   return {
     restrict: 'AE',
     link: function ($scope, $element) {
+      $scope.$watch(function () {
+        return $element.width();
+      }, function (w) {
+        $element.width('100%');
+        $element.height(w);
+      })
+    }
+  }
+}
 
-      var width = $element.width();
-      $element.width(width);
-      $element.height(width);
+function bdImageBackgroundCoverDirective (UploadConf) {
+  return {
+    restrict: 'AE',
+    link: function ($scope, $element, $attrs) {
 
+      var bgNum = Math.ceil(Math.random() * 9);
+
+      var w = $attrs.bdWidth || 500;
+      var h = $attrs.bdHeight || 500;
+
+      $element.css({
+          'background-image': 'url(' + UploadConf.domain + '/@/images/bg' + bgNum + '?imageView/2/w/' + w + '/h/' + h + ')',
+          'background-size': 'cover'
+      });
+
+      $attrs.$observe('bdImageBackgroundCover', function (newVal) {
+        if (angular.isUndefined(newVal) || newVal === '') {
+          return;
+        }
+
+        $element.css({
+          'background-image': 'url(' + UploadConf.domain + newVal + ')',
+        });
+      });
     }
   }
 }

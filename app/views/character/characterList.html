@@ -28,8 +28,10 @@
                 <md-card-content>
 
                     <div layout="cow" layout-align="start center">
-                        <img ng-src="http://placehold.it/100x100"
-                             class="avatar avatar-md mg-r">
+                        <img class="avatar avatar-md mg-r"
+                             bd-width="100"
+                             bd-height="100"
+                             bd-image-background-cover="{{ object.avatar }}">
                         <h3 class="md-subhead" ng-bind="object.name"></h3>
                     </div>
 

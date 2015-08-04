@@ -26,10 +26,11 @@
                     flex="30"
                     flex-md="45"
                     flex-sm="95"
-                    ng-repeat="object in objects">
+                    ng-repeat="object in objects track by $index">
 
                     <div ng-click="goToCharactersPage(object._id)">
-                        <img src="http://placehold.it/500x500" alt="{{ object.name }}">
+                        <img bd-image-auto-resize
+                             bd-image-background-cover="{{ object.cover }}">
                     </div>
 
                     <md-card-content>
@@ -53,7 +54,7 @@
 
                     <md-divider></md-divider>
 
-                    --> 
+                    -->
 
                     <!--                     <md-card-content>
                     <span class="icon-group">
