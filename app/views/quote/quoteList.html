@@ -24,8 +24,17 @@
 
                 <md-divider></md-divider>
 
-                <md-card-content>
-                    <img ng-src="http://placehold.it/100x100" class="avatar avatar-md mg-r" ng-repeat="character in object.characters" title="{{ character.name }}">
+                <md-card-content layout="row"
+                                 layout-wrap>
+
+                        <span ng-repeat="character in object.characters">
+
+                            <img class="avatar avatar-md mg-h"
+                                 ng-src="http://placehold.it/100x100" />
+
+                            <md-tooltip md-direction="down"
+                                        md-delay="0">{{ character.name }}</md-tooltip>
+                        </span>
                 </md-card-content>
 
             </md-card>
