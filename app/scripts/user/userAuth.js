@@ -53,7 +53,7 @@ function SessionService (
 
         login: function (data) {
             Restangular
-                .all('authenticate')
+                .all('login')
                 .post(data)
                 .then(function (res) {
                     res = res.plain();
@@ -147,16 +147,18 @@ function AuthCtrl (
             return Toast.show('两次密码不一致');
         }
 
+        if (angular.isUndefined($scope.user.incode)) {
+            return Toast.show('邀请码不能为空');
+        }
+
         var data = {
             username: $scope.user.username,
             password: $scope.user.password,
-            promoCode: $scope.user.promoCode
+            incode: $scope.user.incode
         };
 
-        return Toast.show('目前不能注册');
-
         Restangular
-            .all('register')
+            .all('signup')
             .post(data)
             .then(function (res) {
                 res = res.plain();
