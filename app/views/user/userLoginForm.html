@@ -1,4 +1,8 @@
-<div layout="row" layout-align="center">
+<form name="loginForm"
+      layout="row"
+      layout-align="center"
+      ng-controller="AuthCtrl"
+      >
 
     <md-card class="form-wrapper"
              flex="60"
@@ -14,13 +18,21 @@
         <md-card-content>
 
             <md-input-container>
-                <label>用户名</label>
-                <input type="text" ng-model="user.username">
+                <label>邮箱</label>
+                <input type="email" name="email" ng-model="user.email" required>
+                <div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$dirty">
+                    <div ng-message="required">邮箱不能为空</div>
+                    <div ng-message="email">邮箱格式不正确</div>
+                </div>
             </md-input-container>
 
             <md-input-container>
                 <label>密码</label>
-                <input type="password" ng-model="user.password">
+                <input type="password" name="password" ng-model="user.password" minlength="6" required>
+                <div ng-messages="loginForm.password.$error" ng-if="loginForm.password.$dirty">
+                    <div ng-message="required">密码不能为空</div>
+                    <div ng-message="minlength">密码最少6位</div>
+                </div>
             </md-input-container>
 
         </md-card-content>
@@ -30,9 +42,20 @@
         <md-card-content
            layout="row"
            layout-align="end">
-            <md-button class="md-raised" flex="15" flex-sm="30" flex-md="20" ng-click="reset()">Reset</md-button>
-            <md-button class="md-raised md-primary" flex="15" flex-sm="30" flex-md="20" ng-click="login()">Login</md-button>
+
+            <md-button class="md-raised"
+                       flex="15"
+                       flex-md="20"
+                       flex-sm="30"
+                       ng-click="reset()">重置</md-button>
+
+            <md-button class="md-raised md-primary"
+                       flex="15"
+                       flex-md="20"
+                       flex-sm="30"
+                       ng-disabled="submitting"
+                       ng-click="login()">登录</md-button>
         </md-card-content>
 
     </md-card>
-</div>
+</form>

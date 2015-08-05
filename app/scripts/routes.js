@@ -62,11 +62,9 @@ function routeProvider (
       templateUrl: 'views/quote/quote.html'
     })
     .when('/login', {
-      controller: 'AuthCtrl',
       templateUrl: 'views/user/userLogin.html'
     })
     .when('/signup', {
-      controller: 'AuthCtrl',
       templateUrl: 'views/user/userSignup.html'
     })
     .when('/user/contribution/:contributionType', {

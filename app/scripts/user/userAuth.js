@@ -26,6 +26,10 @@ angular.module('bdUserAuth', [])
         'AuthEvents',
         'Restangular',
         AuthCtrl
+    ])
+
+    .directive('bdCheckPassword', [
+        bdCheckPasswordDirective
     ]);
 
 function SessionService (
@@ -49,19 +53,8 @@ function SessionService (
             this.currentUser = null;
             delete $window.localStorage.token;
             $rootScope.$broadcast(AuthEvents.logoutSuccess);
-        },
-
-        login: function (data) {
-            Restangular
-                .all('login')
-                .post(data)
-                .then(function (res) {
-                    res = res.plain();
-                    $rootScope.$broadcast(AuthEvents.loginSuccess, res);
-                }, function (res) {
-                    $rootScope.$broadcast(AuthEvents.loginFailed, res);
-                });
         }
+
     };
 
     $rootScope.$on(AuthEvents.loginSuccess, function (event, res) {
@@ -103,26 +96,34 @@ function AuthCtrl (
     'use strict';
 
     $scope.user = {};
+    $scope.submitting = false;
 
     $scope.reset = function () {
         $scope.user = {};
     };
     $scope.login = function () {
 
-        if (angular.isUndefined($scope.user.username)) {
-            return Toast.show('请输入用户名');
-        }
-
-        if (angular.isUndefined($scope.user.password)) {
-            return Toast.show('请输入密码');
-        }
+        if ($scope.loginForm.$invalid) return;
 
         var data = {
-            username: $scope.user.username,
+            email: $scope.user.email,
             password: $scope.user.password
         };
 
-        return Session.login(data);
+        $scope.submitting = true;
+
+        Restangular
+            .all('login')
+            .post(data)
+            .then(function (res) {
+                $scope.submitting = false;
+                res = res.plain();
+                $rootScope.$broadcast(AuthEvents.loginSuccess, res);
+            }, function (res) {
+                $scope.submitting = false;
+                $rootScope.$broadcast(AuthEvents.loginFailed, res);
+            });
+
     };
 
     $scope.logout = function (e) {
@@ -131,39 +132,26 @@ function AuthCtrl (
     };
 
     $scope.signup = function () {
-        if (angular.isUndefined($scope.user.username)) {
-            return Toast.show('请输入用户名');
-        }
 
-        if (angular.isUndefined($scope.user.password)) {
-            return Toast.show('请输入密码');
-        }
-
-        if (angular.isUndefined($scope.user.password2)) {
-            return Toast.show('请确认密码');
-        }
-
-        if ($scope.user.password !== $scope.user.password2) {
-            return Toast.show('两次密码不一致');
-        }
-
-        if (angular.isUndefined($scope.user.incode)) {
-            return Toast.show('邀请码不能为空');
-        }
+        if ($scope.signupForm.$invalid) return;
 
         var data = {
-            username: $scope.user.username,
+            email: $scope.user.email,
             password: $scope.user.password,
             incode: $scope.user.incode
         };
+
+        $scope.submitting = true;
 
         Restangular
             .all('signup')
             .post(data)
             .then(function (res) {
+                $scope.submitting = false;
                 res = res.plain();
                 $rootScope.$broadcast(AuthEvents.loginSuccess, res);
             }, function (res) {
+                $scope.submitting = false;
                 $rootScope.$broadcast(AuthEvents.loginFailed, res);
             });
     };
@@ -175,5 +163,17 @@ function AuthCtrl (
 
     if (isAuthPage() && Session.isAuthenticated()) {
         return $location.path('/');
+    }
+}
+
+function bdCheckPasswordDirective () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function ($scope, $element, $attrs, ngModel) {
+            ngModel.$validators.checkPassword = function (modelValue) {
+                return $scope.user.password === modelValue;
+            }
+        }
     }
 }

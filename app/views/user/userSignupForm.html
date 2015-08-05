@@ -1,4 +1,7 @@
-<div layout="row" layout-align="center">
+<form name="signupForm"
+      layout="row"
+      layout-align="center"
+      ng-controller="AuthCtrl">
 
     <md-card class="form-wrapper"
              flex="60"
@@ -15,22 +18,38 @@
 
             <md-input-container>
                 <label>邮箱</label>
-                <input type="text" ng-model="user.email">
+                <input type="email" name="email" ng-model="user.email" required>
+                <div ng-messages="signupForm.email.$error" ng-if="signupForm.email.$dirty">
+                    <div ng-message="required">邮箱不能为空</div>
+                    <div ng-message="email">邮箱格式不正确</div>
+                </div>
             </md-input-container>
 
             <md-input-container>
                 <label>密码</label>
-                <input type="password" ng-model="user.password">
+                <input type="password" name="password" ng-model="user.password" required minlength="6">
+                <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$dirty">
+                    <div ng-message="required">密码不能为空</div>
+                    <div ng-message="minlength">密码不能少于6位</div>
+                </div>
             </md-input-container>
 
             <md-input-container>
                 <label>确认密码</label>
-                <input type="password" ng-model="user.password2">
+                <input type="password" name="password2" ng-model="user.password2" required bd-check-password>
+                <div ng-messages="signupForm.password2.$error" ng-if="signupForm.password2.$dirty">
+                    <div ng-message="required">确认密码不能为空</div>
+                    <div ng-message="checkPassword">两次密码不一致</div>
+                </div>
+
             </md-input-container>
 
             <md-input-container>
                 <label>邀请码</label>
-                <input type="text" ng-model="user.incode">
+                <input type="text" name="incode" ng-model="user.incode" required>
+                <div ng-messages="signupForm.incode.$error" ng-if="signupForm.incode.$dirty">
+                    <div ng-message="required">邀请码不能为空</div>
+                </div>
             </md-input-container>
 
         </md-card-content>
@@ -40,11 +59,22 @@
         <md-card-content
             layout="row"
             layout-align="end">
-            <md-button class="md-raised" flex="15" flex-sm="30" flex-md="20" ng-click="reset()">Reset</md-button>
-            <md-button class="md-raised md-primary" flex="15" flex-sm="30" flex-md="20" ng-click="signup()">Sign Up</md-button>
+
+            <md-button class="md-raised"
+                       flex="15"
+                       flex-md="20"
+                       flex-sm="30"
+                       ng-click="reset()">重置</md-button>
+
+            <md-button class="md-raised md-primary"
+                       flex="15"
+                       flex-md="20"
+                       flex-sm="30"
+                       ng-disabled="submitting"
+                       ng-click="signup()">注册</md-button>
 
         </md-card-content>
 
     </md-card>
 
-</div>
+</form>
