@@ -103,7 +103,7 @@ function UploaderService (
             .post(data, undefined, headers)
             .then(function (res) {
               res = res.plain();
-              var imgSrc = UploadConf.domain + res.key;
+              var imgSrc = res.key;
               resolve(imgSrc);
             }, function (res) {
               rejected(res);
