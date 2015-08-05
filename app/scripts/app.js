@@ -1,6 +1,7 @@
 angular.module('bd', [
     'ngRoute',
     'ngAnimate',
+    'ngMessages',
     'ngMaterial',
     'infinite-scroll',
     'bdHome',
