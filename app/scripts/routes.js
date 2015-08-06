@@ -67,6 +67,14 @@ function routeProvider (
     .when('/signup', {
       templateUrl: 'views/user/userSignup.html'
     })
+    .when('/users/:userId', {
+      controller: 'UserCtrl',
+      templateUrl: 'views/user/userDetail.html'
+    })
+    .when('/users/:userId/verify', {
+      controller: 'UserVerifyCtrl',
+      templateUrl: 'views/user/userDetail.html'
+    })
     .when('/user/contribution/:contributionType', {
       controller: 'UserContributeCtrl',
       templateUrl: 'views/user/userContribute.html'

@@ -1,0 +1,62 @@
+<div>
+
+    <div id="navbar">
+        <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
+            用户信息
+        </md-whiteframe>
+    </div>
+
+    <div layout="row"
+         layout-align="center">
+
+        <md-card flex="80"
+                 flex-md="95"
+                 flex-sm="95">
+
+            <md-card-content layout="row"
+                             layout-align="center">
+
+                <div layout="column">
+
+                    <div layout="row"
+                         layout-align="center">
+
+                        <img class="avatar avatar-lg mg-h"
+                             bd-width="100"
+                             bd-height="100"
+                             bd-image-background-cover="{{ user.avatar }}" />
+                    </div>
+
+                    <h1 class="md-title text-center"
+                        ng-bind="user.email"></h1>
+
+                 </div>
+
+            </md-card-content>
+
+            <md-divider></md-divider>
+
+            <md-card-content layout="column">
+                <h1 class="md-title">用户名</h1>
+                <p class="md-body-1"
+                   ng-bind-template="{{ user.username.length > 0 ? user.username : '无' }}"></p>
+
+                <h1 class="md-title">昵称</h1>
+                <p class="md-body-1"
+                   ng-bind-template="{{ user.nickname.length > 0 ? user.nickname : '无' }}"></p>
+
+                <h1 class="md-title">个人介绍</h1>
+                <p class="md-body-1"
+                   ng-bind-template="{{ user.info.length > 0 ? user.info : '无' }}"></p>
+
+                <h1 class="md-title">个人网站</h1>
+                <p class="md-body-1"
+                   ng-bind-template="{{ user.site.length > 0 ? user.site : '无' }}"></p>
+
+            </md-card-content>
+
+        </md-card>
+
+    </div>
+
+</div>

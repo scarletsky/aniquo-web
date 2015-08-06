@@ -49,6 +49,11 @@ function SessionService (
             return !!this.currentUser;
         },
 
+        login: function (res) {
+            this.currentUser = res.user;
+            $window.localStorage.token = res.token;
+        },
+
         logout: function () {
             this.currentUser = null;
             delete $window.localStorage.token;
@@ -58,10 +63,9 @@ function SessionService (
     };
 
     $rootScope.$on(AuthEvents.loginSuccess, function (event, res) {
-        $window.localStorage.token = res.token;
-        service.currentUser = res.user;
+        service.login(res);
         var nextPath = $location.search().next || '/';
-        $location.search('next', null);
+        $location.search({});
         $location.path(nextPath);
     });
 
