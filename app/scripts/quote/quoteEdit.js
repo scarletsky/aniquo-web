@@ -3,7 +3,9 @@ angular.module('bdQuoteEdit', [])
     '$scope',
     '$location',
     '$routeParams',
+    'CDN',
     'Toast',
+    'Avatar',
     'Editor',
     'ImageViewer',
     'Restangular',
@@ -14,7 +16,9 @@ function QuoteEditCtrl (
   $scope,
   $location,
   $routeParams,
+  CDN,
   Toast,
+  Avatar,
   Editor,
   ImageViewer,
   Restangular
@@ -23,11 +27,13 @@ function QuoteEditCtrl (
 
   function resetAvatarSize(characters) {
 
+    var avatarSize = 40;
+
     return characters.map(function (c) {
       if (c.avatar) {
-        c.avatar += '?imageView2/1/w/40/h/40';
+        c.avatar = CDN.domain + c.avatar + '?imageView2/1/w/' + avatarSize + '/h/' + avatarSize;
       } else {
-        c.avatar = 'http://placehold.it/40x40';
+        c.avatar = new Avatar({size: avatarSize, text: c.name}).toDataURL();
       }
       return c;
     });
