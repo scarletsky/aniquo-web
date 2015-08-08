@@ -8,7 +8,7 @@ angular.module('bdImage', ['bdUpload'])
   ])
 
   .directive('bdImageBackgroundCover', [
-    'UploadConf',
+    'CDN',
     bdImageBackgroundCoverDirective
   ])
 
@@ -160,7 +160,7 @@ function bdImageAutoResizeDirective () {
   }
 }
 
-function bdImageBackgroundCoverDirective (UploadConf) {
+function bdImageBackgroundCoverDirective (CDN) {
   return {
     restrict: 'AE',
     link: function ($scope, $element, $attrs) {
@@ -171,7 +171,7 @@ function bdImageBackgroundCoverDirective (UploadConf) {
       var h = $attrs.bdHeight || 500;
 
       $element.css({
-          'background-image': 'url(' + UploadConf.domain + '/@/images/bg' + bgNum + '?imageView/2/w/' + w + '/h/' + h + ')',
+          'background-image': 'url(' + CDN.domain + '/@/images/bg' + bgNum + '?imageView/2/w/' + w + '/h/' + h + ')',
           'background-size': 'cover'
       });
 
@@ -181,7 +181,7 @@ function bdImageBackgroundCoverDirective (UploadConf) {
         }
 
         $element.css({
-          'background-image': 'url(' + UploadConf.domain + newVal + ')',
+          'background-image': 'url(' + CDN.domain + newVal + ')',
         });
       });
     }

@@ -1,5 +1,5 @@
 angular.module('bdUpload', [])
-  .constant('UploadConf', {
+  .constant('CDN', {
     domain: 'http://7ktuvf.com1.z0.glb.clouddn.com',
     uploadUrl: 'http://upload.qiniu.com',
     userAvatarPrefix: '/test/images/userAvatar/',
@@ -12,7 +12,7 @@ angular.module('bdUpload', [])
   .factory('Uploader', [
     '$q',
     'md5',
-    'UploadConf',
+    'CDN',
     'Restangular',
     UploaderService
   ]);
@@ -20,7 +20,7 @@ angular.module('bdUpload', [])
 function UploaderService (
   $q,
   md5,
-  UploadConf,
+  CDN,
   Restangular
 ) {
   'use strict';
@@ -44,7 +44,7 @@ function UploaderService (
 
   // check file size
   uploader.checkFileSize = function (file) {
-    return file.size < UploadConf.fileSizeLimit;
+    return file.size < CDN.fileSizeLimit;
   };
 
   // check file type
@@ -88,7 +88,7 @@ function UploaderService (
         .then(function (token) {
           var data = new FormData();
           data.append('token', token);
-          data.append('key', UploadConf[self.uploadType + 'Prefix'] + md5.createHash(Date.now() + file.name));
+          data.append('key', CDN[self.uploadType + 'Prefix'] + md5.createHash(Date.now() + file.name));
           data.append('file', file);
 
           var headers = {

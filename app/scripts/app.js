@@ -19,7 +19,7 @@ angular.module('bd', [
         '$location',
         'G',
         'Session',
-        'UploadConf',
+        'CDN',
         BrynhildCtrl
     ]);
 
@@ -29,12 +29,12 @@ function BrynhildCtrl (
     $location,
     G,
     Session,
-    UploadConf
+    CDN
 ) {
     'use strict';
 
     $scope.g = G;
     $scope.session = Session;
     $scope.location = $location;
-    $scope.cdn = UploadConf;
+    $scope.cdn = CDN;
 }
