@@ -34,7 +34,13 @@
                     md-item-text="item.name"
                     md-selected-item="character.source"
                     md-floating-label="角色所属作品">
-                    <span md-highlight-text="sourceKeyword">{{item.name}}</span>
+                    
+                    <md-item-template>
+                        <span md-highlight-text="sourceKeyword">{{item.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        没有找到相关作品
+                    </md-not-found>
                 </md-autocomplete>
 
                 <md-input-container>
