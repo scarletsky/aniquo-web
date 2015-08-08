@@ -29,9 +29,12 @@
 
                     <div layout="cow" layout-align="start center">
                         <img class="avatar avatar-md mg-r"
-                             bd-width="100"
-                             bd-height="100"
-                             bd-image-background-cover="{{ object.avatar }}">
+                             ng-if="object.avatar"
+                             ng-src="{{ cdn.domain + object.avatar }}">
+                        <img class="avatar avatar-md mg-r"
+                             ng-if="!object.avatar"
+                             bd-avatar
+                             bd-avatar-text="{{ object.name }}">
                         <h3 class="md-subhead" ng-bind="object.name"></h3>
                     </div>
 

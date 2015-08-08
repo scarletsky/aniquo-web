@@ -30,9 +30,14 @@
                         <span ng-repeat="character in object.characters">
 
                             <img class="avatar avatar-md mg-h"
-                                 bd-width="100"
-                                 bd-height="100"
-                                 bd-image-background-cover="{{ character.avatar }}" />
+                                 ng-if="character.avatar"
+                                 ng-src="{{ cdn.domain + character.avatar }}"
+                                 />
+
+                            <img class="avatar avatar-md mg-h"
+                                 ng-if="!character.avatar"
+                                 bd-avatar
+                                 bd-avatar-text="{{ character.name }}" />
 
                             <md-tooltip md-direction="down"
                                         md-delay="0">{{ character.name }}</md-tooltip>
