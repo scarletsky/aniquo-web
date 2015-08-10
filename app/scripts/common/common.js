@@ -7,9 +7,9 @@ angular.module('bdCommon', [
     'bdQuery',
     'bdAvatar',
     'bdEditor',
+    'bdSidenav',
     'bdUpload',
     'bdLayout',
     'bdTracker',
-    'bdTreasure',
-    'bdNavigation'
+    'bdTreasure'
 ]);

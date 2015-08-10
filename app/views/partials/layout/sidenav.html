@@ -1,0 +1,46 @@
+<div layout="row"
+     flex
+     ng-controller="SidenavCtrl">
+
+    <md-sidenav md-component-id="left">
+        <md-toolbar class="md-tall">
+            <span flex></span>
+            <h1 class="md-toolbar-tools md-toolbar-tools-bottom"
+                ng-bind-template="{{ session.isAuthenticated() ? session.currentUser.email : '请先登录'}}"></h1>
+        </md-toolbar>
+
+        <md-list>
+
+            <md-list-item ng-click="locationTo('/login')"
+                          ng-if="!session.isAuthenticated()">
+                <md-icon class="zmdi zmdi-sign-in zmdi-hc-lg"></md-icon>
+                <p>登录</p>
+            </md-list-item>
+
+            <div ng-if="session.isAuthenticated()">
+                <md-list-item ng-click="locationTo('/')">
+                    <md-icon class="zmdi zmdi-home zmdi-hc-lg"></md-icon>
+                    <p>首页</p>
+                </md-list-item>
+
+                <md-list-item ng-click="goToUserProfile()">
+                    <md-icon class="zmdi zmdi-account zmdi-hc-lg"></md-icon>
+                    <p>我的资料</p>
+                </md-list-item>
+<!-- 
+                <md-list-item ng-click="locationTo('/settings')">
+                    <md-icon class="zmdi zmdi-settings zmdi-hc-lg"></md-icon>
+                    <p>设置</p>
+                </md-list-item>
+
+ -->                <md-list-item ng-controller="AuthCtrl"
+                              ng-click="logout($event)">
+                    <md-icon class="zmdi zmdi-power zmdi-hc-lg"></md-icon>
+                    <p>登出</p>
+                </md-list-item>
+            </div>
+        </md-list>
+
+    </md-sidenav>
+
+</div>

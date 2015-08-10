@@ -17,6 +17,7 @@ angular.module('bd', [
         '$scope',
         '$window',
         '$location',
+        '$mdSidenav',
         'G',
         'Session',
         'CDN',
@@ -27,6 +28,7 @@ function BrynhildCtrl (
     $scope,
     $window,
     $location,
+    $mdSidenav,
     G,
     Session,
     CDN
@@ -37,4 +39,8 @@ function BrynhildCtrl (
     $scope.session = Session;
     $scope.location = $location;
     $scope.cdn = CDN;
+
+    $scope.toggleSidenav = function () {
+        $mdSidenav('left').toggle();
+    }
 }
