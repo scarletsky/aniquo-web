@@ -9,7 +9,6 @@ angular.module('bdCommon', [
     'bdEditor',
     'bdSidenav',
     'bdUpload',
-    'bdLayout',
     'bdTracker',
     'bdTreasure'
 ]);
