@@ -22,9 +22,15 @@
                          layout-align="center">
 
                         <img class="avatar avatar-lg mg-h"
-                             bd-width="100"
-                             bd-height="100"
-                             bd-image-background-cover="{{ user.avatar }}" />
+                             ng-if="user.avatar"
+                             ng-src="{{ cdn.domain + user.avatar }}"
+                             />
+
+                        <img class="avatar avatar-lg mg-h"
+                             ng-if="!user.avatar"
+                             bd-avatar
+                             bd-avatar-text="{{ user.nickname }}" />
+
                     </div>
 
                     <h1 class="md-title text-center"
@@ -58,5 +64,14 @@
         </md-card>
 
     </div>
+
+        <md-button id="fab"
+                   class="md-fab" aria-label="Add Character"
+                   ng-href="/user/settings"
+                   ng-if="session.isAuthenticated() && session.currentUser._id === user._id"
+                   >
+            <md-tooltip md-direction="left">编辑个人资料</md-tooltip>
+            <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>
+        </md-button>
 
 </div>

@@ -1,166 +1,78 @@
 <div>
-    
-    <md-tabs md-theme="blue" selected="selectedIndex" center>
-          <md-tab label="个人设置"></md-tab>
-          <md-tab label="安全设置"></md-tab>
-    </md-tabs>
 
-    <div layout="column"
-         flex-lg="60"
-         flex-md="80"
-         offset-lg="20"
-         offset-md="10"
-         offset-sm="0">
+    <div id="navbar">
+        <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
+            编辑个人资料
+        </md-whiteframe>
+    </div>
 
-        <div ng-switch on="selectedIndex">
+    <div layout="row" layout-align="center">
 
-            <md-card layout="column" ng-switch-when="0">
+        <md-card class="form-wrapper"
+                 flex="60"
+                 flex-md="80"
+                 flex-sm="95"
+                 >
 
-                <form role="form"
-                      name="userProfileForm"
-                      novalidate
-                      ng-submit="updateProfile()">
+            <md-card-content layout="column">
+                <div layout="row"
+                     layout-align="center">
+                    <canvas id="userAvatar"
+                            class="avatar avatar-lg"
+                            bd-image-selected
+                            selected-file="user.avatarFile"
+                            layout-fill></canvas>
+                    <input type="file" accept="image/*" class="hidden">
+                </div>
 
-                    <h3>个人设置</h3>
+                <h1 class="md-title text-center"
+                    ng-bind="user.email"></h1>
+            </md-card-content>
 
-                    <md-input-group class="md-input-group-theme-light" layout="row">
+            <md-divider></md-divider>
 
-                        <p flex="30">昵称</p>
+            <md-card-content>
 
-                        <md-input type="text" 
-                                   name="nickname"
-                                   id="nickname"
-                                   ng-model="user.nickname"    
-                                   required
-                                   flex="70"
-                                   inline-block
-                                   placeholder="请输入昵称"></md-input>
+                <md-input-container>
+                    <label>用户名</label>
+                    <input type="text"
+                           name="username"
+                           ng-model="user.username">
+                </md-input-container>
 
-                    </md-input-group>
+                <md-input-container>
+                    <label>昵称</label>
+                    <input type="text"
+                           name="nickname"
+                           ng-model="user.nickname">
+                </md-input-container>
 
+                <md-input-container>
+                    <label>个人网站</label>
+                    <input type="text"
+                           name="site"
+                           ng-model="user.site">
+                </md-input-container>
 
-                    <md-input-group class="md-input-group-theme-light" layout="row">
+                <md-input-container>
+                    <label>个人简介</label>
+                    <textarea name="info"
+                              ng-model="user.info"></textarea>
+                </md-input-container>
 
-                        <p flex="30">个人网站</p>
+            </md-card-content>
 
-                        <md-input type="text"
-                                  name="site"
-                                  id="site"
-                                  ng-model="user.site"
-                                  required
-                                  flex="70"
-                                  inline-block
-                                  placeholder="请输入你的个人网站"></md-input>
+            <md-divider></md-divider>
 
-                    </md-input-group>
+            <md-card-content
+                layout="row"
+                layout-align="end">
+                <md-button class="md-raised" flex="15" flex-sm="30" flex-md="20" ng-click="reset()">Reset</md-button>
+                <md-button class="md-raised md-primary" flex="15" flex-sm="30" flex-md="20" ng-click="updateProfile()">Submit</md-button>
 
-                    <md-input-group class="md-input-group-theme-light" layout="row">
+            </md-card-content>
 
-                        <p flex="30">自我介绍</p>
-
-                        <md-input type="text"
-                                  name="info"
-                                  id="info"
-                                  ng-model="user.info"
-                                  required
-                                  flex="70"
-                                  inline-block
-                                  placeholder="请输入自我介绍"></md-input>
-
-                    </md-input-group>
-
-                    <md-input-group class="md-input-group-theme-light" layout="row">
-
-                        <p flex="30">用户头像</p>
-
-                        <div class="margin-top-15 avatar avatar-large cursor border-common"
-                             bd-upload
-                             upload-type="userAvatar"
-                             upload-target="user.avatar"
-                             upload-status="uploadStatus">
-
-                            <div bd-bg-image="{{ user.avatar }}"></div>
-
-                            <input class="hidden"
-                                   type="file"
-                                   name="avatar"
-                                   id="avatar"
-                                   ng-model="user.avatar"/>
-                        </div>
-
-                    </md-input-group>
-
-                    <div layout="row" layout-align="end">
-                        <md-button ng-disabled="uploadStatus !== 'ready'" type="submit">提交</md-button>
-                    </div>
-
-                </form>
-
-            </md-card>
-
-            <md-card ng-switch-when="1">
-
-                <form role="form"
-                      name="userPasswordForm"
-                      novalidate
-                      ng-submit="updatePassword()">
-
-                    <h3>安全设置</h3>
-
-                    <md-input-group class="md-input-group-theme-light" layout="row">
-
-                        <p flex="30">旧密码</p>
-
-                        <md-input type="password"
-                                  name="oldPassword"
-                                  id="oldPassword"
-                                  ng-model="user.oldPassword"
-                                  required
-                                  flex="70"
-                                  inline-block
-                                  placeholder="请输入旧密码"></md-input>
-
-                    </md-input-group>
-
-                    <md-input-group class="md-input-group-theme-light" layout="row">
-
-                        <p flex="30">新密码</p>
-
-                        <md-input type="password"
-                                   name="newPassword"
-                                   id="newPassword"
-                                   ng-model="user.newPassword"
-                                   required
-                                   flex="70"
-                                   inline-block
-                                   placeholder="请输入新密码"></md-input>
-
-                    </md-input-group>
-
-                    <md-input-group class="md-input-group-theme-light" layout="row">
-
-                        <p flex="30">确认新密码</p>
-
-                        <md-input type="password"
-                                  name="confirmPassword"
-                                  id="confirmPassword"
-                                  ng-model="user.confirmPassword"
-                                  required
-                                  flex="70"
-                                  inline-block
-                                  placeholder="请确认新密码"></md-input>
-
-                    </md-input-group>
-
-                    <div layout="row" layout-align="end">
-                        <md-button type="submit">提交</md-button>
-                    </div>
-
-                </form>
-
-            </md-card>
-
-        </div>
+        </md-card>
 
     </div>
 

@@ -2,7 +2,9 @@ angular.module('bdUserSettings', [])
   .controller('UserSettingsCtrl', [
     '$scope',
     '$window',
+    '$location',
     'Toast',
+    'Session',
     'Restangular',
     UserSettingsCtrl
   ]);
@@ -10,13 +12,15 @@ angular.module('bdUserSettings', [])
 function UserSettingsCtrl (
   $scope,
   $window,
+  $location,
   Toast,
+  Session,
   Restangular
 ) {
   'use strict';
 
-  $scope.user = {};
-  $scope.selectedIndex = 0;
+  $scope.user = Session.currentUser;
+
 
   /*
    * Don't define userElement globally:
@@ -31,6 +35,7 @@ function UserSettingsCtrl (
 
   $scope.updateProfile = function () {
     var data = {
+      username: $scope.user.username,
       nickname: $scope.user.nickname,
       site: $scope.user.site,
       info: $scope.user.info,
@@ -43,9 +48,8 @@ function UserSettingsCtrl (
       .put()
       .then(function (res) {
         res = res.plain();
-        $scope.user.nickname = res.nickname;
-        $scope.user.site = res.site;
-        $scope.user.info = res.info;
+        Session.currentUser = res;
+        $location.path('/users/' + res._id);
         Toast.show('个人资料更新成功');
       }, function (res) {
         Toast.show('个人资料更新失败');
@@ -53,26 +57,6 @@ function UserSettingsCtrl (
   };
 
   $scope.updatePassword = function () {
-
-    if (angular.isUndefined($scope.user.oldPassword)) {
-      return Toast.show('请输入旧密码');
-    }
-
-    if (angular.isUndefined($scope.user.newPassword)) {
-      return Toast.show('请输入新密码');
-    }
-
-    if (angular.isUndefined($scope.user.confirmPassword)) {
-      return Toast.show('请确认新密码');
-    }
-
-    if ($scope.user.newPassword !== $scope.user.confirmPassword) {
-      return Toast.show('两次密码不一样');
-    }
-
-    if ($scope.user.oldPassword === $scope.user.newPassword) {
-      return Toast.show('新密码不能和旧密码一样');
-    }
 
     var data = {
       oldPassword: $scope.user.oldPassword,
