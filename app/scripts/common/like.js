@@ -15,7 +15,7 @@ function bdLikeDirective (Restangular) {
       '<md-button>',
           '<span ng-if="object.liked">取消赞</span>',
           '<span ng-if="!object.liked">赞</span>',
-          '<span ng-bind-template="({{ object.likeCount }})"></span>',
+          '<span ng-bind-template="({{ object.likersCount }})"></span>',
       '</md-button>',
     ].join(''),
     link: function ($scope, $element, $attrs) {
@@ -34,7 +34,7 @@ function bdLikeDirective (Restangular) {
                 .then(function (res) {
                   res = res.plain();
                   $scope.object.liked = res.liked;
-                  $scope.object.likeCount = res.likeCount;
+                  $scope.object.likersCount = res.likersCount;
                 });
 
             } else {
@@ -45,7 +45,7 @@ function bdLikeDirective (Restangular) {
                 .then(function (res) {
                   res = res.plain();
                   $scope.object.liked = res.liked;
-                  $scope.object.likeCount = res.likeCount;
+                  $scope.object.likersCount = res.likersCount;
                 });
 
             }
