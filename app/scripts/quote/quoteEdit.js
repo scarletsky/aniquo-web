@@ -89,7 +89,9 @@ function QuoteEditCtrl (
       reference: $scope.quote.reference
     };
 
-    editor.save(data);
+    editor.save(data, function(res) {
+      $location.path('/quotes/' + res._id);
+    });
 
   };
 
