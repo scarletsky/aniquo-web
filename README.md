@@ -9,7 +9,7 @@
 ```bash
 # install dependency
 $ npm install -g gulp bower
-$ cd Silmeria
+$ cd aniquo-web
 $ npm install
 $ bower install
 
