@@ -1,4 +1,5 @@
-<div ng-controller="CharacterEditCtrl">
+<form name="characterForm"
+      ng-controller="CharacterEditCtrl">
     <div id="navbar">
         <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
             编辑角色
@@ -33,7 +34,8 @@
                     md-items="item in querySource(sourceKeyword)"
                     md-item-text="item.name"
                     md-selected-item="character.source"
-                    md-floating-label="角色所属作品">
+                    md-floating-label="角色所属作品"
+                    >
 
                     <md-item-template>
                         <span md-highlight-text="sourceKeyword">{{item.name}}</span>
@@ -45,7 +47,10 @@
 
                 <md-input-container>
                     <label>角色名字</label>
-                    <input type="text" ng-model="character.name">
+                    <input type="text" name="name" ng-model="character.name" required>
+                    <div ng-messages="characterForm.name.$error" ng-if="characterForm.name.$dirty">
+                        <div ng-message="required">角色名字不能为空</div>
+                    </div>
                 </md-input-container>
 
                 <md-chips
@@ -65,8 +70,19 @@
             <md-card-content
                 layout="row"
                 layout-align="end">
-                <md-button class="md-raised" flex="15" flex-sm="30" flex-md="20" ng-click="reset()">Reset</md-button>
-                <md-button class="md-raised md-primary" flex="15" flex-sm="30" flex-md="20" ng-click="submit()">Submit</md-button>
+
+                <md-button class="md-raised"
+                           flex="15"
+                           flex-md="20"
+                           flex-sm="30"
+                           ng-click="reset()">重置</md-button>
+
+                <md-button class="md-raised md-primary"
+                           flex="15"
+                           flex-md="20"
+                           flex-sm="30"
+                           ng-disabled="submitting || characterForm.$invalid"
+                           ng-click="submit()">提交</md-button>
 
             </md-card-content>
 
@@ -74,4 +90,4 @@
 
     </div>
 
-</div>
+</form>

@@ -1,98 +1,100 @@
 angular.module('bdCharacterEdit', [])
-  .controller('CharacterEditCtrl', [
-    '$scope',
-    '$location',
-    '$stateParams',
-    'Toast',
-    'Editor',
-    'Uploader',
-    'ImageViewer',
-    'Restangular',
-    CharacterEditCtrl
-  ]);
+    .controller('CharacterEditCtrl', [
+        '$scope',
+        '$location',
+        '$stateParams',
+        'Toast',
+        'Editor',
+        'Uploader',
+        'ImageViewer',
+        'Restangular',
+        CharacterEditCtrl
+    ]);
 
-function CharacterEditCtrl (
-  $scope,
-  $location,
-  $stateParams,
-  Toast,
-  Editor,
-  Uploader,
-  ImageViewer,
-  Restangular
+function CharacterEditCtrl(
+    $scope,
+    $location,
+    $stateParams,
+    Toast,
+    Editor,
+    Uploader,
+    ImageViewer,
+    Restangular
 ) {
-  'use strict';
+    'use strict';
 
-  $scope.sourceKeyword = '';
+    $scope.sourceKeyword = '';
 
-  var editor = new Editor({
-    scope: $scope,
-    mode: $stateParams.characterId ? 'edit' : 'new',
-    targetId: $stateParams.characterId,
-    targetType: 'character',
-    queryParams: 'with_source=true',
-    canvas: $('#characterAvatar')[0]
-  });
-
-  $scope.querySource = function (sourceKeyword) {
-    return Restangular
-      .all('search')
-      .getList({t: 'source', kw: sourceKeyword})
-      .then(function (res) {
-        res = res.plain();
-        return res;
-      });
-  };
-
-  $scope.reset = function () {
-    $scope.character = {};
-    cleanCanvas();
-  };
-
-  function cleanCanvas () {
-    var canvas = $('#characterAvatar');
-    var ctx = canvas[0].getContext('2d');
-    ctx.clearRect(0, 0, canvas.width(), canvas.height());
-  }
-
-  $scope.submit = function () {
-    var alias = _.filter($scope.character.alias, function (value) {
-      return $.trim(value);
+    var editor = new Editor({
+        scope: $scope,
+        mode: $stateParams.characterId ? 'edit' : 'new',
+        targetId: $stateParams.characterId,
+        targetType: 'character',
+        queryParams: 'with_source=true',
+        canvas: $('#characterAvatar')[0]
     });
 
-    if (!$scope.character.source) {
-      return Toast.show('角色所属作品不能为空');
-    }
-
-    var data = {
-      sourceId: $scope.character.source._id,
-      name: $scope.character.name,
-      alias: alias,
-      info: $scope.character.info,
-      avatarFile: $scope.character.avatarFile,
-      avatar: $scope.character.avatar
+    $scope.querySource = function(sourceKeyword) {
+        return Restangular
+            .all('search')
+            .getList({
+                t: 'source',
+                kw: sourceKeyword
+            })
+            .then(function(res) {
+                res = res.plain();
+                return res;
+            });
     };
 
-    if (angular.isUndefined(data.name)) {
-      return Toast.show('角色名字不能为空');
+    $scope.reset = function() {
+        $scope.character = {};
+        $scope.character.alias = [];
+        cleanCanvas();
+    };
+
+    function cleanCanvas() {
+        var canvas = $('#characterAvatar');
+        var ctx = canvas[0].getContext('2d');
+        ctx.clearRect(0, 0, canvas.width(), canvas.height());
     }
 
-    if (data.avatarFile) {
-      var uploader = new Uploader('characterAvatar');
-      uploader
-        .upload(data.avatarFile)
-        .then(function (fileURL) {
-          Toast.show('头像上传成功');
+    $scope.submit = function() {
 
-          data.avatar = fileURL;
-          delete data.avatarFile;
-          editor.save(data);
+        if ($scope.characterForm.$invalid) return;
 
-        }, function (err) {
-          return Toast.show('头像上传失败');
+        if (!$scope.character.source) return Toast.show('角色所属作品不能为空')
+
+        var alias = _.filter($scope.character.alias, function(value) {
+            return $.trim(value);
         });
-    } else {
-      editor.save(data);
-    }
-  };
+
+        var data = {
+            sourceId: $scope.character.source._id,
+            name: $scope.character.name,
+            alias: alias,
+            info: $scope.character.info,
+            avatarFile: $scope.character.avatarFile,
+            avatar: $scope.character.avatar
+        };
+
+        $scope.submitting = true;
+        if (data.avatarFile) {
+            var uploader = new Uploader('characterAvatar');
+            uploader
+                .upload(data.avatarFile)
+                .then(function(fileURL) {
+                    Toast.show('头像上传成功');
+
+                    data.avatar = fileURL;
+                    delete data.avatarFile;
+                    editor.save(data);
+
+                }, function(err) {
+                    return Toast.show('头像上传失败');
+                });
+        } else {
+            editor.save(data);
+        }
+    };
 }
