@@ -165,14 +165,22 @@ function bdImageBackgroundCoverDirective (CDN) {
     restrict: 'AE',
     link: function ($scope, $element, $attrs) {
 
-      var bgNum = Math.ceil(Math.random() * 9);
+      var bgKey;
 
       var w = $attrs.bdWidth || 500;
       var h = $attrs.bdHeight || 500;
 
       $element.css({
-          'background-image': 'url(' + CDN.domain + '/@/images/bg' + bgNum + '?imageView/2/w/' + w + '/h/' + h + ')',
-          'background-size': 'cover'
+        'background-size': 'cover'
+      });
+
+      $attrs.$observe('bdImageName', function (newVal) {
+          if (!newVal) return;
+
+          bgKey = newVal.charCodeAt(0) % 9;
+          $element.css({
+            'background-image': 'url(' + CDN.domain + '/@/images/bg' + bgKey + '?imageView/2/w/' + w + '/h/' + h + ')'
+          });
       });
 
       $attrs.$observe('bdImageBackgroundCover', function (newVal) {

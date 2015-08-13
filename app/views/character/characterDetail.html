@@ -8,11 +8,15 @@
 
         <md-card-content layout="row"
                          layout-align="center center">
-            <img class="avatar avatar-lg mg-r"
-                 bd-width="100"
-                 bd-height="100"
-                 bd-image-background-cover="{{ character.avatar }}"
+            <img class="avatar avatar-lg mg-h"
+                 ng-if="character.avatar"
+                 ng-src="{{ cdn.domain + character.avatar }}"
                  />
+
+            <img class="avatar avatar-lg mg-h"
+                 ng-if="!character.avatar"
+                 bd-avatar
+                 bd-avatar-text="{{ character.name }}" />
             <p class="md-title"
                ng-bind="character.name"></p>
 

@@ -2,7 +2,9 @@ angular.module('bdEditor', [])
     .factory('Editor', [
         '$q',
         '$state',
+        'CDN',
         'Toast',
+        'Avatar',
         'Uploader',
         'ImageViewer',
         'Restangular',
@@ -12,7 +14,9 @@ angular.module('bdEditor', [])
 function EditorService(
     $q,
     $state,
+    CDN,
     Toast,
+    Avatar,
     Uploader,
     ImageViewer,
     Restangular
@@ -76,6 +80,22 @@ function EditorService(
 
         var _map = imageTypeMap[self.targetType];
         var src = target[_map];
+        var canvasSize = self.canvas.width;
+
+        if (!src) {
+
+            switch (self.targetType) {
+                case 'source':
+                    var bgKey = target.name.charCodeAt(0) % 9;
+                    src = CDN.domain + '/@/images/bg' + bgKey + '?imageView/2/w/' + canvasSize + '/h/' + canvasSize;
+                    break;
+                case 'character':
+                    src = new Avatar({text: target.name, size: canvasSize}).toDataURL();
+                    break;
+            }
+        } else {
+            src = CDN.domain + src;
+        }
 
         if (_map && src) {
             var iv = new ImageViewer({
