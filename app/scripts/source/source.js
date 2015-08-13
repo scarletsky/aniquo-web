@@ -1,33 +1,32 @@
 angular.module('bdSource', [
     'bdSourceEdit'
-])
+    ])
 
-    .controller('SourceCtrl', [
+    .controller('SourceDetailCtrl', [
         '$scope',
         '$location',
-        '$routeParams',
+        '$stateParams',
         'Restangular',
-        SourceCtrl
+        SourceDetailCtrl
     ])
 
     .controller('SourceListCtrl', [
         '$scope',
         '$location',
-        '$routeParams',
         'Query',
         'Restangular',
         SourceListCtrl
     ]);
 
-function SourceCtrl (
+function SourceDetailCtrl (
     $scope,
     $location,
-    $routeParams,
+    $stateParams,
     Restangular
 ) {
     'use strict';
 
-    var sourceId = $routeParams.sourceId;
+    var sourceId = $stateParams.sourceId;
 
     if (!$scope.g.currentSource || $scope.g.currentSource._id !== sourceId) {
         $scope.g.currentSource = null;
@@ -44,7 +43,6 @@ function SourceCtrl (
 function SourceListCtrl (
     $scope,
     $location,
-    $routeParams,
     Query,
     Restangular
 ) {
@@ -61,10 +59,6 @@ function SourceListCtrl (
             route: 'sources'
         });
 
-    };
-
-    $scope.goToCharactersPage = function (id) {
-        $location.path('/sources/' + id + '/characters');
     };
 
 }

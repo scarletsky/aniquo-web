@@ -1,7 +1,7 @@
 angular.module('bdSidenav', [])
     .controller('SidenavCtrl', [
         '$scope',
-        '$location',
+        '$state',
         '$mdSidenav',
         'Session',
         SidenavCtrl
@@ -9,19 +9,18 @@ angular.module('bdSidenav', [])
 
 function SidenavCtrl (
     $scope,
-    $location,
+    $state,
     $mdSidenav,
     Session
 ) {
 
-    $scope.locationTo = function (url) {
-        $location.path(url);
+    $scope.go = function (route) {
+        $state.go(route)
         $mdSidenav('left').close();
     };
 
     $scope.goToUserProfile = function () {
-        console.log(Session);
-        $location.path('/users/' + Session.currentUser._id);
+        $state.transitionTo('userDetail', {userId: Session.currentUser._id});
         $mdSidenav('left').close();
     };
 }

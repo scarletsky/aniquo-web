@@ -18,7 +18,7 @@
 
             <md-card ng-repeat="object in objects">
 
-                <md-card-content ng-click="goToQuoteDetailPage(object._id)">
+                <md-card-content ui-sref="quoteDetail({quoteId: object._id})">
                     <div marked="object.quote"></div>
                 </md-card-content>
 
@@ -27,7 +27,8 @@
                 <md-card-content layout="row"
                                  layout-wrap>
 
-                        <span ng-repeat="character in object.characters">
+                        <span ng-repeat="character in object.characters"
+                              ui-sref="character.quotes({characterId: character._id})">
 
                             <img class="avatar avatar-md mg-h"
                                  ng-if="character.avatar"
@@ -54,8 +55,8 @@
 
     <md-button id="fab"
                class="md-fab" aria-label="Add Quote"
-               ng-href="/quotes/new?characterId={{ characterId }}"
                ng-if="session.isAuthenticated()"
+               ui-sref="quoteNew"
                >
         <md-tooltip md-direction="left">添加语录</md-tooltip>
         <md-icon class="zmdi zmdi-plus zmdi-hc-lg"></md-icon>

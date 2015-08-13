@@ -5,7 +5,7 @@ angular.module('bdCharacter', [
     .controller('CharacterCtrl', [
         '$scope',
         '$location',
-        '$routeParams',
+        '$stateParams',
         'Restangular',
         CharacterCtrl
     ])
@@ -13,7 +13,7 @@ angular.module('bdCharacter', [
     .controller('CharacterListCtrl', [
         '$scope',
         '$location',
-        '$routeParams',
+        '$stateParams',
         'Query',
         'Restangular',
         CharacterListCtrl
@@ -22,12 +22,12 @@ angular.module('bdCharacter', [
 function CharacterCtrl (
     $scope,
     $location,
-    $routeParams,
+    $stateParams,
     Restangular
 ) {
     'use strict';
 
-    var characterId = $routeParams.characterId;
+    var characterId = $stateParams.characterId;
 
     Restangular
         .one('characters/' + characterId)
@@ -41,7 +41,7 @@ function CharacterCtrl (
 function CharacterListCtrl (
     $scope,
     $location,
-    $routeParams,
+    $stateParams,
     Query,
     Restangular
 ) {
@@ -50,7 +50,7 @@ function CharacterListCtrl (
     var q = new Query();
     $scope.q = q;
 
-    var sourceId = $routeParams.sourceId;
+    var sourceId = $stateParams.sourceId;
     $scope.sourceId = sourceId;
 
     $scope.getObjects = function () {
@@ -68,9 +68,5 @@ function CharacterListCtrl (
                 route: 'characters'
             });
         }
-    };
-
-    $scope.goToQuotesPage = function (id) {
-        $location.path('/characters/' + id + '/quotes');
     };
 }

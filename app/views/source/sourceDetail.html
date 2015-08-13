@@ -1,6 +1,6 @@
 <div layout="row"
      layout-align="center"
-     ng-controller="SourceCtrl"
+     ng-controller="SourceDetailCtrl"
      >
     <md-card layout="row"
              layout-md="column"
@@ -33,7 +33,7 @@
 
             <h1 class="md-title">作品简介</h1>
             <p class="md-body-1"
-               ng-bind-template="{{ source.info.length > 0 ? source.info : '无' }}"></p>
+               ng-bind-template="{{ source.info || '无' }}"></p>
 
         </md-card-content>
 
@@ -41,8 +41,8 @@
 
     <md-button id="fab"
                class="md-fab" aria-label="Edit Source"
-               ng-href="/sources/{{ source._id }}/edit"
                ng-if="session.isAuthenticated() && session.currentUser._id === source.contributor._id"
+               ui-sref="sourceEdit({sourceId: source._id})"
                >
         <md-tooltip md-direction="left">编辑作品</md-tooltip>
         <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>

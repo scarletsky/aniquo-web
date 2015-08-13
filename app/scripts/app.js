@@ -4,6 +4,7 @@ angular.module('bd', [
     'ngMessages',
     'ngMaterial',
     'infinite-scroll',
+    'ui.router',
     'bdHome',
     'bdUser',
     'bdQuote',

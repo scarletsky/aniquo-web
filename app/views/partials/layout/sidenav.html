@@ -11,14 +11,14 @@
 
         <md-list>
 
-            <md-list-item ng-click="locationTo('/login')"
-                          ng-if="!session.isAuthenticated()">
+            <md-list-item ng-if="!session.isAuthenticated()"
+                          ng-click="go('login')">
                 <md-icon class="zmdi zmdi-sign-in zmdi-hc-lg"></md-icon>
                 <p>登录</p>
             </md-list-item>
 
             <div ng-if="session.isAuthenticated()">
-                <md-list-item ng-click="locationTo('/')">
+                <md-list-item ng-click="go('index')">
                     <md-icon class="zmdi zmdi-home zmdi-hc-lg"></md-icon>
                     <p>首页</p>
                 </md-list-item>
@@ -27,7 +27,7 @@
                     <md-icon class="zmdi zmdi-account zmdi-hc-lg"></md-icon>
                     <p>我的资料</p>
                 </md-list-item>
-<!-- 
+<!--
                 <md-list-item ng-click="locationTo('/settings')">
                     <md-icon class="zmdi zmdi-settings zmdi-hc-lg"></md-icon>
                     <p>设置</p>

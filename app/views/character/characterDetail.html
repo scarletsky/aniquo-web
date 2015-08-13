@@ -32,7 +32,7 @@
 
             <h1 class="md-title">角色简介</h1>
             <p class="md-body-1"
-               ng-bind-template="{{ character.info.length > 0 ? character.info : '无' }}"></p>
+               ng-bind-template="{{ character.info || '无' }}"></p>
 
         </md-card-content>
 
@@ -40,8 +40,8 @@
 
     <md-button id="fab"
                class="md-fab" aria-label="Edit Character"
-               ng-href="/characters/{{ character._id }}/edit"
                ng-if="session.isAuthenticated() && session.currentUser._id === character.contributor._id"
+               ui-sref="characterEdit({characterId: character._id})"
                >
         <md-tooltip md-direction="left">编辑角色</md-tooltip>
         <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>

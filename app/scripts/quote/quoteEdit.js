@@ -2,7 +2,7 @@ angular.module('bdQuoteEdit', [])
   .controller('QuoteEditCtrl', [
     '$scope',
     '$location',
-    '$routeParams',
+    '$stateParams',
     'CDN',
     'Toast',
     'Avatar',
@@ -15,7 +15,7 @@ angular.module('bdQuoteEdit', [])
 function QuoteEditCtrl (
   $scope,
   $location,
-  $routeParams,
+  $stateParams,
   CDN,
   Toast,
   Avatar,
@@ -54,8 +54,8 @@ function QuoteEditCtrl (
 
   var editor = new Editor({
     scope: $scope,
-    mode: $routeParams.quoteId ? 'edit' : 'new',
-    targetId: $routeParams.quoteId,
+    mode: $stateParams.quoteId ? 'edit' : 'new',
+    targetId: $stateParams.quoteId,
     targetType: 'quote',
     queryParams: 'with_character_all=true',
     getTargetSuccess: function (res) {
@@ -117,14 +117,14 @@ function QuoteEditCtrl (
   //   };
 
   //   if (actionType === 'edit') {
-  //     var quoteElement = Restangular.one('quotes', $routeParams.quoteId)
+  //     var quoteElement = Restangular.one('quotes', $stateParams.quoteId)
   //     angular.extend(quoteElement, data)
   //     quoteElement
   //       .put()
   //       .then(function (res) {
   //         res = res.plain();
   //         Toast.show('语录更新成功');
-  //         return $location.path('/quotes/' + $routeParams.quoteId);
+  //         return $location.path('/quotes/' + $stateParams.quoteId);
   //       });
 
   //   } else {

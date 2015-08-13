@@ -1,24 +1,16 @@
 <div>
     <div id="navbar">
         <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
-            <md-tabs md-selected="selectedIndex"
-                     flex="80"
+            <md-tabs flex="80"
                      flex-md="100"
                      flex-sm="100"
+                     md-selected="g.tabIndex"
                      >
-                <md-tab label="语录" md-active="true"></md-tab>
-                <md-tab label="角色信息"></md-tab>
+                <md-tab label="语录" ui-sref="character.quotes({characterId: g.stateParams.characterId})"></md-tab>
+                <md-tab label="角色信息" ui-sref="character.detail({characterId: g.stateParams.characterId})"></md-tab>
             </md-tabs>
         </md-whiteframe>
     </div>
 
-    <ng-switch on="selectedIndex">
-        <div ng-switch-when="0">
-            <div ng-include="'views/quote/quoteList.html'"></div>
-        </div>
-        <div ng-switch-when="1">
-            <div ng-include="'views/character/characterDetail.html'"></div>
-        </div>
-    </ng-switch>
-
+    <div ui-view></div>
 </div>

@@ -2,7 +2,7 @@ angular.module('bdCharacterEdit', [])
   .controller('CharacterEditCtrl', [
     '$scope',
     '$location',
-    '$routeParams',
+    '$stateParams',
     'Toast',
     'Editor',
     'Uploader',
@@ -14,7 +14,7 @@ angular.module('bdCharacterEdit', [])
 function CharacterEditCtrl (
   $scope,
   $location,
-  $routeParams,
+  $stateParams,
   Toast,
   Editor,
   Uploader,
@@ -27,8 +27,8 @@ function CharacterEditCtrl (
 
   var editor = new Editor({
     scope: $scope,
-    mode: $routeParams.characterId ? 'edit' : 'new',
-    targetId: $routeParams.characterId,
+    mode: $stateParams.characterId ? 'edit' : 'new',
+    targetId: $stateParams.characterId,
     targetType: 'character',
     queryParams: 'with_source=true',
     canvas: $('#characterAvatar')[0]

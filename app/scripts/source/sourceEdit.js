@@ -2,7 +2,7 @@ angular.module('bdSourceEdit', [])
   .controller('SourceEditCtrl', [
     '$scope',
     '$location',
-    '$routeParams',
+    '$stateParams',
     'Toast',
     'Editor',
     'Uploader',
@@ -13,7 +13,7 @@ angular.module('bdSourceEdit', [])
 function SourceEditCtrl (
   $scope,
   $location,
-  $routeParams,
+  $stateParams,
   Toast,
   Editor,
   Uploader,
@@ -24,8 +24,8 @@ function SourceEditCtrl (
 
   var editor = new Editor({
     scope: $scope,
-    mode: $routeParams.sourceId ? 'edit' : 'new',
-    targetId: $routeParams.sourceId,
+    mode: $stateParams.sourceId ? 'edit' : 'new',
+    targetId: $stateParams.sourceId,
     targetType: 'source',
     canvas: $('#sourceCover')[0]
   });

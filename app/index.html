@@ -27,7 +27,7 @@
         <section ng-include="'/views/partials/layout/sidenav.html'"></section>
 
         <md-content id="content-body-wrapper" layout="column">
-            <main ng-view></main>
+            <main ui-view></main>
         </md-content>
 
         <!-- build:js /scripts/libs.js -->
@@ -57,6 +57,7 @@
         <script src="/components/angular-promise-tracker/promise-tracker.js"></script>
         <script src="/components/moment/moment.js"></script>
         <script src="/components/md-avatar/md-avatar.js"></script>
+        <script src="/components/angular-ui-router/release/angular-ui-router.min.js"></script>
         <!-- endbuild -->
 
         <!-- build:js /scripts/application.js -->

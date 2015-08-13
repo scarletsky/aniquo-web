@@ -6,24 +6,24 @@ angular.module('bdUser', [
 ])
     .controller('UserCtrl', [
         '$scope',
-        '$routeParams',
+        '$stateParams',
         'Session',
         'Restangular',
         UserCtrl
     ]);
 
-function UserCtrl($scope, $routeParams, Session, Restangular) {
+function UserCtrl($scope, $stateParams, Session, Restangular) {
 
     $scope.user = {};
 
     if (Session.currentUser !== null &&
-        Session.currentUser._id === $routeParams.userId) {
+        Session.currentUser._id === $stateParams.userId) {
 
         $scope.user = Session.currentUser;
     } else {
 
         Restangular
-            .one('users', $routeParams.userId)
+            .one('users', $stateParams.userId)
             .get()
             .then(function (res) {
                 res = res.plain();

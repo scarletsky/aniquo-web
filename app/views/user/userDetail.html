@@ -34,7 +34,7 @@
                     </div>
 
                     <h1 class="md-title text-center"
-                        ng-bind="user.email"></h1>
+                        ng-bind-template="{{ user.email || '?' }}"></h1>
 
                  </div>
 
@@ -45,19 +45,19 @@
             <md-card-content layout="column">
                 <h1 class="md-title">用户名</h1>
                 <p class="md-body-1"
-                   ng-bind-template="{{ user.username.length > 0 ? user.username : '无' }}"></p>
+                   ng-bind-template="{{ user.username || '无' }}"></p>
 
                 <h1 class="md-title">昵称</h1>
                 <p class="md-body-1"
-                   ng-bind-template="{{ user.nickname.length > 0 ? user.nickname : '无' }}"></p>
+                   ng-bind-template="{{ user.nickname || '无' }}"></p>
 
                 <h1 class="md-title">个人介绍</h1>
                 <p class="md-body-1"
-                   ng-bind-template="{{ user.info.length > 0 ? user.info : '无' }}"></p>
+                   ng-bind-template="{{ user.info || '无' }}"></p>
 
                 <h1 class="md-title">个人网站</h1>
                 <p class="md-body-1"
-                   ng-bind-template="{{ user.site.length > 0 ? user.site : '无' }}"></p>
+                   ng-bind-template="{{ user.site || '无' }}"></p>
 
             </md-card-content>
 
@@ -67,8 +67,8 @@
 
         <md-button id="fab"
                    class="md-fab" aria-label="Add Character"
-                   ng-href="/user/settings"
                    ng-if="session.isAuthenticated() && session.currentUser._id === user._id"
+                   ui-sref="userSettings"
                    >
             <md-tooltip md-direction="left">编辑个人资料</md-tooltip>
             <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>

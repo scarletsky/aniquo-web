@@ -4,7 +4,7 @@ angular.module('bdQuote', [
 
   .controller('QuoteCtrl', [
     '$scope',
-    '$routeParams',
+    '$stateParams',
     'Restangular',
     QuoteCtrl
   ])
@@ -12,7 +12,7 @@ angular.module('bdQuote', [
   .controller('QuoteListCtrl', [
     '$scope',
     '$location',
-    '$routeParams',
+    '$stateParams',
     'Query',
     'Restangular',
     QuoteListCtrl
@@ -20,12 +20,12 @@ angular.module('bdQuote', [
 
 function QuoteCtrl (
   $scope,
-  $routeParams,
+  $stateParams,
   Restangular
 ) {
   'use strict';
 
-  var quoteId = $routeParams.quoteId;
+  var quoteId = $stateParams.quoteId;
   var characterId = $scope.g.currentCharacter ? $scope.g.currentCharacter._id : null;
 
   Restangular
@@ -44,7 +44,7 @@ function QuoteCtrl (
 function QuoteListCtrl (
   $scope,
   $location,
-  $routeParams,
+  $stateParams,
   Query,
   Restangular
 ) {
@@ -52,7 +52,7 @@ function QuoteListCtrl (
 
   var q = new Query();
   $scope.q = q;
-  var characterId = $routeParams.characterId;
+  var characterId = $stateParams.characterId;
   $scope.characterId = characterId;
 
   $scope.getObjects = function () {
@@ -62,7 +62,7 @@ function QuoteListCtrl (
         scope: $scope,
         route: 'characters/' + characterId + '/quotes'
       });
-   
+
     } else {
 
       q.query({
@@ -75,5 +75,5 @@ function QuoteListCtrl (
   $scope.goToQuoteDetailPage = function (id) {
     $location.path('/quotes/' + id);
   }
-  
+
 }

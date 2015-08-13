@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="QuoteCtrl">
 
     <div id="navbar">
         <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
@@ -24,7 +24,8 @@
                          layout-align="space-between"
                          layout-wrap>
 
-                        <span ng-repeat="character in quote.characters">
+                        <span ng-repeat="character in quote.characters"
+                              ui-sref="character.quotes({characterId: character._id})">
 
                             <img class="avatar avatar-lg mg-h"
                                  ng-if="character.avatar"
@@ -61,8 +62,8 @@
 
     <md-button id="fab"
                class="md-fab" aria-label="Edit Character"
-               ng-href="/quotes/{{ quote._id }}/edit"
                ng-if="session.isAuthenticated() && session.currentUser._id === quote.contributor._id"
+               ui-sref="quoteEdit({quoteId: quote._id})"
                >
         <md-tooltip md-direction="left">编辑语录</md-tooltip>
         <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>

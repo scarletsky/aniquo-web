@@ -3,7 +3,8 @@ angular.module('bdUserVerify', [])
         '$scope',
         '$location',
         '$rootScope',
-        '$routeParams',
+        '$state',
+        '$stateParams',
         'Session',
         'Restangular',
         'Toast',
@@ -14,7 +15,8 @@ function UserVerifyCtrl(
     $scope,
     $location,
     $rootScope,
-    $routeParams,
+    $state,
+    $stateParams,
     Session,
     Restangular,
     Toast
@@ -28,7 +30,7 @@ function UserVerifyCtrl(
     $scope.user = {};
 
     Restangular
-        .one('users', $routeParams.userId)
+        .one('users', $stateParams.userId)
         .one('verify')
         .get({
             confirm_token: confirmToken
@@ -47,7 +49,6 @@ function UserVerifyCtrl(
         });
 
     function goToUserDetailPage() {
-        $location.path('/users/' + $routeParams.userId).search({});
+        $state.transitionTo('userDetail', {userId: $stateParams.userId});
     }
 };
-

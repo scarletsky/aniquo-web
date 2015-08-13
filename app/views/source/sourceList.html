@@ -28,7 +28,7 @@
                     flex-sm="95"
                     ng-repeat="object in objects track by $index">
 
-                    <div ng-click="goToCharactersPage(object._id)">
+                    <div ui-sref="source.characters({sourceId: object._id})">
                         <img bd-image-auto-resize
                              bd-image-background-cover="{{ object.cover }}">
                     </div>
@@ -36,7 +36,7 @@
                     <md-card-content>
                         <h4 class="md-title"
                             ng-bind="object.name"
-                            ng-click="goToCharactersPage(object._id)"></h4>
+                            ui-sref="source.characters({sourceId: object._id})"></h4>
                     </md-card-content>
 
 

@@ -1,17 +1,26 @@
 angular.module('bdTreasure', [])
-  .factory('G', [
-    globalService
-  ]);
+    .factory('G', [
+        '$rootScope',
+        '$stateParams',
+        globalService
+    ]);
 
-function globalService () {
-  'use strict';
+function globalService($rootScope, $stateParams) {
+    'use strict';
 
-  var service = {
-    searchKeyword: '',
-    searchType: '',
-    currentCharacter: null,
-    currentSource: null
-  };
+    var service = {
+        searchKeyword: '',
+        searchType: '',
+        currentCharacter: null,
+        currentSource: null,
+        stateParams: {},
+        tabIndex: 0
+    };
 
-  return service;
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
+        service.stateParams = toParams;
+        service.tabIndex = toState.tabIndex || 0;
+    });
+
+    return service;
 }
