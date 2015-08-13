@@ -1,6 +1,7 @@
 angular.module('bdEditor', [])
   .factory('Editor', [
     '$q',
+    '$state',
     'Toast',
     'Uploader',
     'ImageViewer',
@@ -8,8 +9,8 @@ angular.module('bdEditor', [])
     EditorService
   ]);
 
-function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
-  
+function EditorService ($q, $state, Toast, Uploader, ImageViewer, Restangular) {
+
   var Editor = function (options) {
     if (!options) { throw Error('Editor need an options!'); }
     if (!options.scope) { throw Error('It need a scope in the options!'); }
@@ -128,11 +129,17 @@ function EditorService ($q, Toast, Uploader, ImageViewer, Restangular) {
     };
 
     if (!successCallback) {
-      successCallback = function () {
+      successCallback = function (res) {
         var _map = targetTypeMap[self.targetType];
         var _mode = self.mode === 'new' ? '添加' : '更新';
         var text = _map + '已' + _mode;
         Toast.show(text);
+
+        var state = self.targetType === 'quote' ? 'quoteDetail' : self.targetType + '.detail';
+        var params = {};
+        
+        params[self.targetType + 'Id'] = res._id;
+        $state.transitionTo(state, params);
       };
     }
 
