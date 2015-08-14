@@ -39,12 +39,13 @@ function UserVerifyCtrl(
             res = res.plain();
             $scope.user = res.user;
             Session.login(res);
+            Toast.show('帐号激活成功');
         }, function(res) {
             if (res.data.user) {
                 $scope.user = res.data.user;
                 Session.login(res.data);
             }
-            Toast.show(res.data.error);
+            Toast.show('你的帐号已经激活，不需要重复激活帐号');
             goToUserDetailPage();
         });
 
