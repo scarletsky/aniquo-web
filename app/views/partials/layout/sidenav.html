@@ -11,11 +11,17 @@
 
         <md-list>
 
-            <md-list-item ng-if="!session.isLogin()"
-                          ng-click="go('login')">
-                <md-icon class="zmdi zmdi-sign-in zmdi-hc-lg"></md-icon>
-                <p>登录</p>
-            </md-list-item>
+            <div ng-if="!session.isLogin()">
+                <md-list-item ng-click="go('login')">
+                    <md-icon class="zmdi zmdi-sign-in zmdi-hc-lg"></md-icon>
+                    <p>登录</p>
+                </md-list-item>
+
+                <md-list-item ng-click="go('signup')">
+                    <md-icon class="zmdi zmdi-account-add zmdi-hc-lg"></md-icon>
+                    <p>注册</p>
+                </md-list-item>
+            </div>
 
             <div ng-if="session.isLogin()">
                 <md-list-item ng-click="go('index')">
