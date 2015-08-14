@@ -67,7 +67,7 @@
 
         <md-button id="fab"
                    class="md-fab" aria-label="Add Character"
-                   ng-if="session.isAuthenticated() && session.currentUser._id === user._id"
+                   ng-if="session.isLogin() && session.currentUser._id === user._id"
                    ui-sref="userSettings"
                    >
             <md-tooltip md-direction="left">编辑个人资料</md-tooltip>

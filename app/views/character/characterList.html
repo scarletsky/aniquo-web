@@ -58,7 +58,7 @@
 
     <md-button id="fab"
                class="md-fab" aria-label="Add Character"
-               ng-if="session.isAuthenticated()"
+               ng-if="session.isLogin()"
                ui-sref="characterNew"
                >
         <md-tooltip md-direction="left">添加角色</md-tooltip>

@@ -45,7 +45,7 @@ function SessionService (
     var service = {
         currentUser: null,
 
-        isAuthenticated: function () {
+        isLogin: function () {
             return !!this.currentUser;
         },
 
@@ -165,7 +165,7 @@ function AuthCtrl (
         return currentPage === '/login' || currentPage === '/signup';
     }
 
-    if (isAuthPage() && Session.isAuthenticated()) {
+    if (isAuthPage() && Session.isLogin()) {
         return $location.path('/');
     }
 }

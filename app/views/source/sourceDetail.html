@@ -42,7 +42,7 @@
 
     <md-button id="fab"
                class="md-fab" aria-label="Edit Source"
-               ng-if="session.isAuthenticated() && session.currentUser._id === source.contributor._id"
+               ng-if="session.isLogin() && session.currentUser._id === source.contributor._id"
                ui-sref="sourceEdit({sourceId: source._id})"
                >
         <md-tooltip md-direction="left">编辑作品</md-tooltip>

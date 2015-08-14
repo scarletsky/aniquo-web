@@ -6,18 +6,18 @@
         <md-toolbar class="md-tall">
             <span flex></span>
             <h1 class="md-toolbar-tools md-toolbar-tools-bottom"
-                ng-bind-template="{{ session.isAuthenticated() ? session.currentUser.email : '请先登录'}}"></h1>
+                ng-bind-template="{{ session.isLogin() ? session.currentUser.email : '请先登录'}}"></h1>
         </md-toolbar>
 
         <md-list>
 
-            <md-list-item ng-if="!session.isAuthenticated()"
+            <md-list-item ng-if="!session.isLogin()"
                           ng-click="go('login')">
                 <md-icon class="zmdi zmdi-sign-in zmdi-hc-lg"></md-icon>
                 <p>登录</p>
             </md-list-item>
 
-            <div ng-if="session.isAuthenticated()">
+            <div ng-if="session.isLogin()">
                 <md-list-item ng-click="go('index')">
                     <md-icon class="zmdi zmdi-home zmdi-hc-lg"></md-icon>
                     <p>首页</p>

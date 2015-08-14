@@ -55,7 +55,7 @@
 
     <md-button id="fab"
                class="md-fab" aria-label="Add Quote"
-               ng-if="session.isAuthenticated()"
+               ng-if="session.isLogin()"
                ui-sref="quoteNew"
                >
         <md-tooltip md-direction="left">添加语录</md-tooltip>
