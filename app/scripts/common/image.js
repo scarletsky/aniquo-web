@@ -171,7 +171,8 @@ function bdImageBackgroundCoverDirective (CDN) {
       var h = $attrs.bdHeight || 500;
 
       $element.css({
-        'background-size': 'cover'
+        'background-size': 'cover',
+        'background-position': 'center'
       });
 
       $attrs.$observe('bdImageName', function (newVal) {
