@@ -1,5 +1,6 @@
 node_modules/
 app/components/
 app/styles/*.css
+app/scripts/config/cdn.js
 dist/
 update.sh

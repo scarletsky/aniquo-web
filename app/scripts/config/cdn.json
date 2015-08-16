@@ -1,0 +1,24 @@
+{
+    "development": {
+        "CDN": {
+            "domain": "http://7ktuvf.com1.z0.glb.clouddn.com/",
+            "uploadUrl": "http://upload.qiniu.com",
+            "userAvatarPrefix": "dev/images/userAvatar/",
+            "sourceCoverPrefix": "dev/images/sourceCover/",
+            "characterAvatarPrefix": "dev/images/characterAvatar/",
+            "quoteScenePrefix": "dev/images/quoteScene/",
+            "fileSizeLimit": "2097152"
+        }
+    },
+    "production": {
+        "CDN": {
+            "domain": "http://7ktuvf.com1.z0.glb.clouddn.com/",
+            "uploadUrl": "http://upload.qiniu.com",
+            "userAvatarPrefix": "images/userAvatar/",
+            "sourceCoverPrefix": "images/sourceCover/",
+            "characterAvatarPrefix": "images/characterAvatar/",
+            "quoteScenePrefix": "images/quoteScene/",
+            "fileSizeLimit": "2097152"
+        }
+    }
+}

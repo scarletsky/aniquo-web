@@ -3,7 +3,8 @@ angular.module('bdConfig', [
   'angular-md5',
   'angular-loading-bar',
   'hc.marked',
-  'ajoslin.promise-tracker'
+  'ajoslin.promise-tracker',
+  'bdCDN'
 ])
 
   .run([

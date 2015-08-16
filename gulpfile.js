@@ -11,6 +11,10 @@ var uglify = require('gulp-uglify');
 var rev = require('gulp-rev');
 var shell = require('gulp-shell');
 var modRewrite = require('connect-modrewrite');
+var ngConstant = require('gulp-ng-constant');
+var rename = require('gulp-rename');
+
+var env;
 
 gulp.task('clean:css', function () {
     del.sync('app/styles/*.css');
@@ -75,7 +79,7 @@ gulp.task('connect', function () {
     });
 });
 
-gulp.task('minify', ['less'], function () {
+gulp.task('minify', ['clean:build', 'cdn', 'less'], function () {
     gulp
         .src('app/views/**/*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
@@ -96,6 +100,25 @@ gulp.task('copyfonts', function () {
         .pipe(gulp.dest('dist/fonts/'));
 });
 
-gulp.task('server', ['less', 'connect', 'watch']);
-gulp.task('build', ['clean:build', 'minify', 'copyfonts']);
+gulp.task('env:dev', function () {
+    env = 'development';
+});
+
+gulp.task('env:build', function () {
+    env = 'production';
+});
+
+gulp.task('cdn', function () {
+    var cdn = require('./app/scripts/config/cdn.json');
+    return ngConstant({
+        name: 'bdCDN',
+        constants: cdn[env],
+        stream: true
+    })
+    .pipe(rename('cdn.js'))
+    .pipe(gulp.dest('app/scripts/config'));
+});
+
+gulp.task('server', ['env:dev', 'cdn', 'less', 'connect', 'watch']);
+gulp.task('build', ['env:build', 'clean:build', 'cdn', 'minify', 'copyfonts']);
 gulp.task('deploy', ['build'], shell.task('bash ./update.sh aniquo.com'));
