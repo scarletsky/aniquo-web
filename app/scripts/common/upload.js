@@ -1,11 +1,11 @@
 angular.module('bdUpload', [])
   .constant('CDN', {
-    domain: 'http://7ktuvf.com1.z0.glb.clouddn.com',
+    domain: 'http://7ktuvf.com1.z0.glb.clouddn.com/',
     uploadUrl: 'http://upload.qiniu.com',
-    userAvatarPrefix: '/test/images/userAvatar/',
-    sourceCoverPrefix: '/test/images/sourceCover/',
-    characterAvatarPrefix: '/test/images/characterAvatar/',
-    quoteScenePrefix: '/test/images/quoteScene/',
+    userAvatarPrefix: 'images/userAvatar/',
+    sourceCoverPrefix: 'images/sourceCover/',
+    characterAvatarPrefix: 'images/characterAvatar/',
+    quoteScenePrefix: 'images/quoteScene/',
     fileSizeLimit: 2097152 // 2MB
   })
 

@@ -179,7 +179,7 @@ function bdImageBackgroundCoverDirective (CDN) {
 
           bgKey = newVal.charCodeAt(0) % 9;
           $element.css({
-            'background-image': 'url(' + CDN.domain + '/@/images/bg' + bgKey + '?imageView/2/w/' + w + '/h/' + h + ')'
+            'background-image': 'url(' + CDN.domain + 'images/bg' + bgKey + '?imageView/2/w/' + w + '/h/' + h + ')'
           });
       });
 
