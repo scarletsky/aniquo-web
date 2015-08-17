@@ -20,7 +20,6 @@ function globalService($rootScope, $stateParams) {
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
         service.stateParams = toParams;
         service.currentState = toState.name;
-        console.log(service);
     });
 
     return service;

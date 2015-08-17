@@ -4,6 +4,7 @@ angular.module('bdImage', ['bdUpload'])
   ])
 
   .directive('bdImageAutoResize', [
+    '$window',
     bdImageAutoResizeDirective
   ])
 
@@ -146,16 +147,26 @@ function ImageViewerService () {
 
 }
 
-function bdImageAutoResizeDirective () {
+function bdImageAutoResizeDirective ($window) {
   return {
     restrict: 'AE',
     link: function ($scope, $element) {
+
+      function resizeImage() {
+        $element.width('100%');
+        $element.height($element.width());
+      }
+
+      angular.element($window).on('resize', function() {
+        resizeImage();
+      });
+
       $scope.$watch(function () {
         return $element.width();
       }, function (w) {
-        $element.width('100%');
-        $element.height(w);
-      })
+        resizeImage();
+      });
+
     }
   }
 }
