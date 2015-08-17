@@ -1,13 +1,43 @@
 <md-fab-speed-dial id="fab"
+                   ng-if="session.isLogin()"
                    md-direction="up"
                    class="md-scale"
                    >
 
     <md-fab-trigger>
         <md-button aria-label="menu"
-                   class="md-fab">
+                   class="md-fab"
+                   ng-if="g.currentState === 'index'" >
             <md-icon class="zmdi zmdi-plus zmdi-hc-lg"></md-icon>
         </md-button>
+
+
+        <md-button class="md-fab"
+                   aria-label="Edit Source"
+                   ng-if="g.currentState === 'source.detail' && session.currentUser._id === source.contributor._id"
+                   ui-sref="sourceEdit({sourceId: g.stateParams.sourceId})">
+            <md-tooltip md-direction="left" md-delay="0">编辑作品</md-tooltip>
+            <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>
+        </md-button>
+
+        <md-button class="md-fab"
+                   aria-label="Edit Character"
+                   ng-if="g.currentState === 'character.detail' && session.currentUser._id === character.contributor._id"
+                   ui-sref="characterEdit({characterId: g.stateParams.characterId})"
+                   >
+            <md-tooltip md-direction="left" md-delay="0">编辑角色</md-tooltip>
+            <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>
+        </md-button>
+
+        <md-button class="md-fab"
+                   aria-label="Edit Quote"
+                   ng-if="g.currentState === 'quoteDetail' && session.currentUser._id === quote.contributor._id"
+                   ui-sref="quoteEdit({quoteId: g.stateParams.quoteId})"
+                   >
+            <md-tooltip md-direction="left" md-delay="0">编辑角色</md-tooltip>
+            <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>
+        </md-button>
+
     </md-fab-trigger>
 
     <md-fab-actions>
@@ -35,6 +65,7 @@
             <md-icon class="zmdi zmdi-comment-more zmdi-hc-lg"
                      style="color: #777"></md-icon>
         </md-button>
+
 
     </md-fab-actions>
 

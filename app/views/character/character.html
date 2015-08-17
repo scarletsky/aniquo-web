@@ -1,16 +1,15 @@
-<div>
-    <div id="navbar">
-        <md-whiteframe class="md-whiteframe-z1" layout="row" layout-align="center center" style="height: 100%;">
-            <md-tabs flex="80"
-                     flex-md="100"
-                     flex-sm="100"
-                     md-selected="g.tabIndex"
-                     >
-                <md-tab label="语录" ui-sref="character.quotes({characterId: g.stateParams.characterId})"></md-tab>
-                <md-tab label="角色信息" ui-sref="character.detail({characterId: g.stateParams.characterId})"></md-tab>
-            </md-tabs>
-        </md-whiteframe>
+<div class="no-navbar-height">
+    <md-subheader class="md-whiteframe-z1">
+        <div layout="row" layout-align="center">
+            角色信息
+        </div>
+    </md-subheader>
+    <div ng-include="'views/character/characterDetail.html'"></div>
+
+    <div layout="row" layout-align="center">
+        <h1 class="md-title" flex="80" flex-md="95" flex-sm="95">语录列表</h1>
     </div>
 
-    <div ui-view></div>
+    <div ng-include="'views/quote/quoteList.html'"></div>
+
 </div>

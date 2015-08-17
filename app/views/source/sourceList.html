@@ -15,20 +15,20 @@
         <div layout="column" layout-fill>
 
             <div layout="row"
-                 layout-align="start"
+                 layout-align="space-between"
                  flex="80"
                  flex-md="100"
                  flex-sm="100"
                  layout-wrap>
 
                 <md-card
-                    class="source-wrapper"
+                    class="source-wrapper mg-h-0"
                     flex="30"
                     flex-md="45"
                     flex-sm="95"
                     ng-repeat="object in objects track by $index">
 
-                    <div ui-sref="source.characters({sourceId: object._id})">
+                    <div ui-sref="source.detail({sourceId: object._id})">
                         <img bd-image-auto-resize
                              bd-image-name="{{ object.name }}"
                              bd-image-background-cover="{{ object.cover }}">

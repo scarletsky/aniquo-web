@@ -14,12 +14,13 @@ function globalService($rootScope, $stateParams) {
         currentCharacter: null,
         currentSource: null,
         stateParams: {},
-        tabIndex: 0
+        currentState: null
     };
 
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
         service.stateParams = toParams;
-        service.tabIndex = toState.tabIndex || 0;
+        service.currentState = toState.name;
+        console.log(service);
     });
 
     return service;

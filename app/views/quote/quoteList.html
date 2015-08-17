@@ -7,7 +7,8 @@
         layout="row"
         layout-align="space-between"
         flex="80"
-        flex-sm="100"
+        flex-md="95"
+        flex-sm="95"
         layout-wrap
         infinite-scroll="getObjects()"
         infinite-scroll-disabled="q.isQuerying || q.noMoreData"
@@ -16,7 +17,8 @@
 
         <div layout="column" layout-fill>
 
-            <md-card ng-repeat="object in objects">
+            <md-card class="mg-h-0"
+                     ng-repeat="object in objects">
 
                 <md-card-content ui-sref="quoteDetail({quoteId: object._id})">
                     <div marked="object.quote"></div>
@@ -27,22 +29,23 @@
                 <md-card-content layout="row"
                                  layout-wrap>
 
-                        <span ng-repeat="character in object.characters"
-                              ui-sref="character.quotes({characterId: character._id})">
+                    <span ng-repeat="character in object.characters"
+                          ui-sref="character.detail({characterId: character._id})"
+                          ui-sref-opts="{reload: true}">
 
-                            <img class="avatar avatar-md mg-h"
-                                 ng-if="character.avatar"
-                                 ng-src="{{ cdn.domain + character.avatar }}"
-                                 />
+                        <img class="avatar avatar-md mg-h"
+                             ng-if="character.avatar"
+                             ng-src="{{ cdn.domain + character.avatar }}"
+                             />
 
-                            <img class="avatar avatar-md mg-h"
-                                 ng-if="!character.avatar"
-                                 bd-avatar
-                                 bd-avatar-text="{{ character.name }}" />
+                        <img class="avatar avatar-md mg-h"
+                             ng-if="!character.avatar"
+                             bd-avatar
+                             bd-avatar-text="{{ character.name }}" />
 
-                            <md-tooltip md-direction="down"
-                                        md-delay="0">{{ character.name }}</md-tooltip>
-                        </span>
+                        <md-tooltip md-direction="down"
+                                    md-delay="0">{{ character.name }}</md-tooltip>
+                    </span>
                 </md-card-content>
 
             </md-card>
@@ -52,14 +55,5 @@
         </div>
 
     </div>
-
-    <md-button id="fab"
-               class="md-fab" aria-label="Add Quote"
-               ng-if="session.isLogin()"
-               ui-sref="quoteNew"
-               >
-        <md-tooltip md-direction="left">添加语录</md-tooltip>
-        <md-icon class="zmdi zmdi-plus zmdi-hc-lg"></md-icon>
-    </md-button>
 
 </div>

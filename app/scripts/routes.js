@@ -60,15 +60,9 @@ function routeProvider (
         url: '/sources',
         templateUrl: 'views/source/source.html'
     })
-    .state('source.characters', {
-        url: '/:sourceId/characters',
-        templateUrl: 'views/character/characterList.html',
-        tabIndex: 0
-    })
     .state('source.detail', {
         url: '/:sourceId',
-        templateUrl: 'views/source/sourceDetail.html',
-        tabIndex: 1
+        templateUrl: 'views/source/source.html',
     })
     // 不继承 source，因为父模板不一样
     .state('sourceEdit', {
@@ -85,15 +79,9 @@ function routeProvider (
         url: '/characters',
         templateUrl: 'views/character/character.html'
     })
-    .state('character.quotes', {
-        url: '/:characterId/quotes',
-        templateUrl: 'views/quote/quoteList.html',
-        tabIndex: 0
-    })
     .state('character.detail', {
         url: '/:characterId',
-        templateUrl: 'views/character/characterDetail.html',
-        tabIndex: 1
+        templateUrl: 'views/character/character.html',
     })
     // 不继承 character，因为父模板不一样
     .state('characterEdit', {

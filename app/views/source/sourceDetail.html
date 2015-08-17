@@ -40,13 +40,6 @@
 
     </md-card>
 
-    <md-button id="fab"
-               class="md-fab" aria-label="Edit Source"
-               ng-if="session.isLogin() && session.currentUser._id === source.contributor._id"
-               ui-sref="sourceEdit({sourceId: source._id})"
-               >
-        <md-tooltip md-direction="left">编辑作品</md-tooltip>
-        <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>
-    </md-button>
+    <div ng-include="'views/partials/fabMenu.html'"></div>
 
 </div>

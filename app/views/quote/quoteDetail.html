@@ -60,13 +60,6 @@
 
     </div>
 
-    <md-button id="fab"
-               class="md-fab" aria-label="Edit Character"
-               ng-if="session.isLogin() && session.currentUser._id === quote.contributor._id"
-               ui-sref="quoteEdit({quoteId: quote._id})"
-               >
-        <md-tooltip md-direction="left">编辑语录</md-tooltip>
-        <md-icon class="zmdi zmdi-edit zmdi-hc-lg"></md-icon>
-    </md-button>
+    <div ng-include="'views/partials/fabMenu.html'"></div>
 
 </div>
