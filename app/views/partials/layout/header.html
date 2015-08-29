@@ -12,5 +12,17 @@
         <a href="/">Aniquo</a>
 
         <span flex></span>
+
+        <md-button class="md-icon-button"
+                   aria-label="Search"
+                   ui-sref="search"
+                   ng-if="g.currentState !== 'search'">
+            <md-icon class="zmdi zmdi-search zmdi-hc-2x"></md-icon>
+        </md-button>
+
+        <span flex="10"
+              flex-md="0"
+              flex-sm="0"></span>
+
     </div>
 </md-toolbar>

@@ -29,6 +29,11 @@ function routeProvider (
         templateUrl: 'views/home/home.html'
     })
 
+    .state('search', {
+        url: '/search?type&keyword',
+        templateUrl: 'views/search/search.html'
+    })
+
     // auth
     .state('login', {
         url: '/login',

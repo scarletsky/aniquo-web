@@ -1,10 +1,10 @@
 <div layout="column">
 
-    <div ng-if="g.searchType === 'source'">
+    <div ng-if="viewType === 'source'">
         <div ng-include="'views/source/sourceList.html'"></div>
     </div>
 
-    <div ng-if="g.searchType === 'character'">
+    <div ng-if="viewType === 'character'">
         <div ng-include="'views/character/characterList.html'"></div>
     </div>
 

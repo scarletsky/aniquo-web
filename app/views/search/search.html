@@ -1,4 +1,11 @@
-<div>
+<div class="no-navbar-height"
+     ng-controller="SearchCtrl">
+    <md-subheader class="md-whiteframe-z1">
+        <div layout="row" layout-align="center">
+            搜索
+        </div>
+    </md-subheader>
+
     <div ng-include="'views/search/searchForm.html'"></div>
     <div ng-include="'views/search/searchResult.html'"></div>
 </div>

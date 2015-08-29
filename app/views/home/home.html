@@ -17,13 +17,16 @@
 
     <ng-switch on="selectedIndex">
         <div ng-switch-when="0">
-            <div ng-include="'/views/source/sourceList.html'"></div>
+            <div ng-controller="SourceListCtrl"
+                 ng-include="'/views/source/sourceList.html'"></div>
         </div>
         <div ng-switch-when="1">
-            <div ng-include="'/views/character/characterList.html'"></div>
+            <div ng-controller="CharacterListCtrl"
+                 ng-include="'/views/character/characterList.html'"></div>
         </div>
         <div ng-switch-when="2">
-            <div ng-include="'/views/quote/quoteList.html'"></div>
+            <div ng-controller="QuoteListCtrl"
+                 ng-include="'/views/quote/quoteList.html'"></div>
         </div>
     </ng-switch>
 

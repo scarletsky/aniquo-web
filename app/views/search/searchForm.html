@@ -1,52 +1,47 @@
-<div layout="column"
-     flex-lg="60"
-     flex-md="80"
-     offset-lg="20"
-     offset-md="10"
-     offset-sm="0">
+<div>
+    <div layout="row"
+         layout-align="center">
 
-    <md-card layout="column">
+        <md-card flex="80"
+                 flex-md="95"
+                 flex-sm="95">
 
-        <form role="form"
-              ng-submit="getResult()"
-              ng-controller="SearchCtrl">
+            <md-card-content>
 
-            <h3>搜索</h3>
+                <form layout="row"
+                      layout-sm="column"
+                      name="searchForm"
+                      ng-submit="getResults()">
 
-            <div layout="row">
+                    <md-input-container flex="15"
+                                        flex-sm="100">
+                        <label>类型</label>
+                        <md-select name="type" ng-model="search.type" required>
+                            <md-option value="source">作品</md-option>
+                            <md-option value="character">角色</md-option>
+                        </md-select>
+                        <div class="errors" ng-messages="searchForm.type.$error" ng-if="searchForm.$dirty">
+                            <div ng-message="required">搜索类型不能为空</div>
+                        </div>
+                    </md-input-container>
 
-                <p flex="30">搜索类型</p>
+                    <md-input-container flex="85"
+                                        flex-sm="100">
+                        <label>搜索内容</label>
+                        <input type="text"
+                               name="keyword"
+                               ng-model="search.keyword"
+                               required />
+                        <div ng-messages="searchForm.keyword.$error" ng-if="searchForm.keyword.$dirty">
+                            <div ng-message="required">搜索内容不能为空</div>
+                        </div>
+                    </md-input-container>
+                </form>
 
-                <md-radio-group ng-model="g.searchType"
-                                flex="70">
+            </md-card-content>
 
-                    <md-radio-button value="character"
-                                     aria-label="character"
-                                     inline-block>角色</md-radio-button>
+        </md-card>
 
-                    <md-radio-button value="source"
-                                     aria-label="source"
-                                     inline-block>作品</md-radio-button>
-
-                </md-radio-group>
-
-            </div>
-
-            <md-input-group class="md-input-group-theme-light" layout="row">
-
-                <p flex="30">搜索内容</p>
-
-                <md-input type="text" 
-                          ng-model="g.searchKeyword"
-                          flex="70"
-                          inline-block
-                          placeholder="请输入你想搜索的内容"></md-input>
-            </md-input-group>
-
-            <span block style="height: 20px;"></span>
-
-        </form>
-
-    </md-card>
+    </div>
 
 </div>

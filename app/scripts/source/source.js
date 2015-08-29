@@ -48,7 +48,6 @@ function SourceListCtrl (
 ) {
     'use strict';
 
-
     var q = new Query();
     $scope.q = q;
 
