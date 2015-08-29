@@ -36,14 +36,14 @@ function CharacterEditCtrl(
 
     $scope.querySource = function(sourceKeyword) {
         return Restangular
-            .all('search')
-            .getList({
-                t: 'source',
-                kw: sourceKeyword
+            .one('search')
+            .get({
+                type: 'source',
+                keyword: sourceKeyword
             })
             .then(function(res) {
                 res = res.plain();
-                return res;
+                return res.objects;
             });
     };
 

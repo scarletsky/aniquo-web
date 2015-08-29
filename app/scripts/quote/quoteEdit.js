@@ -96,13 +96,15 @@ function QuoteEditCtrl(
     };
 
     $scope.queryCharacters = function(query) {
-        return Restangular.all('search')
-            .getList({
-                t: 'character',
-                kw: query
+        return Restangular.one('search')
+            .get({
+                type: 'character',
+                keyword: query
             })
             .then(function(res) {
-                var _characters = res.plain();
+                res = res.plain();
+                console.log(res);
+                var _characters = res.objects;
                 var nonExistCharacters = getNonExistCharacters(_characters);
                 return resetAvatarSize(nonExistCharacters);
             });
