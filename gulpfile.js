@@ -88,8 +88,8 @@ gulp.task('minify', ['clean:build', 'cdn', 'less'], function () {
     gulp
         .src('app/index.html')
         .pipe(usemin({
-            js: [uglify(), rev()],
-            css: [minifyCss(), 'concat', rev()]
+            js: [uglify, rev],
+            css: [minifyCss, 'concat', rev]
         }))
         .pipe(gulp.dest('dist/'));
 });
