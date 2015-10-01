@@ -102,9 +102,6 @@ function AuthCtrl (
     $scope.user = {};
     $scope.submitting = false;
 
-    $scope.reset = function () {
-        $scope.user = {};
-    };
     $scope.login = function () {
 
         if ($scope.loginForm.$invalid) return;

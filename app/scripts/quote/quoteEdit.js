@@ -68,11 +68,6 @@ function QuoteEditCtrl(
         }
     });
 
-    $scope.reset = function() {
-        $scope.quote = {};
-        $scope.quote.characters = [];
-    };
-
     $scope.submit = function() {
 
         if ($scope.quoteForm.$invalid) return;

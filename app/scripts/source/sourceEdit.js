@@ -30,12 +30,6 @@ function SourceEditCtrl(
         canvas: $('#sourceCover')[0]
     });
 
-    $scope.reset = function() {
-        $scope.source = {};
-        $scope.source.alias = [];
-        cleanCanvas();
-    };
-
     function cleanCanvas() {
         var canvas = $('#sourceCover');
         var ctx = canvas[0].getContext('2d');

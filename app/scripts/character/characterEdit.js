@@ -47,12 +47,6 @@ function CharacterEditCtrl(
             });
     };
 
-    $scope.reset = function() {
-        $scope.character = {};
-        $scope.character.alias = [];
-        cleanCanvas();
-    };
-
     function cleanCanvas() {
         var canvas = $('#characterAvatar');
         var ctx = canvas[0].getContext('2d');
